@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\netfx.props" />
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;</TargetFrameworks>
+    <AssemblyName>TelnyxTests</AssemblyName>
+    <PackageId>TelnyxTests</PackageId>
+    <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="openapi\**" LinkBase="openapi" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.msbuild" Version="2.4.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.1.0" />
+    <PackageReference Include="Moq" Version="4.10.1" />
+    <PackageReference Include="Stylecop.Analyzers" Version="1.0.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.console" Version="2.4.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Telnyx.net\Telnyx.net.csproj" />
+  </ItemGroup>
+
+  <!-- Include files in the Resources directory to be used across the test suite -->
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\**\*.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Services\Numbers\**" />
+    <EmbeddedResource Remove="Services\Numbers\**" />
+    <None Remove="Services\Numbers\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\api_fixtures\numbers\number_orders\expected_webhooks.json" />
+    <None Remove="Resources\api_fixtures\numbers\number_orders\success_response.json" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\_stylecop\StyleCopRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\_stylecop\TelnyxTests.ruleset</CodeAnalysisRuleSet>
+    <RootNamespace>TelnyxTests</RootNamespace>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp2.0|AnyCPU'">
+    <WarningsAsErrors />
+  </PropertyGroup>
+</Project>

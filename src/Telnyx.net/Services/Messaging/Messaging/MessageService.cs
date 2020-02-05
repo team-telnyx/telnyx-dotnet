@@ -1,0 +1,57 @@
+﻿namespace Telnyx
+{
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    /// <summary>
+    /// MessageService
+    /// </summary>
+    public class MessageService : Service<OutboundMessage>,
+        ICreatable<OutboundMessage, NewMessage>,
+        IRetrievable<OutboundMessage>
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageService"/> class.
+        /// </summary>
+        public MessageService()
+            : base(null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageService"/> class.
+        /// </summary>
+        /// <param name="apiKey">api key</param>
+        public MessageService(string apiKey)
+            : base(apiKey)
+        {
+        }
+
+        /// <inheritdoc/>
+        public override string BasePath => "/messages";
+
+        /// <inheritdoc/>
+        public OutboundMessage Create(NewMessage createOptions, RequestOptions requestOptions = null)
+        {
+            return this.CreateEntity(createOptions, requestOptions);
+        }
+
+        /// <inheritdoc/>
+        public Task<OutboundMessage> CreateAsync(NewMessage createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        public OutboundMessage Get(string id, RequestOptions requestOptions = null)
+        {
+            return this.GetEntity(id, null, requestOptions);
+        }
+
+        /// <inheritdoc/>
+        public Task<OutboundMessage> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return this.GetEntityAsync(id, null, requestOptions, cancellationToken);
+        }
+    }
+}

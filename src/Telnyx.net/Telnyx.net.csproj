@@ -1,0 +1,106 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\netfx.props" />
+
+  <PropertyGroup>
+    <Description>Telnyx.net is a sync/async .NET 4.5+ client, and a portable class library for the Telnyx API. (Official Library)</Description>
+    <AssemblyTitle>Telnyx.net</AssemblyTitle>
+    <VersionPrefix>25.13.0</VersionPrefix>
+    <Version>1.0.0</Version>
+    <Authors>Telnyx</Authors>
+    <TargetFrameworks>netstandard1.2;netstandard2.0;net45</TargetFrameworks>
+    <AssemblyName>Telnyx.net</AssemblyName>
+    <PackageId>Telnyx.net</PackageId>
+    <PackageTags>Telnyx;voice;sms;messaging;telecoms;twillio</PackageTags>
+    <PackageIconUrl>https://api.nuget.org/v3-flatcontainer/telnyx.net/1.0.0/icon</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/team-telnyx/telnyx-dotnet</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.github.com/team-telnyx/telnyx-dotnet/master/LICENSE</PackageLicenseUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
+    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.2' ">$(PackageTargetFallback);netcoreapp1.0</PackageTargetFallback>
+    <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.2' ">1.6.1</NetStandardImplicitPackageVersion>
+    <SignAssembly>True</SignAssembly>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <!--
+       .NET Core (and the .NET Standard) refactors the API's surface so that it
+       exists in a collection of smaller assemblies. As part of traditional
+       .NET (e.g., net45), System.Console existed as part of the standard
+       System assembly, but for the new standard it was added to its own.
+
+       Here we conditionally include System.Console for the .NET Standard
+       target (which also allows us to use it in .NET Core).
+
+       Reference: https://github.com/dotnet/corefx/issues/683
+  -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.2'">
+    <PackageReference Include="System.Console" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Entities\Messages\**" />
+    <EmbeddedResource Remove="Entities\Messages\**" />
+    <None Remove="Entities\Messages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="All" />-->
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="Stylecop.Analyzers" Version="1.0.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <DefineConstants>$(DefineConstants);NET45</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\_stylecop\StyleCopRules.ruleset</CodeAnalysisRuleSet>
+    <RootNamespace>Telnyx.net</RootNamespace>
+    <Copyright>Telnyx LLC</Copyright>
+    <Company>Telnyx</Company>
+    <ApplicationIcon>telnyx.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard1.2|AnyCPU'">
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.2'">
+    <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0">
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Entities\Calls\CallWebhooks\" />
+    <Folder Include="Entities\Calls\CallInformations\" />
+    <Folder Include="Entities\Calls\ConferenceCommands\HoldConferenceParticipant\" />
+    <Folder Include="Entities\Calls\ConferenceCommands\JoinConference\" />
+    <Folder Include="Entities\Calls\ConferenceCommands\ListConference\" />
+    <Folder Include="Entities\Calls\ConferenceCommands\MuteConferenceParticipant\" />
+    <Folder Include="Entities\Calls\ConferenceCommands\UnHoldConferenceParticipant\" />
+    <Folder Include="Entities\Calls\ConferenceCommands\UnMuteConferenceParticipant\" />
+  </ItemGroup>
+
+</Project>
