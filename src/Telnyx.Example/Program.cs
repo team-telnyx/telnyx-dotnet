@@ -9,7 +9,7 @@ namespace Telnyx.Example
             Console.WriteLine("Starting Examples...");
 
             TelnyxConfiguration.SetApiBase($"http://localhost:12111/v2");
-            TelnyxConfiguration.SetFilesBase($"http://localhost:12111/v2");
+            //TelnyxConfiguration.SetFilesBase($"http://localhost:12111/v2");
             TelnyxConfiguration.SetApiKey("YOUR_API_KEY");
 
             Console.WriteLine("MessagesExample...");
