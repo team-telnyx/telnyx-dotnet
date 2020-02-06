@@ -37,9 +37,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<TelnyxList<ConferenceResponse>> ListAsync(ListConferenceCreateOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TelnyxList<ConferenceResponse>> ListAsync(ListConferenceCreateOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
         }
     }
 }

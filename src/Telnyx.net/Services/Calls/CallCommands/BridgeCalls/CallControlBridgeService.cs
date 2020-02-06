@@ -36,9 +36,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<CallAnswerResponse> CreateAsync(string parentId, CallControlBridgeCreateOptions createOptions, string postFix = "actions/bridge", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<CallAnswerResponse> CreateAsync(string parentId, CallControlBridgeCreateOptions createOptions, string postFix = "actions/bridge", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
         }
     }
 }

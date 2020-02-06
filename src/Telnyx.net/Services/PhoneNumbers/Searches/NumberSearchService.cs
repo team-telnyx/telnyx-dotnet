@@ -46,9 +46,9 @@
         /// <param name="requestOptions">requestOptions</param>
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>TelnyxList of AvailablePhoneNumber</returns>
-        public virtual Task<TelnyxList<AvailablePhoneNumber>> ListAsync(NumberSearchListOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual async Task<TelnyxList<AvailablePhoneNumber>> ListAsync(NumberSearchListOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.ListEntitiesAsync(options, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(options, requestOptions, cancellationToken);
         }
     }
 }
