@@ -11,7 +11,7 @@ namespace TelnyxTests
     using Xunit;
 
     [Collection("Telnyx-mock tests")]
-    public class BaseTelnyxTest
+    public class BaseTelnyxTest : IClassFixture<MockHttpClientFixture>, IClassFixture<TelnyxMockFixture>
     {
         public BaseTelnyxTest()
             : this(null, null)

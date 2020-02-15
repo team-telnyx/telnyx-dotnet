@@ -44,13 +44,13 @@ namespace Telnyx.Infrastructure
                     // the ID from the raw JObject.
                     var id = ((JObject)value).SelectToken("id")?.ToString();
                     updateId(id);
-                    updateObject(default(T));
+                    updateObject(default);
                 }
             }
             else if (value is string)
             {
                 updateId((string)value);
-                updateObject(default(T));
+                updateObject(default);
             }
         }
     }

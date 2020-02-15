@@ -134,11 +134,11 @@ namespace Telnyx.Infrastructure
         /// <param name="requestOptions">requestOptions</param>
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>telnyxResponse</returns>
-        public static Task<TelnyxResponse> GetStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
+        public static async Task<TelnyxResponse> GetStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
         {
             var wr = GetRequestMessage(url, HttpMethod.Get, requestOptions);
 
-            return ExecuteRequestAsync(wr, cancellationToken);
+            return await ExecuteRequestAsync(wr, cancellationToken);
         }
 
         /// <summary>
@@ -148,11 +148,11 @@ namespace Telnyx.Infrastructure
         /// <param name="requestOptions">requestOptions</param>
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>telnyxResponse</returns>
-        public static Task<TelnyxResponse> PostStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
+        public static async Task<TelnyxResponse> PostStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
         {
             var wr = GetRequestMessage(url, HttpMethod.Post, requestOptions);
 
-            return ExecuteRequestAsync(wr, cancellationToken);
+            return await ExecuteRequestAsync(wr, cancellationToken);
         }
 
         /// <summary>
@@ -162,11 +162,11 @@ namespace Telnyx.Infrastructure
         /// <param name="requestOptions">requestOptions</param>
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>telnyxResponse</returns>
-        public static Task<TelnyxResponse> PatchStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
+        public static async Task<TelnyxResponse> PatchStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
         {
             var wr = GetRequestMessage(url, new HttpMethod("PATCH"), requestOptions);
 
-            return ExecuteRequestAsync(wr, cancellationToken);
+            return await ExecuteRequestAsync(wr, cancellationToken);
         }
 
         /// <summary>
@@ -176,11 +176,11 @@ namespace Telnyx.Infrastructure
         /// <param name="requestOptions">requestOptions</param>
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>telnyxResponse</returns>
-        public static Task<TelnyxResponse> DeleteAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
+        public static async Task<TelnyxResponse> DeleteAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
         {
             var wr = GetRequestMessage(url, HttpMethod.Delete, requestOptions);
 
-            return ExecuteRequestAsync(wr, cancellationToken);
+            return await ExecuteRequestAsync(wr, cancellationToken);
         }
 
         /// <summary>
@@ -192,13 +192,13 @@ namespace Telnyx.Infrastructure
         /// <param name="requestOptions">requestOptions</param>
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>telnyxResponse</returns>
-        public static Task<TelnyxResponse> PostFileAsync(string url, Stream stream, string purpose, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
+        public static async Task<TelnyxResponse> PostFileAsync(string url, Stream stream, string purpose, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
         {
             var wr = GetRequestMessage(url, HttpMethod.Post, requestOptions);
 
             ApplyMultiPartFileToRequest(wr, stream, purpose);
 
-            return ExecuteRequestAsync(wr, cancellationToken);
+            return await ExecuteRequestAsync(wr, cancellationToken);
         }
 
         /// <summary>
@@ -232,10 +232,6 @@ namespace Telnyx.Infrastructure
         public static HttpRequestMessage GetRequestMessage(string url, HttpMethod method, RequestOptions requestOptions)
         {
             requestOptions.ApiKey = requestOptions.ApiKey ?? TelnyxConfiguration.GetApiKey();
-
-#if NET45
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-#endif
 
             var request = BuildRequest(method, url);
 
@@ -298,17 +294,6 @@ namespace Telnyx.Infrastructure
             requestMessage.Headers.ExpectContinue = true;
 
             string fileName = "blob";
-
-#if NET45
-            // Doing this on .NET Standard would require us to bump the minimum framework version
-            // to .NET Standard 1.3, which isn't worth it since the filename is basically ignored
-            // by the server.
-            FileStream fileStream = stream as FileStream;
-            if ((fileStream != null) && (!string.IsNullOrWhiteSpace(fileStream.Name)))
-            {
-                fileName = fileStream.Name;
-            }
-#endif
 
             var fileContent = new StreamContent(stream);
             fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")

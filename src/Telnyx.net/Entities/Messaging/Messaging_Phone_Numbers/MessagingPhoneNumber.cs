@@ -14,19 +14,19 @@ namespace Telnyx
         /// <summary>
         /// long-code
         /// </summary>
-        [EnumMember(Value = "long-code")]
+        [EnumMember(Value = "longcode")]
         LongCodeEnum = 0,
 
         /// <summary>
         /// toll-free
         /// </summary>
-        [EnumMember(Value = "toll-free")]
+        [EnumMember(Value = "tollfree")]
         TollFreeEnum = 1,
 
         /// <summary>
         /// short-code
         /// </summary>
-        [EnumMember(Value = "short-code")]
+        [EnumMember(Value = "shortcode")]
         ShortCodeEnum = 2
     }
 

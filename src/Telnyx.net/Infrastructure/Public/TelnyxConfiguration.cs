@@ -117,12 +117,14 @@ namespace Telnyx
         /// <returns>apiKey</returns>
         internal static string GetApiKey()
         {
-#if NET45
             if (string.IsNullOrEmpty(apiKey))
             {
+#if NET45
                 apiKey = System.Configuration.ConfigurationManager.AppSettings["TelnyxApiKey"];
-            }
+#else
+                apiKey = Environment.GetEnvironmentVariable("TelnyxApiKey");
 #endif
+            }
 
             return apiKey;
         }

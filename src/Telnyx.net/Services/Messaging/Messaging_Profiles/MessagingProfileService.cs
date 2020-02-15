@@ -52,9 +52,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<MessagingProfile> DeleteAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<MessagingProfile> DeleteAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.DeleteEntityAsync(id, null, requestOptions, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -64,9 +64,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<MessagingProfile> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<MessagingProfile> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.GetEntityAsync(id, null, requestOptions, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -76,9 +76,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<TelnyxList<MessagingProfile>> ListAsync(ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TelnyxList<MessagingProfile>> ListAsync(ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -88,9 +88,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<MessagingProfile> UpdateAsync(string id, MessagingProfileUpdate updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<MessagingProfile> UpdateAsync(string id, MessagingProfileUpdate updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
+            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
         }
     }
 }

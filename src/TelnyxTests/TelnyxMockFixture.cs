@@ -43,7 +43,7 @@ namespace TelnyxTests
             TelnyxConfiguration.SetApiKey("TEST_API_KEY");
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             TelnyxConfiguration.SetApiBase(this.origApiBase);
             TelnyxConfiguration.SetApiKey(this.origApiKey);

@@ -39,9 +39,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<NumberReservation> CreateAsync(NumberReservation createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<NumberReservation> CreateAsync(NumberReservation createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -51,9 +51,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<NumberReservation> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<NumberReservation> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.GetEntityAsync(id, null, requestOptions, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -63,9 +63,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<TelnyxList<NumberReservation>> ListAsync(NumberReservationsListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TelnyxList<NumberReservation>> ListAsync(NumberReservationsListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
         }
 
         /// <inheritdoc/>

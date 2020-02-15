@@ -36,9 +36,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<ConferenceResponse> CreateAsync(CreateConferenceCreateOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<ConferenceResponse> CreateAsync(CreateConferenceCreateOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
         }
     }
 }

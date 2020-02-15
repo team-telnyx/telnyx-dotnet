@@ -41,9 +41,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<MessagingSenderId> DeleteAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<MessagingSenderId> DeleteAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.DeleteEntityAsync(id, null, requestOptions, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -53,9 +53,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<MessagingSenderId> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<MessagingSenderId> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.GetEntityAsync(id, null, requestOptions, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -65,9 +65,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<TelnyxList<MessagingSenderId>> ListAsync(MessagingSenderIdListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TelnyxList<MessagingSenderId>> ListAsync(MessagingSenderIdListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -77,9 +77,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<MessagingSenderId> UpdateAsync(string id, MessagingSenderIdUpdate updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<MessagingSenderId> UpdateAsync(string id, MessagingSenderIdUpdate updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
+            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -89,9 +89,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<MessagingSenderId> CreateAsync(NewMessagingSenderId createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<MessagingSenderId> CreateAsync(NewMessagingSenderId createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
         }
     }
 }
