@@ -16,6 +16,8 @@ namespace Telnyx
 
         private static string apiKey;
         private static string apiBase;
+        private static string connectBase;
+        private static string filesBase;
         private static JsonSerializerSettings serializerSettings = DefaultSerializerSettings();
 
         static TelnyxConfiguration()
@@ -80,6 +82,24 @@ namespace Telnyx
         }
 
         /// <summary>
+        /// SetConnectBase
+        /// </summary>
+        /// <param name="baseUrl">baseUrl</param>
+        public static void SetConnectBase(string baseUrl)
+        {
+            connectBase = baseUrl;
+        }
+
+        /// <summary>
+        /// SetFilesBase
+        /// </summary>
+        /// <param name="baseUrl">baseUrl</param>
+        public static void SetFilesBase(string baseUrl)
+        {
+            filesBase = baseUrl;
+        }
+
+        /// <summary>
         /// Returns a new instance of <see cref="Newtonsoft.Json.JsonSerializerSettings"/> with
         /// the default settings used by Telnyx.net.
         /// </summary>
@@ -98,6 +118,20 @@ namespace Telnyx
         }
 
         /// <summary>
+        /// GetFilesBase
+        /// </summary>
+        /// <returns>filesBase url</returns>
+        internal static string GetFilesBase()
+        {
+            if (string.IsNullOrEmpty(filesBase))
+            {
+                filesBase = Urls.DefaultBaseFilesUrl;
+            }
+
+            return filesBase;
+        }
+
+        /// <summary>
         /// Get Api Base
         /// </summary>
         /// <returns>apiBase</returns>
@@ -109,6 +143,20 @@ namespace Telnyx
             }
 
             return apiBase;
+        }
+
+        /// <summary>
+        /// Get Connect Base
+        /// </summary>
+        /// <returns>connectBase</returns>
+        internal static string GetConnectBase()
+        {
+            if (string.IsNullOrEmpty(connectBase))
+            {
+                connectBase = Urls.DefaultBaseConnectUrl;
+            }
+
+            return connectBase;
         }
 
         /// <summary>

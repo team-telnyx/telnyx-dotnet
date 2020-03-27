@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Telnyx LLC")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Telnyx.net is a sync/async .NET 4.5+ client, and a portable class library for the" +
-    " Telnyx API. (Official Library)")]
+    " Telnyx API.  (Official Library)")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Telnyx.net")]

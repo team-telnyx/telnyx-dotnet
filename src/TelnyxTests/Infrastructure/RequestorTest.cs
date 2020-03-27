@@ -17,7 +17,7 @@ namespace TelnyxTests
         {
             RequestOptions options = new RequestOptions
             {
-                ApiKey = "TESTKEY",
+                ApiKey = "sk_key",
                 IdempotencyKey = "123",
             };
             var request = Requestor.GetRequestMessage("http://localhost", HttpMethod.Get, options);
