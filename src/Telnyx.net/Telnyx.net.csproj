@@ -6,7 +6,7 @@
     <AssemblyTitle>Telnyx.net</AssemblyTitle>
     <VersionPrefix>25.13.0</VersionPrefix>
     <Version>1.0.0</Version>
-    <Authors>Telnyx, AeriTech, Bishwo Adhikari</Authors>
+    <Authors>Telnyx</Authors>
     <TargetFrameworks>netstandard1.2;netstandard2.0;net45</TargetFrameworks>
     <AssemblyName>Telnyx.net</AssemblyName>
     <PackageId>Telnyx.net</PackageId>
