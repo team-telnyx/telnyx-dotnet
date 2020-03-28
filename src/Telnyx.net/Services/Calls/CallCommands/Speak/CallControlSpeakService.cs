@@ -6,8 +6,8 @@
     /// <summary>
     /// CallControlSpeakService
     /// </summary>
-    public class CallControlSpeakService : Service<CallAnswerResponse>,
-        INestedCreatableWithIdInMid<CallAnswerResponse, CallControlSpeakCreateOptions>
+    public class CallControlSpeakService : Service<CallSpeakResponse>,
+        INestedCreatableWithIdInMid<CallSpeakResponse, CallControlSpeakCreateOptions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlSpeakService"/> class.
@@ -27,16 +27,16 @@
         }
 
         /// <inheritdoc/>
-        public override string BasePath => "/calls";
+        public override string BasePath => "/calls/{PARENT_ID}/actions/speak";
 
         /// <inheritdoc/>
-        public virtual CallAnswerResponse Create(string id, CallControlSpeakCreateOptions options, string postFix = "actions/speak", RequestOptions requestOptions = null)
+        public virtual CallSpeakResponse Create(string id, CallControlSpeakCreateOptions options, string postFix = "actions/speak", RequestOptions requestOptions = null)
         {
             return this.CreateEntity(id, postFix, options, requestOptions);
         }
 
         /// <inheritdoc/>
-        public Task<CallAnswerResponse> CreateAsync(string parentId, CallControlSpeakCreateOptions createOptions, string postFix = "actions/speak", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<CallSpeakResponse> CreateAsync(string parentId, CallControlSpeakCreateOptions createOptions, string postFix = "actions/speak", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
         }

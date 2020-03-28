@@ -19,6 +19,7 @@ namespace TelnyxTests
         private const string MockMinimumVersion = "0.1.0";
 
         private readonly string origApiBase;
+        private readonly string origFilesBase;
         private readonly string origApiKey;
 
         private readonly string port;
@@ -31,32 +32,36 @@ namespace TelnyxTests
             }
             else
             {
-                this.port = Environment.GetEnvironmentVariable("TELNYX_MOCK_PORT") ?? "12111";
+                this.port = Environment.GetEnvironmentVariable("Telnyx_MOCK_PORT") ?? "12111";
             }
 
             this.EnsureTelnyxMockMinimumVersion();
 
             this.origApiBase = TelnyxConfiguration.GetApiBase();
+            this.origFilesBase = TelnyxConfiguration.GetFilesBase();
             this.origApiKey = TelnyxConfiguration.GetApiKey();
 
             TelnyxConfiguration.SetApiBase($"http://localhost:{this.port}/v2");
-            TelnyxConfiguration.SetApiKey("TEST_API_KEY");
+            TelnyxConfiguration.SetFilesBase($"http://localhost:{this.port}/v2");
+            TelnyxConfiguration.SetApiKey("KEY016C2FC742DF25054DDB2ABFC69C17FD_Go0IPLhyF9xcrK2Ujvnh7j");
         }
 
         public void Dispose()
         {
             TelnyxConfiguration.SetApiBase(this.origApiBase);
+            TelnyxConfiguration.SetFilesBase(this.origFilesBase);
             TelnyxConfiguration.SetApiKey(this.origApiKey);
 
             TelnyxMockHandler.StopTelnyxMock();
         }
 
         /// <summary>
-        /// Gets fixture data with expansions specified.
+        /// Gets fixture data with expansions specified. Expansions are specified the same way as
+        /// they are in the normal API like <c>customer</c> or <c>data.customer</c>.
         /// Use the special <c>*</c> character to specify that all fields should be
         /// expanded.
         /// </summary>
-        /// <param name="path">API path to use to get a fixture for telnyx-mock</param>
+        /// <param name="path">API path to use to get a fixture for Telnyx-mock</param>
         /// <param name="expansions">Set of expansions that should be applied</param>
         /// <returns>Fixture data encoded as JSON</returns>
         public string GetFixture(string path, string[] expansions = null)
@@ -74,7 +79,7 @@ namespace TelnyxTests
                 client.DefaultRequestHeaders.Authorization
                     = new System.Net.Http.Headers.AuthenticationHeaderValue(
                         "Bearer",
-                        "TEST_API_KEY");
+                        "KEY016C2FC742DF25054DDB2ABFC69C17FD_Go0IPLhyF9xcrK2Ujvnh7j");
 
                 HttpResponseMessage response;
 
@@ -85,14 +90,14 @@ namespace TelnyxTests
                 catch (Exception)
                 {
                     throw new TelnyxTestException(
-                        $"Couldn't reach telnyx-mock at `localhost:{this.port}`. "
+                        $"Couldn't reach Telnyx-mock at `localhost:{this.port}`. "
                         + "Is it running? Please see README for setup instructions.");
                 }
 
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     throw new TelnyxTestException(
-                        $"telnyx-mock returned status code: {response.StatusCode}.");
+                        $"Telnyx-mock returned status code: {response.StatusCode}.");
                 }
 
                 return response.Content.ReadAsStringAsync().Result;
@@ -137,7 +142,7 @@ namespace TelnyxTests
                     (CompareVersions(version, MockMinimumVersion) > 0))
                 {
                     throw new TelnyxTestException(
-                        $"Your version of telnyx-mock ({version}) is too old. The minimum "
+                        $"Your version of Telnyx-mock ({version}) is too old. The minimum "
                         + $"version to run this test suite is {MockMinimumVersion}. Please see its "
                         + "repository for upgrade instructions.");
                 }
