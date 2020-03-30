@@ -2,13 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Telnyx.net.Services.Calls.CallCommands;
 
 namespace Telnyx.Example
 {
     public class CallCommandsExample
     {
-        private readonly CallControlDialService callControlDialService = new CallControlDialService();
-        private readonly CallControlSpeakService callControlSpeakService = new CallControlSpeakService();
+        private readonly CallCommandService callCommandService = new CallCommandService();
 
         public CallDialResponse Dial()
         {
@@ -31,7 +31,7 @@ namespace Telnyx.Example
 
             try
             {
-                callDialResponse = callControlDialService.Create(callControlDialCreateOptions);
+                callDialResponse = callCommandService.Dial(callControlDialCreateOptions);
                 Console.WriteLine(JsonConvert.SerializeObject(callDialResponse));
             }
             catch (TelnyxException ex)
@@ -60,7 +60,7 @@ namespace Telnyx.Example
 
             try
             {
-                callSpeakResponse = callControlSpeakService.Create(callControlId, callControlSpeakCreateOptions);
+                callSpeakResponse = callCommandService.Speak(callControlId, callControlSpeakCreateOptions);
                 Console.WriteLine(JsonConvert.SerializeObject(callSpeakResponse));
             }
             catch (TelnyxException ex)
