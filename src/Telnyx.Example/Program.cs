@@ -1,20 +1,19 @@
 ﻿using System;
-using System.Threading.Tasks;
 
 namespace Telnyx.Example
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
             Console.WriteLine("Starting Examples...");
 
             TelnyxConfiguration.SetApiBase($"https://api.telnyx.com/v2");
-            TelnyxConfiguration.SetApiKey("YOU_API_KEY");
+            TelnyxConfiguration.SetApiKey("YOUR_API_KEY");
 
             Console.WriteLine("MessagesExample...");
             MessagesExample messagesExample = new MessagesExample();
-            await messagesExample.SendMessage();
+            messagesExample.SendMessage();
             messagesExample.RetrieveMessage();
 
             Console.WriteLine("MessagingProfilesExample...");
