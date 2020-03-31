@@ -7,7 +7,7 @@
     <VersionPrefix>25.13.0</VersionPrefix>
     <Version>1.0.0</Version>
     <Authors>Telnyx</Authors>
-    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
+    <TargetFrameworks>net45;netstandard2.0;net452;netstandard2.1</TargetFrameworks>
     <AssemblyName>Telnyx.net</AssemblyName>
     <PackageId>Telnyx.net</PackageId>
     <PackageTags>Telnyx;voice;sms;messaging;telecoms;twillio</PackageTags>
@@ -52,8 +52,21 @@
     </PackageReference>
     <PackageReference Include="System.Collections.Immutable" Version="1.7.0" />
   </ItemGroup>
-
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -81,8 +94,14 @@
     <WarningsAsErrors />
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' ">
     <DefineConstants>$(DefineConstants);NET45</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <DefineConstants>$(DefineConstants);NETCORE2;NETSTANDARD20</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.1' ">
+    <DefineConstants>$(DefineConstants);NETCORE3;NETSTANDARD21</DefineConstants>
   </PropertyGroup>
 
 

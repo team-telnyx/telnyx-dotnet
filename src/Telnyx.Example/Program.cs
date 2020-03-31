@@ -1,19 +1,26 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
+using System.Threading.Tasks;
 
 namespace Telnyx.Example
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Console.WriteLine("Starting Examples...");
 
+            IConfiguration config = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .Build()
+            .LoadAppSettingsIntoEnvironmentVariables();
+
             TelnyxConfiguration.SetApiBase($"https://api.telnyx.com/v2");
-            TelnyxConfiguration.SetApiKey("YOUR_API_KEY");
+            TelnyxConfiguration.SetApiKey(config["TelnyxApiKey"]);
 
             Console.WriteLine("MessagesExample...");
             MessagesExample messagesExample = new MessagesExample();
-            messagesExample.SendMessage();
+            await messagesExample.SendMessage();
             messagesExample.RetrieveMessage();
 
             Console.WriteLine("MessagingProfilesExample...");
