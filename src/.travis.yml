@@ -1,7 +1,6 @@
 language: csharp
 sudo: required
 mono: none 
-solution: ./src/Telnyx.net.sln
 dotnet: 2.0.0
 
 install:
