@@ -9,6 +9,7 @@ namespace TelnyxTests.Services.Calls.CallCommands
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx;
+    using TelnyxTests.Infrastructure;
     using Xunit;
 
     public class CallControlAnswerServiceTest : BaseTelnyxTest
@@ -30,7 +31,7 @@ namespace TelnyxTests.Services.Calls.CallCommands
             };
         }
 
-        [Fact]
+        [Fact, TestPriority(1)]
         public void Create()
         {
             var message = this.service.Create(CallControllId, this.createOptions);
@@ -39,7 +40,7 @@ namespace TelnyxTests.Services.Calls.CallCommands
             Assert.Equal("Telnyx.CallAnswerResponse", message.GetType().ToString());
         }
 
-        [Fact]
+        [Fact, TestPriority(1)]
         public async Task CreateAsync()
         {
             var message = await this.service.CreateAsync(CallControllId, this.createOptions);
