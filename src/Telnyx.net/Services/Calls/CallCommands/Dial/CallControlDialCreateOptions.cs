@@ -48,7 +48,7 @@
         /// Gets or sets a value indicating whether the call control id of the call you want to bridge with.
         /// </summary>
         [JsonProperty("answering_machine_detection")]
-        public bool AnsweringMachineDetection { get; set; }
+        public string AnsweringMachineDetection { get; set; }
 
         ///// <summary>
         ///// Custom headers to be added to the SIP INVITE

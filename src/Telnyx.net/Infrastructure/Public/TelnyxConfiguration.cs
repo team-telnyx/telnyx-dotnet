@@ -121,6 +121,9 @@ namespace Telnyx
             {
 #if NET45
                 apiKey = System.Configuration.ConfigurationManager.AppSettings["TelnyxApiKey"];
+                if(string.IsNullOrEmpty(apiKey)){
+                    throw new ApplicationException("There is no app settings for TelynxApiKey. Please double check your web/app.config and continue. Or explicitly set the API key in the constructor");
+                }
 #else
                 apiKey = Environment.GetEnvironmentVariable("TelnyxApiKey");
 #endif

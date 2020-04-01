@@ -23,7 +23,7 @@ namespace TelnyxTests.Services.Calls.CallCommands
 
             this.createOptions = new CallControlDialCreateOptions()
             {
-                AnsweringMachineDetection = false,
+                AnsweringMachineDetection = "disabled",
                 AudioUrl = "http://example.com/message.wav",
                 ConnectionId = "connection",
                 From = "+18005550101",

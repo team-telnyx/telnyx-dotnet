@@ -72,8 +72,12 @@ Explicit steps are as follows:
  * Verify the image is pulled correctly: `docker images`
  * If you see the image listed, now we can run the image: `docker run -p 12111-12112:12111-12112 telnyx/telnyx-mock`
  * Keep this powershell or cmdline window open and run the TelynxTests project via test runner or dotnet-cli
+ * Add your API key to the appsettings file. For NET45+ use `App.config` for `netstandard/netcore use appsettings.json` found in the test project 
 
-
+### Run Telnyx.Example Project with your API Key
+ In oder to get the Example project to run properly, you can add your API Key to the `appsettings.json` file similar to above. 
+ Here you can play around with the console app without requiring the telnyx-mock to run. 
+ NOTE: This will hit the API directly so be aware of the different operations you are trying as rate limiting applies. 
 
 ### Request Options
 
