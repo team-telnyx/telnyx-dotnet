@@ -59,6 +59,22 @@ If you are using Xamarin/Mono, you may want to provide your own `HttpMessageHand
 
 ## Helpful Library Information
 
+### Run Test Project via Docker CLI
+
+In order to run the tests you need to have the telnyx-mock running on your local port. This mock is used to mimic the Telnyx API in order to ensure responses will be correct. 
+
+Steps to install and run the telynx-mock can be found here: [readme](https://github.com/team-telnyx/telnyx-mock/blob/master/README.md)
+
+Explicit steps are as follows:
+
+ * Make sure you have docker installed. This can be either windows/mac/linux. 
+ * Run the docker pull cmd: `docker pull telnyx/telnyx-mock:latest` 
+ * Verify the image is pulled correctly: `docker images`
+ * If you see the image listed, now we can run the image: `docker run telnyx/telnyx-mock`
+ * Keep this powershell or cmdline window open and run the TelynxTests project via test runner or dotnet-cli
+
+
+
 ### Request Options
 
 All of the service methods accept an optional `RequestOptions` object. This is used if you want to pass the secret API key on each method.
