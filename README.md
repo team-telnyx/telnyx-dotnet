@@ -70,7 +70,7 @@ Explicit steps are as follows:
  * Make sure you have docker installed. This can be either windows/mac/linux. 
  * Run the docker pull cmd: `docker pull telnyx/telnyx-mock:latest` 
  * Verify the image is pulled correctly: `docker images`
- * If you see the image listed, now we can run the image: `docker run telnyx/telnyx-mock`
+ * If you see the image listed, now we can run the image: `docker run -p 12111-12112:12111-12112 telnyx/telnyx-mock`
  * Keep this powershell or cmdline window open and run the TelynxTests project via test runner or dotnet-cli
 
 
