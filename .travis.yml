@@ -8,16 +8,3 @@ install:
 
 script:
  - dotnet build
-
-#jobs:
- # include:
-  #  - stage: test
-	#	before_script:
-	#		- dotnet restore "src\Telnyx.net.sln"
-		
-	#	script:
-	#		- dotnet build "src\Telnyx.net.sln" -c Release
-    #- stage: deploy
-     #           script:
-		#	- dotnet pack "src\Telny.net.csproj" -c Release
-		#	- dotnet nuget push "src\Telnyx.net\bin\Release\*.nupkg" 
