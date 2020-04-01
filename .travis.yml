@@ -1,6 +1,6 @@
 language: csharp
 sudo: required
-mono: none 
+mono: latest 
 solution: ./src/Telnyx.net.sln
 dotnet: 3.1
 
