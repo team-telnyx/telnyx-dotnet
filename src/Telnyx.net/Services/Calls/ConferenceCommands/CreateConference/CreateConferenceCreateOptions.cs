@@ -1,6 +1,7 @@
 ﻿namespace Telnyx
 {
     using System;
+    using System.Runtime.Serialization;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -8,6 +9,55 @@
     /// </summary>
     public class CreateConferenceCreateOptions : BaseOptions
     {
+        /// <summary>
+        /// The audio file format used when storing the call recording.
+        /// </summary>
+        /// <value>Can be either mp3 or wav.</value>
+        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public enum BeepEnum
+        {
+            /// <summary>
+            /// Call Rejected
+            /// </summary>
+            [EnumMember(Value = "always")]
+            ALWAYS = 0,
+            /// <summary>
+            /// User Busy
+            /// </summary>
+            [EnumMember(Value = "never")]
+            NEVER = 1,
+            /// <summary>
+            /// 
+            /// </summary>
+            [EnumMember(Value = "on_enter")]
+            ON_ENTER = 2,
+            /// <summary>
+            /// 
+            /// </summary>
+            [EnumMember(Value = "on_exit")]
+            ON_EXIT = 3,
+
+        }
+        /// <summary>
+        /// Whether a beep sound should be played when participants join and/or leave the conference.
+        /// </summary>
+        [JsonProperty("beep_enabled")]
+        public BeepEnum? BeepEnabled { get; set; }
+
+
+        /// <summary>
+        /// Time length (minutes) after which the conference will end. Example: 5
+        /// </summary>
+        [JsonProperty("duration_minutes")]
+        public int DurationMinutes { get; set; }
+
+        /// <summary>
+        /// The URL to an audio file to be played to participants joining the conference. Takes effect only when "start_conference_on_create" is set to "false".
+        /// Example: "http://www.example.com/audio.wav"
+        /// </summary>
+        [JsonProperty("hold_audio_url")]
+        public string HoldAudioUrl { get; set; }
+
         /// <summary>
         /// Gets or sets unique identifier and token for controlling the call
         /// </summary>
@@ -28,10 +78,17 @@
         public Guid? CommandId { get; set; }
 
         /// <summary>
-        /// Gets or sets specifies behavior after the bridge ends (i.e. the opposite leg either hangs up or is transferred). If supplied with the value 'self', the current leg will be parked after unbridge. If not set, the default behavior is to hang up the leg.
+        /// Name of the conference
         /// </summary>
-        /// <value>Example: "891510ac-f3e4-11e8-af5b-de00688a4901"</value>
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Whether the conference should be started on creation. If the conference isn't started all participants that join are automatically put on hold. Defaults to "true".
+        /// </summary>
+        [JsonProperty("start_conference_on_create")]
+        public bool StartConferenceOnCreate { get; set; } = true;
+
+
     }
 }
