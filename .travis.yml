@@ -1,0 +1,11 @@
+language: csharp
+sudo: required
+mono: none 
+solution: ./src/Telnyx.net.sln
+dotnet: 2.0.0
+
+install:
+- dotnet restore ./src/Telnyx.net.sln
+
+script:
+ - dotnet build ./src/Telnyx.net.sln
