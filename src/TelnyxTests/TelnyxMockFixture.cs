@@ -41,8 +41,15 @@ namespace TelnyxTests
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
 
-                this.telnyx_api_key = config["TelnyxApiKey"];
+            this.telnyx_api_key = config["TelnyxApiKey"];
+            if (string.IsNullOrEmpty(this.telnyx_api_key))
+            {
+                this.telnyx_api_key = Environment.GetEnvironmentVariable("TelnyxApiKey");
+            }
+            else
+            {
                 Environment.SetEnvironmentVariable("TelnyxApiKey", this.telnyx_api_key);
+            }
 
             this.EnsureTelnyxMockMinimumVersion();
 

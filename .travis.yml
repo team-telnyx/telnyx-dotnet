@@ -30,4 +30,4 @@ install:
 
 script:
  - dotnet build ./src/Telnyx.net.sln
- - dotnet test ./src/TelnyxTests/TelnyxTests.csproj
+ - dotnet test ./src/TelnyxTests/TelnyxTests.csproj --framework netcoreapp3.1
