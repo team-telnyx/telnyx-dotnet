@@ -30,7 +30,7 @@ namespace TelnyxTests.Services.Calls.CallCommands
                 AudioUrl = "http://www.example.com/sounds/greeting.wav",
                 TimeLimitSecs = 14400,
                 TimeoutSecs = 30,
-                AnsweringMachineDetection = false,
+                AnsweringMachineDetection = "disabled",
                 SipAuthPassword = "username@sip.telnyx.com",
                 SipAuthUsername = "username@sip.telnyx.com"
             };

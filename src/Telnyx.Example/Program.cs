@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Threading.Tasks;
 
 namespace Telnyx.Example
@@ -9,8 +10,13 @@ namespace Telnyx.Example
         {
             Console.WriteLine("Starting Examples...");
 
+            IConfiguration config = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .Build()
+            .LoadAppSettingsIntoEnvironmentVariables();
+
             TelnyxConfiguration.SetApiBase($"https://api.telnyx.com/v2");
-            TelnyxConfiguration.SetApiKey("YOU_API_KEY");
+            TelnyxConfiguration.SetApiKey(config["TelnyxApiKey"]);
 
             Console.WriteLine("MessagesExample...");
             MessagesExample messagesExample = new MessagesExample();

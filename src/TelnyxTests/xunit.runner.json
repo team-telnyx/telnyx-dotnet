@@ -1,5 +1,5 @@
 {
-  "appDomain": "denied",
+  "appDomain": "ifAvailable",
   "diagnosticMessages": true,
   "longRunningTestSeconds": 10
 }

@@ -26,7 +26,7 @@
             /// Enum PendingEnum for bridged
             /// </summary>
             [EnumMember(Value = "mp3")]
-            Mp3Enum = 1
+            Mp3Enum = 1,
         }
 
         /// <summary>
@@ -46,11 +46,11 @@
             /// Enum PendingEnum for bridged
             /// </summary>
             [EnumMember(Value = "dual")]
-            DualEnum = 1
+            DualEnum = 1,
         }
 
         /// <summary>
-        /// Gets or sets the call control id of the call you want to bridge with.
+        /// The audio file format used when storing the call recording. Can be either `mp3` or `wav`.
         /// </summary>
         [JsonProperty("format")]
         public FormatEnum? Format { get; set; }
@@ -62,19 +62,20 @@
         public string ClientState { get; set; }
 
         /// <summary>
-        /// Gets or sets the call control id of the call you want to bridge with.
+        /// When `dual`, final audio file will be stereo recorded with the first leg on channel A, and the rest on channel B.
+        /// Example: "single"
         /// </summary>
         [JsonProperty("channels")]
         public ChannelEnum? Channel { get; set; }
 
         /// <summary>
-        /// Gets or sets the call control id of the call you want to bridge with.
+        /// Use this field to avoid duplicate commands. Telnyx will ignore commands with the same `command_id`.
         /// </summary>
         [JsonProperty("command_id")]
         public Guid CommandId { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether a beep sound will be played at the start of a recording.
+        /// If enabled, a beep sound will be played at the start of a recording.
         /// </summary>
         [JsonProperty("play_beep")]
         public bool PlayBeep { get; set; }

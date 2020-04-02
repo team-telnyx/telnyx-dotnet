@@ -5,6 +5,7 @@
 namespace Telnyx.Infrastructure
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
     using System.Linq;
@@ -318,22 +319,13 @@ namespace Telnyx.Infrastructure
         {
             try
             {
-                var telnyxError = requestUri.Contains("oauth")
-                    ? Mapper<TelnyxError>.MapFromJsonError(responseContent, null, response)
-                    : requestUri.Contains("errors")
-                    ? Mapper<TelnyxError>.MapFromJsonError(responseContent, "errors", response)
-                    : Mapper<TelnyxError>.MapFromJsonError(responseContent, "error", response);
+                var telnyxErrors = Mapper<IEnumerable<TelnyxError>>.MapFromJsonErrors(responseContent, "errors", response);
+                //todo: double check with API on these fields. seems errors always return as array
+                var message = telnyxErrors.Any() ? (string.Join(" | ", telnyxErrors.Select(x => 
+                    $"{x.ErrorTitle ?? string.Empty} {x.ErrorDetail ?? string.Empty} {x.ErrorDescription ?? string.Empty} {x.Message ?? string.Empty}"))).Trim() 
+                    : string.Empty;
 
-                string message = !string.IsNullOrWhiteSpace(telnyxError.Message)
-                    ? telnyxError.Message
-                    : !string.IsNullOrWhiteSpace(telnyxError.ErrorDescription)
-                    ? telnyxError.ErrorDescription
-                    : telnyxError.ErrorTitle;
-
-                return new TelnyxException(statusCode, telnyxError, message)
-                {
-                    TelnyxResponse = response
-                };
+                return new TelnyxException(statusCode, telnyxErrors, message);
             }
             catch
             {

@@ -7,6 +7,7 @@ namespace TelnyxTests.Services.Calls.CallCommands
     using System.Net.Http;
     using System.Threading.Tasks;
     using Telnyx;
+    using TelnyxTests.Infrastructure;
     using Xunit;
 
     public class CallControlBridgeServiceTest : BaseTelnyxTest
@@ -30,7 +31,7 @@ namespace TelnyxTests.Services.Calls.CallCommands
             };
         }
 
-        [Fact]
+        [Fact, TestPriority(1)]
         public void Create()
         {
             var message = this.service.Create(CallControllId, this.createOptions);
@@ -39,7 +40,7 @@ namespace TelnyxTests.Services.Calls.CallCommands
             Assert.Equal("Telnyx.CallAnswerResponse", message.GetType().ToString());
         }
 
-        [Fact]
+        [Fact, TestPriority(2)]
         public async Task CreateAsync()
         {
             var message = await this.service.CreateAsync(CallControllId, this.createOptions);
