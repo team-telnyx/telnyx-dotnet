@@ -43,7 +43,7 @@
         /// The URL of an audio file to be played to the participant when they are put on hold after joining the conference. This property takes effect only if "hold" is set to "true".
         /// </summary>
         [JsonProperty("hold_audio_url")]
-        public bool HoldAudioUrl { get; set; }
+        public string HoldAudioUrl { get; set; }
 
         /// <summary>
         /// Whether the participant should be muted immediately after joining the conference. Defaults to "false".
