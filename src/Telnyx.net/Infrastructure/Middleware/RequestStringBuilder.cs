@@ -11,7 +11,9 @@ namespace Telnyx.Infrastructure.Middleware
     using System.Linq;
     using System.Net;
     using System.Reflection;
+    using System.Text;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
 
     /// <summary>
     /// RequestStringBuilder
@@ -42,8 +44,38 @@ namespace Telnyx.Infrastructure.Middleware
                 NullValueHandling = NullValueHandling.Ignore
             };
             string jsonString = JsonConvert.SerializeObject(options, settings);
+            var jobj = JObject.Parse(jsonString);
+            if (jobj.Properties().Any(x => x.Name.Contains("[") && x.Name.Contains("]"))) //filter[] specific parsing for the querystring
+            {
+                jsonString = BuildRequestStringFromJObject(jobj);
+            }
             jsonString = jsonString == "{}" ? string.Empty : "?" + jsonString;
             requestString = requestString + jsonString;
+        }
+        public static string BuildRequestStringFromJObject(JObject jobj)
+        {
+            var stringBuilder = new StringBuilder();
+            foreach (KeyValuePair<string, JToken> property in jobj)
+            {
+                var value = property.Value;
+                //TODO Remove when API Endpoint for this filter is updated to accept array of string values ref: docs https://developers.telnyx.com/docs/api/v2/numbers/Number-Search
+                if (property.Key.Contains("filter[features][]"))
+                {
+                    var collection = value.ToObject<List<string>>();
+
+                    foreach (var item in collection)
+                    {
+                        stringBuilder.Append($"{property.Key}={item.Replace(@"""", "")}");
+                        stringBuilder.Append("&");
+                    }
+                    continue; //dont need to add to query string below move to the next property
+
+                }
+
+                stringBuilder.Append($"{property.Key}={value}");
+                stringBuilder.Append("&");
+            }
+            return stringBuilder.ToString();
         }
 
         /// <summary>
