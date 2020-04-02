@@ -24,7 +24,7 @@ namespace Telnyx
         /// Gets or sets createdAtLt
         /// </summary>
         /// 
-        [JsonProperty("filter[created_at][lt]"]
+        [JsonProperty("filter[created_at][lt]")]
         public string CreatedAtLt { get; set; }
 
         /// <summary>
