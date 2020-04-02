@@ -45,7 +45,7 @@ namespace Telnyx.Infrastructure.Middleware
             };
             string jsonString = JsonConvert.SerializeObject(options, settings);
             var jobj = JObject.Parse(jsonString);
-            if (jobj.Properties().Any(x => x.Name.Contains("[") && x.Name.Contains("]")))
+            if (jobj.Properties().Any(x => x.Name.Contains("[") && x.Name.Contains("]"))) //filter[] specific parsing for the querystring
             {
                 jsonString = BuildRequestStringFromJObject(jobj);
             }
