@@ -63,7 +63,7 @@
         public string NumberType { get; set; }
 
         /// <summary>
-        /// Gets or sets Filter if the phone number should be used for voice, fax, sms
+        /// Gets or sets Filter if the phone number should be used for voice, fax, sms. For right now
         /// </summary>
         [JsonProperty("filter[features][]")]
         public List<string> Features { get; set; }

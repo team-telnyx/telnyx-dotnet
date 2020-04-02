@@ -45,7 +45,11 @@ namespace Telnyx.Infrastructure.Middleware
             };
             string jsonString = JsonConvert.SerializeObject(options, settings);
             var jobj = JObject.Parse(jsonString);
-            jsonString = jsonString == "{}" ? string.Empty : "?" + BuildRequestStringFromJObject(jobj);
+            if (jobj.Properties().Any(x => x.Name.Contains("[") && x.Name.Contains("]")))
+            {
+                jsonString = BuildRequestStringFromJObject(jobj);
+            }
+            jsonString = jsonString == "{}" ? string.Empty : "?" + jsonString;
             requestString = requestString + jsonString;
         }
         public static string BuildRequestStringFromJObject(JObject jobj)
@@ -53,7 +57,22 @@ namespace Telnyx.Infrastructure.Middleware
             var stringBuilder = new StringBuilder();
             foreach (KeyValuePair<string, JToken> property in jobj)
             {
-                stringBuilder.Append($"{property.Key}={property.Value}");
+                var value = property.Value;
+                //TODO Remove when API Endpoint for this filter is updated to accept array of string values ref: docs https://developers.telnyx.com/docs/api/v2/numbers/Number-Search
+                if (property.Key.Contains("filter[features][]"))
+                {
+                    var collection = value.ToObject<List<string>>();
+
+                    foreach (var item in collection)
+                    {
+                        stringBuilder.Append($"{property.Key}={item.Replace(@"""", "")}");
+                        stringBuilder.Append("&");
+                    }
+                    continue; //dont need to add to query string below move to the next property
+
+                }
+
+                stringBuilder.Append($"{property.Key}={value}");
                 stringBuilder.Append("&");
             }
             return stringBuilder.ToString();
