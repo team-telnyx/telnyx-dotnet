@@ -11,7 +11,9 @@ namespace Telnyx.Infrastructure.Middleware
     using System.Linq;
     using System.Net;
     using System.Reflection;
+    using System.Text;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
 
     /// <summary>
     /// RequestStringBuilder
@@ -42,8 +44,19 @@ namespace Telnyx.Infrastructure.Middleware
                 NullValueHandling = NullValueHandling.Ignore
             };
             string jsonString = JsonConvert.SerializeObject(options, settings);
-            jsonString = jsonString == "{}" ? string.Empty : "?" + jsonString;
+            var jobj = JObject.Parse(jsonString);
+            jsonString = jsonString == "{}" ? string.Empty : "?" + BuildRequestStringFromJObject(jobj);
             requestString = requestString + jsonString;
+        }
+        public static string BuildRequestStringFromJObject(JObject jobj)
+        {
+            var stringBuilder = new StringBuilder();
+            foreach (KeyValuePair<string, JToken> property in jobj)
+            {
+                stringBuilder.Append($"{property.Key}={property.Value}");
+                stringBuilder.Append("&");
+            }
+            return stringBuilder.ToString();
         }
 
         /// <summary>

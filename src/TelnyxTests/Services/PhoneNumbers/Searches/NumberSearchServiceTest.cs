@@ -32,6 +32,26 @@ namespace TelnyxTests.Services.Numbers.Search
             Assert.Single(numberSearch.Data);
         }
 
+
+        [Fact]
+        public void ListWithOptions()
+        {
+            var numberSearch = this.numberSearchService.List(new NumberSearchListOptions { CountryCode = "US", NationalDestinationCode = "312" });
+            //this.AssertRequest(HttpMethod.Get, "/v2/available_phone_numbers");
+            Assert.NotNull(numberSearch);
+            Assert.Equal("Telnyx.AvailablePhoneNumber", numberSearch.Data[0].GetType().ToString());
+            Assert.Single(numberSearch.Data);
+        }
+        [Fact]
+        public async Task ListWithOptionsAsync()
+        {
+            var numberSearch = await this.numberSearchService.ListAsync(new NumberSearchListOptions { CountryCode = "US", NationalDestinationCode = "312" });
+            //this.AssertRequest(HttpMethod.Get, "/v2/available_phone_numbers");
+            Assert.NotNull(numberSearch);
+            Assert.Equal("Telnyx.AvailablePhoneNumber", numberSearch.Data[0].GetType().ToString());
+            Assert.Single(numberSearch.Data);
+        }
+
         [Fact]
         public async Task ListAsync()
         {
