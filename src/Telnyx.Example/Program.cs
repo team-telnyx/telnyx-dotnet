@@ -47,10 +47,23 @@ namespace Telnyx.Example
             phoneNumbersExample.ListNumberOrder();
             phoneNumbersExample.UpdatePhoneNumber();
 
-            Console.WriteLine("CallCommandsExample...");
-            CallCommandsExample callCommandsExample = new CallCommandsExample();
+            Console.WriteLine("CallControlExample...");
+            CallControlExample callCommandsExample = new CallControlExample();
             callCommandsExample.Dial();
             callCommandsExample.Speak(AcquiredCallControlId);
+            callCommandsExample.Bridge(AcquiredCallControlId);
+            callCommandsExample.ForkingStart(AcquiredCallControlId);
+            callCommandsExample.ForkingStop(AcquiredCallControlId);
+            callCommandsExample.GatherUsingAudio(AcquiredCallControlId);
+            callCommandsExample.GatherUsingSpeak(AcquiredCallControlId);
+            callCommandsExample.Hangup(AcquiredCallControlId);
+            callCommandsExample.PlaybackStart(AcquiredCallControlId);
+            callCommandsExample.PlaybackStop(AcquiredCallControlId);
+            callCommandsExample.RecordStart(AcquiredCallControlId);
+            callCommandsExample.RecordStop(AcquiredCallControlId);
+            callCommandsExample.Reject(AcquiredCallControlId);
+            callCommandsExample.SendDTMF(AcquiredCallControlId);
+            callCommandsExample.Transfer(AcquiredCallControlId);
         }
     }
 }

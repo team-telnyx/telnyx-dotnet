@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Telnyx.net is a sync/async .NET 4.5+ client, and a portable class library for the" +
     " Telnyx API.  (Official Library)")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45b4aca30428c6530de2aa1f85e754aec64d30fe")]
 [assembly: System.Reflection.AssemblyProductAttribute("Telnyx.net")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Telnyx.net")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

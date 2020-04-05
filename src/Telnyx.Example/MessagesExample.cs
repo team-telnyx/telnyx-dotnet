@@ -18,12 +18,12 @@
         {
             var sendMessageOptions = new NewMessagingSenderId
             {
-                From = "+18665552368", // alphanumeric sender id
-                To = "+18665552367",
+                From = "+12172031655", // alphanumeric sender id
+                To = "+17144968310",
                 Text = "Hello, World!"
             };
             Console.WriteLine(JsonConvert.SerializeObject(sendMessageOptions));
-
+                
             try
             {
                 var messagingSender = this.service.Create(sendMessageOptions);
