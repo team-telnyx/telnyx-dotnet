@@ -54,7 +54,7 @@
         /// Default: 1
         /// </summary>
         [JsonProperty("minimum_digits")]
-        public int MinimumDigits { get; set; }
+        public int MinimumDigits { get; set; } = 1;
 
         ///// <summary>
         ///// The call control id of the call you want to bridge with.
@@ -67,21 +67,21 @@
         /// Default: 128
         /// </summary>
         [JsonProperty("maximum_digits")]
-        public int MaximumDigits { get; set; }
+        public int MaximumDigits { get; set; } = 128;
 
         /// <summary>
         /// Gets or sets the maximum number of times that a file should be played back if there is no input from the user on the call.
         /// Default: 128
         /// </summary>
         [JsonProperty("maximum_tries")]
-        public int MaximumTries { get; set; }
+        public int MaximumTries { get; set; } = 128;
 
         /// <summary>
         /// Gets or sets the number of milliseconds to wait for a DTMF response after speak ends before a replaying the sound file.
         /// Default: 60000
         /// </summary>
         [JsonProperty("timeout_millis")]
-        public int TimeoutMillis { get; set; }
+        public int TimeoutMillis { get; set; } = 60000;
 
         /// <summary>
         /// Gets or sets the digit used to terminate input if fewer than maximum_digits digits have been gathered.
@@ -102,7 +102,7 @@
         /// Default: 5000
         /// </summary>
         [JsonProperty("inter_digit_timeout_millis")]
-        public int InterDigitTimeoutMillis { get; set; }
+        public int InterDigitTimeoutMillis { get; set; } = 5000;
 
         /// <summary>
         /// Gets or sets use this field to add state to every subsequent webhook. It must be a valid Base-64 encoded string.
