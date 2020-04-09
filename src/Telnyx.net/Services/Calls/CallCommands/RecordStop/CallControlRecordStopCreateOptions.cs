@@ -15,7 +15,7 @@
         public string ClientState { get; set; }
 
         /// <summary>
-        /// GUse this field to avoid duplicate commands. Telnyx will ignore commands with the same `command_id`.
+        /// Use this field to avoid duplicate commands. Telnyx will ignore commands with the same `command_id`.
         /// </summary>
         [JsonProperty("command_id")]
         public Guid CommandId { get; set; }
