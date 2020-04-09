@@ -39,14 +39,14 @@
         /// Example: 60
         /// </summary>
         [JsonProperty("timeout_secs")]
-        public int TimeoutSecs { get; set; }
+        public int TimeoutSecs { get; set; } = 30;
 
         /// <summary>
         /// Sets the maximum duration of a Call Control Leg in seconds. If the time limit is reached, the call will hangup and a `call.hangup` webhook with a `hangup_cause` of `time_limit` will be sent. For example, by setting a time limit of 120 seconds, a Call Leg will be automatically terminated two minutes after being answered. The default time limit is 14400 seconds or 4 hours and this is also the maximum allowed call length.
         /// <value>Default: 14400 Example: 600</value>
         /// </summary>
         [JsonProperty("time_limit_secs")]
-        public int TimeLimitSecs { get; set; }
+        public int TimeLimitSecs { get; set; } = 14400;
 
         /// <summary>
         /// Gets or sets a value Enables Answering Machine Detection. When a call is answered, Telnyx runs real-time detection to determine if it was picked up by a human or a machine and sends an `call.machine.detection.ended` webhook with the analysis result. If 'greeting_end' or 'detect_words' is used and a 'machine' is detected, you will receive another 'call.machine.greeting.ended' webhook when the answering machine greeting ends with a beep or silence. If `detect_beep` is used, you will only receive 'call.machine.greeting.ended' if a beep is detected.
