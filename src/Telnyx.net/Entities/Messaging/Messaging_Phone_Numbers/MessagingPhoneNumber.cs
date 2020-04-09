@@ -14,7 +14,7 @@ namespace Telnyx
         /// <summary>
         /// long-code
         /// </summary>
-        [EnumMember(Value = "long-code")]
+        [EnumMember(Value = "longcode")]
         LongCodeEnum = 0,
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace Telnyx
         /// <summary>
         /// short-code
         /// </summary>
-        [EnumMember(Value = "short-code")]
+        [EnumMember(Value = "shortcode")]
         ShortCodeEnum = 2
     }
 

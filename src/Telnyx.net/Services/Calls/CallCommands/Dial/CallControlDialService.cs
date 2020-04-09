@@ -36,9 +36,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<CallDialResponse> CreateAsync(CallControlDialCreateOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<CallDialResponse> CreateAsync(CallControlDialCreateOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
         }
     }
 }

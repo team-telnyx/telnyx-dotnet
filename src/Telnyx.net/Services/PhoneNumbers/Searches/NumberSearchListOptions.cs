@@ -63,9 +63,9 @@
         public string NumberType { get; set; }
 
         /// <summary>
-        /// Gets or sets Filter if the phone number should be used for voice, fax, sms
+        /// Gets or sets Filter if the phone number should be used for voice, fax, sms. For right now
         /// </summary>
-        [JsonProperty("filter[features]")]
+        [JsonProperty("filter[features][]")]
         public List<string> Features { get; set; }
 
         /// <summary>
@@ -78,13 +78,13 @@
         /// Gets or sets Filter to exclude phone numbers that need additional time after to purchase to receive phone calls.
         /// </summary>
         [JsonProperty("filter[quickship]")]
-        public int Quickship { get; set; }
+        public bool? Quickship { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether Filter to exclude phone numbers that cannot be reserved before purchase.
         /// </summary>
         [JsonProperty("filter[reservable]")]
-        public bool Reservable { get; set; }
+        public bool? Reservable { get; set; }
 
         /// <summary>
         /// Gets or sets Filter to determine if the phone number has regulatory requirements

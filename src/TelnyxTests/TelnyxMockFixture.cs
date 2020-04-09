@@ -4,10 +4,13 @@
 
 namespace TelnyxTests
 {
+    using Microsoft.Extensions.Configuration;
     using System;
+    using System.IO;
     using System.Linq;
     using System.Net;
     using System.Net.Http;
+    using System.Reflection;
     using Telnyx;
 
     public class TelnyxMockFixture : IDisposable
@@ -20,7 +23,7 @@ namespace TelnyxTests
 
         private readonly string origApiBase;
         private readonly string origApiKey;
-
+        private readonly string telnyx_api_key;
         private readonly string port;
 
         public TelnyxMockFixture()
@@ -34,16 +37,30 @@ namespace TelnyxTests
                 this.port = Environment.GetEnvironmentVariable("TELNYX_MOCK_PORT") ?? "12111";
             }
 
+            IConfiguration config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
+
+            this.telnyx_api_key = config["TelnyxApiKey"];
+            if (string.IsNullOrEmpty(this.telnyx_api_key))
+            {
+                this.telnyx_api_key = Environment.GetEnvironmentVariable("TelnyxApiKey");
+            }
+            else
+            {
+                Environment.SetEnvironmentVariable("TelnyxApiKey", this.telnyx_api_key);
+            }
+
             this.EnsureTelnyxMockMinimumVersion();
 
             this.origApiBase = TelnyxConfiguration.GetApiBase();
             this.origApiKey = TelnyxConfiguration.GetApiKey();
 
             TelnyxConfiguration.SetApiBase($"http://localhost:{this.port}/v2");
-            TelnyxConfiguration.SetApiKey("TEST_API_KEY");
+            TelnyxConfiguration.SetApiKey(this.telnyx_api_key);
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             TelnyxConfiguration.SetApiBase(this.origApiBase);
             TelnyxConfiguration.SetApiKey(this.origApiKey);
@@ -74,7 +91,7 @@ namespace TelnyxTests
                 client.DefaultRequestHeaders.Authorization
                     = new System.Net.Http.Headers.AuthenticationHeaderValue(
                         "Bearer",
-                        "TEST_API_KEY");
+                        this.telnyx_api_key);
 
                 HttpResponseMessage response;
 

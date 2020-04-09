@@ -39,9 +39,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<MessagingPhoneNumber> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<MessagingPhoneNumber> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.GetEntityAsync(id, null, requestOptions, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -51,9 +51,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<TelnyxList<MessagingPhoneNumber>> ListAsync(MessagingPhoneNumerListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TelnyxList<MessagingPhoneNumber>> ListAsync(MessagingPhoneNumerListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -63,9 +63,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<MessagingPhoneNumber> UpdateAsync(string id, MessagingPhoneNumberUpdate updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<MessagingPhoneNumber> UpdateAsync(string id, MessagingPhoneNumberUpdate updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
+            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
         }
     }
 }

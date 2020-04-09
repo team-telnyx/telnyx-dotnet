@@ -53,9 +53,9 @@
         /// <param name="requestOptions">Request Options</param>
         /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>Task of Number Order</returns>
-        public Task<NumberOrder> CreateAsync(NumberOrderCreateOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<NumberOrder> CreateAsync(NumberOrderCreateOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
         }
 
         /// <summary>
@@ -76,9 +76,9 @@
         /// <param name="requestOptions">Request options</param>
         /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>Task of OrderNumber</returns>
-        public Task<NumberOrder> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<NumberOrder> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.GetEntityAsync(id, null, requestOptions, cancellationToken);
         }
 
         /// <summary>
@@ -101,9 +101,9 @@
         /// <param name="requestOptions">Request Options</param>
         /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>Number Order</returns>
-        public virtual Task<NumberOrder> UpdateAsync(string id, NumberOrderUpdateOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async virtual Task<NumberOrder> UpdateAsync(string id, NumberOrderUpdateOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
+            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
         }
 
         /// <summary>
@@ -124,9 +124,9 @@
         /// <param name="requestOptions">Request Options</param>
         /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>Task of Telnyx List of Number Order</returns>
-        public virtual Task<TelnyxList<NumberOrder>> ListAsync(NumberOrderListOptions listOptions, RequestOptions requestOptions, CancellationToken cancellationToken)
+        public async virtual Task<TelnyxList<NumberOrder>> ListAsync(NumberOrderListOptions listOptions, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
-            return this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
         }
 
         /// <summary>
