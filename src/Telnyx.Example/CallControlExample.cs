@@ -48,13 +48,8 @@ namespace Telnyx.Example
             CallControlSpeakOptions callControlSpeakOptions = new CallControlSpeakOptions
             {
                Payload = "Say this on the call",
-               PayloadType= "ssml",
-               ServiceLevel = "premium",
-               Stop = "current",
-               Voice = "female",
                Language = "en-US",
-               ClientState = "aGF2ZSBhIG5pY2UgZGF5ID1d",
-               CommandId = new Guid("891510ac-f3e4-11e8-af5b-de00688a4901")
+               Voice = "female"
             };
             Console.WriteLine(JsonConvert.SerializeObject(callControlSpeakOptions));
 

@@ -27,7 +27,7 @@
         }
 
         /// <inheritdoc/>
-        public override string BasePath => "/calls/{PARENT_ID}/actions/speak";
+        public override string BasePath => "/calls";
 
         /// <inheritdoc/>
         public virtual CallSpeakResponse Create(string id, CallControlSpeakOptions options, string postFix = "actions/speak", RequestOptions requestOptions = null)
