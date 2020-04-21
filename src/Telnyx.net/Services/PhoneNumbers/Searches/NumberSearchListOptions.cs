@@ -93,6 +93,6 @@
         public bool? ExcludeRegulatoryRequirements { get; set; }
 
         [JsonProperty("filter[limit]")]
-        public new long? Limit { get; set; }
+        public long? Limit { get; set; }
     }
 }

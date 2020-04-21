@@ -295,7 +295,19 @@ namespace Telnyx
                     break;
                 }
 
-                options.StartingAfter = itemId;
+                if(options.ExtraParams != null)
+                {
+                    if (!options.ExtraParams.ContainsKey("starting_after"))
+                        options.ExtraParams.Add("starting_after", itemId);
+                    else
+                        options.ExtraParams["starting_after"] = itemId;
+                }
+                else
+                {
+                    var extra = new Dictionary<string, string>() { { "starting_after", itemId } };
+                    options.ExtraParams = extra;
+                }
+
                 page = this.GetRequest<TelnyxList<T>>(this.ClassUrl(), options, requestOptions, true);
             }
         }
