@@ -87,9 +87,14 @@
         public bool? Reservable { get; set; }
 
         /// <summary>
-        /// Gets or sets Filter to determine if the phone number has regulatory requirements
+        /// Gets or sets Filter to determine if the phone number has regulatory requirements.
         /// </summary>
         [JsonProperty("filter[exclude_regulatory_requirements]")]
         public bool? ExcludeRegulatoryRequirements { get; set; }
+        /// <summary>
+        /// Gets or sets Filter to limit the amount of results to be returned.
+        /// </summary>
+        [JsonProperty("filter[limit]")]
+        public long? Limit { get; set; }
     }
 }
