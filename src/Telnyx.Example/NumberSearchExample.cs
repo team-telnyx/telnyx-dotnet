@@ -18,11 +18,13 @@
         {
             var numberSearchListOptions = new NumberSearchListOptions()
             {
-                CountryCode = "US",
-                AdministrativeArea = "IL",
-                Locality = "Chicago",
-                Features = new List<string> { "sms" },
-                Limit = 2
+                //CountryCode = "US",
+                //AdministrativeArea = "IL",
+                //Locality = "Chicago",
+                //Features = new List<string> { "sms" },
+                Limit = 3,
+                NumberType = "toll-free",
+                Quickship = true
             };
             Console.WriteLine(JsonConvert.SerializeObject(numberSearchListOptions));
 

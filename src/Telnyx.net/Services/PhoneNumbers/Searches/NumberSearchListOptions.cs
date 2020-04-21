@@ -91,5 +91,8 @@
         /// </summary>
         [JsonProperty("filter[exclude_regulatory_requirements]")]
         public bool? ExcludeRegulatoryRequirements { get; set; }
+
+        [JsonProperty("filter[limit]")]
+        public new long? Limit { get; set; }
     }
 }
