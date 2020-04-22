@@ -6,8 +6,8 @@
     /// <summary>
     /// CallControlPlaybackStartService
     /// </summary>
-    public class CallControlPlaybackStartService : Service<CallAnswerResponse>,
-        INestedCreatableWithIdInMid<CallAnswerResponse, CallControlPlaybackStartCreateOptions>
+    public class CallControlPlaybackStartService : Service<CallPlaybackStartResponse>,
+        INestedCreatableWithIdInMid<CallPlaybackStartResponse, CallControlPlaybackStartOptions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlPlaybackStartService"/> class.
@@ -30,13 +30,13 @@
         public override string BasePath => "/calls";
 
         /// <inheritdoc/>
-        public virtual CallAnswerResponse Create(string id, CallControlPlaybackStartCreateOptions options, string postFix = "actions/playback_start", RequestOptions requestOptions = null)
+        public virtual CallPlaybackStartResponse Create(string id, CallControlPlaybackStartOptions options, string postFix = "actions/playback_start", RequestOptions requestOptions = null)
         {
             return this.CreateEntity(id, postFix, options, requestOptions);
         }
 
         /// <inheritdoc/>
-        public async Task<CallAnswerResponse> CreateAsync(string parentId, CallControlPlaybackStartCreateOptions createOptions, string postFix = "actions/playback_start", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<CallPlaybackStartResponse> CreateAsync(string parentId, CallControlPlaybackStartOptions createOptions, string postFix = "actions/playback_start", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
         }

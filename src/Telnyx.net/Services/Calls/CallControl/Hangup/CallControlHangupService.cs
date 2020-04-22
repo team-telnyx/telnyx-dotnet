@@ -6,8 +6,8 @@
     /// <summary>
     /// CallControlHangupService
     /// </summary>
-    public class CallControlHangupService : Service<CallAnswerResponse>,
-        INestedCreatableWithIdInMid<CallAnswerResponse, CallControlHangupCreateOptions>
+    public class CallControlHangupService : Service<CallHangUpResponse>,
+        INestedCreatableWithIdInMid<CallHangUpResponse, CallControlHangupOptions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlHangupService"/> class.
@@ -30,13 +30,13 @@
         public override string BasePath => "/calls";
 
         /// <inheritdoc/>
-        public virtual CallAnswerResponse Create(string id, CallControlHangupCreateOptions options, string postFix = "actions/hangup", RequestOptions requestOptions = null)
+        public virtual CallHangUpResponse Create(string id, CallControlHangupOptions options, string postFix = "actions/hangup", RequestOptions requestOptions = null)
         {
             return this.CreateEntity(id, postFix, options, requestOptions);
         }
 
         /// <inheritdoc/>
-        public async Task<CallAnswerResponse> CreateAsync(string parentId, CallControlHangupCreateOptions createOptions, string postFix = "actions/hangup", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<CallHangUpResponse> CreateAsync(string parentId, CallControlHangupOptions createOptions, string postFix = "actions/hangup", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
         }

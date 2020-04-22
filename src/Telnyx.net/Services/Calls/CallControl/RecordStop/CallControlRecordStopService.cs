@@ -6,8 +6,8 @@
     /// <summary>
     /// CallControlRecordStopService
     /// </summary>
-    public class CallControlRecordStopService : Service<CallAnswerResponse>,
-        INestedCreatableWithIdInMid<CallAnswerResponse, CallControlRecordStopCreateOptions>
+    public class CallControlRecordStopService : Service<CallRecordStopResponse>,
+        INestedCreatableWithIdInMid<CallRecordStopResponse, CallControlRecordStopOptions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlRecordStopService"/> class.
@@ -30,13 +30,13 @@
         public override string BasePath => "/calls";
 
         /// <inheritdoc/>
-        public virtual CallAnswerResponse Create(string id, CallControlRecordStopCreateOptions options, string postFix = "actions/record_stop", RequestOptions requestOptions = null)
+        public virtual CallRecordStopResponse Create(string id, CallControlRecordStopOptions options, string postFix = "actions/record_stop", RequestOptions requestOptions = null)
         {
             return this.CreateEntity(id, postFix, options, requestOptions);
         }
 
         /// <inheritdoc/>
-        public async Task<CallAnswerResponse> CreateAsync(string parentId, CallControlRecordStopCreateOptions createOptions, string postFix = "actions/record_stop", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<CallRecordStopResponse> CreateAsync(string parentId, CallControlRecordStopOptions createOptions, string postFix = "actions/record_stop", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
         }

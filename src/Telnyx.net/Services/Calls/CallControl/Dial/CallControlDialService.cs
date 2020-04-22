@@ -7,7 +7,7 @@
     /// Call control dial service
     /// </summary>
     public class CallControlDialService : Service<CallDialResponse>,
-        ICreatable<CallDialResponse, CallControlDialCreateOptions>
+        ICreatable<CallDialResponse, CallControlDialOptions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlDialService"/> class.
@@ -30,13 +30,13 @@
         public override string BasePath => "/calls";
 
         /// <inheritdoc/>
-        public virtual CallDialResponse Create(CallControlDialCreateOptions options, RequestOptions requestOptions = null)
+        public virtual CallDialResponse Create(CallControlDialOptions options, RequestOptions requestOptions = null)
         {
             return this.CreateEntity(options, requestOptions);
         }
 
         /// <inheritdoc/>
-        public async Task<CallDialResponse> CreateAsync(CallControlDialCreateOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<CallDialResponse> CreateAsync(CallControlDialOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
         }

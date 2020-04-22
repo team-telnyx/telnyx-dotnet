@@ -16,11 +16,10 @@ namespace Telnyx.Example
             CallControlDialOptions callControlDialOptions = new CallControlDialOptions {
                 To = "+18005550100 or SIP:username@sip.telnyx.com",
                 From = "+18005550101",
-                ConnectionId= "string",
+                ConnectionId = "string",
                 AudioUrl = "http://example.com/message.wav",
                 TimeoutSecs= 60,
                 TimeLimitSecs = 600,
-                AnsweringMachineDetection = false,
                 ClientState = "aGF2ZSBhIG5pY2UgZGF5ID1d",
                 CommandId = new Guid("891510ac-f3e4-11e8-af5b-de00688a4901"),
                 LinkTo =  "ilditnZK_eVysupV21KzmzN_sM29ygfauQojpm4BgFtfX5hXAcjotg==",
@@ -42,7 +41,7 @@ namespace Telnyx.Example
             return callDialResponse;
         }
 
-        public CallSpeakResponse Speak(string callControlId)
+        public CallSpeakResponse Speak()
         {
             CallSpeakResponse callSpeakResponse = new CallSpeakResponse();
             CallControlSpeakOptions callControlSpeakOptions = new CallControlSpeakOptions
@@ -55,7 +54,7 @@ namespace Telnyx.Example
 
             try
             {
-                callSpeakResponse = callControlService.Speak(callControlId, callControlSpeakOptions);
+                callSpeakResponse = callControlService.Speak(callControlSpeakOptions);
                 Console.WriteLine(JsonConvert.SerializeObject(callSpeakResponse));
             }
             catch (TelnyxException ex)
@@ -66,7 +65,7 @@ namespace Telnyx.Example
             return callSpeakResponse;
         }
 
-        public CallBridgeResponse Bridge(string callControlId)
+        public CallBridgeResponse Bridge()
         {
             CallBridgeResponse response = new CallBridgeResponse();
             CallControlBridgeOptions options = new CallControlBridgeOptions
@@ -77,7 +76,7 @@ namespace Telnyx.Example
 
             try
             {
-                response = callControlService.Bridge(callControlId, options);
+                response = callControlService.Bridge(options);
                 Console.WriteLine(JsonConvert.SerializeObject(response));
             }
             catch (TelnyxException ex)
@@ -88,7 +87,7 @@ namespace Telnyx.Example
             return response;
         }
 
-        public CallForkStartResponse ForkingStart(string callControlId)
+        public CallForkStartResponse ForkingStart()
         {
             CallForkStartResponse response = new CallForkStartResponse();
             CallControlForkStartOptions options = new CallControlForkStartOptions
@@ -99,7 +98,7 @@ namespace Telnyx.Example
 
             try
             {
-                response = callControlService.ForkStart(callControlId, options);
+                response = callControlService.ForkStart(options);
                 Console.WriteLine(JsonConvert.SerializeObject(response));
             }
             catch (TelnyxException ex)
@@ -110,7 +109,7 @@ namespace Telnyx.Example
             return response;
         }
 
-        public CallForkStopResponse ForkingStop(string callControlId)
+        public CallForkStopResponse ForkingStop()
         {
             CallForkStopResponse response = new CallForkStopResponse();
             CallControlForkStopOptions options = new CallControlForkStopOptions
@@ -121,7 +120,7 @@ namespace Telnyx.Example
 
             try
             {
-                response = callControlService.ForkStop(callControlId, options);
+                response = callControlService.ForkStop(options);
                 Console.WriteLine(JsonConvert.SerializeObject(response));
             }
             catch (TelnyxException ex)
@@ -132,18 +131,18 @@ namespace Telnyx.Example
             return response;
         }
 
-        public CallGatherUsingAudioResponse GatherUsingAudio(string callControlId)
+        public CallGatherUsingAudioResponse GatherUsingAudio()
         {
             CallGatherUsingAudioResponse response = new CallGatherUsingAudioResponse();
             CallControlGatherUsingAudioOptions options = new CallControlGatherUsingAudioOptions
             {
-
+                AudioUrl = "https://audio.example.com"
             };
             Console.WriteLine(JsonConvert.SerializeObject(options));
 
             try
             {
-                response = callControlService.GatherUsingAudio(callControlId, options);
+                response = callControlService.GatherUsingAudio(options);
                 Console.WriteLine(JsonConvert.SerializeObject(response));
             }
             catch (TelnyxException ex)
@@ -154,18 +153,20 @@ namespace Telnyx.Example
             return response;
         }
 
-        public CallGatherUsingSpeakResponse GatherUsingSpeak(string callControlId)
+        public CallGatherUsingSpeakResponse GatherUsingSpeak()
         {
             CallGatherUsingSpeakResponse response = new CallGatherUsingSpeakResponse();
             CallControlGatherUsingSpeakOptions options = new CallControlGatherUsingSpeakOptions
             {
-
+                Language = "en-US", 
+                Voice = "female", 
+                Payload = "Telnyx call control test"
             };
             Console.WriteLine(JsonConvert.SerializeObject(options));
 
             try
             {
-                response = callControlService.GatherUsingSpeak(callControlId, options);
+                response = callControlService.GatherUsingSpeak( options);
                 Console.WriteLine(JsonConvert.SerializeObject(response));
             }
             catch (TelnyxException ex)
@@ -176,7 +177,7 @@ namespace Telnyx.Example
             return response;
         }
 
-        public CallHangUpResponse Hangup(string callControlId)
+        public CallHangUpResponse Hangup()
         {
             CallHangUpResponse response = new CallHangUpResponse();
             CallControlHangupOptions options = new CallControlHangupOptions
@@ -187,7 +188,7 @@ namespace Telnyx.Example
 
             try
             {
-                response = callControlService.HangUp(callControlId, options);
+                response = callControlService.HangUp(options);
                 Console.WriteLine(JsonConvert.SerializeObject(response));
             }
             catch (TelnyxException ex)
@@ -198,18 +199,18 @@ namespace Telnyx.Example
             return response;
         }
 
-        public CallPlaybackStartResponse PlaybackStart(string callControlId)
+        public CallPlaybackStartResponse PlaybackStart()
         {
             CallPlaybackStartResponse response = new CallPlaybackStartResponse();
             CallControlPlaybackStartOptions options = new CallControlPlaybackStartOptions
             {
-
+                AudioUrl = "https://audio.example.com"
             };
             Console.WriteLine(JsonConvert.SerializeObject(options));
 
             try
             {
-                response = callControlService.PlaybackStart(callControlId, options);
+                response = callControlService.PlaybackStart(options);
                 Console.WriteLine(JsonConvert.SerializeObject(response));
             }
             catch (TelnyxException ex)
@@ -220,7 +221,7 @@ namespace Telnyx.Example
             return response;
         }
 
-        public CallPlaybackStopResponse PlaybackStop(string callControlId)
+        public CallPlaybackStopResponse PlaybackStop()
         {
             CallPlaybackStopResponse response = new CallPlaybackStopResponse();
             CallControlPlaybackStopOptions options = new CallControlPlaybackStopOptions
@@ -231,7 +232,7 @@ namespace Telnyx.Example
 
             try
             {
-                response = callControlService.PlaybackStop(callControlId, options);
+                response = callControlService.PlaybackStop(options);
                 Console.WriteLine(JsonConvert.SerializeObject(response));
             }
             catch (TelnyxException ex)
@@ -242,7 +243,7 @@ namespace Telnyx.Example
             return response;
         }
 
-        public CallRecordStartResponse RecordStart(string callControlId)
+        public CallRecordStartResponse RecordStart()
         {
             CallRecordStartResponse response = new CallRecordStartResponse();
             CallControlRecordStartOptions options = new CallControlRecordStartOptions
@@ -253,7 +254,7 @@ namespace Telnyx.Example
 
             try
             {
-                response = callControlService.RecordStart(callControlId, options);
+                response = callControlService.RecordStart(options);
                 Console.WriteLine(JsonConvert.SerializeObject(response));
             }
             catch (TelnyxException ex)
@@ -264,7 +265,7 @@ namespace Telnyx.Example
             return response;
         }
 
-        public CallRecordStopResponse RecordStop(string callControlId)
+        public CallRecordStopResponse RecordStop()
         {
             CallRecordStopResponse response = new CallRecordStopResponse();
             CallControlRecordStopOptions options = new CallControlRecordStopOptions
@@ -275,7 +276,7 @@ namespace Telnyx.Example
 
             try
             {
-                response = callControlService.RecordStop(callControlId, options);
+                response = callControlService.RecordStop(options);
                 Console.WriteLine(JsonConvert.SerializeObject(response));
             }
             catch (TelnyxException ex)
@@ -286,7 +287,7 @@ namespace Telnyx.Example
             return response;
         }
 
-        public CallRejectResponse Reject(string callControlId)
+        public CallRejectResponse Reject()
         {
             CallRejectResponse response = new CallRejectResponse();
             CallControlRejectOptions options = new CallControlRejectOptions
@@ -297,7 +298,7 @@ namespace Telnyx.Example
 
             try
             {
-                response = callControlService.Reject(callControlId, options);
+                response = callControlService.Reject(options);
                 Console.WriteLine(JsonConvert.SerializeObject(response));
             }
             catch (TelnyxException ex)
@@ -308,18 +309,18 @@ namespace Telnyx.Example
             return response;
         }
 
-        public CallSendDTMFResponse SendDTMF(string callControlId)
+        public CallSendDTMFResponse SendDTMF()
         {
             CallSendDTMFResponse response = new CallSendDTMFResponse();
             CallControlSendDTMFOptions options = new CallControlSendDTMFOptions
             {
-
+                Digits = "1www2WABCDw9"
             };
             Console.WriteLine(JsonConvert.SerializeObject(options));
 
             try
             {
-                response = callControlService.SendDTMF(callControlId, options);
+                response = callControlService.SendDTMF(options);
                 Console.WriteLine(JsonConvert.SerializeObject(response));
             }
             catch (TelnyxException ex)
@@ -330,18 +331,18 @@ namespace Telnyx.Example
             return response;
         }
 
-        public CallTransferResponse Transfer(string callControlId)
+        public CallTransferResponse Transfer()
         {
             CallTransferResponse response = new CallTransferResponse();
             CallControlTransferOptions options = new CallControlTransferOptions
             {
-
+                To = "+15552223333"
             };
             Console.WriteLine(JsonConvert.SerializeObject(options));
 
             try
             {
-                response = callControlService.Transfer(callControlId, options);
+                response = callControlService.Transfer(options);
                 Console.WriteLine(JsonConvert.SerializeObject(response));
             }
             catch (TelnyxException ex)
