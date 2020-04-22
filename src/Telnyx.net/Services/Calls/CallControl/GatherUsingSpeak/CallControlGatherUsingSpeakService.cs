@@ -6,8 +6,8 @@
     /// <summary>
     /// CallControlGatherUsingSpeakService
     /// </summary>
-    public class CallControlGatherUsingSpeakService : Service<CallGatherUsingSpeakResponse>,
-        INestedCreatableWithIdInMid<CallGatherUsingSpeakResponse, CallControlGatherUsingSpeakOptions>
+    public class CallControlGatherUsingSpeakService : Service<CallAnswerResponse>,
+        INestedCreatableWithIdInMid<CallAnswerResponse, CallControlGatherUsingSpeakCreateOptions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlGatherUsingSpeakService"/> class.
@@ -30,15 +30,15 @@
         public override string BasePath => "/calls";
 
         /// <inheritdoc/>
-        public virtual CallGatherUsingSpeakResponse Create(string id, CallControlGatherUsingSpeakOptions options, string postFix = "actions/gather_using_speak", RequestOptions requestOptions = null)
+        public virtual CallAnswerResponse Create(string id, CallControlGatherUsingSpeakCreateOptions options, string postFix = "actions/gather_using_speak", RequestOptions requestOptions = null)
         {
             return this.CreateEntity(id, postFix, options, requestOptions);
         }
 
         /// <inheritdoc/>
-        public Task<CallGatherUsingSpeakResponse> CreateAsync(string parentId, CallControlGatherUsingSpeakOptions createOptions, string postFix = "actions/gather_using_speak", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<CallAnswerResponse> CreateAsync(string parentId, CallControlGatherUsingSpeakCreateOptions createOptions, string postFix = "actions/gather_using_speak", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
         }
     }
 }

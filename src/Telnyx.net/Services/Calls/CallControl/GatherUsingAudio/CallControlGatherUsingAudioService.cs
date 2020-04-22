@@ -6,8 +6,8 @@
     /// <summary>
     /// CallControlGatherUsingAudioService
     /// </summary>
-    public class CallControlGatherUsingAudioService : Service<CallGatherUsingAudioResponse>,
-        INestedCreatableWithIdInMid<CallGatherUsingAudioResponse, CallControlGatherUsingAudioOptions>
+    public class CallControlGatherUsingAudioService : Service<CallAnswerResponse>,
+        INestedCreatableWithIdInMid<CallAnswerResponse, CallControlGatherUsingAudioCreateOptions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlGatherUsingAudioService"/> class.
@@ -30,15 +30,15 @@
         public override string BasePath => "/calls";
 
         /// <inheritdoc/>
-        public virtual CallGatherUsingAudioResponse Create(string id, CallControlGatherUsingAudioOptions options, string postFix = "actions/gather_using_audio", RequestOptions requestOptions = null)
+        public virtual CallAnswerResponse Create(string id, CallControlGatherUsingAudioCreateOptions options, string postFix = "actions/gather_using_audio", RequestOptions requestOptions = null)
         {
             return this.CreateEntity(id, postFix, options, requestOptions);
         }
 
         /// <inheritdoc/>
-        public Task<CallGatherUsingAudioResponse> CreateAsync(string parentId, CallControlGatherUsingAudioOptions createOptions, string postFix = "actions/gather_using_audio", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<CallAnswerResponse> CreateAsync(string parentId, CallControlGatherUsingAudioCreateOptions createOptions, string postFix = "actions/gather_using_audio", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
         }
     }
 }

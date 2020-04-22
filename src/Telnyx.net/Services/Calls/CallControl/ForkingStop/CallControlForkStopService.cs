@@ -6,8 +6,8 @@
     /// <summary>
     /// CallControlForkStopService
     /// </summary>
-    public class CallControlForkStopService : Service<CallForkStopResponse>,
-        INestedCreatableWithIdInMid<CallForkStopResponse, CallControlForkStopOptions>
+    public class CallControlForkStopService : Service<CallAnswerResponse>,
+        INestedCreatableWithIdInMid<CallAnswerResponse, CallControlForkStopCreateOptions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlForkStopService"/> class.
@@ -30,15 +30,15 @@
         public override string BasePath => "/calls";
 
         /// <inheritdoc/>
-        public virtual CallForkStopResponse Create(string id, CallControlForkStopOptions options, string postFix = "actions/fork_stop", RequestOptions requestOptions = null)
+        public virtual CallAnswerResponse Create(string id, CallControlForkStopCreateOptions options, string postFix = "actions/fork_stop", RequestOptions requestOptions = null)
         {
             return this.CreateEntity(id, postFix, options, requestOptions);
         }
 
         /// <inheritdoc/>
-        public Task<CallForkStopResponse> CreateAsync(string parentId, CallControlForkStopOptions createOptions, string postFix = "actions/fork_stop", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<CallAnswerResponse> CreateAsync(string parentId, CallControlForkStopCreateOptions createOptions, string postFix = "actions/fork_stop", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
         }
     }
 }

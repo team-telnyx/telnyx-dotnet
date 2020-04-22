@@ -4,14 +4,12 @@ namespace Telnyx
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
-
     using Telnyx.Infrastructure;
-
     /// <summary>
     /// Service
     /// </summary>
     /// <typeparam name="EntityReturned">ITelnyxEntity</typeparam>
-    public abstract class Service<EntityReturned>
+    public abstract class Service<EntityReturned> 
         where EntityReturned : ITelnyxEntity
     {
         /// <summary>
@@ -62,9 +60,9 @@ namespace Telnyx
         /// <param name="requestOptions">requestOptions</param>
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>{EntityReturned}</returns>
-        protected Task<EntityReturned> CreateEntityAsync(string id, string postFix, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        protected async Task<EntityReturned> CreateEntityAsync(string id, string postFix, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
-            return this.PostRequestAsync<EntityReturned>(this.CallUrl(id, postFix), options, requestOptions, cancellationToken);
+            return await this.PostRequestAsync<EntityReturned>(this.CallUrl(id, postFix), options, requestOptions, cancellationToken);
         }
 
         /// <summary>
@@ -85,9 +83,9 @@ namespace Telnyx
         /// <param name="requestOptions">requestOptions</param>
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>{EntityReturned}</returns>
-        protected Task<EntityReturned> CreateEntityAsync(BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        protected async Task<EntityReturned> CreateEntityAsync(BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
-            return this.PostRequestAsync<EntityReturned>(this.ClassUrl(), options, requestOptions, cancellationToken);
+            return await this.PostRequestAsync<EntityReturned>(this.ClassUrl(), options, requestOptions, cancellationToken);
         }
 
         /// <summary>
@@ -110,9 +108,9 @@ namespace Telnyx
         /// <param name="requestOptions">requestOptions</param>
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>{EntityReturned}</returns>
-        protected Task<EntityReturned> DeleteEntityAsync(string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        protected async Task<EntityReturned> DeleteEntityAsync(string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
-            return this.DeleteRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, cancellationToken);
+            return await this.DeleteRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, cancellationToken);
         }
 
         /// <summary>
@@ -135,9 +133,9 @@ namespace Telnyx
         /// <param name="requestOptions">requestOptions</param>
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>{EntityReturned}</returns>
-        protected Task<EntityReturned> GetEntityAsync(string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        protected async Task<EntityReturned> GetEntityAsync(string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
-            return this.GetRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, false, cancellationToken);
+            return await this.GetRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, false, cancellationToken);
         }
 
         /// <summary>
@@ -158,9 +156,9 @@ namespace Telnyx
         /// <param name="requestOptions">requestOptions</param>
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>TelnyxList {EntityReturned}</returns>
-        protected Task<TelnyxList<EntityReturned>> ListEntitiesAsync(ListOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        protected async Task<TelnyxList<EntityReturned>> ListEntitiesAsync(ListOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
-            return this.GetRequestAsync<TelnyxList<EntityReturned>>(this.ClassUrl(), options, requestOptions, true, cancellationToken);
+            return await this.GetRequestAsync<TelnyxList<EntityReturned>>(this.ClassUrl(), options, requestOptions, true, cancellationToken);
         }
 
         /// <summary>
@@ -194,9 +192,9 @@ namespace Telnyx
         /// <param name="requestOptions">requestOptions</param>
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>{EntityReturned}</returns>
-        protected Task<EntityReturned> UpdateEntityAsync(string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        protected async Task<EntityReturned> UpdateEntityAsync(string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
-            return this.PatchRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, cancellationToken);
+            return await this.PatchRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, cancellationToken);
         }
 
         /// <summary>
@@ -297,7 +295,19 @@ namespace Telnyx
                     break;
                 }
 
-                options.StartingAfter = itemId;
+                if(options.ExtraParams != null)
+                {
+                    if (!options.ExtraParams.ContainsKey("starting_after"))
+                        options.ExtraParams.Add("starting_after", itemId);
+                    else
+                        options.ExtraParams["starting_after"] = itemId;
+                }
+                else
+                {
+                    var extra = new Dictionary<string, string>() { { "starting_after", itemId } };
+                    options.ExtraParams = extra;
+                }
+
                 page = this.GetRequest<TelnyxList<T>>(this.ClassUrl(), options, requestOptions, true);
             }
         }

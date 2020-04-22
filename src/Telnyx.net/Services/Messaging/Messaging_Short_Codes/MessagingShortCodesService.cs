@@ -63,9 +63,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<MessagingShortCode> UpdateAsync(string id, MessagingShortCodeUpdate updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<MessagingShortCode> UpdateAsync(string id, MessagingShortCodeUpdate updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
+            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
         }
     }
 }

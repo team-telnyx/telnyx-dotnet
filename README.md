@@ -2,7 +2,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/rg0pg5tlr1a6f8tf/branch/master?svg=true)](https://ci.appveyor.com/project/Telnyx/Telnyx-dotnet) [![NuGet](https://img.shields.io/nuget/v/Telnyx.net.svg)](https://www.nuget.org/packages/Telnyx.net/)
 [![Coverage Status](https://coveralls.io/repos/github/Telnyx/Telnyx-dotnet/badge.svg?branch=master)](https://coveralls.io/github/Telnyx/Telnyx-dotnet?branch=master)
 
-The official Telnyx library, supporting .NET Standard 1.2+, .NET Core 1.0+, and .NET Framework 4.5+
+The official Telnyx library, supporting .NET Standard 2.0, .NET Core 1.0+, and .NET Framework 4.5+
 
 ## Documentation
 
@@ -58,6 +58,26 @@ If you are using Xamarin/Mono, you may want to provide your own `HttpMessageHand
 * For all other support requests, please [reach out to the Telnyx support team](https://telnyx.com/contact-us).
 
 ## Helpful Library Information
+
+### Run Test Project via Docker CLI
+
+In order to run the tests you need to have the telnyx-mock running on your local port. This mock is used to mimic the Telnyx API in order to ensure responses will be correct. 
+
+Steps to install and run the telynx-mock can be found here: [readme](https://github.com/team-telnyx/telnyx-mock/blob/master/README.md)
+
+Explicit steps are as follows:
+
+ * Make sure you have docker installed. This can be either windows/mac/linux. 
+ * Run the docker pull cmd: `docker pull telnyx/telnyx-mock:latest` 
+ * Verify the image is pulled correctly: `docker images`
+ * If you see the image listed, now we can run the image: `docker run -p 12111-12112:12111-12112 telnyx/telnyx-mock`
+ * Keep this powershell or cmdline window open and run the TelynxTests project via test runner or dotnet-cli
+ * Add your API key to the appsettings file. For NET45+ use `App.config` for `netstandard/netcore use appsettings.json` found in the test project 
+
+### Run Telnyx.Example Project with your API Key
+ In oder to get the Example project to run properly, you can add your API Key to the `appsettings.json` file similar to above. 
+ Here you can play around with the console app without requiring the telnyx-mock to run. 
+ NOTE: This will hit the API directly so be aware of the different operations you are trying as rate limiting applies. 
 
 ### Request Options
 

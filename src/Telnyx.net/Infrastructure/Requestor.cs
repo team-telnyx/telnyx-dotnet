@@ -5,6 +5,7 @@
 namespace Telnyx.Infrastructure
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
     using System.Linq;
@@ -134,11 +135,11 @@ namespace Telnyx.Infrastructure
         /// <param name="requestOptions">requestOptions</param>
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>telnyxResponse</returns>
-        public static Task<TelnyxResponse> GetStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
+        public static async Task<TelnyxResponse> GetStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
         {
             var wr = GetRequestMessage(url, HttpMethod.Get, requestOptions);
 
-            return ExecuteRequestAsync(wr, cancellationToken);
+            return await ExecuteRequestAsync(wr, cancellationToken);
         }
 
         /// <summary>
@@ -148,11 +149,11 @@ namespace Telnyx.Infrastructure
         /// <param name="requestOptions">requestOptions</param>
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>telnyxResponse</returns>
-        public static Task<TelnyxResponse> PostStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
+        public static async Task<TelnyxResponse> PostStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
         {
             var wr = GetRequestMessage(url, HttpMethod.Post, requestOptions);
 
-            return ExecuteRequestAsync(wr, cancellationToken);
+            return await ExecuteRequestAsync(wr, cancellationToken);
         }
 
         /// <summary>
@@ -162,11 +163,11 @@ namespace Telnyx.Infrastructure
         /// <param name="requestOptions">requestOptions</param>
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>telnyxResponse</returns>
-        public static Task<TelnyxResponse> PatchStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
+        public static async Task<TelnyxResponse> PatchStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
         {
             var wr = GetRequestMessage(url, new HttpMethod("PATCH"), requestOptions);
 
-            return ExecuteRequestAsync(wr, cancellationToken);
+            return await ExecuteRequestAsync(wr, cancellationToken);
         }
 
         /// <summary>
@@ -176,11 +177,11 @@ namespace Telnyx.Infrastructure
         /// <param name="requestOptions">requestOptions</param>
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>telnyxResponse</returns>
-        public static Task<TelnyxResponse> DeleteAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
+        public static async Task<TelnyxResponse> DeleteAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
         {
             var wr = GetRequestMessage(url, HttpMethod.Delete, requestOptions);
 
-            return ExecuteRequestAsync(wr, cancellationToken);
+            return await ExecuteRequestAsync(wr, cancellationToken);
         }
 
         /// <summary>
@@ -192,13 +193,13 @@ namespace Telnyx.Infrastructure
         /// <param name="requestOptions">requestOptions</param>
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>telnyxResponse</returns>
-        public static Task<TelnyxResponse> PostFileAsync(string url, Stream stream, string purpose, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
+        public static async Task<TelnyxResponse> PostFileAsync(string url, Stream stream, string purpose, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
         {
             var wr = GetRequestMessage(url, HttpMethod.Post, requestOptions);
 
             ApplyMultiPartFileToRequest(wr, stream, purpose);
 
-            return ExecuteRequestAsync(wr, cancellationToken);
+            return await ExecuteRequestAsync(wr, cancellationToken);
         }
 
         /// <summary>
@@ -232,10 +233,6 @@ namespace Telnyx.Infrastructure
         public static HttpRequestMessage GetRequestMessage(string url, HttpMethod method, RequestOptions requestOptions)
         {
             requestOptions.ApiKey = requestOptions.ApiKey ?? TelnyxConfiguration.GetApiKey();
-
-#if NET45
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-#endif
 
             var request = BuildRequest(method, url);
 
@@ -299,17 +296,6 @@ namespace Telnyx.Infrastructure
 
             string fileName = "blob";
 
-#if NET45
-            // Doing this on .NET Standard would require us to bump the minimum framework version
-            // to .NET Standard 1.3, which isn't worth it since the filename is basically ignored
-            // by the server.
-            FileStream fileStream = stream as FileStream;
-            if ((fileStream != null) && (!string.IsNullOrWhiteSpace(fileStream.Name)))
-            {
-                fileName = fileStream.Name;
-            }
-#endif
-
             var fileContent = new StreamContent(stream);
             fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
             {
@@ -333,22 +319,13 @@ namespace Telnyx.Infrastructure
         {
             try
             {
-                var telnyxError = requestUri.Contains("oauth")
-                    ? Mapper<TelnyxError>.MapFromJsonError(responseContent, null, response)
-                    : requestUri.Contains("errors")
-                    ? Mapper<TelnyxError>.MapFromJsonError(responseContent, "errors", response)
-                    : Mapper<TelnyxError>.MapFromJsonError(responseContent, "error", response);
+                var telnyxErrors = Mapper<IEnumerable<TelnyxError>>.MapFromJsonErrors(responseContent, "errors", response);
+                //todo: double check with API on these fields. seems errors always return as array
+                var message = telnyxErrors.Any() ? (string.Join(" | ", telnyxErrors.Select(x => 
+                    $"{x.ErrorTitle ?? string.Empty} {x.ErrorDetail ?? string.Empty} {x.ErrorDescription ?? string.Empty} {x.Message ?? string.Empty}"))).Trim() 
+                    : string.Empty;
 
-                string message = !string.IsNullOrWhiteSpace(telnyxError.Message)
-                    ? telnyxError.Message
-                    : !string.IsNullOrWhiteSpace(telnyxError.ErrorDescription)
-                    ? telnyxError.ErrorDescription
-                    : telnyxError.ErrorTitle;
-
-                return new TelnyxException(statusCode, telnyxError, message)
-                {
-                    TelnyxResponse = response
-                };
+                return new TelnyxException(statusCode, telnyxErrors, message);
             }
             catch
             {

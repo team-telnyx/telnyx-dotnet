@@ -1,6 +1,7 @@
 ﻿namespace Telnyx.Example
 {
     using System;
+    using System.Collections.Generic;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -15,12 +16,18 @@
         /// </summary>
         public void ListNumberService()
         {
-            var listOptions = new NumberSearchListOptions();
-            Console.WriteLine(JsonConvert.SerializeObject(listOptions));
+            var numberSearchListOptions = new NumberSearchListOptions()
+            {
+                CountryCode = "US",
+                Limit = 3,
+                NumberType = "toll-free",
+                Quickship = true
+            };
+            Console.WriteLine(JsonConvert.SerializeObject(numberSearchListOptions));
 
             try
             {
-                var numberSearchList = this.service.List(listOptions);
+                var numberSearchList = this.service.List(numberSearchListOptions);
                 Console.WriteLine("numberSearchList");
                 Console.WriteLine(JsonConvert.SerializeObject(numberSearchList));
             }

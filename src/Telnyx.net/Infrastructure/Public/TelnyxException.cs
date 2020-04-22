@@ -1,6 +1,7 @@
 namespace Telnyx
 {
     using System;
+    using System.Collections.Generic;
     using System.Net;
 
     /// <summary>
@@ -38,13 +39,19 @@ namespace Telnyx
         /// Initializes a new instance of the <see cref="TelnyxException"/> class.
         /// </summary>
         /// <param name="httpStatusCode">httpStatusCode</param>
-        /// <param name="telnyxError">telnyxError</param>
+        /// <param name="telnyxErrors">telnyxErrors</param>
         /// <param name="message">message</param>
+        public TelnyxException(HttpStatusCode httpStatusCode, IEnumerable<TelnyxError> telnyxErrors, string message)
+            : base(message)
+        {
+            this.HttpStatusCode = httpStatusCode;
+            this.TelnyxErrors = telnyxErrors;
+        }
         public TelnyxException(HttpStatusCode httpStatusCode, TelnyxError telnyxError, string message)
             : base(message)
         {
             this.HttpStatusCode = httpStatusCode;
-            this.TelnyxError = telnyxError;
+            this.TelnyxErrors = new List<TelnyxError>  { telnyxError };
         }
 
         /// <summary>
@@ -55,7 +62,7 @@ namespace Telnyx
         /// <summary>
         /// Gets or sets TelnyxError
         /// </summary>
-        public TelnyxError TelnyxError { get; set; }
+        public IEnumerable<TelnyxError> TelnyxErrors { get; set; }
 
         /// <summary>
         /// Gets or sets TelnyxResponse

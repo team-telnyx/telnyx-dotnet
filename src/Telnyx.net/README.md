@@ -1,44 +1,24 @@
-# Telnyx dotnet Library
+# Telnyx.net
+[![Build status](https://ci.appveyor.com/api/projects/status/rg0pg5tlr1a6f8tf/branch/master?svg=true)](https://ci.appveyor.com/project/Telnyx/Telnyx-dotnet) [![NuGet](https://img.shields.io/nuget/v/Telnyx.net.svg)](https://www.nuget.org/packages/Telnyx.net/)
+[![Coverage Status](https://coveralls.io/repos/github/Telnyx/Telnyx-dotnet/badge.svg?branch=master)](https://coveralls.io/github/Telnyx/Telnyx-dotnet?branch=master)
 
-[![image](https://img.shields.io/pypi/v/telnyx.svg)][pypi]
-[![image](https://img.shields.io/pypi/l/telnyx.svg)][pypi]
-[![image](https://img.shields.io/pypi/pyversions/telnyx.svg)][pypi]
-[![Build Status](https://travis-ci.org/team-telnyx/telnyx-dotnet.svg?branch=master)][travis]
-[![Coverage Status](https://coveralls.io/repos/github/team-telnyx/telnyx-dotnet/badge.svg?branch=master)][coveralls]
-
-[pypi]: https://pypi.org/project/telnyx/
-[travis]: https://travis-ci.org/team-telnyx/telnyx-dotnet
-[coveralls]: https://coveralls.io/github/team-telnyx/telnyx-dotnet?branch=master
-
-The Telnyx dotnet library provides convenient access to the Telnyx API from
-applications written in the dotnet language. It includes a pre-defined set of
-classes for API resources that initialize themselves dynamically from API
-responses which makes it compatible with a wide range of versions of the Telnyx
-API.
+The official Telnyx library, supporting .NET Standard 2.0, .NET Core 1.0+, and .NET Framework 4.5+
 
 ## Documentation
 
-See the [API Reference](https://developers.telnyx.com/docs/api/v2/overview) and the [Setup Guides](https://developers.telnyx.com/docs/v2/development/dev-env-setup).
+See the [.NET API docs](https://developers.telnyx.com/docs/api/v2/overview?lang=dotnet).
 
 ## Installation
 
-Using the [.NET Core command-line interface (CLI) tools][dotnet-core-cli-tools]:
+### Install Telnyx.net via NuGet
 
-```sh
-dotnet add package Telnyx.net
-```
+From the command line:
 
-Using the [NuGet Command Line Interface (CLI)][nuget-cli]:
+	nuget install Telnyx.net
 
-```sh
-nuget install Telnyx.net
-```
+From Package Manager:
 
-Using the [Package Manager Console][package-manager-console]:
-
-```powershell
-Install-Package Telnyx.net
-```
+	PM> Install-Package Telnyx.net
 
 From within Visual Studio:
 
@@ -46,76 +26,97 @@ From within Visual Studio:
 2. Right-click on a project within your solution.
 3. Click on *Manage NuGet Packages...*
 4. Click on the *Browse* tab and search for "Telnyx.net".
-5. Click on the Telnyx.net package, select the appropriate version in the
-   right-tab and click *Install*.
+5. Click on the Telnyx.net package, select the appropriate version in the right-tab and click *Install*.
 
-### Requirements
+### Set the API Key for your project
 
-- .Net Framework (4.5+) or .Net Core 2.0+
+You can configure the Telnyx.net package to use your secret API key in one of two ways:
 
-## Usage
+a) In your application initialization, set your API Key (only once during startup):
 
-### Per-request configuration
+```csharp
+TelnyxConfiguration.SetApiKey("YOUR_API_KEY");
+```
 
-All of the service methods accept an optional `RequestOptions` object. This is
-used if you want to set an [idempotency key][idempotency-keys], if you are
-using [Telnyx Connect][connect-auth], or if you want to pass the secret API
-key on each method.
+b) Pass the API key to [RequestOptions](#requestoptions):
 
-[Idempotency keys][idempotency-keys] are added to requests to guarantee that
-retries are safe from duplication.
+```csharp
+var numberReservationsService = new NumberReservationsService();
+numberReservationsService.Get("PHONE_NUMBER_ID", new RequestOptions { ApiKey = "YOUR_API_KEY" });
+```
 
-```c#
+You can obtain your secret API key from the [Auth](https://portal.telnyx.com/#/app/auth/v2) section oin the Mission Control Portal.
+
+### Xamarin/Mono Developers (Optional)
+
+If you are using Xamarin/Mono, you may want to provide your own `HttpMessageHandler`. You can do so by passing an instance to `TelnyxConfiguration.HttpMessageHandler` on your application's startup.
+
+## Support
+
+* Make sure to review open [issues](https://github.com/team-telnyx/telnyx-dotnet/issues) and [pull requests](https://github.com/team-telnyx/telnyx-dotnet/pulls) before opening a new issue.
+* Feel free to leave a comment or [reaction](https://github.com/blog/2119-add-reactions-to-pull-requests-issues-and-comments) on any existing issues.
+* For all other support requests, please [reach out to the Telnyx support team](https://telnyx.com/contact-us).
+
+## Helpful Library Information
+
+### Request Options
+
+All of the service methods accept an optional `RequestOptions` object. This is used if you want to pass the secret API key on each method.
+
+```csharp
 var requestOptions = new RequestOptions();
-requestOptions.ApiKey = "SECRET API KEY";
-requestOptions.IdempotencyKey = "SOME STRING";
+requestOptions.ApiKey = "YOUR_API_KEY";                        // (optional) set the api key on a per-request basis
 ```
 
-### Using a custom `HttpClient`
+### Responses
 
-You can configure the library with your own custom `HttpClient`:
+The [`TelnyxResponse`](https://github.com/team-telnyx/telnyx-dotnet/blob/master/src/Telnyx.net/Infrastructure/Public/TelnyxResponse.cs) object is an attribute (with the same name) attached to all entities in Telnyx.net when they are returned from a service call.
 
-```c#
-TelnyxConfiguration.TelnyxClient = new TelnyxClient(
-    apiKey,
-    httpClient: new SystemNetHttpClient(httpClient));
+**Example: Access the TelnyxResponse**
+```csharp
+var numberReservationsService = new NumberReservationsService();
+NumberReservation reservation = numberReservationsService.Create(...);
+TelnyxResponse response = reservation.TelnyxResponse;
 ```
 
-## Development
+The information that can be derived from the `TelnyxResponse` is available from the [TelnyxResponse Class](https://github.com/team-telnyx/telnyx-dotnet/blob/master/src/Telnyx.net/Infrastructure/Public/TelnyxResponse.cs).
 
-The test suite depends on [Telnyx-mock][Telnyx-mock], so make sure to fetch
-and run it from a background terminal
-([Telnyx-mock's README][Telnyx-mock-usage] also contains instructions for
-installing via Homebrew and other methods):
+```csharp
+public class TelnyxResponse
+{
+	// ResponseJson will always tell you the complete json Telnyx returned to Telnyx.net.
+	// this will be the same as the ObjectJson when you execute a create/get/delete call.
+	// however, if you execute a List() method, the ResponseJson will have the full api result
+	// from Telnyx (a phone number list with 10 phone numbers, for example).
+	public string ResponseJson { get; set; }
 
-```sh
-go get -u github.com/Telnyx/Telnyx-mock
-Telnyx-mock
+	// when you call a List() method, the object json is the object in the response array that represents
+	// the entity. The ResponseJson will be the full array returned from Telnyx on every entity, however,
+	// since that was the full response from Telnyx. ObjectJson is always the same as ResponseJson when
+	// you are doing a regular create/get/delete, because you are dealing with a single object.
+	public string ObjectJson { get; set; }
+
+	// this is the request id of the call. I would recommend logging
+	// this and/or saving it to your database. this is very useful when troubleshooting with Telnyx support
+	public string RequestId { get; set; }
+
+	// this is the request date and time of the call. I would also recommend logging this and/or
+	// saving it to your database, as it tells you when Telnyx processed the request.
+	public DateTime RequestDate { get; set; }
+}
 ```
 
-Run all tests from the `src/TelnyxTests` directory:
+## Contribution Guidelines
 
-```sh
-dotnet test
-```
+We welcome contributions from anyone interested in Telnyx or Telnyx.net development. If you'd like to submit a pull request, it's best to start with an issue to describe what you'd like to build.
 
-Run some tests, filtering by name:
-
-```sh
-dotnet test --filter FullyQualifiedName~InvoiceServiceTest
-```
-
-Run tests for a single target framework:
-
-```sh
-dotnet test --framework netcoreapp2.1
-```
+Once you've written your pull request, **please make sure you test your changes**.
 
 ## Acknowledgments
 
-The contributors and maintainers of Telnyx dotnet would like to extend their
-deep gratitude to the authors of [Telnyx dotnet][Telnyx-dotnet], upon which
+The contributors and maintainers of Telnyx .NET would like to extend their
+deep gratitude to the authors of [Stripe .NET][stripe-dotnet], upon which
 this project is based. Thank you for developing such elegant, usable, and
 extensible code and for sharing it with the community.
 
-[Telnyx-dotnet]: https://github.com/Telnyx/Telnyx-dotnet
+[stripe-dotnet]: https://github.com/telnyx/telnyx-dotnet

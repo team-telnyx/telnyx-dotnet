@@ -1,6 +1,7 @@
 ﻿namespace Telnyx.Example
 {
     using System;
+    using System.Threading.Tasks;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -14,19 +15,19 @@
         /// <summary>
         /// Send message
         /// </summary>
-        public void SendMessage()
+        public async Task SendMessage()
         {
             var sendMessageOptions = new NewMessagingSenderId
             {
-                From = "+12172031655", // alphanumeric sender id
-                To = "+17144968310",
+                From = "+13115552368", // alphanumeric sender id
+                To = "+13115552367",
                 Text = "Hello, World!"
             };
             Console.WriteLine(JsonConvert.SerializeObject(sendMessageOptions));
-                
+
             try
             {
-                var messagingSender = this.service.Create(sendMessageOptions);
+                var messagingSender = await this.service.CreateAsync(sendMessageOptions);
                 Console.WriteLine(JsonConvert.SerializeObject(messagingSender));
             }
             catch (TelnyxException ex)

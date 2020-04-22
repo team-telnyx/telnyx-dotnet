@@ -85,7 +85,10 @@ namespace Telnyx
         {
             return MapFromJson(json, parentToken, telnyxResponse);
         }
-
+        public static T MapFromJsonErrors(string json, string parentToken = "errors", TelnyxResponse telnyxResponse = null)
+        {
+            return MapFromJson(json, parentToken, telnyxResponse);
+        }
         /// <summary>
         /// Map from JSON to object
         /// </summary>
