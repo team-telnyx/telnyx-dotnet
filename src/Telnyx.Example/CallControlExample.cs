@@ -10,6 +10,11 @@ namespace Telnyx.Example
     {
         private readonly CallControlService callControlService = new CallControlService();
 
+        public void SetCallControlId(string callControlId)
+        {
+            callControlService.CallControlId = callControlId;
+        }
+
         public CallDialResponse Dial()
         {
             CallDialResponse callDialResponse = new CallDialResponse();

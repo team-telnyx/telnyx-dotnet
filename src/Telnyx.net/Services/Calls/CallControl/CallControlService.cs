@@ -22,7 +22,6 @@ namespace Telnyx.net.Services.Calls.CallCommands
         private readonly CallControlRejectService callControlRejectService;
         private readonly CallControlSendDTMFService callControlSendDTMFService;
         private readonly CallControlTransferService callControlTransferService;
-        private string _callControlId = "v2:ZKoCq-ggJPRhO3H9KxQa5zVQphVX8Hx9d_FRl2b-W2dQfVUHfhe13g";
 
         public CallControlService()
         {
@@ -44,9 +43,11 @@ namespace Telnyx.net.Services.Calls.CallCommands
             this.callControlTransferService = new CallControlTransferService();
         }
 
+        public string CallControlId { get; set; }
+
         public virtual CallAnswerResponse Answer(CallControlAnswerOptions options, string postFix = "actions/speak", RequestOptions requestOptions = null)
         {
-            return this.callControlAnswerService.Create(this._callControlId, options, postFix, requestOptions);
+            return this.callControlAnswerService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
         public virtual CallDialResponse Dial(CallControlDialOptions options, RequestOptions requestOptions = null)
@@ -56,72 +57,72 @@ namespace Telnyx.net.Services.Calls.CallCommands
 
         public virtual CallSpeakResponse Speak(CallControlSpeakOptions options, string postFix = "actions/speak", RequestOptions requestOptions = null)
         {
-            return this.callControlSpeakService.Create(this._callControlId, options, postFix, requestOptions);
+            return this.callControlSpeakService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
         public virtual CallBridgeResponse Bridge(CallControlBridgeOptions options, string postFix = "actions/bridge", RequestOptions requestOptions = null)
         {
-            return this.callControlBridgeService.Create(this._callControlId, options, postFix, requestOptions);
+            return this.callControlBridgeService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
         public virtual CallForkStartResponse ForkStart(CallControlForkStartOptions options, string postFix = "actions/forkstart", RequestOptions requestOptions = null)
         {
-            return this.callControlForkStartService.Create(this._callControlId, options, postFix, requestOptions);
+            return this.callControlForkStartService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
         public virtual CallForkStopResponse ForkStop(CallControlForkStopOptions options, string postFix = "actions/forkstop", RequestOptions requestOptions = null)
         {
-            return this.callControlForkStopService.Create(this._callControlId, options, postFix, requestOptions);
+            return this.callControlForkStopService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
         public virtual CallGatherUsingAudioResponse GatherUsingAudio(CallControlGatherUsingAudioOptions options, string postFix = "actions/gatherusingaudio", RequestOptions requestOptions = null)
         {
-            return this.callControlGatherUsingAudioService.Create(this._callControlId, options, postFix, requestOptions);
+            return this.callControlGatherUsingAudioService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
         public virtual CallGatherUsingSpeakResponse GatherUsingSpeak(CallControlGatherUsingSpeakOptions options, string postFix = "actions/gatherusingstop", RequestOptions requestOptions = null)
         {
-            return this.callControlGatherUsingSpeakService.Create(this._callControlId, options, postFix, requestOptions);
+            return this.callControlGatherUsingSpeakService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
         public virtual CallHangUpResponse HangUp(CallControlHangupOptions options, string postFix = "actions/hangup", RequestOptions requestOptions = null)
         {
-            return this.callControlHangupService.Create(this._callControlId, options, postFix, requestOptions);
+            return this.callControlHangupService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
         public virtual CallPlaybackStartResponse PlaybackStart(CallControlPlaybackStartOptions options, string postFix = "actions/playbackstart", RequestOptions requestOptions = null)
         {
-            return this.callControlPlaybackStartService.Create(this._callControlId, options, postFix, requestOptions);
+            return this.callControlPlaybackStartService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
         public virtual CallPlaybackStopResponse PlaybackStop(CallControlPlaybackStopOptions options, string postFix = "actions/playbackstop", RequestOptions requestOptions = null)
         {
-            return this.callControlPlaybackStopService.Create(this._callControlId, options, postFix, requestOptions);
+            return this.callControlPlaybackStopService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
         public virtual CallRecordStartResponse RecordStart(CallControlRecordStartOptions options, string postFix = "actions/recordstart", RequestOptions requestOptions = null)
         {
-            return this.callControlRecordStartService.Create(this._callControlId, options, postFix, requestOptions);
+            return this.callControlRecordStartService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
         public virtual CallRecordStopResponse RecordStop(CallControlRecordStopOptions options, string postFix = "actions/recordstop", RequestOptions requestOptions = null)
         {
-            return this.callControlRecordStopService.Create(this._callControlId, options, postFix, requestOptions);
+            return this.callControlRecordStopService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
         public virtual CallRejectResponse Reject(CallControlRejectOptions options, string postFix = "actions/reject", RequestOptions requestOptions = null)
         {
-            return this.callControlRejectService.Create(this._callControlId, options, postFix, requestOptions);
+            return this.callControlRejectService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
         public virtual CallSendDTMFResponse SendDTMF(CallControlSendDTMFOptions options, string postFix = "actions/senddtmf", RequestOptions requestOptions = null)
         {
-            return this.callControlSendDTMFService.Create(this._callControlId, options, postFix, requestOptions);
+            return this.callControlSendDTMFService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
         public virtual CallTransferResponse Transfer(CallControlTransferOptions options, string postFix = "actions/transfer", RequestOptions requestOptions = null)
         {
-            return this.callControlTransferService.Create(this._callControlId, options, postFix, requestOptions);
+            return this.callControlTransferService.Create(this.CallControlId, options, postFix, requestOptions);
         }
     }
 }
