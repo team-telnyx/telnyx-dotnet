@@ -1,5 +1,6 @@
 # Telnyx.net
-[![Build Status](https://travis-ci.org/team-telnyx/telnyx-dotnet.svg?branch=master)][travis] [![NuGet](https://img.shields.io/nuget/v/Telnyx.net.svg)](https://www.nuget.org/packages/Telnyx.net/)
+[![Build Status](https://travis-ci.org/team-telnyx/telnyx-dotnet.svg?branch=master)](https://travis-ci.org/team-telnyx/telnyx-dotnet)
+[![NuGet](https://img.shields.io/nuget/v/Telnyx.net.svg)](https://www.nuget.org/packages/Telnyx.net/)
 [![Coverage Status](https://coveralls.io/repos/github/Telnyx/Telnyx-dotnet/badge.svg?branch=master)](https://coveralls.io/github/Telnyx/Telnyx-dotnet?branch=master)
 
 The official Telnyx library, supporting .NET Standard 2.0, .NET Core 1.0+, and .NET Framework 4.5+
