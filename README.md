@@ -77,7 +77,8 @@ Explicit steps are as follows:
 
 ### Run Telnyx.Example Project with your API Key
  In oder to get the Example project to run properly, you can add your API Key to the `appsettings.json` file similar to above. 
- Here you can play around with the console app without requiring the telnyx-mock to run. 
+ Here you can play around with the console app without requiring the telnyx-mock to run.
+ 
  NOTE: This will hit the API directly so be aware of the different operations you are trying as rate limiting applies. 
 
 ### Request Options
