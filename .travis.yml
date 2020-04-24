@@ -31,11 +31,11 @@ install:
 before_script:
   - export PATH=$PATH:/home/travis/.dotnet/tools
   - curl -sL https://github.com/csMACnz/coveralls.net/releases/download/1.0.0/coveralls.net.1.0.0-linux.zip > coveralls.zip && \
-     unzip coveralls.zip -d coveralls && \
-     mkdir -p coverallsTool/
-     mv coveralls /coverallsTool/ && \
-     chmod +x /usr/lib/coveralls/csmacnz.Coveralls && \
-     ln -s /usr/lib/coveralls/csmacnz.Coveralls  /coverallsTool/
+    unzip coveralls.zip -d coveralls && \
+    mkdir -p coverallsTool/
+    mv coveralls /coverallsTool/ && \
+    chmod +x /usr/lib/coveralls/csmacnz.Coveralls && \
+    ln -s /usr/lib/coveralls/csmacnz.Coveralls  /coverallsTool/
      
 script:
  - dotnet build ./src/Telnyx.net.sln
