@@ -30,9 +30,14 @@ install:
 
 before_script:
   - export PATH=$PATH:/home/travis/.dotnet/tools
-  
+  - |
+    curl -sL https://github.com/csMACnz/coveralls.net/releases/download/1.0.0/coveralls.net.1.0.0-linux.zip > coveralls.zip && \
+     unzip coveralls.zip -d coveralls && \
+     mv coveralls /usr/lib/ && \
+     chmod +x /usr/lib/coveralls/csmacnz.Coveralls && \
+     ln -s /usr/lib/coveralls/csmacnz.Coveralls /usr/bin/
+    |
 script:
- - dotnet tool install -g coveralls.net --version 1.0.0
  - dotnet build ./src/Telnyx.net.sln
  - dotnet test ./src/TelnyxTests/TelnyxTests.csproj --configuration Release --framework netcoreapp3.1
  - REPO_COMMIT_AUTHOR=$(git show -s --pretty=format:"%cn")
