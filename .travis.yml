@@ -31,7 +31,7 @@ install:
 before_script:
   - export PATH=$PATH:/home/travis/.dotnet/tools
   - |
-  curl -sL https://github.com/csMACnz/coveralls.net/releases/download/1.0.0/coveralls.net.1.0.0-linux.zip > coveralls.zip && \
+    curl -sL https://github.com/csMACnz/coveralls.net/releases/download/1.0.0/coveralls.net.1.0.0-linux.zip > coveralls.zip && \
       unzip coveralls.zip -d coveralls && \
       mv coveralls ./src/TelnyxTests && \
       chmod +x ./src/TelnyxTests/coveralls/csmacnz.Coveralls && \
