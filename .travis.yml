@@ -54,5 +54,5 @@ script:
  - COVERALLS_EXE=$(find -type f -name '*csmacnz.Coveralls.exe')
  - echo $COVERALLS_EXE
  - echo $COVERALLS_FILEPATH
- - $COVERALLS_EXE --opencover -i $COVERALLS_FILEPATH --repoToken $COVERALLS_REPO_TOKEN --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID  --serviceName "travis-ci"  --useRelativePaths
+ - ./src/TelnyxTests/coveralls/csmacnz.Coveralls --opencover -i $COVERALLS_FILEPATH --repoToken $COVERALLS_REPO_TOKEN --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID  --serviceName "travis-ci"  --useRelativePaths
 
