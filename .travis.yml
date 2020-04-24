@@ -24,11 +24,14 @@ before_install:
     telnyx-mock/${TELNYX_MOCK_VERSION}/telnyx-mock > /dev/null &
     TELNYX_MOCK_PID=$!
   - export PATH="${PATH}:${PWD}/telnyx-mock/${TELNYX_MOCK_VERSION}"
-  - dotnet tool install coveralls.net --version 1.0.0 --tool-path tools
+  - dotnet tool install -g coveralls.net --version 1.0.0
 
 install:
 - dotnet restore ./src/Telnyx.net.sln
 
+before_script:
+  - export PATH=$PATH:/home/travis/.dotnet/tools
+  
 script:
  - dotnet build ./src/Telnyx.net.sln
  - dotnet test ./src/TelnyxTests/TelnyxTests.csproj --configuration Release --framework netcoreapp3.1
