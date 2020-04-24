@@ -41,5 +41,5 @@ script:
  - echo $REPO_COMMIT_MESSAGE
  - echo $TRAVIS_JOB_ID
  - dotnet test ./src/TelnyxTests/TelnyxTests.csproj -c Release -f netcoreapp3.1 /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --no-build
- - mono ./src/coveralls/0.7.0/tools/csmacnz.Coveralls.exe --monocov -i "${PATH}/*.opencover.xml" --repoToken $COVERALLS_REPO_TOKEN --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID  --serviceName "travis-ci"  --useRelativePaths
+ - mono ./src/coveralls/0.7.0/tools/csmacnz.Coveralls.exe --monocov -i "./*opencover.xml*" --repoToken $COVERALLS_REPO_TOKEN --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID  --serviceName "travis-ci"  --useRelativePaths
 
