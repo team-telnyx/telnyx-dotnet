@@ -1,14 +1,12 @@
 namespace Telnyx
 {
     using System;
-    using System.Collections.Generic;
     using System.Net.Http;
     using System.Reflection;
-    using Newtonsoft.Json;
     using Telnyx.Infrastructure;
 
     /// <summary>
-    /// Configuration
+    /// Configuration.
     /// </summary>
     public static class TelnyxConfiguration
     {
@@ -16,9 +14,6 @@ namespace Telnyx
 
         private static string apiKey;
         private static string apiBase;
-        private static string connectBase;
-        private static string filesBase;
-        private static JsonSerializerSettings serializerSettings = DefaultSerializerSettings();
 
         static TelnyxConfiguration()
         {
@@ -26,7 +21,7 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// Gets or sets TelnyxApiVersion
+        /// Gets or sets TelnyxApiVersion.
         /// </summary>
         public static string TelnyxApiVersion
         {
@@ -35,21 +30,7 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// Gets or sets the settings used for deserializing JSON objects returned by Telnyx's API.
-        /// It is highly recommended you do not change these settings, as doing so can produce
-        /// unexpected results. If you do change these settings, make sure that
-        /// <see cref="Telnyx.Infrastructure.TelnyxObjectConverter"/> is among the converters,
-        /// otherwise the library will no longer be able to deserialize polymorphic resources
-        /// represented by interfaces (e.g. ).
-        /// </summary>
-        public static JsonSerializerSettings SerializerSettings
-        {
-            get { return serializerSettings; }
-            set { serializerSettings = value; }
-        }
-
-        /// <summary>
-        /// Gets gets or sets TelnyxNetVersion
+        /// Gets gets or sets TelnyxNetVersion.
         /// </summary>
         public static string TelnyxNetVersion { get; }
 
@@ -59,21 +40,21 @@ namespace Telnyx
         public static HttpMessageHandler HttpMessageHandler { get; set; }
 
         /// <summary>
-        /// Gets or sets TelnyxNetVersion
+        /// Gets or sets TelnyxNetVersion.
         /// </summary>
         public static TimeSpan? HttpTimeSpan { get; set; }
 
         /// <summary>
-        /// Gets or sets newApiKey
+        /// Gets or sets newApiKey.
         /// </summary>
-        /// <param name="newApiKey">New Api Key</param>
+        /// <param name="newApiKey">New Api Key.</param>
         public static void SetApiKey(string newApiKey)
         {
             apiKey = newApiKey;
         }
 
         /// <summary>
-        /// SetApiBase
+        /// SetApiBase.
         /// </summary>
         /// <param name="baseUrl">baseUrl</param>
         public static void SetApiBase(string baseUrl)
@@ -82,59 +63,9 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// SetConnectBase
+        /// Get Api Base.
         /// </summary>
-        /// <param name="baseUrl">baseUrl</param>
-        public static void SetConnectBase(string baseUrl)
-        {
-            connectBase = baseUrl;
-        }
-
-        /// <summary>
-        /// SetFilesBase
-        /// </summary>
-        /// <param name="baseUrl">baseUrl</param>
-        public static void SetFilesBase(string baseUrl)
-        {
-            filesBase = baseUrl;
-        }
-
-        /// <summary>
-        /// Returns a new instance of <see cref="Newtonsoft.Json.JsonSerializerSettings"/> with
-        /// the default settings used by Telnyx.net.
-        /// </summary>
-        /// <returns>A <see cref="Newtonsoft.Json.JsonSerializerSettings"/> instance</returns>
-        public static JsonSerializerSettings DefaultSerializerSettings()
-        {
-            return new JsonSerializerSettings
-            {
-                Converters = new List<JsonConverter>
-                {
-                    new TelnyxObjectConverter(),
-                },
-                DateParseHandling = DateParseHandling.None,
-                NullValueHandling = NullValueHandling.Ignore
-            };
-        }
-
-        /// <summary>
-        /// GetFilesBase
-        /// </summary>
-        /// <returns>filesBase url</returns>
-        internal static string GetFilesBase()
-        {
-            if (string.IsNullOrEmpty(filesBase))
-            {
-                filesBase = Urls.DefaultBaseFilesUrl;
-            }
-
-            return filesBase;
-        }
-
-        /// <summary>
-        /// Get Api Base
-        /// </summary>
-        /// <returns>apiBase</returns>
+        /// <returns>apiBase.</returns>
         internal static string GetApiBase()
         {
             if (string.IsNullOrEmpty(apiBase))
@@ -146,30 +77,17 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// Get Connect Base
+        /// GetApiKey.
         /// </summary>
-        /// <returns>connectBase</returns>
-        internal static string GetConnectBase()
-        {
-            if (string.IsNullOrEmpty(connectBase))
-            {
-                connectBase = Urls.DefaultBaseConnectUrl;
-            }
-
-            return connectBase;
-        }
-
-        /// <summary>
-        /// GetApiKey
-        /// </summary>
-        /// <returns>apiKey</returns>
+        /// <returns>apiKey.</returns>
         internal static string GetApiKey()
         {
             if (string.IsNullOrEmpty(apiKey))
             {
 #if NET45
                 apiKey = System.Configuration.ConfigurationManager.AppSettings["TelnyxApiKey"];
-                if(string.IsNullOrEmpty(apiKey)){
+                if (string.IsNullOrEmpty(apiKey))
+                {
                     throw new ApplicationException("There is no app settings for TelynxApiKey. Please double check your web/app.config and continue. Or explicitly set the API key in the constructor");
                 }
 #else

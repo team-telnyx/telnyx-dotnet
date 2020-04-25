@@ -17,7 +17,6 @@ namespace Telnyx.Example
 
             TelnyxConfiguration.SetApiBase("https://api.telnyx.com/v2");
             TelnyxConfiguration.SetApiKey(config["TelnyxApiKey"]);
-            TelnyxConfiguration.SetFilesBase("http://api.telnyx.com/v2");
 
             Console.WriteLine("MessagesExample...");
             MessagesExample messagesExample = new MessagesExample();
