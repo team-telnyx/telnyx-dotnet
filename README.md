@@ -1,6 +1,7 @@
 # Telnyx.net
-[![Build status](https://ci.appveyor.com/api/projects/status/rg0pg5tlr1a6f8tf/branch/master?svg=true)](https://ci.appveyor.com/project/Telnyx/Telnyx-dotnet) [![NuGet](https://img.shields.io/nuget/v/Telnyx.net.svg)](https://www.nuget.org/packages/Telnyx.net/)
-[![Coverage Status](https://coveralls.io/repos/github/Telnyx/Telnyx-dotnet/badge.svg?branch=master)](https://coveralls.io/github/Telnyx/Telnyx-dotnet?branch=master)
+[![Build Status](https://travis-ci.org/team-telnyx/telnyx-dotnet.svg?branch=master)](https://travis-ci.org/team-telnyx/telnyx-dotnet)
+[![NuGet](https://img.shields.io/nuget/v/Telnyx.net.svg)](https://www.nuget.org/packages/Telnyx.net/)
+[![Coverage Status](https://coveralls.io/repos/github/team-telnyx/telnyx-dotnet/badge.svg?branch=master)](https://coveralls.io/github/team-telnyx/telnyx-dotnet?branch=master)
 
 The official Telnyx library, supporting .NET Standard 2.0, .NET Core 1.0+, and .NET Framework 4.5+
 
@@ -76,7 +77,8 @@ Explicit steps are as follows:
 
 ### Run Telnyx.Example Project with your API Key
  In oder to get the Example project to run properly, you can add your API Key to the `appsettings.json` file similar to above. 
- Here you can play around with the console app without requiring the telnyx-mock to run. 
+ Here you can play around with the console app without requiring the telnyx-mock to run.
+ 
  NOTE: This will hit the API directly so be aware of the different operations you are trying as rate limiting applies. 
 
 ### Request Options
