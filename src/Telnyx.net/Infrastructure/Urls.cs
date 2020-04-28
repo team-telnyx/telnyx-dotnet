@@ -5,18 +5,13 @@
 namespace Telnyx.Infrastructure
 {
     /// <summary>
-    /// Urls
+    /// Urls.
     /// </summary>
     internal static class Urls
     {
         /// <summary>
-        /// Gets defaultBaseUrl
+        /// Gets defaultBaseUrl.
         /// </summary>
-        internal static string DefaultBaseUrl => "https://api.telnyx.com/v2";
-
-        /// <summary>
-        /// Gets baseUrl
-        /// </summary>
-        internal static string BaseUrl => TelnyxConfiguration.GetApiBase();
+        internal static string DefaultBaseUrl => "https://api.Telnyx.com/v2";
     }
 }

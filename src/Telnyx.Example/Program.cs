@@ -15,7 +15,7 @@ namespace Telnyx.Example
             .Build()
             .LoadAppSettingsIntoEnvironmentVariables();
 
-            TelnyxConfiguration.SetApiBase($"https://api.telnyx.com/v2");
+            TelnyxConfiguration.SetApiBase("https://api.telnyx.com/v2");
             TelnyxConfiguration.SetApiKey(config["TelnyxApiKey"]);
 
             Console.WriteLine("MessagesExample...");
@@ -51,6 +51,26 @@ namespace Telnyx.Example
             phoneNumbersExample.ListNumberOrder();
             phoneNumbersExample.UpdatePhoneNumber();
 
+            Console.WriteLine("CallControlExample...");
+            CallControlExample callControlExample = new CallControlExample();
+            callControlExample.Dial();
+
+            callControlExample.SetCallControlId("v2:ZKoCq-ggJPRhO3H9KxQa5zVQphVX8Hx9d_FRl2b-W2dQfVUHfhe13g");
+
+            callControlExample.Speak();
+            callControlExample.Bridge();
+            callControlExample.ForkingStart();
+            callControlExample.ForkingStop();
+            callControlExample.GatherUsingAudio();
+            callControlExample.GatherUsingSpeak();
+            callControlExample.Hangup();
+            callControlExample.PlaybackStart();
+            callControlExample.PlaybackStop();
+            callControlExample.RecordStart();
+            callControlExample.RecordStop();
+            callControlExample.Reject();
+            callControlExample.SendDTMF();
+            callControlExample.Transfer();
         }
     }
 }
