@@ -1,6 +1,6 @@
 language: csharp
 sudo: required
-mono: latest 
+mono: none 
 solution: ./src/Telnyx.net.sln
 dotnet: 3.1
 cache:
@@ -28,6 +28,29 @@ before_install:
 install:
 - dotnet restore ./src/Telnyx.net.sln
 
+before_script:
+  - export PATH=$PATH:/home/travis/.dotnet/tools
+  - |
+    curl -sL https://github.com/csMACnz/coveralls.net/releases/download/1.0.0/coveralls.net.1.0.0-linux.zip > coveralls.zip && \
+      unzip coveralls.zip -d coveralls && \
+      mv coveralls ./src/TelnyxTests && \
+      chmod +x ./src/TelnyxTests/coveralls/csmacnz.Coveralls && \
+      sudo ln -s ./src/TelnyxTests/coveralls/csmacnz.Coveralls /usr/bin/
+     
 script:
- - dotnet build ./src/Telnyx.net.sln
- - dotnet test ./src/TelnyxTests/TelnyxTests.csproj --framework netcoreapp3.1
+ - dotnet build ./src/Telnyx.net.sln /clp:ErrorsOnly
+ - dotnet test ./src/TelnyxTests/TelnyxTests.csproj --configuration Release --framework netcoreapp3.1 /clp:ErrorsOnly
+ - REPO_COMMIT_AUTHOR=$(git show -s --pretty=format:"%cn")
+ - REPO_COMMIT_AUTHOR_EMAIL=$(git show -s --pretty=format:"%ce")
+ - REPO_COMMIT_MESSAGE=$(git show -s --pretty=format:"%s")
+ - echo $TRAVIS_COMMIT
+ - echo $TRAVIS_BRANCH
+ - echo $REPO_COMMIT_AUTHOR
+ - echo $REPO_COMMIT_AUTHOR_EMAIL
+ - echo $REPO_COMMIT_MESSAGE
+ - echo $TRAVIS_JOB_ID
+ - dotnet test ./src/TelnyxTests/TelnyxTests.csproj --configuration Release --framework netcoreapp3.1 /clp:ErrorsOnly /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --no-build
+ - COVERALLS_FILEPATH=$(find -type f -name '*opencover.xml')
+ - echo $COVERALLS_FILEPATH
+ - ./src/TelnyxTests/coveralls/csmacnz.Coveralls --opencover -i $COVERALLS_FILEPATH --repoToken $COVERALLS_REPO_TOKEN --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID  --serviceName "travis-ci"  --useRelativePaths
+

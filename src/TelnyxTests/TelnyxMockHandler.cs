@@ -18,14 +18,14 @@ namespace TelnyxTests
         private static int port = -1;
 
         /// <summary>
-        /// Gets the port on which telnyx-mock is listening, or -1 if no telnyx-mock process was started.
+        /// Gets the port on which Telnyx-mock is listening, or -1 if no Telnyx-mock process was started.
         /// </summary>
         public static int Port { get => port; }
 
         /// <summary>
-        /// Starts a telnyx-mock process on an available port, if necessary.
+        /// Starts a Telnyx-mock process on an available port, if necessary.
         /// </summary>
-        /// <returns>True if a telnyx-mock process was started, false otherwise.</returns>
+        /// <returns>True if a Telnyx-mock process was started, false otherwise.</returns>
         public static bool StartTelnyxMock()
         {
             var specPath = Path.GetFullPath("openapi/spec3.json");
@@ -38,19 +38,19 @@ namespace TelnyxTests
 
             if ((process != null) && !process.HasExited)
             {
-                Console.WriteLine($"telnyx-mock is already running on port #{port}");
+                Console.WriteLine($"Telnyx-mock is already running on port #{port}");
                 return true;
             }
 
             port = FindAvailablePort();
 
-            Console.WriteLine($"Starting telnyx-mock on port #{port}...");
+            Console.WriteLine($"Starting Telnyx-mock on port #{port}...");
 
             process = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = "telnyx-mock",
+                    FileName = "Telnyx-mock",
                     Arguments = $"-http-port {port} -spec {specPath} -fixtures {fixturesPath}",
                     CreateNoWindow = true,
                     UseShellExecute = false,
@@ -64,7 +64,7 @@ namespace TelnyxTests
             }
             catch (Exception e)
             {
-                Console.Error.WriteLine($"Error while starting telnyx-mock, error message = {e.Message}");
+                Console.Error.WriteLine($"Error while starting Telnyx-mock, error message = {e.Message}");
                 Environment.Exit(1);
             }
 
@@ -73,17 +73,17 @@ namespace TelnyxTests
 
             if (process.HasExited)
             {
-                Console.Error.WriteLine($"telnyx-mock terminated early, status code = {process.ExitCode}");
+                Console.Error.WriteLine($"Telnyx-mock terminated early, status code = {process.ExitCode}");
                 Environment.Exit(1);
             }
 
-            Console.WriteLine($"Started telnyx-mock, PID = #{process.Id}");
+            Console.WriteLine($"Started Telnyx-mock, PID = #{process.Id}");
 
             return true;
         }
 
         /// <summary>
-        /// Stop the telnyx-mock process if one was started.
+        /// Stop the Telnyx-mock process if one was started.
         /// </summary>
         public static void StopTelnyxMock()
         {
@@ -92,11 +92,11 @@ namespace TelnyxTests
                 return;
             }
 
-            Console.WriteLine("Stopping telnyx-mock...");
+            Console.WriteLine("Stopping Telnyx-mock...");
             process.Kill();
             process = null;
             port = -1;
-            Console.WriteLine("Stopped telnyx-mock");
+            Console.WriteLine("Stopped Telnyx-mock");
         }
 
         /// <summary>Finds an available TCP port.</summary>
