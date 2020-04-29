@@ -34,7 +34,8 @@ namespace TelnyxTests.Services.Calls.CallCommands
             var message = this.service.Create(CallControllId, this.createOptions);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/reject");
             Assert.NotNull(message);
-            Assert.Equal("Telnyx.CallAnswerResponse", message.GetType().ToString());
+            Assert.Equal(typeof(CallRejectResponse), message.GetType());
+
         }
 
         [Fact]
@@ -43,7 +44,8 @@ namespace TelnyxTests.Services.Calls.CallCommands
             var message = await this.service.CreateAsync(CallControllId, this.createOptions);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/reject");
             Assert.NotNull(message);
-            Assert.Equal("Telnyx.CallAnswerResponse", message.GetType().ToString());
+            Assert.Equal(typeof(CallRejectResponse), message.GetType());
+
         }
     }
 }
