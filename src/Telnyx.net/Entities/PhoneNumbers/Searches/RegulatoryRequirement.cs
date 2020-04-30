@@ -1,4 +1,4 @@
-﻿namespace Telnyx
+﻿namespace Telnyx.net.Entities.PhoneNumbers.Searches
 {
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
@@ -6,7 +6,7 @@
     /// <summary>
     /// Regulatory Requirement
     /// </summary>
-    public class RegulatoryRequirement
+    public class RegulatoryRequirement : TelnyxEntity
     {
         /// <summary>
         /// Gets or sets RequirementType

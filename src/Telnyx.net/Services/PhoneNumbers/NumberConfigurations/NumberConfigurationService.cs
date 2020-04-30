@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Telnyx.net.Entities;
 using Telnyx.net.Entities.PhoneNumbers.NumberConfigurations;
 
 namespace Telnyx.net.Services.PhoneNumbers.NumberConfigurations
@@ -15,13 +16,13 @@ namespace Telnyx.net.Services.PhoneNumbers.NumberConfigurations
         }
         public NumberConfigurationService(string apiKey) : base(apiKey) { }
 
-        public override string BasePath => "phone_numbers";
+        public override string BasePath => "/phone_numbers";
 
-        public async Task<IEnumerable<NumberConfiguration>> ListPhoneNumbersAsync(NumberConfigurationsListOptions options, RequestOptions reqOpts = null, CancellationToken ct = default)
+        public async Task<TelnyxList<NumberConfiguration>> ListPhoneNumbersAsync(NumberConfigurationsListOptions options, RequestOptions reqOpts = null, CancellationToken ct = default)
         {
             return await this.ListEntitiesAsync(options, reqOpts, ct);
         }
-        public IEnumerable<NumberConfiguration> ListPhoneNumbers(NumberConfigurationsListOptions options, RequestOptions reqOpts = null, CancellationToken ct = default)
+        public TelnyxList<NumberConfiguration> ListPhoneNumbers(NumberConfigurationsListOptions options, RequestOptions reqOpts = null, CancellationToken ct = default)
         {
             return this.ListEntities(options, reqOpts);
         }
@@ -41,11 +42,11 @@ namespace Telnyx.net.Services.PhoneNumbers.NumberConfigurations
         {
             return this.GetEntity(id, opts, reqOpts);
         }
-        public async Task<NumberConfiguration> UpdatePhoneNumberSettingsAsync(string id, BaseOptions opts = null, RequestOptions reqOpts = null, CancellationToken ct = default)
+        public async Task<NumberConfiguration> UpdatePhoneNumberSettingsAsync(string id, NumberConfigurationOptions opts = null, RequestOptions reqOpts = null, CancellationToken ct = default)
         {
             return await this.UpdateEntityAsync(id, opts, reqOpts, ct);
         }
-        public NumberConfiguration UpdatePhoneNumberSettings(string id, BaseOptions opts = null, RequestOptions reqOpts = null, CancellationToken ct = default)
+        public NumberConfiguration UpdatePhoneNumberSettings(string id, NumberConfigurationOptions opts = null, RequestOptions reqOpts = null, CancellationToken ct = default)
         {
             return this.UpdateEntity(id, opts, reqOpts);
         }

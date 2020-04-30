@@ -5,6 +5,8 @@ namespace Telnyx
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx.Infrastructure;
+    using Telnyx.net.Entities;
+
     /// <summary>
     /// Service
     /// </summary>
@@ -37,7 +39,7 @@ namespace Telnyx
         /// Gets BasePath
         /// </summary>
         public abstract string BasePath { get; }
-
+        public virtual string PostPath { get; set; } = string.Empty;
         /// <summary>
         /// CreateEntity
         /// </summary>
@@ -137,7 +139,33 @@ namespace Telnyx
         {
             return await this.GetRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, false, cancellationToken);
         }
+        /// <summary>
+        /// GetEntity
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="options">options</param>
+        /// <param name="requestOptions">requestOptions</param>
+        /// <param name="postPath">postPath</param>
+        /// <returns>{EntityReturned}</returns>
+        protected EntityReturned GetEntity(string id, BaseOptions options, RequestOptions requestOptions, string postPath = null)
+        {
+            return this.GetRequest<EntityReturned>(this.CallUrl(id, postPath), options, requestOptions, false);
+        }
 
+        /// <summary>
+        /// GetEntityAsync
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="options">options</param>
+        /// <param name="requestOptions">requestOptions</param>
+        /// <param name="cancellationToken">cancellationToken</param>
+        /// <param name="postPath">postPath</param>
+        /// <returns>{EntityReturned}</returns>
+        protected async Task<EntityReturned> GetEntityAsync(string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken, string postPath = null)
+        {
+            return await this.GetRequestAsync<EntityReturned>(this.CallUrl(id, postPath), options, requestOptions, false, cancellationToken);
+        }
+   
         /// <summary>
         /// ListEntities
         /// </summary>
@@ -173,6 +201,43 @@ namespace Telnyx
         }
 
         /// <summary>
+        /// ListEntities
+        /// </summary>
+        /// <param name="postPath">postPath</param>
+        /// <param name="options">options</param>
+        /// <param name="requestOptions">requestOptions</param>
+        /// <returns>TelnyxList {EntityReturned}</returns>
+        protected TelnyxList<EntityReturned> ListEntities(string postPath, ListOptions options, RequestOptions requestOptions)
+        {
+            return this.GetRequest<TelnyxList<EntityReturned>>(this.CallUrl(null, postPath), options, requestOptions, true);
+        }
+
+        /// <summary>
+        /// ListEntitiesAsync
+        /// </summary>
+        /// <param name="postPath">postPath</param>
+        /// <param name="options">options</param>
+        /// <param name="requestOptions">requestOptions</param>
+        /// <param name="cancellationToken">cancellationToken</param>
+        /// <returns>TelnyxList {EntityReturned}</returns>
+        protected async Task<TelnyxList<EntityReturned>> ListEntitiesAsync(string postPath, ListOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        {
+            return await this.GetRequestAsync<TelnyxList<EntityReturned>>(this.CallUrl(null, postPath), options, requestOptions, true, cancellationToken);
+        }
+
+        /// <summary>
+        /// ListEntitiesAutoPaging
+        /// </summary>
+        /// <param name="postPath">postPath</param>
+        /// <param name="options">options</param>
+        /// <param name="requestOptions">requestOptions</param>
+        /// <returns>IEnumerable {EntityReturned}</returns>
+        protected IEnumerable<EntityReturned> ListEntitiesAutoPaging(string postPath, ListOptions options, RequestOptions requestOptions)
+        {
+            return this.ListRequestAutoPaging<EntityReturned>(this.CallUrl(null, postPath), options, requestOptions);
+        }
+
+        /// <summary>
         /// UpdateEntity
         /// </summary>
         /// <param name="id">id</param>
@@ -196,7 +261,32 @@ namespace Telnyx
         {
             return await this.PatchRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, cancellationToken);
         }
+        /// <summary>
+        /// UpdateEntity
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="options">options</param>
+        /// <param name="requestOptions">requestOptions</param>
+        /// <param name="postPath">postPath</param>
+        /// <returns>{EntityReturned}</returns>
+        protected EntityReturned UpdateEntity(string id, BaseOptions options, RequestOptions requestOptions, string postPath = null)
+        {
+            return this.PatchRequest<EntityReturned>(this.CallUrl(id, postPath), options, requestOptions);
+        }
 
+        /// <summary>
+        /// UpdateEntityAsync
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="options">options</param>
+        /// <param name="requestOptions">requestOptions</param>
+        /// <param name="cancellationToken">cancellationToken</param>
+        /// <param name="postPath">postPath</param>
+        /// <returns>{EntityReturned}</returns>
+        protected async Task<EntityReturned> UpdateEntityAsync(string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken, string postPath = null)
+        {
+            return await this.PatchRequestAsync<EntityReturned>(this.CallUrl(id, postPath), options, requestOptions, cancellationToken);
+        }
         /// <summary>
         /// DeleteRequest
         /// </summary>
@@ -409,9 +499,12 @@ namespace Telnyx
         /// <returns>url</returns>
         protected virtual string CallUrl(string id, string postFix, string baseUrl = null)
         {
-            return $"{this.ClassUrl(baseUrl)}/{WebUtility.UrlEncode(id)}/{postFix}";
+            var postPath = postFix ?? this.PostPath;
+            if(string.IsNullOrEmpty(id))
+                return $"{this.ClassUrl(baseUrl)}/{postPath}";
+            else
+                return $"{this.ClassUrl(baseUrl)}/{WebUtility.UrlEncode(id)}/{postPath}";
         }
-
         /// <summary>
         /// ClassUrl
         /// </summary>
@@ -419,6 +512,7 @@ namespace Telnyx
         /// <returns>url</returns>
         protected virtual string ClassUrl(string baseUrl = null)
         {
+
             baseUrl = baseUrl ?? TelnyxConfiguration.GetApiBase();
             return $"{baseUrl}{this.BasePath}";
         }

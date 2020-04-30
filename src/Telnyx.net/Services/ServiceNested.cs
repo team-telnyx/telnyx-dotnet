@@ -4,6 +4,7 @@ namespace Telnyx
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
+    using Telnyx.net.Entities;
 
     /// <summary>
     /// ServiceNested

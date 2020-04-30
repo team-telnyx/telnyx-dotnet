@@ -1,4 +1,4 @@
-namespace Telnyx
+namespace Telnyx.net.Entities
 {
     using System.Collections;
     using System.Collections.Generic;
@@ -37,6 +37,11 @@ namespace Telnyx
         [JsonProperty("url")]
         public string Url { get; set; }
 
+        /// <summary>
+        /// Gets or sets metadata for list
+        /// </summary>
+        [JsonProperty("meta")]
+        public Meta Meta { get; set; }
         /// <inheritdoc/>
         public IEnumerator<T> GetEnumerator()
         {

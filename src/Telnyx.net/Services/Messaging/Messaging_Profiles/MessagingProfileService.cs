@@ -2,6 +2,7 @@
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Telnyx.net.Entities;
 
     /// <summary>
     /// MessagingProfileService
