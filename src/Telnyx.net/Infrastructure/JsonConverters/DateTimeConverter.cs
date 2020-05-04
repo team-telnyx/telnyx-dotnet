@@ -9,7 +9,7 @@ namespace Telnyx.Infrastructure
     using Newtonsoft.Json.Converters;
 
     /// <summary>
-    /// DateTimeConverter
+    /// DateTimeConverter.
     /// </summary>
     public class DateTimeConverter : DateTimeConverterBase
     {

@@ -5,7 +5,7 @@
     using Telnyx.net.Services.Calls.Models;
 
     /// <summary>
-    /// CallControlTransferCreateOptions
+    /// CallControlTransferCreateOptions.
     /// </summary>
     public class CallControlTransferOptions : BaseOptions
     {
@@ -30,7 +30,7 @@
         /// <summary>
         /// The number of seconds that Telnyx will wait for the call to be answered by the destination to which it is being called. If the timeout is reached before an answer is received, the call will hangup and a `call.hangup` webhook with a `hangup_cause` of `timeout` will be sent. Minimum value is 5 seconds. Maximum value is 120 seconds.
         /// Default: 30
-        /// Example: 60
+        /// Example: 60.
         /// </summary>
         [JsonProperty("timeout_secs")]
         public int TimeoutSecs { get; set; } = 30;
@@ -49,13 +49,13 @@
         public string AnsweringMachineDetection { get; set; }
 
         /// <summary>
-        /// Optional config parameter to modify answering_machine_detection performance
+        /// Optional config parameter to modify answering_machine_detection performance.
         /// </summary>
         [JsonProperty("answering_machine_detection_config")]
         public AnsweringMachineDetectionConfig AnsweringMachineDetConfig { get; set; }
 
         /// <summary>
-        /// Gets or sets use this field to add state to every subsequent webhook. It must be a valid Base-64 encoded string
+        /// Gets or sets use this field to add state to every subsequent webhook. It must be a valid Base-64 encoded string.
         /// </summary>
         [JsonProperty("client_state")]
         public string ClientState { get; set; }
@@ -63,14 +63,14 @@
         /// <summary>
         /// Gets or sets use this field to avoid duplicate commands. Telnyx will ignore commands with the same "command_id".
         /// </summary>
-        /// <value>Example: "891510ac-f3e4-11e8-af5b-de00688a4901"</value>
+        /// <value>Example: "891510ac-f3e4-11e8-af5b-de00688a4901".</value>
         [JsonProperty("command_id")]
         public Guid CommandId { get; set; }
 
         /// <summary>
-        /// Use another call's control id for sharing the same call session id
+        /// Use another call's control id for sharing the same call session id.
         /// </summary>
-        /// <value>Example: "ilditnZK_eVysupV21KzmzN_sM29ygfauQojpm4BgFtfX5hXAcjotg=="</value>
+        /// <value>Example: "ilditnZK_eVysupV21KzmzN_sM29ygfauQojpm4BgFtfX5hXAcjotg==".</value>
         [JsonProperty("link_to")]
         public string LinkTo { get; set; }
 

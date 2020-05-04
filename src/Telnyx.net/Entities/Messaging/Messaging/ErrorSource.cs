@@ -3,7 +3,7 @@ namespace Telnyx
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Error source
+    /// Error source.
     /// </summary>
     public class ErrorSource
     {

@@ -4,66 +4,66 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// NumberSearchListOptions
+    /// NumberSearchListOptions.
     /// </summary>
     public class NumberSearchListOptions : ListOptions
     {
         /// <summary>
-        /// Gets or sets Filter numbers starting with a pattern
+        /// Gets or sets Filter numbers starting with a pattern.
         /// </summary>
         [JsonProperty("filter[phone_number][starts_with]")]
         public string StartsWith { get; set; }
 
         /// <summary>
-        /// Gets or sets Filter numbers ending with a pattern
+        /// Gets or sets Filter numbers ending with a pattern.
         /// </summary>
         [JsonProperty("filter[phone_number][ends_with]")]
         public string EndsWith { get; set; }
 
         /// <summary>
-        /// Gets or sets Filter numbers containing a pattern
+        /// Gets or sets Filter numbers containing a pattern.
         /// </summary>
         [JsonProperty("filter[phone_number][contains]")]
         public string Contains { get; set; }
 
         /// <summary>
-        /// Gets or sets Filter phone numbers by city
+        /// Gets or sets Filter phone numbers by city.
         /// </summary>
         [JsonProperty("filter[locality]")]
         public string Locality { get; set; }
 
         /// <summary>
-        /// Gets or sets Filter phone numbers by US state/CA province
+        /// Gets or sets Filter phone numbers by US state/CA province.
         /// </summary>
         [JsonProperty("filter[administrative_area]")]
         public string AdministrativeArea { get; set; }
 
         /// <summary>
-        /// Gets or sets Filter phone numbers by ISO 2 country code
+        /// Gets or sets Filter phone numbers by ISO 2 country code.
         /// </summary>
         [JsonProperty("filter[country_code]")]
         public string CountryCode { get; set; }
 
         /// <summary>
-        /// Gets or sets Filter by the national destination code of the number. This filter is only applicable to North American numbers
+        /// Gets or sets Filter by the national destination code of the number. This filter is only applicable to North American numbers.
         /// </summary>
         [JsonProperty("filter[national_destination_code]")]
         public string NationalDestinationCode { get; set; }
 
         /// <summary>
-        /// Gets or sets Filter phone numbers by NANP rate center. This filter is only applicable to North American numbers
+        /// Gets or sets Filter phone numbers by NANP rate center. This filter is only applicable to North American numbers.
         /// </summary>
         [JsonProperty("filter[rate_center]")]
         public string RateCenter { get; set; }
 
         /// <summary>
-        /// Gets or sets Filter phone numbers by number type
+        /// Gets or sets Filter phone numbers by number type.
         /// </summary>
         [JsonProperty("filter[number_type]")]
         public string NumberType { get; set; }
 
         /// <summary>
-        /// Gets or sets Filter if the phone number should be used for voice, fax, sms. For right now
+        /// Gets or sets Filter if the phone number should be used for voice, fax, sms. For right now.
         /// </summary>
         [JsonProperty("filter[features][]")]
         public List<string> Features { get; set; }

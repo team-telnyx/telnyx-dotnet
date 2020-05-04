@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Call control dial service
+    /// Call control dial service.
     /// </summary>
     public class CallControlDialService : Service<CallDialResponse>,
         ICreatable<CallDialResponse, CallControlDialOptions>
@@ -20,7 +20,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlDialService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public CallControlDialService(string apiKey)
             : base(apiKey)
         {

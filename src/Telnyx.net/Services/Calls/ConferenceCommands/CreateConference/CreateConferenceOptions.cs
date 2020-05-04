@@ -5,9 +5,9 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// CreateConferenceCreateOptions
+    /// CreateConferenceOptions.
     /// </summary>
-    public class CreateConferenceCreateOptions : BaseOptions
+    public class CreateConferenceOptions : BaseOptions
     {
         /// <summary>
         /// The audio file format used when storing the call recording.
@@ -21,6 +21,7 @@
             /// </summary>
             [EnumMember(Value = "always")]
             ALWAYS = 0,
+
             /// <summary>
             /// User Busy
             /// </summary>
@@ -44,22 +45,21 @@
         [JsonProperty("beep_enabled")]
         public BeepEnum? BeepEnabled { get; set; }
 
-
         /// <summary>
-        /// Time length (minutes) after which the conference will end. Example: 5
+        /// Time length (minutes) after which the conference will end. Example: 5.
         /// </summary>
         [JsonProperty("duration_minutes")]
         public int DurationMinutes { get; set; }
 
         /// <summary>
         /// The URL to an audio file to be played to participants joining the conference. Takes effect only when "start_conference_on_create" is set to "false".
-        /// Example: "http://www.example.com/audio.wav"
+        /// Example: "http://www.example.com/audio.wav".
         /// </summary>
         [JsonProperty("hold_audio_url")]
         public string HoldAudioUrl { get; set; }
 
         /// <summary>
-        /// Gets or sets unique identifier and token for controlling the call
+        /// Gets or sets unique identifier and token for controlling the call.
         /// </summary>
         [JsonProperty("call_control_id")]
         public string CallControlId { get; set; }
@@ -71,14 +71,14 @@
         public string ClientState { get; set; }
 
         /// <summary>
-        /// Gets or sets use this field to avoid duplicate commands. Telnyx will ignore commands with the same "command_id"
+        /// Gets or sets use this field to avoid duplicate commands. Telnyx will ignore commands with the same "command_id".
         /// </summary>
-        /// <value>Example: "891510ac-f3e4-11e8-af5b-de00688a4901"</value>
+        /// <value>Example: "891510ac-f3e4-11e8-af5b-de00688a4901".</value>
         [JsonProperty("command_id")]
         public Guid? CommandId { get; set; }
 
         /// <summary>
-        /// Name of the conference
+        /// Name of the conference.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -88,7 +88,6 @@
         /// </summary>
         [JsonProperty("start_conference_on_create")]
         public bool StartConferenceOnCreate { get; set; } = true;
-
 
     }
 }

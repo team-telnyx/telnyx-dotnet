@@ -4,7 +4,7 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Phone Numbers Example
+    /// Phone Numbers Example.
     /// </summary>
     public class PhoneNumbersExample
     {
@@ -12,7 +12,7 @@
         private readonly MessagingPhoneNumbersService service = new MessagingPhoneNumbersService();
 
         /// <summary>
-        /// Get phone number
+        /// Get phone number.
         /// </summary>
         public void GetPhoneNumber()
         {
@@ -30,7 +30,7 @@
         }
 
         /// <summary>
-        /// List phone number
+        /// List phone number.
         /// </summary>
         public void ListNumberOrder()
         {
@@ -48,7 +48,7 @@
         }
 
         /// <summary>
-        /// Update phone number
+        /// Update phone number.
         /// </summary>
         public void UpdatePhoneNumber()
         {

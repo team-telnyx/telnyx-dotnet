@@ -4,12 +4,12 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// JoinConferenceCreateOptions
+    /// JoinConferenceCreateOptions.
     /// </summary>
-    public class JoinConferenceCreateOptions : BaseOptions
+    public class JoinConferenceOptions : BaseOptions
     {
         /// <summary>
-        /// Gets or sets unique identifier and token for controlling the call
+        /// Gets or sets unique identifier and token for controlling the call.
         /// </summary>
         [JsonProperty("call_control_id")]
         public string CallControlId { get; set; }
@@ -21,9 +21,9 @@
         public string ClientState { get; set; }
 
         /// <summary>
-        /// Gets or sets use this field to avoid duplicate commands. Telnyx will ignore commands with the same "command_id"
+        /// Gets or sets use this field to avoid duplicate commands. Telnyx will ignore commands with the same "command_id".
         /// </summary>
-        /// <value>Example: "891510ac-f3e4-11e8-af5b-de00688a4901"</value>
+        /// <value>Example: "891510ac-f3e4-11e8-af5b-de00688a4901".</value>
         [JsonProperty("command_id")]
         public Guid? CommandId { get; set; }
 

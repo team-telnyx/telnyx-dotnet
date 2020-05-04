@@ -5,10 +5,10 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// ListConferenceService
+    /// ListConferenceService.
     /// </summary>
-    public class ListConferenceService : Service<ConferenceResponse>,
-        IListable<ConferenceResponse, ListConferenceCreateOptions>
+    public class ListConferenceService : Service<CreateConferenceResponse>,
+        IListable<CreateConferenceResponse, ListConferenceOptions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ListConferenceService"/> class.
@@ -21,7 +21,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="ListConferenceService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public ListConferenceService(string apiKey)
             : base(apiKey)
         {
@@ -31,13 +31,13 @@
         public override string BasePath => "/conferences";
 
         /// <inheritdoc/>
-        public TelnyxList<ConferenceResponse> List(ListConferenceCreateOptions listOptions = null, RequestOptions requestOptions = null)
+        public TelnyxList<CreateConferenceResponse> List(ListConferenceOptions listOptions = null, RequestOptions requestOptions = null)
         {
             return this.ListEntities(listOptions, requestOptions);
         }
 
         /// <inheritdoc/>
-        public async Task<TelnyxList<ConferenceResponse>> ListAsync(ListConferenceCreateOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TelnyxList<CreateConferenceResponse>> ListAsync(ListConferenceOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
         }

@@ -1,13 +1,10 @@
-﻿namespace Telnyx
+﻿namespace Telnyx.Net.Entities.Calls.ConferenceCommands
 {
     using System;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
 
-    /// <summary>
-    /// Call Dial Response.
-    /// </summary>
-    public class CallDialResponse : TelnyxEntity
+    public class ConferenceCommandResponse : TelnyxEntity
     {
         /// <summary>
         /// The status of the Call.

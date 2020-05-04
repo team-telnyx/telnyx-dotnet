@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Number Reservation Service
+    /// Number Reservation Service.
     /// </summary>
     public class NumberReservationsService : Service<NumberReservation>,
         ICreatable<NumberReservation, NumberReservation>,
@@ -23,7 +23,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="NumberReservationsService"/> class.
         /// </summary>
-        /// <param name="apiKey">API key</param>
+        /// <param name="apiKey">API key.</param>
         public NumberReservationsService(string apiKey)
             : base(apiKey)
         {

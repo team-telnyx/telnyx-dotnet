@@ -15,15 +15,15 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
     {
         private const string CallControllId = "call_123";
 
-        private readonly CreateConferenceService service;
-        private readonly CreateConferenceCreateOptions createOptions;
+        private readonly ConferenceCommandsService service;
+        private readonly CreateConferenceOptions createOptions;
 
         public CreateConferenceServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
-            this.service = new CreateConferenceService();
+            this.service = new ConferenceCommandsService();
 
-            this.createOptions = new CreateConferenceCreateOptions()
+            this.createOptions = new CreateConferenceOptions()
             {
                 CallControlId = "AgDIxmoRX6QMuaIj_uXRXnPAXP0QlNfXczRrZvZakpWxBlpw48KyZQ==",
                 Name = "Business",

@@ -5,12 +5,12 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Phone Number Regulatory Requirement
+    /// Phone Number Regulatory Requirement.
     /// </summary>
     public class PhoneNumberRegulatoryRequirement
     {
         /// <summary>
-        /// Gets or sets FieldType
+        /// Gets or sets FieldType.
         /// </summary>
         [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum FieldTypeEnum
@@ -41,27 +41,27 @@
         }
 
         /// <summary>
-        /// Gets or sets recordType
+        /// Gets or sets recordType.
         /// </summary>
         [JsonProperty("record_type")]
         public string RecordType { get; set; }
 
         /// <summary>
-        /// Gets or sets unique id for a requirement
+        /// Gets or sets unique id for a requirement.
         /// </summary>
-        /// <value>Unique id for a requirement</value>
+        /// <value>Unique id for a requirement.</value>
         [JsonProperty("requirement_id")]
         public Guid? RequirementId { get; set; }
 
         /// <summary>
-        /// Gets or sets the value of the requirement, this could be an id to a resource or a string value
+        /// Gets or sets the value of the requirement, this could be an id to a resource or a string value.
         /// </summary>
-        /// <value>The value of the requirement, this could be an id to a resource or a string value</value>
+        /// <value>The value of the requirement, this could be an id to a resource or a string value.</value>
         [JsonProperty("field_value")]
         public string FieldValue { get; set; }
 
         /// <summary>
-        /// Gets or sets FieldType
+        /// Gets or sets FieldType.
         /// </summary>
         [JsonProperty("field_type")]
         public FieldTypeEnum? FieldType { get; set; }

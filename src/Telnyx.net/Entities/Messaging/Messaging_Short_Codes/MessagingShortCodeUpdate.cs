@@ -5,7 +5,7 @@ namespace Telnyx
     using System.Runtime.Serialization;
 
     /// <summary>
-    /// Messaging Short Code Update
+    /// Messaging Short Code Update.
     /// </summary>
     public class MessagingShortCodeUpdate : BaseOptions
     {

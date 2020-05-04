@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// NumberSearchService
+    /// NumberSearchService.
     /// </summary>
     public class NumberSearchService : Service<AvailablePhoneNumber>
     {
@@ -19,7 +19,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="NumberSearchService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public NumberSearchService(string apiKey)
             : base(apiKey)
         {
@@ -29,23 +29,23 @@
         public override string BasePath => "/available_phone_numbers";
 
         /// <summary>
-        /// List
+        /// List.
         /// </summary>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>TelnyxList of AvailablePhoneNumber</returns>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>TelnyxList of AvailablePhoneNumber.</returns>
         public virtual TelnyxList<AvailablePhoneNumber> List(NumberSearchListOptions options = null, RequestOptions requestOptions = null)
         {
             return this.ListEntities(options, requestOptions);
         }
 
         /// <summary>
-        /// ListAsync
+        /// ListAsync.
         /// </summary>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>TelnyxList of AvailablePhoneNumber</returns>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>TelnyxList of AvailablePhoneNumber.</returns>
         public virtual async Task<TelnyxList<AvailablePhoneNumber>> ListAsync(NumberSearchListOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await this.ListEntitiesAsync(options, requestOptions, cancellationToken);

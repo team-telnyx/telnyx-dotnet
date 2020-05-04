@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// MessageService
+    /// MessageService.
     /// </summary>
     public class MessageService : Service<OutboundMessage>,
         ICreatable<OutboundMessage, NewMessage>,
@@ -21,7 +21,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="MessageService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public MessageService(string apiKey)
             : base(apiKey)
         {

@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// MessagingPhoneNumbersService
+    /// MessagingPhoneNumbersService.
     /// </summary>
     public class MessagingPhoneNumbersService : Service<MessagingPhoneNumber>,
         IRetrievable<MessagingPhoneNumber>,
@@ -23,7 +23,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="MessagingPhoneNumbersService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public MessagingPhoneNumbersService(string apiKey)
             : base(apiKey)
         {

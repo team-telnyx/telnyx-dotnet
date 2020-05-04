@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// CallControlSendDTMFService
+    /// CallControlSendDTMFService.
     /// </summary>
     public class CallControlSendDTMFService : Service<CallSendDTMFResponse>,
         INestedCreatableWithIdInMid<CallSendDTMFResponse, CallControlSendDTMFOptions>
@@ -20,7 +20,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlSendDTMFService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public CallControlSendDTMFService(string apiKey)
             : base(apiKey)
         {

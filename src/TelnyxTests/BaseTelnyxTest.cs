@@ -47,8 +47,8 @@ namespace TelnyxTests
         /// <summary>
         /// Gets a resource file and returns its contents in a string.
         /// </summary>
-        /// <param name="path">Path to the resource file</param>
-        /// <returns>File contents</returns>
+        /// <param name="path">Path to the resource file.</param>
+        /// <returns>File contents.</returns>
         protected static string GetResourceAsString(string path)
         {
             var fullpath = "TelnyxTests.Resources." + path;
@@ -62,8 +62,8 @@ namespace TelnyxTests
         /// <summary>
         /// Asserts that a single HTTP request was made with the specified method and path.
         /// </summary>
-        /// <param name="method"> method used for making the request </param>
-        /// <param name="path"> RequestUri </param>
+        /// <param name="method"> method used for making the request. </param>
+        /// <param name="path"> RequestUri. </param>
         protected void AssertRequest(HttpMethod method, string path)
         {
             if (this.MockHttpClientFixture == null)
@@ -83,9 +83,9 @@ namespace TelnyxTests
         /// Use the special <c>*</c> character to specify that all fields should be
         /// expanded.
         /// </summary>
-        /// <param name="path">API path to use to get a fixture for telnyx-mock</param>
-        /// <param name="expansions">Set of expansions that should be applied</param>
-        /// <returns>Fixture data encoded as JSON</returns>
+        /// <param name="path">API path to use to get a fixture for telnyx-mock.</param>
+        /// <param name="expansions">Set of expansions that should be applied.</param>
+        /// <returns>Fixture data encoded as JSON.</returns>
         protected string GetFixture(string path, string[] expansions = null)
         {
             if (this.TelnyxMockFixture == null)

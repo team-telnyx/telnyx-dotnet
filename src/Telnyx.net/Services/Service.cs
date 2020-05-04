@@ -6,9 +6,9 @@ namespace Telnyx
     using System.Threading.Tasks;
     using Telnyx.Infrastructure;
     /// <summary>
-    /// Service
+    /// Service.
     /// </summary>
-    /// <typeparam name="EntityReturned">ITelnyxEntity</typeparam>
+    /// <typeparam name="EntityReturned">ITelnyxEntity.</typeparam>
     public abstract class Service<EntityReturned> 
         where EntityReturned : ITelnyxEntity
     {
@@ -22,189 +22,189 @@ namespace Telnyx
         /// <summary>
         /// Initializes a new instance of the <see cref="Service{EntityReturned}"/> class.
         /// </summary>
-        /// <param name="apiKey">apiKey</param>
+        /// <param name="apiKey">apiKey.</param>
         protected Service(string apiKey)
         {
             this.ApiKey = apiKey;
         }
 
         /// <summary>
-        /// Gets or sets ApiKey
+        /// Gets or sets ApiKey.
         /// </summary>
         public string ApiKey { get; set; }
 
         /// <summary>
-        /// Gets BasePath
+        /// Gets BasePath.
         /// </summary>
         public abstract string BasePath { get; }
 
         /// <summary>
-        /// CreateEntity
+        /// CreateEntity.
         /// </summary>
-        /// <param name="id">id</param>
-        /// <param name="postFix">postFix</param>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>{EntityReturned}</returns>
+        /// <param name="id">id.</param>
+        /// <param name="postFix">postFix.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>{EntityReturned}.</returns>
         protected EntityReturned CreateEntity(string id, string postFix, BaseOptions options, RequestOptions requestOptions)
         {
             return this.PostRequest<EntityReturned>(this.CallUrl(id, postFix), options, requestOptions);
         }
 
         /// <summary>
-        /// CreateEntityAsync
+        /// CreateEntityAsync.
         /// </summary>
-        /// <param name="id">id</param>
-        /// <param name="postFix">postFix</param>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>{EntityReturned}</returns>
+        /// <param name="id">id.</param>
+        /// <param name="postFix">postFix.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>{EntityReturned}.</returns>
         protected async Task<EntityReturned> CreateEntityAsync(string id, string postFix, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
             return await this.PostRequestAsync<EntityReturned>(this.CallUrl(id, postFix), options, requestOptions, cancellationToken);
         }
 
         /// <summary>
-        /// CreateEntity
+        /// CreateEntity.
         /// </summary>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>{EntityReturned}</returns>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>{EntityReturned}.</returns>
         protected EntityReturned CreateEntity(BaseOptions options, RequestOptions requestOptions)
         {
             return this.PostRequest<EntityReturned>(this.ClassUrl(), options, requestOptions);
         }
 
         /// <summary>
-        /// CreateEntityAsync
+        /// CreateEntityAsync.
         /// </summary>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>{EntityReturned}</returns>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>{EntityReturned}.</returns>
         protected async Task<EntityReturned> CreateEntityAsync(BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
             return await this.PostRequestAsync<EntityReturned>(this.ClassUrl(), options, requestOptions, cancellationToken);
         }
 
         /// <summary>
-        /// DeleteEntity
+        /// DeleteEntity.
         /// </summary>
-        /// <param name="id">id</param>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>{EntityReturned}</returns>
+        /// <param name="id">id.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>{EntityReturned}.</returns>
         protected EntityReturned DeleteEntity(string id, BaseOptions options, RequestOptions requestOptions)
         {
             return this.DeleteRequest<EntityReturned>(this.InstanceUrl(id), options, requestOptions);
         }
 
         /// <summary>
-        /// DeleteEntityAsync
+        /// DeleteEntityAsync.
         /// </summary>
-        /// <param name="id">id</param>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>{EntityReturned}</returns>
+        /// <param name="id">id.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>{EntityReturned}.</returns>
         protected async Task<EntityReturned> DeleteEntityAsync(string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
             return await this.DeleteRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, cancellationToken);
         }
 
         /// <summary>
-        /// GetEntity
+        /// GetEntity.
         /// </summary>
-        /// <param name="id">id</param>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>{EntityReturned}</returns>
+        /// <param name="id">id.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>{EntityReturned}.</returns>
         protected EntityReturned GetEntity(string id, BaseOptions options, RequestOptions requestOptions)
         {
             return this.GetRequest<EntityReturned>(this.InstanceUrl(id), options, requestOptions, false);
         }
 
         /// <summary>
-        /// GetEntityAsync
+        /// GetEntityAsync.
         /// </summary>
-        /// <param name="id">id</param>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>{EntityReturned}</returns>
+        /// <param name="id">id.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>{EntityReturned}.</returns>
         protected async Task<EntityReturned> GetEntityAsync(string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
             return await this.GetRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, false, cancellationToken);
         }
 
         /// <summary>
-        /// ListEntities
+        /// ListEntities.
         /// </summary>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>TelnyxList {EntityReturned}</returns>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>TelnyxList {EntityReturned}.</returns>
         protected TelnyxList<EntityReturned> ListEntities(ListOptions options, RequestOptions requestOptions)
         {
             return this.GetRequest<TelnyxList<EntityReturned>>(this.ClassUrl(), options, requestOptions, true);
         }
 
         /// <summary>
-        /// ListEntitiesAsync
+        /// ListEntitiesAsync.
         /// </summary>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>TelnyxList {EntityReturned}</returns>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>TelnyxList {EntityReturned}.</returns>
         protected async Task<TelnyxList<EntityReturned>> ListEntitiesAsync(ListOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
             return await this.GetRequestAsync<TelnyxList<EntityReturned>>(this.ClassUrl(), options, requestOptions, true, cancellationToken);
         }
 
         /// <summary>
-        /// ListEntitiesAutoPaging
+        /// ListEntitiesAutoPaging.
         /// </summary>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>IEnumerable {EntityReturned}</returns>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>IEnumerable {EntityReturned}.</returns>
         protected IEnumerable<EntityReturned> ListEntitiesAutoPaging(ListOptions options, RequestOptions requestOptions)
         {
             return this.ListRequestAutoPaging<EntityReturned>(this.ClassUrl(), options, requestOptions);
         }
 
         /// <summary>
-        /// UpdateEntity
+        /// UpdateEntity.
         /// </summary>
-        /// <param name="id">id</param>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>{EntityReturned}</returns>
+        /// <param name="id">id.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>{EntityReturned}.</returns>
         protected EntityReturned UpdateEntity(string id, BaseOptions options, RequestOptions requestOptions)
         {
             return this.PatchRequest<EntityReturned>(this.InstanceUrl(id), options, requestOptions);
         }
 
         /// <summary>
-        /// UpdateEntityAsync
+        /// UpdateEntityAsync.
         /// </summary>
-        /// <param name="id">id</param>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>{EntityReturned}</returns>
+        /// <param name="id">id.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>{EntityReturned}.</returns>
         protected async Task<EntityReturned> UpdateEntityAsync(string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
             return await this.PatchRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, cancellationToken);
         }
 
         /// <summary>
-        /// DeleteRequest
+        /// DeleteRequest.
         /// </summary>
-        /// <typeparam name="T">Request for {EntityReturned}</typeparam>
-        /// <param name="url">url</param>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>{EntityReturned}</returns>
+        /// <typeparam name="T">Request for {EntityReturned}.</typeparam>
+        /// <param name="url">url.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>{EntityReturned}.</returns>
         protected T DeleteRequest<T>(string url, BaseOptions options, RequestOptions requestOptions)
         {
             return Mapper<T>.MapFromJson(
@@ -214,14 +214,14 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// DeleteRequestAsync
+        /// DeleteRequestAsync.
         /// </summary>
-        /// <typeparam name="T">Request for {EntityReturned}</typeparam>
-        /// <param name="url">url</param>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>{EntityReturned}</returns>
+        /// <typeparam name="T">Request for {EntityReturned}.</typeparam>
+        /// <param name="url">url.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>{EntityReturned}.</returns>
         protected async Task<T> DeleteRequestAsync<T>(string url, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
             return Mapper<T>.MapFromJson(
@@ -232,14 +232,14 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// GetRequest
+        /// GetRequest.
         /// </summary>
-        /// <typeparam name="T">Request for {EntityReturned}</typeparam>
-        /// <param name="url">url</param>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="isListMethod">isListMethod</param>
-        /// <returns>{EntityReturned}</returns>
+        /// <typeparam name="T">Request for {EntityReturned}.</typeparam>
+        /// <param name="url">url.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="isListMethod">isListMethod.</param>
+        /// <returns>{EntityReturned}.</returns>
         protected T GetRequest<T>(string url, BaseOptions options, RequestOptions requestOptions, bool isListMethod)
         {
             var parentToken = (typeof(T) == typeof(TelnyxList<EntityReturned>)) ? null : "data";
@@ -250,15 +250,15 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// GetRequestAsync
+        /// GetRequestAsync.
         /// </summary>
-        /// <typeparam name="T">Request for {EntityReturned}</typeparam>
-        /// <param name="url">url</param>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="isListMethod">isListMethod</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>{EntityReturned}</returns>
+        /// <typeparam name="T">Request for {EntityReturned}.</typeparam>
+        /// <param name="url">url.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="isListMethod">isListMethod.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>{EntityReturned}.</returns>
         protected async Task<T> GetRequestAsync<T>(string url, BaseOptions options, RequestOptions requestOptions, bool isListMethod, CancellationToken cancellationToken)
         {
             var parentToken = (typeof(T) == typeof(TelnyxList<EntityReturned>)) ? null : "data";
@@ -270,13 +270,13 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// ListRequestAutoPaging
+        /// ListRequestAutoPaging.
         /// </summary>
-        /// <typeparam name="T">Request for {EntityReturned}</typeparam>
-        /// <param name="url">url</param>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>IEnumerable {EntityReturned}</returns>
+        /// <typeparam name="T">Request for {EntityReturned}.</typeparam>
+        /// <param name="url">url.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>IEnumerable {EntityReturned}.</returns>
         protected IEnumerable<T> ListRequestAutoPaging<T>(string url, ListOptions options, RequestOptions requestOptions)
         {
             var page = this.GetRequest<TelnyxList<T>>(url, options, requestOptions, true);
@@ -313,13 +313,13 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// PostRequest
+        /// PostRequest.
         /// </summary>
-        /// <typeparam name="T">Request for {EntityReturned}</typeparam>
-        /// <param name="url">url</param>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>{EntityReturned}</returns>
+        /// <typeparam name="T">Request for {EntityReturned}.</typeparam>
+        /// <param name="url">url.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>{EntityReturned}.</returns>
         protected T PostRequest<T>(string url, BaseOptions options, RequestOptions requestOptions)
         {
             return Mapper<T>.MapFromJson(
@@ -329,14 +329,14 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// PostRequestAsync
+        /// PostRequestAsync.
         /// </summary>
-        /// <typeparam name="T">Request for {EntityReturned}</typeparam>
-        /// <param name="url">url</param>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>{EntityReturned}</returns>
+        /// <typeparam name="T">Request for {EntityReturned}.</typeparam>
+        /// <param name="url">url.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>{EntityReturned}.</returns>
         protected async Task<T> PostRequestAsync<T>(string url, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
             return Mapper<T>.MapFromJson(
@@ -347,13 +347,13 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// PatchRequest
+        /// PatchRequest.
         /// </summary>
-        /// <typeparam name="T">Request for {EntityReturned}</typeparam>
-        /// <param name="url">url</param>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>{EntityReturned}</returns>
+        /// <typeparam name="T">Request for {EntityReturned}.</typeparam>
+        /// <param name="url">url.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>{EntityReturned}.</returns>
         protected T PatchRequest<T>(string url, BaseOptions options, RequestOptions requestOptions)
         {
             return Mapper<T>.MapFromJson(
@@ -363,14 +363,14 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// PatchRequestAsync
+        /// PatchRequestAsync.
         /// </summary>
-        /// <typeparam name="T">Request for {EntityReturned}</typeparam>
-        /// <param name="url">url</param>
-        /// <param name="options">options</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>{EntityReturned}</returns>
+        /// <typeparam name="T">Request for {EntityReturned}.</typeparam>
+        /// <param name="url">url.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>{EntityReturned}.</returns>
         protected async Task<T> PatchRequestAsync<T>(string url, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
             return Mapper<T>.MapFromJson(
@@ -381,10 +381,10 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// SetupRequestOptions
+        /// SetupRequestOptions.
         /// </summary>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>RequestOptions</returns>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>RequestOptions.</returns>
         protected RequestOptions SetupRequestOptions(RequestOptions requestOptions)
         {
             if (requestOptions == null)
@@ -401,22 +401,22 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// CallUrl
+        /// CallUrl.
         /// </summary>
-        /// <param name="id">id</param>
-        /// <param name="postFix">postFix</param>
-        /// <param name="baseUrl">baseUrl</param>
-        /// <returns>url</returns>
+        /// <param name="id">id.</param>
+        /// <param name="postFix">postFix.</param>
+        /// <param name="baseUrl">baseUrl.</param>
+        /// <returns>url.</returns>
         protected virtual string CallUrl(string id, string postFix, string baseUrl = null)
         {
             return $"{this.ClassUrl(baseUrl)}/{WebUtility.UrlEncode(id)}/{postFix}";
         }
 
         /// <summary>
-        /// ClassUrl
+        /// ClassUrl.
         /// </summary>
-        /// <param name="baseUrl">baseUrl</param>
-        /// <returns>url</returns>
+        /// <param name="baseUrl">baseUrl.</param>
+        /// <returns>url.</returns>
         protected virtual string ClassUrl(string baseUrl = null)
         {
             baseUrl = baseUrl ?? TelnyxConfiguration.GetApiBase();
@@ -424,11 +424,11 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// InstanceUrl
+        /// InstanceUrl.
         /// </summary>
-        /// <param name="id">id</param>
-        /// <param name="baseUrl">baseUrl</param>
-        /// <returns>url</returns>
+        /// <param name="id">id.</param>
+        /// <param name="baseUrl">baseUrl.</param>
+        /// <returns>url.</returns>
         protected virtual string InstanceUrl(string id, string baseUrl = null)
         {
             return $"{this.ClassUrl(baseUrl)}/{WebUtility.UrlEncode(id)}";

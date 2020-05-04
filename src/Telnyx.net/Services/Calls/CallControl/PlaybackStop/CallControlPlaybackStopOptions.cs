@@ -4,7 +4,7 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// CallControlPlaybackStopCreateOptions
+    /// CallControlPlaybackStopCreateOptions.
     /// </summary>
     public class CallControlPlaybackStopOptions : BaseOptions
     {
@@ -23,7 +23,7 @@
         /// <summary>
         /// Gets or sets use this field to avoid duplicate commands. Telnyx will ignore commands with the same "command_id".
         /// </summary>
-        /// <value>Example: "891510ac-f3e4-11e8-af5b-de00688a4901"</value>
+        /// <value>Example: "891510ac-f3e4-11e8-af5b-de00688a4901".</value>
         [JsonProperty("command_id")]
         public Guid CommandId { get; set; }
     }
