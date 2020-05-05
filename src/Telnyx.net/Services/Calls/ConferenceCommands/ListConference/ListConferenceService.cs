@@ -7,8 +7,7 @@
     /// <summary>
     /// ListConferenceService.
     /// </summary>
-    public class ListConferenceService : Service<CreateConferenceResponse>,
-        IListable<CreateConferenceResponse, ListConferenceOptions>
+    public class ListConferenceService : Service<ListConferenceResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ListConferenceService"/> class.
@@ -31,13 +30,13 @@
         public override string BasePath => "/conferences";
 
         /// <inheritdoc/>
-        public TelnyxList<CreateConferenceResponse> List(ListConferenceOptions listOptions = null, RequestOptions requestOptions = null)
+        public TelnyxList<ListConferenceResponse> List(ListConferenceOptions listOptions = null, RequestOptions requestOptions = null)
         {
             return this.ListEntities(listOptions, requestOptions);
         }
 
         /// <inheritdoc/>
-        public async Task<TelnyxList<CreateConferenceResponse>> ListAsync(ListConferenceOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TelnyxList<ListConferenceResponse>> ListAsync(ListConferenceOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
         }

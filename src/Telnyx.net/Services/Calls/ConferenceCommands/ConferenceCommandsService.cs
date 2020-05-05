@@ -1,4 +1,6 @@
-﻿namespace Telnyx
+﻿using System.Threading.Tasks;
+
+namespace Telnyx
 {
     /// <summary>
     /// CreateConferenceService.
@@ -17,6 +19,11 @@
         public virtual CreateConferenceResponse Create(CreateConferenceOptions options)
         {
             return this.createConferenceService.Create(options);
+        }
+
+        public virtual Task<CreateConferenceResponse> CreateAsync(CreateConferenceOptions options)
+        {
+            return this.createConferenceService.CreateAsync(options);
         }
     }
 }
