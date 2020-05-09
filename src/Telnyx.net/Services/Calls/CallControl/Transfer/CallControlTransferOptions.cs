@@ -46,7 +46,7 @@
         /// Gets or sets a value Enables Answering Machine Detection. When a call is answered, Telnyx runs real-time detection to determine if it was picked up by a human or a machine and sends an `call.machine.detection.ended` webhook with the analysis result. If 'greeting_end' or 'detect_words' is used and a 'machine' is detected, you will receive another 'call.machine.greeting.ended' webhook when the answering machine greeting ends with a beep or silence. If `detect_beep` is used, you will only receive 'call.machine.greeting.ended' if a beep is detected.
         /// </summary>
         [JsonProperty("answering_machine_detection")]
-        public string AnsweringMachineDetection { get; set; }
+        public bool AnsweringMachineDetection { get; set; }
 
         /// <summary>
         /// Optional config parameter to modify answering_machine_detection performance.

@@ -30,7 +30,7 @@ namespace TelnyxTests.Services.Messages.MessagingPhoneNumbers
             //this.AssertRequest(HttpMethod.Get, "/v2/conferences");
             Assert.NotNull(conferenceList);
             Assert.Single(conferenceList.Data);
-            Assert.Equal("Telnyx.ConferenceResponse", conferenceList.Data[0].GetType().ToString());
+            Assert.Equal(typeof(Telnyx.ListConferenceResponse), conferenceList.Data[0].GetType());
         }
 
         [Fact]
@@ -40,7 +40,7 @@ namespace TelnyxTests.Services.Messages.MessagingPhoneNumbers
             //this.AssertRequest(HttpMethod.Get, "/v2/conferences");
             Assert.NotNull(conferenceList);
             Assert.Single(conferenceList.Data);
-            Assert.Equal("Telnyx.ConferenceResponse", conferenceList.Data[0].GetType().ToString());
+            Assert.Equal(typeof(Telnyx.ListConferenceResponse), conferenceList.Data[0].GetType());
         }
     }
 }
