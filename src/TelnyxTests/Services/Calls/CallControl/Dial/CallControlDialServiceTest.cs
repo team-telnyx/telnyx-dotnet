@@ -7,6 +7,7 @@ namespace TelnyxTests.Services.Calls.CallCommands
     using System.Net.Http;
     using System.Threading.Tasks;
     using Telnyx;
+    using Telnyx.net.Services.Calls.Models;
     using Xunit;
 
     public class CallControlDialServiceTest : BaseTelnyxTest
@@ -23,7 +24,7 @@ namespace TelnyxTests.Services.Calls.CallCommands
 
             this.createOptions = new CallControlDialOptions()
             {
-                AnsweringMachineDetection = false,
+                AnsweringMachineDetection = AnsweringMachineEnum.Disabled,
                 AudioUrl = "http://example.com/message.wav",
                 ConnectionId = "connection",
                 From = "+18005550101",
