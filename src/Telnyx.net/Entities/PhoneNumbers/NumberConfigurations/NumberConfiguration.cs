@@ -66,7 +66,7 @@ namespace Telnyx.net.Entities.PhoneNumbers.NumberConfigurations
     public class NumberConfiguration : TelnyxEntity
     {
         [JsonProperty("billing_group_id")]
-        public Guid BillingGroupId { get; set; }
+        public Guid? BillingGroupId { get; set; }
 
         [JsonProperty("call_forwarding_enabled")]
         public bool CallForwardingEnabled { get; set; }
@@ -87,7 +87,7 @@ namespace Telnyx.net.Entities.PhoneNumbers.NumberConfigurations
         public string ConnectionName { get; set; }
 
         [JsonProperty("created_at")]
-        public DateTimeOffset CreatedAt { get; set; }
+        public DateTimeOffset? CreatedAt { get; set; }
 
         [JsonProperty("emergency_address_id")]
         public string EmergencyAddressId { get; set; }
@@ -102,7 +102,7 @@ namespace Telnyx.net.Entities.PhoneNumbers.NumberConfigurations
         public string Id { get; set; }
 
         [JsonProperty("messaging_profile_id")]
-        public Guid MessagingProfileId { get; set; }
+        public Guid? MessagingProfileId { get; set; }
 
         [JsonProperty("messaging_profile_name")]
         public string MessagingProfileName { get; set; }
@@ -111,21 +111,21 @@ namespace Telnyx.net.Entities.PhoneNumbers.NumberConfigurations
         public string PhoneNumber { get; set; }
 
         [JsonProperty("purchased_at")]
-        public DateTimeOffset PurchasedAt { get; set; }
+        public DateTimeOffset? PurchasedAt { get; set; }
 
         [JsonProperty("record_type")]
         public string RecordType { get; set; }
 
         [JsonProperty("status")]
-        public NumberConfigStatus Status { get; set; }
+        public NumberConfigStatus? Status { get; set; }
 
         [JsonProperty("t38_fax_gateway_enabled")]
         public bool T38FaxGatewayEnabled { get; set; }
 
         [JsonProperty("tags")]
-        public List<string> Tags { get; set; }
+        public List<string> Tags { get; set; } = new List<string>();
 
         [JsonProperty("updated_at")]
-        public DateTimeOffset UpdatedAt { get; set; }
+        public DateTimeOffset? UpdatedAt { get; set; }
     }
 }

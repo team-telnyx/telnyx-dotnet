@@ -13,6 +13,6 @@ namespace Telnyx.net.Services.PhoneNumbers.NumberConfigurations
         public string MessagingProduct { get; set; }
 
         [JsonProperty("messaging_profile_id")]
-        public Guid MessagingProfileId { get; set; }
+        public Guid? MessagingProfileId { get; set; }
     }
 }

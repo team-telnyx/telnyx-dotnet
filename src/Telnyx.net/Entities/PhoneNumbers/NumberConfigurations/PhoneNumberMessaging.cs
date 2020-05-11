@@ -13,7 +13,7 @@
         public string CountryCode { get; set; }
 
         [JsonProperty("created_at")]
-        public DateTimeOffset CreatedAt { get; set; }
+        public DateTimeOffset? CreatedAt { get; set; }
 
         [JsonProperty("eligible_messaging_products")]
         public List<string> EligibleMessagingProducts { get; set; }
@@ -31,7 +31,7 @@
         public string MessagingProduct { get; set; }
 
         [JsonProperty("messaging_profile_id")]
-        public Guid MessagingProfileId { get; set; }
+        public Guid? MessagingProfileId { get; set; }
 
         [JsonProperty("phone_number")]
         public string PhoneNumber { get; set; }
@@ -46,7 +46,7 @@
         public string Type { get; set; }
 
         [JsonProperty("updated_at")]
-        public DateTimeOffset UpdatedAt { get; set; }
+        public DateTimeOffset? UpdatedAt { get; set; }
     }
 
     public partial class Features

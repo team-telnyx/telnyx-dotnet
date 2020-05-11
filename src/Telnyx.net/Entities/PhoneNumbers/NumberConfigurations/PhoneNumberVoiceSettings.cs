@@ -19,7 +19,7 @@ namespace Telnyx.net.Entities.PhoneNumbers.NumberConfigurations
         public CnamListing CnamListing { get; set; }
 
         [JsonProperty("connection_id")]
-        public Guid ConnectionId { get; set; }
+        public string ConnectionId { get; set; }
 
         [JsonProperty("emergency")]
         public Emergency Emergency { get; set; }
