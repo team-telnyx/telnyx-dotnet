@@ -1,6 +1,7 @@
 namespace Telnyx
 {
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Linq;
     using System.Reflection;
     using Newtonsoft.Json;
@@ -107,12 +108,12 @@ namespace Telnyx
                 return;
             }
 
-            foreach (var property in obj.GetType().GetRuntimeProperties())
+            var tResponseType = obj.GetType().GetRuntimeProperties()
+                .Where(x => x.PropertyType.Equals(telnyxResponse.GetType()));
+
+            if (tResponseType != null && tResponseType.Any())
             {
-                if (property.Name == nameof(telnyxResponse))
-                {
-                    property.SetValue(obj, telnyxResponse);
-                }
+                tResponseType.ToList().ForEach(x => x.SetValue(obj, telnyxResponse));
             }
 
             telnyxResponse.ObjectJson = json;
