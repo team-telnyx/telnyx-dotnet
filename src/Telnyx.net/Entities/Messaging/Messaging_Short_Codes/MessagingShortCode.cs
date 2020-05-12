@@ -5,7 +5,7 @@ namespace Telnyx
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Messaging Short Code
+    /// Messaging Short Code.
     /// </summary>
     public class MessagingShortCode : TelnyxEntity, IHasId
     {
@@ -80,7 +80,7 @@ namespace Telnyx
         public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
-        /// Gets or sets Id
+        /// Gets or sets Id.
         /// </summary>
         string IHasId.Id { get => this.Id.ToString(); set => Guid.Parse(value); }
     }

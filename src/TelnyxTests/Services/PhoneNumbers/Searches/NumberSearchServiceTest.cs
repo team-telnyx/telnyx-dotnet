@@ -32,7 +32,6 @@ namespace TelnyxTests.Services.Numbers.Search
             Assert.Single(numberSearch.Data);
         }
 
-
         [Fact]
         public void ListWithOptions()
         {

@@ -4,10 +4,10 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// UnMuteConferenceParticipantService
+    /// UnMuteConferenceParticipantService.
     /// </summary>
     public class UnMuteConferenceParticipantService : Service<CallAnswerResponse>,
-        INestedCreatableWithIdInMid<CallAnswerResponse, MuteConferenceCreateOptions>
+        INestedCreatableWithIdInMid<CallAnswerResponse, MuteConferenceOptions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UnMuteConferenceParticipantService"/> class.
@@ -20,7 +20,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="UnMuteConferenceParticipantService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public UnMuteConferenceParticipantService(string apiKey)
             : base(apiKey)
         {
@@ -30,13 +30,13 @@
         public override string BasePath => "/conferences";
 
         /// <inheritdoc/>
-        public virtual CallAnswerResponse Create(string id, MuteConferenceCreateOptions options, string postFix = "actions/unmute", RequestOptions requestOptions = null)
+        public virtual CallAnswerResponse Create(string id, MuteConferenceOptions options, string postFix = "actions/unmute", RequestOptions requestOptions = null)
         {
             return this.CreateEntity(id, postFix, options, requestOptions);
         }
 
         /// <inheritdoc/>
-        public async Task<CallAnswerResponse> CreateAsync(string parentId, MuteConferenceCreateOptions createOptions, string postFix = "actions/unmute", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<CallAnswerResponse> CreateAsync(string parentId, MuteConferenceOptions createOptions, string postFix = "actions/unmute", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
         }

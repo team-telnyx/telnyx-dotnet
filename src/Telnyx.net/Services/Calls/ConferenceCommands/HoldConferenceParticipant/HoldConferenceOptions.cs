@@ -4,12 +4,12 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Hold conference create options
+    /// Hold conference options.
     /// </summary>
-    public class HoldConferenceCreateOptions : BaseOptions
+    public class HoldConferenceOptions : BaseOptions
     {
         /// <summary>
-        /// Gets or sets unique identifier and token for controlling the call
+        /// Gets or sets unique identifier and token for controlling the call.
         /// </summary>
         [JsonProperty("call_control_ids")]
         public List<string> CallControlIds { get; set; }

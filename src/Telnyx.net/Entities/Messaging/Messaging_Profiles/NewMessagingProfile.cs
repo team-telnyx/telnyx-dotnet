@@ -5,7 +5,7 @@ namespace Telnyx
     using Newtonsoft.Json;
 
     /// <summary>
-    /// New Messaging Profile
+    /// New Messaging Profile.
     /// </summary>
     [DataContract]
     public class NewMessagingProfile : BaseOptions
@@ -80,7 +80,7 @@ namespace Telnyx
         public WebhookApiVersionEnum? WebhookApiVersion { get; set; }
 
         /// <summary>
-        /// Gets or sets NumberPoolSettings
+        /// Gets or sets NumberPoolSettings.
         /// </summary>
         [JsonProperty("number_pool_settings")]
         public NumberPoolSettings NumberPoolSettings { get; set; }

@@ -15,7 +15,7 @@ namespace TelnyxTests.Services.Messages.MessagingPhoneNumbers
         private const string MessagingPhoneNosId = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
 
         private readonly ListConferenceService service;
-        private readonly ListConferenceCreateOptions listOptions;
+        private readonly ListConferenceOptions listOptions;
 
         public ListConferenceServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
@@ -30,7 +30,7 @@ namespace TelnyxTests.Services.Messages.MessagingPhoneNumbers
             //this.AssertRequest(HttpMethod.Get, "/v2/conferences");
             Assert.NotNull(conferenceList);
             Assert.Single(conferenceList.Data);
-            Assert.Equal("Telnyx.ConferenceResponse", conferenceList.Data[0].GetType().ToString());
+            Assert.Equal(typeof(Telnyx.ListConferenceResponse), conferenceList.Data[0].GetType());
         }
 
         [Fact]
@@ -40,7 +40,7 @@ namespace TelnyxTests.Services.Messages.MessagingPhoneNumbers
             //this.AssertRequest(HttpMethod.Get, "/v2/conferences");
             Assert.NotNull(conferenceList);
             Assert.Single(conferenceList.Data);
-            Assert.Equal("Telnyx.ConferenceResponse", conferenceList.Data[0].GetType().ToString());
+            Assert.Equal(typeof(Telnyx.ListConferenceResponse), conferenceList.Data[0].GetType());
         }
     }
 }

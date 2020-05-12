@@ -3,7 +3,7 @@ namespace Telnyx
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Outbound message cost
+    /// Outbound message cost.
     /// </summary>
     public class OutboundMessageCost
     {

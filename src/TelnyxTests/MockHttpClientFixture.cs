@@ -40,8 +40,8 @@ namespace TelnyxTests
         /// <summary>
         /// Asserts that a single HTTP request was made with the specified method and path.
         /// </summary>
-        /// <param name="method"> method used for making the request </param>
-        /// <param name="path"> RequestUri </param>
+        /// <param name="method"> method used for making the request. </param>
+        /// <param name="path"> RequestUri. </param>
         public void AssertRequest(HttpMethod method, string path)
         {
             this.MockHandler.Protected().Verify(

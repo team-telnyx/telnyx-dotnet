@@ -10,7 +10,7 @@ namespace Telnyx.Infrastructure
     using System.Reflection;
 
     /// <summary>
-    /// TelnyxTypeRegistry
+    /// TelnyxTypeRegistry.
     /// </summary>
     internal static class TelnyxTypeRegistry
     {

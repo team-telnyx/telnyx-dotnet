@@ -4,7 +4,7 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// CallControlRecordStopCreateOptions
+    /// CallControlRecordStopCreateOptions.
     /// </summary>
     public class CallControlRecordStopOptions : BaseOptions
     {

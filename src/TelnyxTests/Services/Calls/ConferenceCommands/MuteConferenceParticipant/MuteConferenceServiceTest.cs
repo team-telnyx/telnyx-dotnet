@@ -15,14 +15,14 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
         private const string CallControllId = "call_123";
 
         private readonly MuteConferenceService service;
-        private readonly MuteConferenceCreateOptions createOptions;
+        private readonly MuteConferenceOptions createOptions;
 
         public MuteConferenceServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
             this.service = new MuteConferenceService();
 
-            this.createOptions = new MuteConferenceCreateOptions()
+            this.createOptions = new MuteConferenceOptions()
             {
                 CallControlIds = new List<string> { "AgDIxmoRX6QMuaIj_uXRXnPAXP0QlNfXczRrZvZakpWxBlpw48KyZQ==" }
             };

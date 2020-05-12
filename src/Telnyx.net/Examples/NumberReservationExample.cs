@@ -5,7 +5,7 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Number Reservation Example
+    /// Number Reservation Example.
     /// </summary>
     public class NumberReservationExample
     {
@@ -13,7 +13,7 @@
         private readonly NumberReservationsService service = new NumberReservationsService();
 
         /// <summary>
-        /// Create number reservation
+        /// Create number reservation.
         /// </summary>
         public void CreateNumberReservation()
         {
@@ -40,7 +40,7 @@
         }
 
         /// <summary>
-        /// List number reservation
+        /// List number reservation.
         /// </summary>
         public void ListNumberReservation()
         {

@@ -4,7 +4,7 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Messages example
+    /// Messages example.
     /// </summary>
     public class MessagesExample
     {
@@ -13,7 +13,7 @@
         private readonly MessagingSenderIdService service = new MessagingSenderIdService();
 
         /// <summary>
-        /// Send message
+        /// Send message.
         /// </summary>
         public void SendMessage()
         {
@@ -36,7 +36,7 @@
         }
 
         /// <summary>
-        /// Retrieve message
+        /// Retrieve message.
         /// </summary>
         public void RetrieveMessage()
         {

@@ -7,6 +7,7 @@ namespace TelnyxTests.Services.Calls.CallCommands
     using System.Net.Http;
     using System.Threading.Tasks;
     using Telnyx;
+    using Telnyx.net.Services.Calls.Models;
     using Xunit;
 
     public class CallControlTransferServiceTest : BaseTelnyxTest
@@ -30,7 +31,7 @@ namespace TelnyxTests.Services.Calls.CallCommands
                 AudioUrl = "http://www.example.com/sounds/greeting.wav",
                 TimeLimitSecs = 14400,
                 TimeoutSecs = 30,
-                AnsweringMachineDetection = "disabled",
+                AnsweringMachineDetection = AnsweringMachineEnum.Disabled,
                 SipAuthPassword = "username@sip.telnyx.com",
                 SipAuthUsername = "username@sip.telnyx.com"
             };

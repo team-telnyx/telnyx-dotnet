@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// CallControlBridgeService
+    /// CallControlBridgeService.
     /// </summary>
     public class CallControlBridgeService : Service<CallBridgeResponse>,
         INestedCreatableWithIdInMid<CallBridgeResponse, CallControlBridgeOptions>
@@ -20,7 +20,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlBridgeService"/> class.
         /// </summary>
-        /// <param name="apiKey">apiKey</param>
+        /// <param name="apiKey">apiKey.</param>
         public CallControlBridgeService(string apiKey)
             : base(apiKey)
         {

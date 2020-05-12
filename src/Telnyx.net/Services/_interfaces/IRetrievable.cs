@@ -4,27 +4,27 @@ namespace Telnyx
     using System.Threading.Tasks;
 
     /// <summary>
-    /// IRetrievable
+    /// IRetrievable.
     /// </summary>
-    /// <typeparam name="T">ITelnyxEntity</typeparam>
+    /// <typeparam name="T">ITelnyxEntity.</typeparam>
     public interface IRetrievable<T>
         where T : ITelnyxEntity, IHasId
     {
         /// <summary>
-        /// Get
+        /// Get.
         /// </summary>
-        /// <param name="id">id</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>ITelnyxEntity</returns>
+        /// <param name="id">id.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>ITelnyxEntity.</returns>
         T Get(string id, RequestOptions requestOptions = null);
 
         /// <summary>
-        /// GetAsync
+        /// GetAsync.
         /// </summary>
-        /// <param name="id">id</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>ITelnyxEntity</returns>
+        /// <param name="id">id.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>ITelnyxEntity.</returns>
         Task<T> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

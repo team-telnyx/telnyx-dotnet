@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// CallControlForkStartService
+    /// CallControlForkStartService.
     /// </summary>
     public class CallControlForkStartService : Service<CallForkStartResponse>,
         INestedCreatableWithIdInMid<CallForkStartResponse, CallControlForkStartOptions>
@@ -19,8 +19,8 @@
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlForkStartService"/> class.
-        /// /</summary>
-        /// <param name="apiKey">api key</param>
+        /// /.</summary>
+        /// <param name="apiKey">api key.</param>
         public CallControlForkStartService(string apiKey)
             : base(apiKey)
         {
