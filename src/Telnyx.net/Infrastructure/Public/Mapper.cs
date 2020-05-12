@@ -8,30 +8,30 @@ namespace Telnyx
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// Mapper class for object
+    /// Mapper class for object.
     /// </summary>
-    /// <typeparam name="T">Class</typeparam>
+    /// <typeparam name="T">Class.</typeparam>
     public static class Mapper<T>
     {
         /// <summary>
-        /// Root Object
+        /// Root Object.
         /// </summary>
         private class RootObject
         {
             /// <summary>
-            /// Gets data
+            /// Gets data.
             /// </summary>
             [JsonProperty("data")]
             public T Data { get; private set; }
         }
 
         /// <summary>
-        /// Map collection from JSON
+        /// Map collection from JSON.
         /// </summary>
-        /// <param name="json">Json string</param>
-        /// <param name="token">Token string</param>
-        /// <param name="telnyxResponse">Telnyx Response</param>
-        /// <returns>List of object</returns>
+        /// <param name="json">Json string.</param>
+        /// <param name="token">Token string.</param>
+        /// <param name="telnyxResponse">Telnyx Response.</param>
+        /// <returns>List of object.</returns>
         public static List<T> MapCollectionFromJson(string json, string token = "data", TelnyxResponse telnyxResponse = null)
         {
             var jObject = JObject.Parse(json);
@@ -42,11 +42,11 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// Map collection from JSON
+        /// Map collection from JSON.
         /// </summary>
-        /// <param name="telnyxResponse">Telnyx response</param>
-        /// <param name="token">Token</param>
-        /// <returns>List of object</returns>
+        /// <param name="telnyxResponse">Telnyx response.</param>
+        /// <param name="token">Token.</param>
+        /// <returns>List of object.</returns>
         public static List<T> MapCollectionFromJson(TelnyxResponse telnyxResponse, string token = "data")
         {
             return MapCollectionFromJson(telnyxResponse.ResponseJson, token, telnyxResponse);
@@ -55,10 +55,10 @@ namespace Telnyx
         /// <summary>
         /// The ResponseJson on a list method is the entire list (as json) returned from Telnyx.
         /// </summary>
-        /// <param name="json">The JSON string</param>
-        /// <param name="parentToken">Selects the token that matches the object path</param>
-        /// <param name="telnyxResponse">Telnyx response to nested properties for TelnyxList</param>
-        /// <returns>Mapper</returns>
+        /// <param name="json">The JSON string.</param>
+        /// <param name="parentToken">Selects the token that matches the object path.</param>
+        /// <param name="telnyxResponse">Telnyx response to nested properties for TelnyxList.</param>
+        /// <returns>Mapper.</returns>
         public static T MapFromJson(string json, string parentToken = "data", TelnyxResponse telnyxResponse = null)
         {
             var jsonToParse = string.IsNullOrEmpty(parentToken) ? json : JObject.Parse(json).SelectToken(parentToken)?.ToString();
@@ -78,10 +78,10 @@ namespace Telnyx
         /// <summary>
         /// The ResponseJson on a list method is the entire list (as json) returned from Telnyx.
         /// </summary>
-        /// <param name="json">The JSON string</param>
-        /// <param name="parentToken">Selects the token that matches the object path</param>
-        /// <param name="telnyxResponse">Telnyx response to nested properties for TelnyxList</param>
-        /// <returns>Mapper</returns>
+        /// <param name="json">The JSON string.</param>
+        /// <param name="parentToken">Selects the token that matches the object path.</param>
+        /// <param name="telnyxResponse">Telnyx response to nested properties for TelnyxList.</param>
+        /// <returns>Mapper.</returns>
         public static T MapFromJsonError(string json, string parentToken = "error", TelnyxResponse telnyxResponse = null)
         {
             return MapFromJson(json, parentToken, telnyxResponse);
@@ -91,11 +91,11 @@ namespace Telnyx
             return MapFromJson(json, parentToken, telnyxResponse);
         }
         /// <summary>
-        /// Map from JSON to object
+        /// Map from JSON to object.
         /// </summary>
-        /// <param name="telnyxResponse">Telnyx response in object</param>
-        /// <param name="parentToken">Selects the token that matches the object path</param>
-        /// <returns>Telnyx object</returns>
+        /// <param name="telnyxResponse">Telnyx response in object.</param>
+        /// <param name="parentToken">Selects the token that matches the object path.</param>
+        /// <returns>Telnyx object.</returns>
         public static T MapFromJson(TelnyxResponse telnyxResponse, string parentToken = null)
         {
             return MapFromJson(telnyxResponse.ResponseJson, parentToken, telnyxResponse);

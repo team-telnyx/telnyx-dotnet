@@ -4,10 +4,10 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// HoldConferenceService
+    /// HoldConferenceService.
     /// </summary>
     public class HoldConferenceService : Service<CallAnswerResponse>,
-        INestedCreatableWithIdInMid<CallAnswerResponse, HoldConferenceCreateOptions>
+        INestedCreatableWithIdInMid<CallAnswerResponse, HoldConferenceOptions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="HoldConferenceService"/> class.
@@ -20,7 +20,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="HoldConferenceService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public HoldConferenceService(string apiKey)
             : base(apiKey)
         {
@@ -30,13 +30,13 @@
         public override string BasePath => "/conferences";
 
         /// <inheritdoc/>
-        public virtual CallAnswerResponse Create(string id, HoldConferenceCreateOptions options, string postFix = "actions/hold", RequestOptions requestOptions = null)
+        public virtual CallAnswerResponse Create(string id, HoldConferenceOptions options, string postFix = "actions/hold", RequestOptions requestOptions = null)
         {
             return this.CreateEntity(id, postFix, options, requestOptions);
         }
 
         /// <inheritdoc/>
-        public async Task<CallAnswerResponse> CreateAsync(string parentId, HoldConferenceCreateOptions createOptions, string postFix = "actions/hold", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<CallAnswerResponse> CreateAsync(string parentId, HoldConferenceOptions createOptions, string postFix = "actions/hold", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
         }

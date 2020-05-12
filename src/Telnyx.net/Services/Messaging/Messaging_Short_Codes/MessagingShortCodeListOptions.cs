@@ -3,24 +3,24 @@
 namespace Telnyx
 {
     /// <summary>
-    /// MessagingShortCodeListOptions
+    /// MessagingShortCodeListOptions.
     /// </summary>
     public class MessagingShortCodeListOptions : ListOptions
     {
         /// <summary>
-        /// Gets or sets the page number to load
+        /// Gets or sets the page number to load.
         /// </summary>
         [JsonProperty("page[number]")]
         public int? PageNumber { get; set; }
 
         /// <summary>
-        /// Gets or sets the size of the page
+        /// Gets or sets the size of the page.
         /// </summary>
         [JsonProperty("page[size]")]
         public int? PageSize { get; set; }
 
         /// <summary>
-        /// Gets or sets pageToken
+        /// Gets or sets pageToken.
         /// </summary>
         [JsonProperty("page[token]")]
         public string PageToken { get; set; }

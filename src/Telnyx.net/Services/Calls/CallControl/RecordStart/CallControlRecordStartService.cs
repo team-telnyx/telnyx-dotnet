@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// CallControlRecordStartService
+    /// CallControlRecordStartService.
     /// </summary>
     public class CallControlRecordStartService : Service<CallRecordStartResponse>,
         INestedCreatableWithIdInMid<CallRecordStartResponse, CallControlRecordStartOptions>
@@ -20,7 +20,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlRecordStartService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public CallControlRecordStartService(string apiKey)
             : base(apiKey)
         {

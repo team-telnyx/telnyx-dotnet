@@ -6,7 +6,7 @@ namespace Telnyx
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Messaging Profile
+    /// Messaging Profile.
     /// </summary>
     public class MessagingProfile : TelnyxEntity, IHasId
     {
@@ -66,9 +66,9 @@ namespace Telnyx
         public Guid? OrganizationId { get; set; }
 
         /// <summary>
-        /// Gets or sets a user friendly name for the messaging profile
+        /// Gets or sets a user friendly name for the messaging profile.
         /// </summary>
-        /// <value>A user friendly name for the messaging profile</value>
+        /// <value>A user friendly name for the messaging profile.</value>
         [JsonProperty("name")]
         public string Name { get; set; }
 
@@ -129,13 +129,13 @@ namespace Telnyx
         public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
-        /// Gets or sets NumberPoolSettings
+        /// Gets or sets NumberPoolSettings.
         /// </summary>
         [JsonProperty("number_pool_settings")]
         public NumberPoolSettings NumberPoolSettings { get; set; }
 
         /// <summary>
-        /// Gets or sets Id
+        /// Gets or sets Id.
         /// </summary>
         string IHasId.Id { get => this.Id.ToString(); set => Guid.Parse(value); }
     }

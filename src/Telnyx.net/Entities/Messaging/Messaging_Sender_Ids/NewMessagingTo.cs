@@ -1,7 +1,7 @@
 ﻿namespace Telnyx
 {
     /// <summary>
-    /// Messaging To
+    /// Messaging To.
     /// </summary>
     public class NewMessagingTo
     {

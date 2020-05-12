@@ -5,7 +5,7 @@
     using Telnyx.net.Entities;
 
     /// <summary>
-    /// MessagingProfileService
+    /// MessagingProfileService.
     /// </summary>
     public class MessagingProfileService : Service<MessagingProfile>,
         IListable<MessagingProfile, ListMessagingProfilesPhoneNumbersOptions>,
@@ -25,7 +25,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="MessagingProfileService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public MessagingProfileService(string apiKey)
             : base(apiKey)
         {

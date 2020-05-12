@@ -7,15 +7,15 @@ namespace Telnyx.Infrastructure
     using System.IO;
 
     /// <summary>
-    /// Mime Types
+    /// Mime Types.
     /// </summary>
     internal static class MimeTypes
     {
         /// <summary>
-        /// GetMimeType
+        /// GetMimeType.
         /// </summary>
-        /// <param name="fileName">fileName</param>
-        /// <returns>mime type</returns>
+        /// <param name="fileName">fileName.</param>
+        /// <returns>mime type.</returns>
         public static string GetMimeType(string fileName)
         {
             switch (Path.GetExtension(fileName.ToLowerInvariant()))

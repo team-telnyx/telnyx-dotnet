@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// CallControlTransferService
+    /// CallControlTransferService.
     /// </summary>
     public class CallControlTransferService : Service<CallTransferResponse>,
         INestedCreatableWithIdInMid<CallTransferResponse, CallControlTransferOptions>
@@ -20,7 +20,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlTransferService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public CallControlTransferService(string apiKey)
             : base(apiKey)
         {

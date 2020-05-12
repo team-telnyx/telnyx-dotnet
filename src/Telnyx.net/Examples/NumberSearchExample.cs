@@ -4,7 +4,7 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Number Search Example
+    /// Number Search Example.
     /// </summary>
     public class NumberSearchExample
     {
@@ -12,7 +12,7 @@
         private readonly NumberSearchService service = new NumberSearchService();
 
         /// <summary>
-        /// List number service
+        /// List number service.
         /// </summary>
         public void ListNumberService()
         {

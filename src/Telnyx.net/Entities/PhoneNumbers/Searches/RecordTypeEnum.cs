@@ -4,7 +4,7 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Gets or sets RecordType
+    /// Gets or sets RecordType.
     /// </summary>
     [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum RecordTypeEnum

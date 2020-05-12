@@ -4,12 +4,12 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// MuteConferenceCreateOptions
+    /// MuteConferenceOptions.
     /// </summary>
-    public class MuteConferenceCreateOptions : BaseOptions
+    public class MuteConferenceOptions : BaseOptions
     {
         /// <summary>
-        /// Gets or sets unique identifier and token for controlling the call
+        /// Gets or sets unique identifier and token for controlling the call.
         /// </summary>
         [JsonProperty("call_control_ids")]
         public List<string> CallControlIds { get; set; }

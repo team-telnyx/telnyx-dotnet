@@ -16,16 +16,16 @@ namespace Telnyx.Infrastructure.Middleware
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// RequestStringBuilder
+    /// RequestStringBuilder.
     /// </summary>
     public static class RequestStringBuilder
     {
         /// <summary>
-        /// ApplyParameterToRequestString
+        /// ApplyParameterToRequestString.
         /// </summary>
-        /// <param name="requestString">requestString</param>
-        /// <param name="argument">argument</param>
-        /// <param name="value">value</param>
+        /// <param name="requestString">requestString.</param>
+        /// <param name="argument">argument.</param>
+        /// <param name="value">value.</param>
         public static void ApplyParameterToRequestString(ref string requestString, string argument, string value)
         {
             var token = requestString.Contains("?") ? "&" : "?";
@@ -84,7 +84,7 @@ namespace Telnyx.Infrastructure.Middleware
         /// will be computed recursively and a flat list will be returned.
         /// </summary>
         /// <param name="options">The options class for which to create the list of parameters.</param>
-        /// <returns>The list of parameters</returns>
+        /// <returns>The list of parameters.</returns>
         private static List<Parameter> FlattenParams(INestedOptions options)
         {
             return FlattenParamsOptions(options, null);
@@ -96,7 +96,7 @@ namespace Telnyx.Infrastructure.Middleware
         /// </summary>
         /// <param name="value">The value for which to create the list of parameters.</param>
         /// <param name="keyPrefix">The key under which new keys should be nested, if any.</param>
-        /// <returns>The list of parameters</returns>
+        /// <returns>The list of parameters.</returns>
         private static List<Parameter> FlattenParamsValue(object value, string keyPrefix)
         {
             List<Parameter> flatParams = null;
@@ -173,7 +173,7 @@ namespace Telnyx.Infrastructure.Middleware
         /// </summary>
         /// <param name="options">The options class for which to create the list of parameters.</param>
         /// <param name="keyPrefix">The key under which new keys should be nested, if any.</param>
-        /// <returns>The list of parameters</returns>
+        /// <returns>The list of parameters.</returns>
         private static List<Parameter> FlattenParamsOptions(INestedOptions options, string keyPrefix)
         {
             List<Parameter> flatParams = new List<Parameter>();
@@ -216,7 +216,7 @@ namespace Telnyx.Infrastructure.Middleware
         /// </summary>
         /// <param name="dictionary">The dictionary for which to create the list of parameters.</param>
         /// <param name="keyPrefix">The key under which new keys should be nested, if any.</param>
-        /// <returns>The list of parameters</returns>
+        /// <returns>The list of parameters.</returns>
         private static List<Parameter> FlattenParamsDictionary(Dictionary<string, object> dictionary, string keyPrefix)
         {
             List<Parameter> flatParams = new List<Parameter>();
@@ -245,7 +245,7 @@ namespace Telnyx.Infrastructure.Middleware
         /// </summary>
         /// <param name="list">The list for which to create the list of parameters.</param>
         /// <param name="keyPrefix">The key under which new keys should be nested.</param>
-        /// <returns>The list of parameters</returns>
+        /// <returns>The list of parameters.</returns>
         private static List<Parameter> FlattenParamsList(List<object> list, string keyPrefix)
         {
             List<Parameter> flatParams = new List<Parameter>();
@@ -277,7 +277,7 @@ namespace Telnyx.Infrastructure.Middleware
         /// </summary>
         /// <param name="array">The array for which to create the list of parameters.</param>
         /// <param name="keyPrefix">The key under which new keys should be nested.</param>
-        /// <returns>The list of parameters</returns>
+        /// <returns>The list of parameters.</returns>
         private static List<Parameter> FlattenParamsArray(object[] array, string keyPrefix)
         {
             List<Parameter> flatParams = new List<Parameter>();
@@ -435,8 +435,8 @@ namespace Telnyx.Infrastructure.Middleware
             /// <summary>
             /// Initializes a new instance of the <see cref="Parameter"/> class.
             /// </summary>
-            /// <param name="key">key</param>
-            /// <param name="value">value</param>
+            /// <param name="key">key.</param>
+            /// <param name="value">value.</param>
             public Parameter(string key, string value)
             {
                 this.Key = key;
@@ -444,12 +444,12 @@ namespace Telnyx.Infrastructure.Middleware
             }
 
             /// <summary>
-            /// Gets gets or sets Key
+            /// Gets gets or sets Key.
             /// </summary>
             public string Key { get; }
 
             /// <summary>
-            /// Gets gets or sets Value
+            /// Gets gets or sets Value.
             /// </summary>
             public string Value { get; }
         }

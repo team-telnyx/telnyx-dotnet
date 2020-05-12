@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// CallControlPlaybackStartService
+    /// CallControlPlaybackStartService.
     /// </summary>
     public class CallControlPlaybackStartService : Service<CallPlaybackStartResponse>,
         INestedCreatableWithIdInMid<CallPlaybackStartResponse, CallControlPlaybackStartOptions>
@@ -20,7 +20,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlPlaybackStartService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public CallControlPlaybackStartService(string apiKey)
             : base(apiKey)
         {

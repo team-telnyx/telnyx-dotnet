@@ -5,14 +5,14 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Payload
+    /// Payload.
     /// </summary>
     public class Payload
     {
         /// <summary>
-        /// The status of the Call
+        /// The status of the Call.
         /// </summary>
-        /// <value>Status of the call</value>
+        /// <value>Status of the call.</value>
         [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum StateEnum
         {
@@ -36,9 +36,9 @@
         public string To { get; set; }
 
         /// <summary>
-        /// Gets or sets an ISO 8901 datetime string denoting when the event occured
+        /// Gets or sets an ISO 8901 datetime string denoting when the event occured.
         /// </summary>
-        /// <value>An ISO 8901 datetime string denoting when the number order was created</value>
+        /// <value>An ISO 8901 datetime string denoting when the number order was created.</value>
         [JsonProperty("occurred_at")]
         public string OccurredAt { get; set; }
 

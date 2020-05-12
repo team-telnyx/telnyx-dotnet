@@ -3,24 +3,24 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// ListConferenceCreateOptions
+    /// ListConferenceCreateOptions.
     /// </summary>
-    public class ListConferenceCreateOptions : ListOptions
+    public class ListConferenceOptions : ListOptions
     {
         /// <summary>
-        /// Gets or sets name
+        /// Gets or sets name.
         /// </summary>
         [JsonProperty("filter[name]")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets pageNumber
+        /// Gets or sets pageNumber.
         /// </summary>
         [JsonProperty("page[number]")]
         public int? PageNumber { get; set; }
 
         /// <summary>
-        /// Gets or sets pageSize
+        /// Gets or sets pageSize.
         /// </summary>
         [JsonProperty("page[size]")]
         public int? PageSize { get; set; }

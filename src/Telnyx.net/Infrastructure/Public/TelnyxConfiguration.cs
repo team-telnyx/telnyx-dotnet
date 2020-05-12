@@ -56,7 +56,7 @@ namespace Telnyx
         /// <summary>
         /// SetApiBase.
         /// </summary>
-        /// <param name="baseUrl">baseUrl</param>
+        /// <param name="baseUrl">baseUrl.</param>
         public static void SetApiBase(string baseUrl)
         {
             apiBase = baseUrl;

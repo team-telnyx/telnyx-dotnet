@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// CallControlHangupService
+    /// CallControlHangupService.
     /// </summary>
     public class CallControlHangupService : Service<CallHangUpResponse>,
         INestedCreatableWithIdInMid<CallHangUpResponse, CallControlHangupOptions>
@@ -20,7 +20,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlHangupService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public CallControlHangupService(string apiKey)
             : base(apiKey)
         {

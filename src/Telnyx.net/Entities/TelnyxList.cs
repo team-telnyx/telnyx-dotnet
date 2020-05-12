@@ -6,9 +6,9 @@ namespace Telnyx.net.Entities
     using Telnyx.Infrastructure;
 
     /// <summary>
-    /// Telnyx List
+    /// Telnyx List.
     /// </summary>
-    /// <typeparam name="T">Object Type</typeparam>
+    /// <typeparam name="T">Object Type.</typeparam>
     [JsonObject]
     public class TelnyxList<T> : TelnyxEntity, IHasObject, IEnumerable<T>
     {

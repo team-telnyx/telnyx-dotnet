@@ -5,7 +5,7 @@
     using Telnyx.net.Entities;
 
     /// <summary>
-    /// Messaging Profile Service
+    /// Messaging Profile Service.
     /// </summary>
     public class MessagingProfilePhoneNumbersService : ServiceNested<MessagingPhoneNumber>,
         IRetrievable<MessagingPhoneNumber>,
@@ -22,7 +22,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="MessagingProfilePhoneNumbersService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public MessagingProfilePhoneNumbersService(string apiKey)
             : base(apiKey)
         {

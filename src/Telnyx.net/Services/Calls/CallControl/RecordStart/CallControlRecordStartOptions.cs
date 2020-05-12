@@ -5,7 +5,7 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Class for call control record start create options
+    /// Class for call control record start create options.
     /// </summary>
     public class CallControlRecordStartOptions : BaseOptions
     {
@@ -32,7 +32,7 @@
         /// <summary>
         /// When dual, final audio file will be stereo recorded with the first leg on channel A, and the rest on channel B.
         /// </summary>
-        /// <value>dual or single</value>
+        /// <value>dual or single.</value>
         [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum ChannelEnum
         {
@@ -63,7 +63,7 @@
 
         /// <summary>
         /// When `dual`, final audio file will be stereo recorded with the first leg on channel A, and the rest on channel B.
-        /// Example: "single"
+        /// Example: "single".
         /// </summary>
         [JsonProperty("channels")]
         public ChannelEnum? Channel { get; set; }

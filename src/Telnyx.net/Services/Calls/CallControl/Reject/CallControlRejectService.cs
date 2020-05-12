@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// CallControlRejectService
+    /// CallControlRejectService.
     /// </summary>
     public class CallControlRejectService : Service<CallRejectResponse>,
         INestedCreatableWithIdInMid<CallRejectResponse, CallControlRejectOptions>
@@ -20,7 +20,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlRejectService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public CallControlRejectService(string apiKey)
             : base(apiKey)
         {

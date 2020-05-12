@@ -4,7 +4,7 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Messaging Profiles Example
+    /// Messaging Profiles Example.
     /// </summary>
     public class MessagingProfilesExample
     {
@@ -14,7 +14,7 @@
         private readonly MessagingProfilePhoneNumbersService phoneNumbersService = new MessagingProfilePhoneNumbersService();
 
         /// <summary>
-        /// Create messaging profile
+        /// Create messaging profile.
         /// </summary>
         public void Create()
         {
@@ -35,7 +35,7 @@
         }
 
         /// <summary>
-        /// Delete messaging profile id
+        /// Delete messaging profile id.
         /// </summary>
         public void Delete()
         {
@@ -52,7 +52,7 @@
         }
 
         /// <summary>
-        /// Get messaging profile
+        /// Get messaging profile.
         /// </summary>
         public void Get()
         {
@@ -69,7 +69,7 @@
         }
 
         /// <summary>
-        /// List messaging profile phone numbers
+        /// List messaging profile phone numbers.
         /// </summary>
         public void List()
         {
@@ -87,7 +87,7 @@
         }
 
         /// <summary>
-        /// Update messaging profile
+        /// Update messaging profile.
         /// </summary>
         public void Update()
         {
@@ -108,7 +108,7 @@
         }
 
         /// <summary>
-        /// List all messaging profile phone numbers
+        /// List all messaging profile phone numbers.
         /// </summary>
         public void ListAllMessagingProfilePhoneNumbers()
         {

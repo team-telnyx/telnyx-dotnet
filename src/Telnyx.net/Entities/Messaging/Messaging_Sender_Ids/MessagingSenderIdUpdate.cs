@@ -4,7 +4,7 @@ namespace Telnyx
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Messaging Sender Id Update
+    /// Messaging Sender Id Update.
     /// </summary>
     public class MessagingSenderIdUpdate : BaseOptions
     {

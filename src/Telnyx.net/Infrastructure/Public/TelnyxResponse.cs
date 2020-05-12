@@ -3,27 +3,27 @@ namespace Telnyx
     using System;
 
     /// <summary>
-    /// TelnyxResponse
+    /// TelnyxResponse.
     /// </summary>
     public class TelnyxResponse
     {
         /// <summary>
-        /// Gets or sets responseJson
+        /// Gets or sets responseJson.
         /// </summary>
         public string ResponseJson { get; set; }
 
         /// <summary>
-        /// Gets or sets objectJson
+        /// Gets or sets objectJson.
         /// </summary>
         public string ObjectJson { get; set; }
 
         /// <summary>
-        /// Gets or sets requestId
+        /// Gets or sets requestId.
         /// </summary>
         public string RequestId { get; set; }
 
         /// <summary>
-        /// Gets or sets requestDate
+        /// Gets or sets requestDate.
         /// </summary>
         public DateTime RequestDate { get; set; }
     }

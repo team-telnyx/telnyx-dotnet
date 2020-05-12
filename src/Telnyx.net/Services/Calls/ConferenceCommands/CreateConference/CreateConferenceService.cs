@@ -4,10 +4,10 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// CreateConferenceService
+    /// CreateConferenceService.
     /// </summary>
-    public class CreateConferenceService : Service<ConferenceResponse>,
-        ICreatable<ConferenceResponse, CreateConferenceCreateOptions>
+    public class CreateConferenceService : Service<CreateConferenceResponse>,
+        ICreatable<CreateConferenceResponse, CreateConferenceOptions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateConferenceService"/> class.
@@ -20,7 +20,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateConferenceService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public CreateConferenceService(string apiKey)
             : base(apiKey)
         {
@@ -30,13 +30,13 @@
         public override string BasePath => "/conferences";
 
         /// <inheritdoc/>
-        public virtual ConferenceResponse Create(CreateConferenceCreateOptions options, RequestOptions requestOptions = null)
+        public virtual CreateConferenceResponse Create(CreateConferenceOptions options, RequestOptions requestOptions = null)
         {
             return this.CreateEntity(options, requestOptions);
         }
 
         /// <inheritdoc/>
-        public async Task<ConferenceResponse> CreateAsync(CreateConferenceCreateOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<CreateConferenceResponse> CreateAsync(CreateConferenceOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
         }

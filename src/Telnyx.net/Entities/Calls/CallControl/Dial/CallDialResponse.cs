@@ -5,14 +5,14 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Call Dial Response
+    /// Call Dial Response.
     /// </summary>
     public class CallDialResponse : TelnyxEntity
     {
         /// <summary>
-        /// The status of the Call
+        /// The status of the Call.
         /// </summary>
-        /// <value>The status of the call</value>
+        /// <value>The status of the call.</value>
         [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum RecordTypeEnum
         {

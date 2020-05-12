@@ -6,7 +6,7 @@
     using Telnyx.net.Entities;
 
     /// <summary>
-    /// MessagingSenderIdService
+    /// MessagingSenderIdService.
     /// </summary>
     public class MessagingSenderIdService : Service<MessagingSenderId>,
         IListable<MessagingSenderId, MessagingSenderIdListOptions>,
@@ -26,7 +26,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="MessagingSenderIdService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public MessagingSenderIdService(string apiKey)
             : base(apiKey)
         {

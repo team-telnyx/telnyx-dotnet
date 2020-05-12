@@ -6,7 +6,7 @@
     using Telnyx.net.Entities;
 
     /// <summary>
-    /// MessagingShortCodesService
+    /// MessagingShortCodesService.
     /// </summary>
     public class MessagingShortCodesService : Service<MessagingShortCode>,
         IListable<MessagingShortCode, MessagingShortCodeListOptions>,
@@ -24,7 +24,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="MessagingShortCodesService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public MessagingShortCodesService(string apiKey)
             : base(apiKey)
         {
