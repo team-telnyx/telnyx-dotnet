@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using Newtonsoft.Json;
 
-    public class Meta 
+    public class PageInfo 
     {
         [JsonProperty("page_number")]
         public int PageNumber { get; set; }
@@ -20,5 +20,9 @@
 
         [JsonProperty("total_results")]
         public int TotalResults { get; set; }
+
+        public bool HasMore => PageNumber < TotalPages;
+        public int NextPage => HasMore ? PageNumber + 1 : 1; //if no more can set NextPage to FirstPage
+        public string NextPageUrl { get; set; }
     }
 }

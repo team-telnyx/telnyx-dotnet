@@ -145,6 +145,17 @@ namespace Telnyx
         {
             return this.ListRequestAutoPaging<EntityReturned>(this.ClassUrl(parentId), options, requestOptions);
         }
+        /// <summary>
+        /// ListNestedEntitiesAutoPaging.
+        /// </summary>
+        /// <param name="parentId">parentId.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>Ienumerable {EntityReturned}.</returns>
+        protected async Task <IEnumerable<EntityReturned>> ListNestedEntitiesAutoPagingAsync(string parentId, ListOptions options, RequestOptions requestOptions, CancellationToken ct = default)
+        {
+            return await this.ListRequestAutoPagingAsync<EntityReturned>(this.ClassUrl(parentId), options, requestOptions, ct);
+        }
 
         /// <summary>
         /// UpdateNestedEntity.

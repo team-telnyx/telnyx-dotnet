@@ -34,7 +34,7 @@
         /// </summary>
         public void ListNumberOrder()
         {
-            var listOptions = new MessagingPhoneNumerListOptions();
+            var listOptions = new MessagingPhoneNumberListOptions();
             Console.WriteLine(JsonConvert.SerializeObject(listOptions));
 
             var requestOptions = new RequestOptions

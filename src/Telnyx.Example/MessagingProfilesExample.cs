@@ -92,6 +92,29 @@
                 Console.WriteLine(JsonConvert.SerializeObject(ex));
             }
         }
+        /// <summary>
+        /// List messaging profile phone numbers
+        /// </summary>
+        public void ListPaged()
+        {
+            var listOptions = new ListMessagingProfilesPhoneNumbersOptions
+            {
+                PageSize = 2,
+                PageNumber = 1
+            };
+            Console.WriteLine(JsonConvert.SerializeObject(listOptions));
+
+            try
+            {
+                var messagingProfile = this.service.ListPaged(listOptions);
+                Console.WriteLine(JsonConvert.SerializeObject(messagingProfile));
+            }
+            catch (TelnyxException ex)
+            {
+                Console.WriteLine("exception");
+                Console.WriteLine(JsonConvert.SerializeObject(ex));
+            }
+        }
 
         /// <summary>
         /// Update messaging profile
@@ -127,6 +150,7 @@
             try
             {
                 var messagingPhoneNumber = this.phoneNumbersService.List(MessagingProfileId, listOptions);
+                
                 Console.WriteLine(JsonConvert.SerializeObject(messagingPhoneNumber));
             }
             catch (TelnyxException ex)

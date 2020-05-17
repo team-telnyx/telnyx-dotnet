@@ -1,9 +1,9 @@
 ﻿namespace Telnyx
 {
     /// <summary>
-    /// MessagingSenderIdListOptions.
+    /// MessagingPhoneNumerListOptions.
     /// </summary>
-    public class MessagingSenderIdListOptions : ListOptions
+    public class MessagingPhoneNumberListOptions : ListOptions
     {
 
         /// <summary>

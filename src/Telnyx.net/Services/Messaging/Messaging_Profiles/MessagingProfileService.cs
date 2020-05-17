@@ -1,5 +1,6 @@
 ﻿namespace Telnyx
 {
+    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx.net.Entities;
@@ -80,6 +81,18 @@
         public async Task<TelnyxList<MessagingProfile>> ListAsync(ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        public IEnumerable<MessagingProfile> ListPaged(ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null)
+        {
+            return this.ListEntitiesAutoPaging(listOptions, requestOptions);
+        }
+
+        /// <inheritdoc/>
+        public async Task<IEnumerable<MessagingProfile>> ListPagedAsync(ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return await this.ListEntitiesAutoPagingAsync(listOptions, requestOptions, cancellationToken);
         }
 
         /// <inheritdoc/>

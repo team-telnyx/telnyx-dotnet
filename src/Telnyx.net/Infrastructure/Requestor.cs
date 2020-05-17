@@ -122,6 +122,7 @@ namespace Telnyx.Infrastructure
 
             if (response.IsSuccessStatusCode)
             {
+                result.Url = requestMessage.RequestUri.ToString();
                 return result;
             }
 
@@ -217,6 +218,7 @@ namespace Telnyx.Infrastructure
 
             if (response.IsSuccessStatusCode)
             {
+                result.Url = requestMessage.RequestUri.ToString();
                 return result;
             }
 

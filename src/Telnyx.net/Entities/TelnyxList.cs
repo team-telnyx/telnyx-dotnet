@@ -29,7 +29,7 @@ namespace Telnyx.net.Entities
         /// this set comprises the end of the list.
         /// </summary>
         [JsonProperty("has_more")]
-        public bool HasMore { get; set; }
+        public bool HasMore => PageInfo?.HasMore ?? false;
 
         /// <summary>
         /// Gets or sets the URL for accessing this list.
@@ -41,7 +41,7 @@ namespace Telnyx.net.Entities
         /// Gets or sets metadata for list
         /// </summary>
         [JsonProperty("meta")]
-        public Meta Meta { get; set; }
+        public PageInfo PageInfo { get; set; }
         /// <inheritdoc/>
         public IEnumerator<T> GetEnumerator()
         {

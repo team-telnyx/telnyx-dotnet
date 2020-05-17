@@ -6,6 +6,7 @@ namespace Telnyx
     using System.Reflection;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using Telnyx.net.Entities;
 
     /// <summary>
     /// Mapper class for object.
@@ -114,6 +115,11 @@ namespace Telnyx
             if (tResponseType != null && tResponseType.Any())
             {
                 tResponseType.ToList().ForEach(x => x.SetValue(obj, telnyxResponse));
+            }
+            if (obj.GetType().Equals(typeof(TelnyxList<T>)))
+            {
+                var objList = obj as TelnyxList<T>;
+                objList.Url = telnyxResponse.Url;
             }
 
             telnyxResponse.ObjectJson = json;

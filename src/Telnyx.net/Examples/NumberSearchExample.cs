@@ -16,7 +16,7 @@
         /// </summary>
         public void ListNumberService()
         {
-            var listOptions = new NumberSearchListOptions();
+            var listOptions = new NumberSearchOptions();
             Console.WriteLine(JsonConvert.SerializeObject(listOptions));
 
             var requestOptions = new RequestOptions

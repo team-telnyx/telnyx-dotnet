@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Telnyx.net.Entities.PhoneNumbers.NumberConfigurations;
 using Telnyx.net.Services.PhoneNumbers.NumberConfigurations;
 
 namespace Telnyx.Example
@@ -15,10 +16,23 @@ namespace Telnyx.Example
         {
             var listOptions = new NumberConfigurationsListOptions
             {
-                Status = Telnyx.net.Entities.PhoneNumbers.NumberConfigurations.NumberConfigStatus.Active,
-                Size = 10,
+                Status = NumberConfigStatus.Active,
+                PageNumber = 1,
+                
             };
            var res = await numConfigService.ListPhoneNumbersAsync(listOptions);
+          
+        }
+        public async Task ListPhoneNumbersWithPagingAsync()
+        {
+            var listOptions = new NumberConfigurationsListOptions
+            {
+          
+                PageNumber = 1,
+                PageSize = 2
+
+            };
+            var res = await numConfigService.ListPhoneNumbersPagedAsync(listOptions);
         }
         public async Task ListMessagingOptionsAsync()
         {
@@ -29,7 +43,7 @@ namespace Telnyx.Example
         {
             var options = new VoiceSettingsListOptions
             {
-                Size = 10,
+                PageSize = 10,
 
             };
             var res = await numVoiceService.ListPhoneNumberVoiceAsync(options);

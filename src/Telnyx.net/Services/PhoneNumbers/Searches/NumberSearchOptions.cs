@@ -6,7 +6,7 @@
     /// <summary>
     /// NumberSearchListOptions.
     /// </summary>
-    public class NumberSearchListOptions : ListOptions
+    public class NumberSearchOptions : BaseOptions
     {
         /// <summary>
         /// Gets or sets Filter numbers starting with a pattern.
