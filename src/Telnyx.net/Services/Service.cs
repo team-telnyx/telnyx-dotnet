@@ -171,16 +171,7 @@ namespace Telnyx
             return await this.GetRequestAsync<EntityReturned>(this.CallUrl(id, postPath), options, requestOptions, false, cancellationToken);
         }
 
-        /// <summary>
-        /// ListEntities.
-        /// </summary>
-        /// <param name="options">options.</param>
-        /// <param name="requestOptions">requestOptions.</param>
-        /// <returns>TelnyxList {EntityReturned}.</returns>
-        protected TelnyxList<EntityReturned> ListEntities(ListOptions options, RequestOptions requestOptions)
-        {
-            return this.GetRequest<TelnyxList<EntityReturned>>(this.ClassUrl(), options, requestOptions, true);
-        }
+       
 
         /// <summary>
         /// ListEntitiesAsync.
@@ -213,7 +204,17 @@ namespace Telnyx
         /// <returns>TelnyxList {EntityReturned}.</returns>
         protected async Task<TelnyxList<EntityReturned>> ListEntitiesAsync(ListOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
-            return await this.GetRequestAsync<TelnyxList<EntityReturned>>(this.ClassUrl(), options, requestOptions, true, cancellationToken);
+            return await this.ListRequestPagingAsync<EntityReturned>(this.ClassUrl(), options, requestOptions, cancellationToken);
+        }
+        /// <summary>
+        /// ListEntities.
+        /// </summary>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>TelnyxList {EntityReturned}.</returns>
+        protected TelnyxList<EntityReturned> ListEntities(ListOptions options, RequestOptions requestOptions)
+        {
+            return this.ListRequestPaging<EntityReturned>(this.ClassUrl(), options, requestOptions);
         }
         /// <summary>
         /// ListEntitiesAutoPaging.
@@ -224,10 +225,6 @@ namespace Telnyx
         protected IEnumerable<EntityReturned> ListEntitiesAutoPaging(ListOptions options, RequestOptions requestOptions)
         {
             return this.ListRequestAutoPaging<EntityReturned>(this.ClassUrl(), options, requestOptions);
-        }
-        public TelnyxList<EntityReturned> GetFromUrl(TelnyxList<EntityReturned> list)
-        {
-            return this.GetRequestAsync<TelnyxList<EntityReturned>>(list.PageInfo.NextPageUrl, default).GetAwaiter().GetResult();
         }
         /// <summary>
         /// ListEntitiesAutoPaging.
@@ -249,7 +246,7 @@ namespace Telnyx
         /// <returns>TelnyxList {EntityReturned}</returns>
         protected TelnyxList<EntityReturned> ListEntities(string postPath, ListOptions options, RequestOptions requestOptions)
         {
-            return this.GetRequest<TelnyxList<EntityReturned>>(this.CallUrl(null, postPath), options, requestOptions, true);
+            return this.ListRequestPaging<EntityReturned>(this.CallUrl(null, postPath), options, requestOptions);
         }
 
         /// <summary>
@@ -262,7 +259,7 @@ namespace Telnyx
         /// <returns>TelnyxList {EntityReturned}</returns>
         protected async Task<TelnyxList<EntityReturned>> ListEntitiesAsync(string postPath, ListOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
-            return await this.GetRequestAsync<TelnyxList<EntityReturned>>(this.CallUrl(null, postPath), options, requestOptions, true, cancellationToken);
+            return await this.ListRequestPagingAsync<EntityReturned>(this.CallUrl(null, postPath), options, requestOptions, cancellationToken);
         }
 
         /// <summary>
@@ -275,6 +272,17 @@ namespace Telnyx
         protected IEnumerable<EntityReturned> ListEntitiesAutoPaging(string postPath, ListOptions options, RequestOptions requestOptions)
         {
             return this.ListRequestAutoPaging<EntityReturned>(this.CallUrl(null, postPath), options, requestOptions);
+        }
+        /// <summary>
+        /// ListEntitiesAutoPaging
+        /// </summary>
+        /// <param name="postPath">postPath</param>
+        /// <param name="options">options</param>
+        /// <param name="requestOptions">requestOptions</param>
+        /// <returns>IEnumerable {EntityReturned}</returns>
+        protected Task<IEnumerable<EntityReturned>> ListEntitiesAutoPagingAsync(string postPath, ListOptions options, RequestOptions requestOptions, CancellationToken ct = default)
+        {
+            return this.ListRequestAutoPagingAsync<EntityReturned>(this.CallUrl(null, postPath), options, requestOptions, ct);
         }
 
         /// <summary>
@@ -425,7 +433,7 @@ namespace Telnyx
         /// <returns>IEnumerable {EntityReturned}.</returns>
         protected IEnumerable<T> ListRequestAutoPaging<T>(string url, ListOptions options, RequestOptions requestOptions)
         {
-            return ListRequestAutoPagingAsync<T>(url, options, requestOptions).GetAwaiter().GetResult();
+            return this.ListRequestAutoPagingAsync<T>(url, options, requestOptions).GetAwaiter().GetResult();
         }
         /// <summary>
         /// ListRequestAutoPaging.
@@ -440,16 +448,16 @@ namespace Telnyx
             var page = await this.GetRequestAsync<TelnyxList<T>>(url, options, requestOptions, true, ct);
 
             var listOfEntities = page.Data;
-            if (page.HasMore && options.PagesToFetch == null)
+            if (page.HasMore && options.NumberOfPagesToFetch == null)
             {
                 while (page.HasMore)
                 {
-                    options.PageNumber = page.PageInfo?.NextPage ?? options.PageNumber + 1;
+                    options.PageNumber = page.PageInfo?.NextPage ?? options?.PageNumber + 1;
 
                     page = await this.GetRequestAsync<TelnyxList<T>>(url, options, requestOptions, true, ct);
                     if (page != null && page.Data != null && page.Data.Any())
                     {
-                        page.PageInfo.NextPageUrl = page.Url.Replace($"page[number]={options.PageNumber}", $"page[number]={page.PageInfo.NextPage}");
+                        //page.PageInfo.NextPageUrl = page.Url.Replace($"page[number]={options.PageNumber}", $"page[number]={page.PageInfo.NextPage}");
                         listOfEntities.AddRange(page.Data);
                     }
                 }
@@ -466,7 +474,7 @@ namespace Telnyx
         /// <returns>IEnumerable {EntityReturned}.</returns>
         protected TelnyxList<T> ListRequestPaging<T>(string url, ListOptions options, RequestOptions requestOptions)
         {
-            return ListRequestPagingAsync<T>(url, options, requestOptions).GetAwaiter().GetResult();
+            return this.ListRequestPagingAsync<T>(url, options, requestOptions).GetAwaiter().GetResult();
         }
         /// <summary>
         /// ListRequestAutoPaging.
@@ -479,23 +487,32 @@ namespace Telnyx
         protected async Task<TelnyxList<T>> ListRequestPagingAsync<T>(string url, ListOptions options, RequestOptions requestOptions, CancellationToken ct = default)
         {
             var page = await this.GetRequestAsync<TelnyxList<T>>(url, options, requestOptions, true, ct);
-            var listOfEntities = page.Data;
-            
-            if (page.HasMore && options.PagesToFetch == null)
+
+            // page.PageInfo.NextPageUrl = page.Url.Replace($"page[number]={options.PageNumber}", $"page[number]={page.PageInfo.NextPage}");
+
+            if (page.HasMore && options.NumberOfPagesToFetch.HasValue
+                && options.NumberOfPagesToFetch != 1
+                && options.NumberOfPagesToFetch < page.PageInfo.TotalPages)
             {
-                page.PageInfo.NextPageUrl = page.Url.Replace($"page[number]={options.PageNumber}", $"page[number]={page.PageInfo.NextPage}");
-                while (page.HasMore)
+                var listOfEntities = page.Data;
+                int count = 1;
+
+                do
                 {
-                    options.PageNumber = page.PageInfo?.NextPage ?? options.PageNumber + 1;
-
+                    options.PageNumber = page.PageInfo.NextPage;
                     page = await this.GetRequestAsync<TelnyxList<T>>(url, options, requestOptions, true, ct);
-
                     if (page != null && page.Data != null && page.Data.Any())
                     {
+                        // page.PageInfo.NextPageUrl = page.Url.Replace($"page[number]={options.PageNumber}", $"page[number]={page.PageInfo.NextPage}");
                         listOfEntities.AddRange(page.Data);
                     }
+                    count++;
                 }
+                while (count < options.NumberOfPagesToFetch && page.HasMore);
+
+                page.Data = listOfEntities; // fill the data
             }
+
             return page ?? new TelnyxList<T>();
         }
 
@@ -585,6 +602,15 @@ namespace Telnyx
             }
 
             return requestOptions;
+        }
+        /// <summary>
+        /// Helper method to use a url to get resquest
+        /// </summary>
+        /// <param name="list">Utilizes the NextPage url</param>
+        /// <returns></returns>
+        public TelnyxList<EntityReturned> GetFromUrl(TelnyxList<EntityReturned> list)
+        {
+            return this.GetRequestAsync<TelnyxList<EntityReturned>>(list.PageInfo.NextPageUrl, default).GetAwaiter().GetResult();
         }
 
         /// <summary>

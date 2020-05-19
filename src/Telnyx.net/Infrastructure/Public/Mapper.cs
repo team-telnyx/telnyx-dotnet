@@ -116,11 +116,6 @@ namespace Telnyx
             {
                 tResponseType.ToList().ForEach(x => x.SetValue(obj, telnyxResponse));
             }
-            if (obj.GetType().Equals(typeof(TelnyxList<T>)))
-            {
-                var objList = obj as TelnyxList<T>;
-                objList.Url = telnyxResponse.Url;
-            }
 
             telnyxResponse.ObjectJson = json;
         }

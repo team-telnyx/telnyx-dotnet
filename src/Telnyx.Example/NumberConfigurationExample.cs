@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,25 +19,30 @@ namespace Telnyx.Example
             {
                 Status = NumberConfigStatus.Active,
                 PageNumber = 1,
-                
+                NumberOfPagesToFetch = 3,
+                PageSize = 3
+
             };
-           var res = await numConfigService.ListPhoneNumbersAsync(listOptions);
-          
+            var res = await numConfigService.ListPhoneNumbersAsync(listOptions);
+            Console.WriteLine(res.TelnyxResponse.ObjectJson);
+
         }
         public async Task ListPhoneNumbersWithPagingAsync()
         {
             var listOptions = new NumberConfigurationsListOptions
             {
-          
+
                 PageNumber = 1,
                 PageSize = 2
 
             };
             var res = await numConfigService.ListPhoneNumbersPagedAsync(listOptions);
+            Console.WriteLine(JsonConvert.SerializeObject(res));
         }
         public async Task ListMessagingOptionsAsync()
         {
             var res = await numMessagingService.ListMessagingSettingsAsync();
+            Console.WriteLine(res.TelnyxResponse.ObjectJson);
 
         }
         public async Task ListVoiceSettingsWithFiltersAsync()
@@ -47,6 +53,7 @@ namespace Telnyx.Example
 
             };
             var res = await numVoiceService.ListPhoneNumberVoiceAsync(options);
+            Console.WriteLine(res.TelnyxResponse.ObjectJson);
         }
 
     }

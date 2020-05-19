@@ -118,7 +118,7 @@ namespace Telnyx
         /// <returns>TelnyxList {EntityReturned}.</returns>
         protected TelnyxList<EntityReturned> ListNestedEntities(string parentId, ListOptions options, RequestOptions requestOptions)
         {
-            return this.GetRequest<TelnyxList<EntityReturned>>(this.ClassUrl(parentId), options, requestOptions, true);
+            return this.ListRequestPaging<EntityReturned>(this.ClassUrl(parentId), options, requestOptions);
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace Telnyx
         /// <returns>TelnyxList {EntityReturned}.</returns>
         protected async Task<TelnyxList<EntityReturned>> ListNestedEntitiesAsync(string parentId, ListOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
-            return await this.GetRequestAsync<TelnyxList<EntityReturned>>(this.ClassUrl(parentId), options, requestOptions, true, cancellationToken);
+            return await this.ListRequestPagingAsync<EntityReturned>(this.ClassUrl(parentId), options, requestOptions, cancellationToken);
         }
 
         /// <summary>

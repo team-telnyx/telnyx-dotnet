@@ -78,7 +78,12 @@
         /// </summary>
         public void List()
         {
-            var listOptions = new ListMessagingProfilesPhoneNumbersOptions();
+            var listOptions = new ListMessagingProfilesPhoneNumbersOptions()
+            {
+                PageSize = 2,
+                PageNumber = 1,
+                NumberOfPagesToFetch = 3
+            };
             Console.WriteLine(JsonConvert.SerializeObject(listOptions));
 
             try

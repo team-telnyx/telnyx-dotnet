@@ -25,6 +25,6 @@ namespace Telnyx
         /// Can page a set amount by specifying the amount of pages to fetch. 
         /// If greater than actual pages will just return the total amount of results. 
         /// </summary>
-        public bool? PagesToFetch { get; set; }
+        public int? NumberOfPagesToFetch { get; set; }
     }
 }
