@@ -21,7 +21,7 @@ namespace Telnyx
         public int? PageNumber { get; set; }
 
         /// <summary>
-        /// Set number of pages to get and return as list of entities. Defaults to all pages (null). 
+        /// Set number of pages to get and return as list of entities. Default: null (all pages)
         /// Can page a set amount by specifying the amount of pages to fetch. 
         /// If greater than actual pages will just return the total amount of results. 
         /// </summary>
