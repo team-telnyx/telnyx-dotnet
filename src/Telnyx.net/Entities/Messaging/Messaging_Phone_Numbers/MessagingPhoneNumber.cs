@@ -20,7 +20,7 @@ namespace Telnyx
         /// <summary>
         /// toll-free
         /// </summary>
-        [EnumMember(Value = "tollfree")]
+        [EnumMember(Value = "toll-free")]
         TollFreeEnum = 1,
 
         /// <summary>

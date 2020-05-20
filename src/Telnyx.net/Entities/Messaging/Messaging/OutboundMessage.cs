@@ -4,6 +4,7 @@ namespace Telnyx
     using System.Collections.Generic;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Messaging.Messaging;
 
     /// <summary>
     /// Outbound message.
@@ -129,7 +130,7 @@ namespace Telnyx
         /// </summary>
         /// <value>Sending address (+E.164 formatted phone number, alphanumeric sender, or short code).</value>
         [JsonProperty("from")]
-        public string From { get; set; }
+        public OutboundMessageFrom From { get; set; }
 
         /// <summary>
         /// Gets or sets To.

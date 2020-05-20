@@ -171,7 +171,7 @@ namespace Telnyx
             return await this.GetRequestAsync<EntityReturned>(this.CallUrl(id, postPath), options, requestOptions, false, cancellationToken);
         }
 
-       
+
 
         /// <summary>
         /// ListEntitiesAsync.
@@ -446,7 +446,10 @@ namespace Telnyx
         protected async Task<IEnumerable<T>> ListRequestAutoPagingAsync<T>(string url, ListOptions options, RequestOptions requestOptions, CancellationToken ct = default)
         {
             var page = await this.GetRequestAsync<TelnyxList<T>>(url, options, requestOptions, true, ct);
-
+            if (options == null)
+            {
+                options = new ListOptions();
+            }
             var listOfEntities = page.Data;
             if (page.HasMore && options.NumberOfPagesToFetch == null)
             {
@@ -487,7 +490,10 @@ namespace Telnyx
         protected async Task<TelnyxList<T>> ListRequestPagingAsync<T>(string url, ListOptions options, RequestOptions requestOptions, CancellationToken ct = default)
         {
             var page = await this.GetRequestAsync<TelnyxList<T>>(url, options, requestOptions, true, ct);
-
+            if (options == null)
+            {
+                options = new ListOptions();
+            }
             // page.PageInfo.NextPageUrl = page.Url.Replace($"page[number]={options.PageNumber}", $"page[number]={page.PageInfo.NextPage}");
 
             if (page.HasMore && options.NumberOfPagesToFetch.HasValue
