@@ -130,7 +130,7 @@ public class TelnyxResponse
 
 ### Pagination
 
-The [`TelnyxList`](https://github.com/thedonmon/telnyx-dotnet/blob/master/src/Telnyx.net/Entities/TelnyxList.cs) object with List properties that includes the collection of data as well as pagination properties.
+The [`TelnyxList`](https://github.com/thedonmon/telnyx-dotnet/blob/master/src/Telnyx.net/Entities/TelnyxList.cs) object that includes the collection of data as well as pagination properties.
 
 **Example: Access a TelynxList**
 ```csharp
@@ -198,6 +198,9 @@ PageInfo pages = reservationList.PageInfo;
 In order to paginate automatically through a list method be sure to setup the corresponding ListOption object. 
 The NumberOfPagesToFetch is optional but allows the call to gather data from multiple pages. Enter the amount of pages you want
 to page through and all the results will be returned in the `TelynxList.Data` property. 
+
+*NOTE*: Use any number greater than 1 for the `NumberOfPagesToFetch`.
+1 page is just like setting the pagenumber. E.g. NumberOfPagesToFetch = 2 will give you the first page and next page. 
 
 **Example:**
 ```csharp
