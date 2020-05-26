@@ -6,6 +6,7 @@ namespace Telnyx
     using System.Reflection;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using Telnyx.net.Entities;
 
     /// <summary>
     /// Mapper class for object.

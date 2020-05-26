@@ -26,6 +26,14 @@ namespace Telnyx.net.Services.PhoneNumbers.NumberConfigurations
         {
             return this.ListEntities(options, reqOpts);
         }
+        public async Task<IEnumerable<NumberConfiguration>> ListPhoneNumbersPagedAsync(NumberConfigurationsListOptions options, RequestOptions reqOpts = null, CancellationToken ct = default)
+        {
+            return await this.ListEntitiesAutoPagingAsync(options, reqOpts, ct);
+        }
+        public IEnumerable<NumberConfiguration> ListPhoneNumbersPaged(NumberConfigurationsListOptions options, RequestOptions reqOpts = null, CancellationToken ct = default)
+        {
+            return this.ListEntitiesAutoPaging(options, reqOpts);
+        }
         public async Task<NumberConfiguration> DeletePhoneNumberAsync(string id, BaseOptions opts = null, RequestOptions reqOpts = null, CancellationToken ct = default)
         {
             return await this.DeleteEntityAsync(id, opts, reqOpts, ct);

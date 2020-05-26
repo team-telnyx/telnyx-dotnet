@@ -33,16 +33,5 @@ namespace Telnyx.net.Services.PhoneNumbers.NumberConfigurations
         [JsonProperty("filter[phone_number]")]
         public string PhoneNumber { get; set; }
 
-        /// <summary>
-        /// The size of the page
-        /// </summary>
-        /// 
-        [JsonProperty("page[size]")]
-        public int? Size { get; set; }
-        /// <summary>
-        /// The page number to load
-        /// </summary>
-        [JsonProperty("page[number]")]
-        public int? Page { get; set; }
     }
 }

@@ -11,17 +11,6 @@ namespace Telnyx.net.Services.PhoneNumbers.NumberConfigurations
     public class NumberConfigurationsListOptions : ListOptions
     {
         /// <summary>
-        /// The size of the page
-        /// </summary>
-        /// 
-        [JsonProperty("page[size]")]
-        public int? Size { get; set; }
-        /// <summary>
-        /// The page number to load
-        /// </summary>
-        [JsonProperty("page[number]")]
-        public int? Page { get; set; }
-        /// <summary>
         /// Filter by phone number status. Example: "active"
         /// </summary>
         [JsonProperty("filter[status]")]

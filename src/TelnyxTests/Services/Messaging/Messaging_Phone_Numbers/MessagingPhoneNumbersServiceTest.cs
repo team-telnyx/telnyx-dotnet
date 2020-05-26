@@ -19,7 +19,7 @@ namespace TelnyxTests.Services.Messages.MessagingPhoneNumbers
         private readonly MessagingPhoneNumbersService service;
         private readonly NumberOrderCreateOptions createOptions;
         private readonly MessagingPhoneNumberUpdate updateOptions;
-        private readonly MessagingPhoneNumerListOptions listOptions;
+        private readonly MessagingPhoneNumberListOptions listOptions;
         private readonly RequestOptions requestOptions;
         private readonly CancellationToken cancellationToken;
 

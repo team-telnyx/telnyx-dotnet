@@ -78,12 +78,40 @@
         /// </summary>
         public void List()
         {
-            var listOptions = new ListMessagingProfilesPhoneNumbersOptions();
+            var listOptions = new ListMessagingProfilesPhoneNumbersOptions()
+            {
+                PageSize = 2,
+                PageNumber = 1,
+                NumberOfPagesToFetch = 3
+            };
             Console.WriteLine(JsonConvert.SerializeObject(listOptions));
 
             try
             {
                 var messagingProfile = this.service.List(listOptions);
+                Console.WriteLine(JsonConvert.SerializeObject(messagingProfile));
+            }
+            catch (TelnyxException ex)
+            {
+                Console.WriteLine("exception");
+                Console.WriteLine(JsonConvert.SerializeObject(ex));
+            }
+        }
+        /// <summary>
+        /// List messaging profile phone numbers
+        /// </summary>
+        public void ListPaged()
+        {
+            var listOptions = new ListMessagingProfilesPhoneNumbersOptions
+            {
+                PageSize = 2,
+                PageNumber = 1
+            };
+            Console.WriteLine(JsonConvert.SerializeObject(listOptions));
+
+            try
+            {
+                var messagingProfile = this.service.ListPaged(listOptions);
                 Console.WriteLine(JsonConvert.SerializeObject(messagingProfile));
             }
             catch (TelnyxException ex)
@@ -127,6 +155,7 @@
             try
             {
                 var messagingPhoneNumber = this.phoneNumbersService.List(MessagingProfileId, listOptions);
+                
                 Console.WriteLine(JsonConvert.SerializeObject(messagingPhoneNumber));
             }
             catch (TelnyxException ex)

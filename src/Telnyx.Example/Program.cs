@@ -25,6 +25,7 @@ namespace Telnyx.Example
 
             Console.WriteLine("MessagingProfilesExample...");
             MessagingProfilesExample messagingProfilesExample = new MessagingProfilesExample();
+            messagingProfilesExample.ListPaged();
             messagingProfilesExample.List();
             messagingProfilesExample.ListAllMessagingProfilePhoneNumbers();
             messagingProfilesExample.Create();
@@ -44,6 +45,7 @@ namespace Telnyx.Example
             Console.WriteLine("NumberSearchExample...");
             NumberSearchExample numberSearchExample = new NumberSearchExample();
             numberSearchExample.ListNumberService();
+            numberSearchExample.ListNumberServicePaged();
 
             Console.WriteLine("PhoneNumbersExample...");
             PhoneNumbersExample phoneNumbersExample = new PhoneNumbersExample();
@@ -81,6 +83,7 @@ namespace Telnyx.Example
 
             Console.WriteLine("NumberConfigurationExample..");
             NumberConfigurationExample numConfigExample = new NumberConfigurationExample();
+            await numConfigExample.ListPhoneNumbersWithPagingAsync();
             await numConfigExample.ListPhoneNumbersWithFiltersAsync();
             await numConfigExample.ListMessagingOptionsAsync();
             await numConfigExample.ListVoiceSettingsWithFiltersAsync();

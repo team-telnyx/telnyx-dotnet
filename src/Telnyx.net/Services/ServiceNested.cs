@@ -118,7 +118,7 @@ namespace Telnyx
         /// <returns>TelnyxList {EntityReturned}.</returns>
         protected TelnyxList<EntityReturned> ListNestedEntities(string parentId, ListOptions options, RequestOptions requestOptions)
         {
-            return this.GetRequest<TelnyxList<EntityReturned>>(this.ClassUrl(parentId), options, requestOptions, true);
+            return this.ListRequestPaging<EntityReturned>(this.ClassUrl(parentId), options, requestOptions);
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace Telnyx
         /// <returns>TelnyxList {EntityReturned}.</returns>
         protected async Task<TelnyxList<EntityReturned>> ListNestedEntitiesAsync(string parentId, ListOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
-            return await this.GetRequestAsync<TelnyxList<EntityReturned>>(this.ClassUrl(parentId), options, requestOptions, true, cancellationToken);
+            return await this.ListRequestPagingAsync<EntityReturned>(this.ClassUrl(parentId), options, requestOptions, cancellationToken);
         }
 
         /// <summary>
@@ -144,6 +144,17 @@ namespace Telnyx
         protected IEnumerable<EntityReturned> ListNestedEntitiesAutoPaging(string parentId, ListOptions options, RequestOptions requestOptions)
         {
             return this.ListRequestAutoPaging<EntityReturned>(this.ClassUrl(parentId), options, requestOptions);
+        }
+        /// <summary>
+        /// ListNestedEntitiesAutoPaging.
+        /// </summary>
+        /// <param name="parentId">parentId.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>Ienumerable {EntityReturned}.</returns>
+        protected async Task <IEnumerable<EntityReturned>> ListNestedEntitiesAutoPagingAsync(string parentId, ListOptions options, RequestOptions requestOptions, CancellationToken ct = default)
+        {
+            return await this.ListRequestAutoPagingAsync<EntityReturned>(this.ClassUrl(parentId), options, requestOptions, ct);
         }
 
         /// <summary>

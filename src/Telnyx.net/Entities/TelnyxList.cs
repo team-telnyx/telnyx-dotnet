@@ -2,6 +2,7 @@ namespace Telnyx.net.Entities
 {
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
     using Newtonsoft.Json;
     using Telnyx.Infrastructure;
 
@@ -10,13 +11,13 @@ namespace Telnyx.net.Entities
     /// </summary>
     /// <typeparam name="T">Object Type.</typeparam>
     [JsonObject]
-    public class TelnyxList<T> : TelnyxEntity, IHasObject, IEnumerable<T>
+    public class TelnyxList<T> : TelnyxEntity, IEnumerable<T>
     {
         /// <summary>
         /// Gets or sets a string describing the object type returned.
         /// </summary>
         [JsonProperty("object")]
-        public string Object { get; set; }
+        public string Object => typeof(T).Name;
 
         /// <summary>
         /// Gets or sets a list containing the actual response elements, paginated by any request parameters.
@@ -29,19 +30,19 @@ namespace Telnyx.net.Entities
         /// this set comprises the end of the list.
         /// </summary>
         [JsonProperty("has_more")]
-        public bool HasMore { get; set; }
+        public bool HasMore => PageInfo?.HasMore ?? false;
 
         /// <summary>
         /// Gets or sets the URL for accessing this list.
         /// </summary>
         [JsonProperty("url")]
-        public string Url { get; set; }
+        public string Url => this?.TelnyxResponse?.Url ?? string.Empty;
 
         /// <summary>
         /// Gets or sets metadata for list
         /// </summary>
         [JsonProperty("meta")]
-        public Meta Meta { get; set; }
+        public PageInfo PageInfo { get; set; }
         /// <inheritdoc/>
         public IEnumerator<T> GetEnumerator()
         {

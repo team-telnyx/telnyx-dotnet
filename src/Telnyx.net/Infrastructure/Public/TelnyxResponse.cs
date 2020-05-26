@@ -26,5 +26,8 @@ namespace Telnyx
         /// Gets or sets requestDate.
         /// </summary>
         public DateTime RequestDate { get; set; }
+
+        public string Url { get; set; }
+
     }
 }
