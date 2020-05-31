@@ -6,20 +6,19 @@ namespace Telnyx.net.Entities.Calls.CallControlApplications
     /// <summary>
     /// Determines which webhook format will be used, Telnyx API v1 or v2.
     /// </summary>
-    /// <value>Determines which webhook format will be used, Telnyx API v1 or v2.</value>
     [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum WebhookAPIVersion
     {
         /// <summary>
-        /// Enum _1Enum for 1
+        /// Enum V1 for 1
         /// </summary>
         [EnumMember(Value = "1")]
-        _1Enum = 0,
+        V1 = 0,
 
         /// <summary>
-        /// Enum _2Enum for 2
+        /// Enum V2 for 2
         /// </summary>
         [EnumMember(Value = "2")]
-        _2Enum = 1,
+        V2 = 1,
     }
 }

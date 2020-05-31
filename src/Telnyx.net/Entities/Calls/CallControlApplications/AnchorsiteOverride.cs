@@ -7,63 +7,63 @@ namespace Telnyx.net.Entities.Calls.CallControlApplications
     public enum AnchorsiteOverride
     {
         /// <summary>
-        /// Enum LatencyEnum for Latency
+        /// Enum Latency for Latency
         /// </summary>
         [EnumMember(Value = "Latency")]
-        LatencyEnum = 0,
+        Latency = 0,
 
         /// <summary>
-        /// Enum ChicagoILEnum for Chicago, IL
+        /// Enum ChicagoIL for Chicago, IL
         /// </summary>
         [EnumMember(Value = "Chicago, IL")]
-        ChicagoILEnum = 1,
+        ChicagoIL = 1,
 
         /// <summary>
-        /// Enum AshburnVAEnum for Ashburn, VA
+        /// Enum AshburnVA for Ashburn, VA
         /// </summary>
         [EnumMember(Value = "Ashburn, VA")]
-        AshburnVAEnum = 2,
+        AshburnVA = 2,
 
         /// <summary>
-        /// Enum SanJoseCAEnum for San Jose, CA
+        /// Enum SanJoseCA for San Jose, CA
         /// </summary>
         [EnumMember(Value = "San Jose, CA")]
-        SanJoseCAEnum = 3,
+        SanJoseCA = 3,
 
         /// <summary>
-        /// Enum SydneyAustraliaEnum for Sydney, Australia
+        /// Enum SydneyAustralia for Sydney, Australia
         /// </summary>
         [EnumMember(Value = "Sydney, Australia")]
-        SydneyAustraliaEnum = 4,
+        SydneyAustralia = 4,
 
         /// <summary>
-        /// Enum AmsterdamNetherlandsEnum for Amsterdam, Netherlands
+        /// Enum AmsterdamNetherlands for Amsterdam, Netherlands
         /// </summary>
         [EnumMember(Value = "Amsterdam, Netherlands")]
-        AmsterdamNetherlandsEnum = 5,
+        AmsterdamNetherlands = 5,
 
         /// <summary>
-        /// Enum LondonUKEnum for London, UK
+        /// Enum LondonUK for London, UK
         /// </summary>
         [EnumMember(Value = "London, UK")]
-        LondonUKEnum = 6,
+        LondonUK = 6,
 
         /// <summary>
-        /// Enum TorontoCanadaEnum for Toronto, Canada
+        /// Enum TorontoCanada for Toronto, Canada
         /// </summary>
         [EnumMember(Value = "Toronto, Canada")]
-        TorontoCanadaEnum = 7,
+        TorontoCanada = 7,
 
         /// <summary>
-        /// Enum VancouverCanadaEnum for Vancouver, Canada
+        /// Enum VancouverCanada for Vancouver, Canada
         /// </summary>
         [EnumMember(Value = "Vancouver, Canada")]
-        VancouverCanadaEnum = 8,
+        VancouverCanada = 8,
 
         /// <summary>
-        /// Enum FrankfurtGermanyEnum for Frankfurt, Germany
+        /// Enum FrankfurtGermany for Frankfurt, Germany
         /// </summary>
         [EnumMember(Value = "Frankfurt, Germany")]
-        FrankfurtGermanyEnum = 9,
+        FrankfurtGermany = 9,
     }
 }

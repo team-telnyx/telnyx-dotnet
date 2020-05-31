@@ -6,26 +6,25 @@ namespace Telnyx.net.Entities.Calls.CallControlApplications
     /// <summary>
     /// Sets the type of DTMF digits sent from Telnyx to this Connection. Note that DTMF digits sent to Telnyx will be accepted in all formats.
     /// </summary>
-    /// <value>Sets the type of DTMF digits sent from Telnyx to this Connection. Note that DTMF digits sent to Telnyx will be accepted in all formats.</value>
     [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum DTMFType
     {
         /// <summary>
-        /// Enum RFC2833Enum for RFC 2833
+        /// Enum RFC2833 for RFC 2833
         /// </summary>
         [EnumMember(Value = "RFC 2833")]
-        RFC2833Enum = 0,
+        RFC2833 = 0,
 
         /// <summary>
-        /// Enum InbandEnum for Inband
+        /// Enum Inband for Inband
         /// </summary>
         [EnumMember(Value = "Inband")]
-        InbandEnum = 1,
+        Inband = 1,
 
         /// <summary>
-        /// Enum SIPINFOEnum for SIP INFO
+        /// Enum SIPINFO for SIP INFO
         /// </summary>
         [EnumMember(Value = "SIP INFO")]
-        SIPINFOEnum = 2,
+        SIPINFO = 2,
     }
 }

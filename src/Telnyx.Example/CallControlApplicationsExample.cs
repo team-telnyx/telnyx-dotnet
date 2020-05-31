@@ -42,7 +42,7 @@ namespace Telnyx.Example
             CallControlApplicationWritable listCallControlApplicationOptions = new CallControlApplicationWritable
             {
                 Active = false,
-                AnchorsiteOverride = AnchorsiteOverride.AmsterdamNetherlandsEnum
+                AnchorsiteOverride = AnchorsiteOverride.AmsterdamNetherlands
             };
             Console.WriteLine(JsonConvert.SerializeObject(listCallControlApplicationOptions));
 
@@ -66,7 +66,7 @@ namespace Telnyx.Example
             CallControlApplicationWritable listCallControlApplicationOptions = new CallControlApplicationWritable
             {
                 Active = false,
-                AnchorsiteOverride = AnchorsiteOverride.AmsterdamNetherlandsEnum
+                AnchorsiteOverride = AnchorsiteOverride.AmsterdamNetherlands
             };
             Console.WriteLine(JsonConvert.SerializeObject(listCallControlApplicationOptions));
 
