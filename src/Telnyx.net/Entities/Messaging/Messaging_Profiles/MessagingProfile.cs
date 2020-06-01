@@ -4,6 +4,7 @@ namespace Telnyx
     using System.Collections.Generic;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enums;
 
     /// <summary>
     /// Messaging Profile.
@@ -24,25 +25,6 @@ namespace Telnyx
             ProfileEnum = 0
         }
 
-        /// <summary>
-        /// Determines which webhook format will be used, API V1 or API V2.
-        /// </summary>
-        /// <value>Webhook format: API V1 or API V2.</value>
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public enum WebhookApiVersionEnum
-        {
-            /// <summary>
-            /// Enum ApiV1 for 1
-            /// </summary>
-            [EnumMember(Value = "1")]
-            ApiV1 = 0,
-
-            /// <summary>
-            /// Enum ApiV2 for 2
-            /// </summary>
-            [EnumMember(Value = "2")]
-            ApiV2 = 1
-        }
 
         /// <summary>
         /// Gets or sets identifies the type of the resource.
