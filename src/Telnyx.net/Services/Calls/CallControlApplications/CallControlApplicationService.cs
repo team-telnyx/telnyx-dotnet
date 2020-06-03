@@ -10,17 +10,17 @@
         IListable<CallControlApplication, ListCallControlApplicationOptions>,
         IRetrievable<CallControlApplication>,
         IDeletable<CallControlApplication>,
-        ICreatable<CallControlApplication, CallControlApplicationWritable>,
-        IUpdatable<CallControlApplication, CallControlApplicationWritable>
+        ICreatable<CallControlApplication, CreateCallControlApplicationOptions>,
+        IUpdatable<CallControlApplication, CreateCallControlApplicationOptions>
     {
         public override string BasePath => "/call_control_applications";
 
-        public CallControlApplication Create(CallControlApplicationWritable createOptions, RequestOptions requestOptions = null)
+        public CallControlApplication Create(CreateCallControlApplicationOptions createOptions, RequestOptions requestOptions = null)
         {
             return this.CreateEntity(createOptions, requestOptions);
         }
 
-        public Task<CallControlApplication> CreateAsync(CallControlApplicationWritable createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public Task<CallControlApplication> CreateAsync(CreateCallControlApplicationOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
             return this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
         }
@@ -55,12 +55,12 @@
             return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
         }
 
-        public CallControlApplication Update(string id, CallControlApplicationWritable updateOptions, RequestOptions requestOptions = null)
+        public CallControlApplication Update(string id, CreateCallControlApplicationOptions updateOptions, RequestOptions requestOptions = null)
         {
             return this.UpdateEntity(id, updateOptions, requestOptions);
         }
 
-        public async Task<CallControlApplication> UpdateAsync(string id, CallControlApplicationWritable updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public async Task<CallControlApplication> UpdateAsync(string id, CreateCallControlApplicationOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
             return await this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
         }

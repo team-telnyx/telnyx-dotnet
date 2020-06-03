@@ -1,4 +1,4 @@
-namespace Telnyx.net.Entities.Calls.CallControlApplications
+namespace Telnyx.net.Entities.Enum
 {
     using System.Runtime.Serialization;
     using Newtonsoft.Json;

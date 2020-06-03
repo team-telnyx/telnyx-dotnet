@@ -2,8 +2,9 @@
 {
     using Newtonsoft.Json;
     using Telnyx.net.Entities.Calls.CallControlApplications;
+    using Telnyx.net.Entities.Enum;
 
-    public class CallControlApplicationWritable : BaseOptions
+    public class CreateCallControlApplicationOptions : BaseOptions
     {
         /// <summary>
         /// Gets or sets identifies the type of the resource.

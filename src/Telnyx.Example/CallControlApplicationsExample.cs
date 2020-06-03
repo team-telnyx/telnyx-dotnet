@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Telnyx.net.Entities;
 using Telnyx.net.Entities.Calls.CallControlApplications;
+using Telnyx.net.Entities.Enum;
 using Telnyx.net.Services.Calls.CallCommands;
 using Telnyx.net.Services.Calls.CallControlApplications;
 
@@ -39,7 +40,7 @@ namespace Telnyx.Example
         public CallControlApplication Create()
         {
             CallControlApplication callControlApplication = new CallControlApplication();
-            CallControlApplicationWritable listCallControlApplicationOptions = new CallControlApplicationWritable
+            CreateCallControlApplicationOptions listCallControlApplicationOptions = new CreateCallControlApplicationOptions
             {
                 Active = false,
                 AnchorsiteOverride = AnchorsiteOverride.AmsterdamNetherlands
@@ -63,7 +64,7 @@ namespace Telnyx.Example
         {
             string id = "1293384261075731499";
             CallControlApplication callControlApplication = new CallControlApplication();
-            CallControlApplicationWritable listCallControlApplicationOptions = new CallControlApplicationWritable
+            CreateCallControlApplicationOptions listCallControlApplicationOptions = new CreateCallControlApplicationOptions
             {
                 Active = false,
                 AnchorsiteOverride = AnchorsiteOverride.AmsterdamNetherlands

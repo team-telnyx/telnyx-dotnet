@@ -2,6 +2,7 @@
 {
     using Newtonsoft.Json;
     using System;
+    using Telnyx.net.Entities.Enum;
 
     public class CallControlApplication : TelnyxEntity, IHasId
     {
