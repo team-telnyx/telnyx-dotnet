@@ -4,7 +4,7 @@ namespace Telnyx
     using System.Collections.Generic;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
-    using Telnyx.net.Entities.Enums;
+    using Telnyx.net.Entities.Enum;
 
     /// <summary>
     /// Messaging Profile.
@@ -94,7 +94,7 @@ namespace Telnyx
         /// </summary>
         /// <value>Determines which webhook format will be used, API V1 or API V2.</value>
         [JsonProperty("webhook_api_version")]
-        public WebhookApiVersionEnum? WebhookApiVersion { get; set; }
+        public WebhookAPIVersion? WebhookApiVersion { get; set; }
 
         /// <summary>
         /// Gets or sets iSO 8601 formatted date indicating when the resource was created.

@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using Telnyx.net.Entities.Enums;
-using Telnyx.net.Entities.Enums.Connections;
+using Telnyx.net.Entities.Enum;
 
 namespace Telnyx.net.Entities.Connections.ConnectionsService
 {
@@ -21,7 +21,7 @@ namespace Telnyx.net.Entities.Connections.ConnectionsService
         /// `Latency` directs Telnyx to route media through the site with the lowest round-trip time to the user's connection. Telnyx calculates this time using ICMP ping messages. This can be disabled by specifying a site to handle all media
         /// </summary>
         [JsonProperty("anchorsite_override")]
-        public AnchorsiteOverrideEnum? AnchorsiteOverride { get; set; }
+        public AnchorsiteOverride? AnchorsiteOverride { get; set; }
 
         [JsonProperty("connection_name")]
         public string ConnectionName { get; set; }
@@ -42,23 +42,13 @@ namespace Telnyx.net.Entities.Connections.ConnectionsService
         public DateTimeOffset? UpdatedAt { get; set; }
 
         [JsonProperty("webhook_api_version")]
-        public WebhookApiVersionEnum? WebhookApiVersion { get; set; }
+        public WebhookAPIVersion? WebhookApiVersion { get; set; }
 
         [JsonProperty("webhook_event_failover_url")]
         public string WebhookEventFailoverUrl { get; set; }
 
         [JsonProperty("webhook_event_url")]
         public string WebhookEventUrl { get; set; }
-    }
-    /// <summary>
-    /// Identifies the type of the resource.
-    /// </summary>
-    /// <value>Type of the resource.</value>
-    [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-    public enum RecordTypeEnum
-    {
-        [EnumMember(Value = "ip_connection")]
-        IPConnection = 0
     }
   
 

@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Telnyx.net.Entities.Enums.Connections
+namespace Telnyx.net.Entities.Enum.Connections
 {
     /// <summary>
     /// Identifies the type of the resource.
