@@ -88,6 +88,14 @@ namespace Telnyx.Example
             await numConfigExample.ListMessagingOptionsAsync();
             await numConfigExample.ListVoiceSettingsWithFiltersAsync();
 
+
+            Console.WriteLine("CallControlApplicationExample...");
+            CallControlApplicationsExample callControlApplicationsExample = new CallControlApplicationsExample();
+            callControlApplicationsExample.List();
+            callControlApplicationsExample.Create();
+            callControlApplicationsExample.Get();
+            callControlApplicationsExample.Delete();
+            callControlApplicationsExample.Update();
         }
     }
 }
