@@ -10,7 +10,7 @@ using Telnyx.net.Services.Connections.Options;
 
 namespace Telnyx.net.Services.Connections
 {
-    public class ConnectionsService : Service<Connection>
+    public class ConnectionService : Service<Connection>
     {
         public override string BasePath => "/connections";
 

@@ -13,7 +13,7 @@ namespace Telnyx.net.Entities.Enum.Connections
     /// </summary>
     /// <value>Type of the resource.</value>
     [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-    public enum ConnectionSortEnum
+    public enum ConnectionSort
     {
         [EnumMember(Value = "enabled")]
         Enabled = 0,

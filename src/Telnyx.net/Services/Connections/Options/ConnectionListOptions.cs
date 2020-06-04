@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using Telnyx.net.Entities.Enums.Connections;
+using Telnyx.net.Entities.Enum.Connections;
 
 namespace Telnyx.net.Services.Connections.Options
 {
@@ -25,7 +25,7 @@ namespace Telnyx.net.Services.Connections.Options
         /// Specifies the sort order for results. By default sorting direction is ascending. To have the results sorterd in descending order use values with DESC in the name.
         /// </summary>
         [JsonProperty("sort")]
-        public ConnectionSortEnum Sort { get; set; } = ConnectionSortEnum.CreatedAtDESC;
+        public ConnectionSort Sort { get; set; } = ConnectionSort.CreatedAtDESC;
     }
     
 }
