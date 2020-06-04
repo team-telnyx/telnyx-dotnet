@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 namespace Telnyx.net.Entities.Enum
 {
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum DTMFType
+    public enum TransportProtocol
     {
-        [EnumMember(Value = "RFC 2833")]
-        RFC_2833 = 0,
-        [EnumMember(Value = "Inband")]
-        Inband = 1,
-        [EnumMember(Value = "SIP INFO")]
-        SIP_Info = 2
+        [EnumMember(Value = "UDP")]
+        UDP = 0,
+        [EnumMember(Value = "TCP")]
+        TCP = 1,
+        [EnumMember(Value = "TLS")]
+        TLS = 2
     }
 }

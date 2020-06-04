@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Telnyx.net.Entities;
 using Telnyx.net.Entities.Connections.ConnectionsService;
-using Telnyx.net.Services.Connections.Options;
 
 namespace Telnyx.net.Services.Connections
 {

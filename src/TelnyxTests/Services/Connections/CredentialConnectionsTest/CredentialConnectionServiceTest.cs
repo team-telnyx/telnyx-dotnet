@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Telnyx.net.Entities;
 using Telnyx.net.Entities.Connections.CredentialConnections;
 using Telnyx.net.Entities.Enum.Connections;
+using Telnyx.net.Services.Connections;
 using Telnyx.net.Services.Connections.CredentialConnections;
-using Telnyx.net.Services.Connections.Options;
 using Xunit;
 
 namespace TelnyxTests.Services.Connections.CredentialConnections
@@ -16,21 +16,15 @@ namespace TelnyxTests.Services.Connections.CredentialConnections
         private readonly string credConnId = "1234";
         private readonly CredentialConnectionService service;
         private readonly ConnectionListOptions listOptions;
-        private readonly CreateCredConnectionOptions createOptions;
+        private readonly UpsertCredentialConnectionOptions createOptions;
 
         public CredentialConnectionServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
             this.service = new CredentialConnectionService();
 
-            this.listOptions = new ConnectionListOptions()
-            {
-                Sort = ConnectionSort.CreatedAtDESC
-            };
-            this.createOptions = new CreateCredConnectionOptions
-            {
-
-            };
+            this.listOptions = new ConnectionListOptions();
+            this.createOptions = new UpsertCredentialConnectionOptions();
         }
 
         [Fact]

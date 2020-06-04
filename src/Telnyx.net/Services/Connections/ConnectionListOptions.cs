@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Telnyx.net.Entities.Enum.Connections;
 
-namespace Telnyx.net.Services.Connections.Options
+namespace Telnyx.net.Services.Connections
 {
     public class ConnectionListOptions : ListOptions
     {

@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Telnyx.net.Entities;
 using Telnyx.net.Entities.Connections.CredentialConnections;
-using Telnyx.net.Services.Connections.Options;
 
 namespace Telnyx.net.Services.Connections.CredentialConnections
 {
@@ -22,11 +21,11 @@ namespace Telnyx.net.Services.Connections.CredentialConnections
         {
             return this.ListEntities(options, reqOpts);
         }
-        public async Task<CredentialConnection> CreateCredentialConnectionAsync(CreateCredConnectionOptions options, RequestOptions reqOpts = null, CancellationToken ct = default)
+        public async Task<CredentialConnection> CreateCredentialConnectionAsync(UpsertCredentialConnectionOptions options, RequestOptions reqOpts = null, CancellationToken ct = default)
         {
             return await this.CreateEntityAsync(options, reqOpts, ct);
         }
-        public CredentialConnection CreateCredentialConnection(CreateCredConnectionOptions options, RequestOptions reqOpts = null)
+        public CredentialConnection CreateCredentialConnection(UpsertCredentialConnectionOptions options, RequestOptions reqOpts = null)
         {
             return this.CreateEntity(options, reqOpts);
         }
@@ -46,11 +45,11 @@ namespace Telnyx.net.Services.Connections.CredentialConnections
         {
             return this.GetEntity(id, reqOpts);
         }
-        public async Task<CredentialConnection> UpdateCredentialConnectionAsync(string id, CreateCredConnectionOptions options, RequestOptions reqOpts = null, CancellationToken ct = default)
+        public async Task<CredentialConnection> UpdateCredentialConnectionAsync(string id, UpsertCredentialConnectionOptions options, RequestOptions reqOpts = null, CancellationToken ct = default)
         {
             return await this.UpdateEntityAsync(id, options, reqOpts, ct);
         }
-        public CredentialConnection UpdateCredentialConnection(string id, CreateCredConnectionOptions options, RequestOptions reqOpts = null)
+        public CredentialConnection UpdateCredentialConnection(string id, UpsertCredentialConnectionOptions options, RequestOptions reqOpts = null)
         {
             return this.UpdateEntity(id, options, reqOpts);
         }

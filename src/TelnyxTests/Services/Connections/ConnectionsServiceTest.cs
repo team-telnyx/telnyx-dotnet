@@ -6,7 +6,6 @@ using Telnyx.net.Entities;
 using Telnyx.net.Entities.Connections.ConnectionsService;
 using Telnyx.net.Entities.Enum.Connections;
 using Telnyx.net.Services.Connections;
-using Telnyx.net.Services.Connections.Options;
 using Xunit;
 
 namespace TelnyxTests.Services.Connections
