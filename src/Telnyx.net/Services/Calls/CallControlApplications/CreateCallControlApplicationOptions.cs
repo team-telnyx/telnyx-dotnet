@@ -3,6 +3,7 @@
     using Newtonsoft.Json;
     using Telnyx.net.Entities.Calls.CallControlApplications;
     using Telnyx.net.Entities.Enum;
+    using DTMFType = Entities.Enum.DTMFType;
 
     public class CreateCallControlApplicationOptions : BaseOptions
     {

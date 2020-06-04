@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Telnyx.net.Entities.Connections.CredentialConnections
+namespace Telnyx.net.Entities.Connections.FQDNConnection
 {
-    public class CredentialConnection : ConnectionBase
+    public class FQDNConnection : ConnectionBase
     {
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Telnyx.net.Entities.Connections;
 using Telnyx.net.Entities.Connections.CredentialConnections;
 using Telnyx.net.Entities.Enum;
 using Telnyx.net.Entities.Enum.Connections;
