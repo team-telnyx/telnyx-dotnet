@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Telnyx.Infrastructure;
 using Telnyx.net.Entities.Enum;
+using Telnyx.net.Entities.Enum.Connections;
 using Telnyx.net.Infrastructure.JsonConverters;
 
 namespace Telnyx.net.Entities.Connections
@@ -39,7 +40,7 @@ namespace Telnyx.net.Entities.Connections
         public string OutboundVoiceProfileId { get; set; }
 
         [JsonProperty("record_type")]
-        public RecordTypeEnum? RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
 
         [JsonProperty("updated_at")]
         [JsonConverter(typeof(DateTimeOffsetConverter))]
