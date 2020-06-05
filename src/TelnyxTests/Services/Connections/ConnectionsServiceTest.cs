@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Telnyx.net.Entities;
-using Telnyx.net.Entities.Connections.ConnectionsService;
+using Telnyx.net.Entities.Connections;
 using Telnyx.net.Entities.Enum.Connections;
 using Telnyx.net.Services.Connections;
 using Xunit;
@@ -21,10 +21,7 @@ namespace TelnyxTests.Services.Connections
         {
             this.service = new ConnectionService();
 
-            this.listOptions = new ConnectionListOptions()
-            {
-                Sort = ConnectionSort.CreatedAtDESC
-            };
+            this.listOptions = null;
         }
 
         [Fact]

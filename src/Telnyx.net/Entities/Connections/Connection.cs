@@ -6,9 +6,11 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using Telnyx.Infrastructure;
 using Telnyx.net.Entities.Enum;
+using Telnyx.net.Infrastructure.JsonConverters;
 
-namespace Telnyx.net.Entities.Connections.ConnectionsService
+namespace Telnyx.net.Entities.Connections
 {
     public class Connection : TelnyxEntity
     {
@@ -27,6 +29,7 @@ namespace Telnyx.net.Entities.Connections.ConnectionsService
         public string ConnectionName { get; set; }
 
         [JsonProperty("created_at")]
+        [JsonConverter(typeof(DateTimeOffsetConverter))]
         public DateTimeOffset? CreatedAt { get; set; }
 
         [JsonProperty("id")]
@@ -39,6 +42,7 @@ namespace Telnyx.net.Entities.Connections.ConnectionsService
         public RecordTypeEnum? RecordType { get; set; }
 
         [JsonProperty("updated_at")]
+        [JsonConverter(typeof(DateTimeOffsetConverter))]
         public DateTimeOffset? UpdatedAt { get; set; }
 
         [JsonProperty("webhook_api_version")]

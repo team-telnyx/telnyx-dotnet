@@ -22,7 +22,7 @@ namespace TelnyxTests.Services.Connections.FQDNConnectionsTest
         {
             this.service = new FQDNConnectionService();
 
-            this.listOptions = new ConnectionListOptions();
+            this.listOptions = null;
             this.createOptions = new UpsertFQDNConnectionOptions();
         }
 

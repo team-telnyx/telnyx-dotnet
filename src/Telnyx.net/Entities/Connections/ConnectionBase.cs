@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Telnyx.Infrastructure;
 using Telnyx.net.Entities.Enum;
 using Telnyx.net.Entities.Enum.Connections;
+using Telnyx.net.Infrastructure.JsonConverters;
 
 namespace Telnyx.net.Entities.Connections
 {
@@ -29,7 +30,7 @@ namespace Telnyx.net.Entities.Connections
         /// ISO-8601 formatted date indicating when the resource was created.
         /// </summary>
         [JsonProperty("created_at")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeOffsetConverter))]
         public DateTimeOffset? CreatedAt { get; set; }
         /// <summary>
         /// When enabled, Telnyx will generate comfort noise when you place the call on hold. If disabled, you will need to generate comfort noise or on hold music to avoid RTP timeout.
@@ -77,7 +78,7 @@ namespace Telnyx.net.Entities.Connections
         /// ISO-8601 formatted date indicating when the resource was updated.
         /// </summary>
         [JsonProperty("updated_at")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(DateTimeOffsetConverter))]
         public DateTimeOffset? UpdatedAt { get; set; }
 
 

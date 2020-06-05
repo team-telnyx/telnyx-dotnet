@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Telnyx.net.Entities;
-using Telnyx.net.Entities.Connections.ConnectionsService;
+using Telnyx.net.Entities.Connections;
 
 namespace Telnyx.net.Services.Connections
 {

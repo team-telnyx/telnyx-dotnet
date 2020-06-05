@@ -23,7 +23,9 @@ namespace TelnyxTests.Services.Connections.FQDNSTests
             this.service = new FQDNService();
 
             this.listOptions = new FQDNListOptions();
-            this.createOptions = new UpsertFQDNOptions();
+            this.createOptions = new UpsertFQDNOptions() {
+                Fqdn = "example.com"
+            };
         }
 
         [Fact]

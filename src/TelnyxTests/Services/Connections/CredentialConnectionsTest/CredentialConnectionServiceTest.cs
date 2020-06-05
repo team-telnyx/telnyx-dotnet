@@ -23,7 +23,7 @@ namespace TelnyxTests.Services.Connections.CredentialConnections
         {
             this.service = new CredentialConnectionService();
 
-            this.listOptions = new ConnectionListOptions();
+            this.listOptions = null;
             this.createOptions = new UpsertCredentialConnectionOptions();
         }
 

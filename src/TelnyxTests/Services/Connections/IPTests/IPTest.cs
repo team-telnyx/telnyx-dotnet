@@ -22,7 +22,10 @@ namespace TelnyxTests.Services.Connections.IPTests
             this.service = new IPService();
 
             this.listOptions = new IPListOptions();
-            this.createOptions = new UpsertIPOptions();
+            this.createOptions = new UpsertIPOptions()
+            {
+                IPAddress = "192.168.0.1"
+            };
         }
 
         [Fact]

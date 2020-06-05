@@ -22,7 +22,7 @@ namespace TelnyxTests.Services.Connections.IPConnectionsTest
         {
             this.service = new IPConnectionService();
 
-            this.listOptions = new ConnectionListOptions();
+            this.listOptions = null;
             this.createOptions = new UpsertIPConnectionOptions();
         }
 
