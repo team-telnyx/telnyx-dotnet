@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Telnyx.Infrastructure;
 using Telnyx.net.Entities.Enum;
-using Telnyx.net.Entities.Enum.Connections;
 using Telnyx.net.Infrastructure.JsonConverters;
 
 namespace Telnyx.net.Entities.Connections
