@@ -96,6 +96,16 @@ namespace Telnyx.Example
             callControlApplicationsExample.Get();
             callControlApplicationsExample.Delete();
             callControlApplicationsExample.Update();
+
+            Console.WriteLine("Connections Example....");
+            ConnectionsExample connectionsExample = new ConnectionsExample();
+            await connectionsExample.ListConnectionsAsync();
+            await connectionsExample.ListCredConnectionsAsync();
+            await connectionsExample.ListIPConnectionsAsync();
+            await connectionsExample.ListIPsAsync();
+            await connectionsExample.ListFQDNConnectionsAsync();
+            await connectionsExample.ListFQDNsAsync();
+
         }
     }
 }

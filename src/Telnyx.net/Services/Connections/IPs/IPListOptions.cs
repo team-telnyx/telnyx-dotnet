@@ -23,6 +23,6 @@ namespace Telnyx.net.Services.Connections.IPs
         /// Port to use when connecting to this IP. Example: 5060
         /// </summary>
         [JsonProperty("filter[port]")]
-        public int Port { get; set; }
+        public int? Port { get; set; }
     }
 }

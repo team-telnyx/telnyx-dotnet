@@ -139,12 +139,12 @@ namespace Telnyx.net.Entities.Connections
         /// Time(sec) before aborting if connection is not made (min: 1, max: 20). Default: "3"
         /// </summary>
         [JsonProperty("timeout_1xx_secs")]
-        public string Timeout1XxSecs { get; set; }
+        public int? Timeout1XxSecs { get; set; } = 3;
         /// <summary>
         /// Time(sec) before aborting if call is unanswered (min: 1, max: 600). Default: "90"
         /// </summary>
         [JsonProperty("timeout_2xx_secs")]
-        public string Timeout2XxSecs { get; set; }
+        public int? Timeout2XxSecs { get; set; } = 90;
     }
 
     public partial class Outbound
@@ -166,7 +166,7 @@ namespace Telnyx.net.Entities.Connections
         /// Parked calls will return ringback to the caller and will await for a Call Control command to define which action will be taken next.
         /// </summary>
         [JsonProperty("call_parking_enabled")]
-        public bool CallParkingEnabled { get; set; }
+        public bool? CallParkingEnabled { get; set; }
         /// <summary>
         /// When set, this will limit the total number of outbound calls to phone numbers associated with this connection.
         /// Default: null
@@ -177,12 +177,12 @@ namespace Telnyx.net.Entities.Connections
         /// Generate ringback tone through 183 session progress message with early media.
         /// </summary>
         [JsonProperty("generate_ringback_tone")]
-        public bool GenerateRingbackTone { get; set; }
+        public bool? GenerateRingbackTone { get; set; }
         /// <summary>
         /// When set, ringback will not wait for indication before sending ringback tone to calling party.
         /// </summary>
         [JsonProperty("instant_ringback_enabled")]
-        public bool InstantRingbackEnabled { get; set; } = true;
+        public bool? InstantRingbackEnabled { get; set; } = true;
         /// <summary>
         /// A 2-character country code specifying the country whose national dialing rules should be used. 
         /// For example, if set to `US` then any US number can be dialed without preprending +1 to the number. 
@@ -219,12 +219,12 @@ namespace Telnyx.net.Entities.Connections
         /// </summary>
         [JsonProperty("report_enabled")]
         [Obsolete]
-        public bool ReportEnabled { get; set; } = true;
+        public bool? ReportEnabled { get; set; } = true;
         /// <summary>
         /// RTCP reports are sent to customers based on the frequency set. Frequency is in seconds and it can be set to values from 5 to 3000 seconds.
         /// Default: 10
         /// </summary>
         [JsonProperty("report_frequency_seconds")]
-        public int ReportFrequencySeconds { get; set; } = 10;
+        public int? ReportFrequencySeconds { get; set; } = 10;
     }
 }

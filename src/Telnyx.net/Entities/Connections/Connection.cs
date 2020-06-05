@@ -33,7 +33,7 @@ namespace Telnyx.net.Entities.Connections
         public DateTimeOffset? CreatedAt { get; set; }
 
         [JsonProperty("id")]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("outbound_voice_profile_id")]
         public string OutboundVoiceProfileId { get; set; }

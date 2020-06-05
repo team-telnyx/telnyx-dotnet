@@ -45,5 +45,9 @@ namespace Telnyx.net.Entities.Enum
         /// </summary>
         [EnumMember(Value = "short_code")]
         CodeEnum = 6,
+        [EnumMember(Value = "credential_connection")]
+        CredentialConnection = 7,
+        [EnumMember(Value = "fqdn_connection")]
+        FQDNConnection = 8,
     }
 }

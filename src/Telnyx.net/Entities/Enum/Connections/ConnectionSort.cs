@@ -20,33 +20,48 @@ namespace Telnyx.net.Entities.Enum.Connections
 
         [EnumMember(Value = "-enabled")]
         EnabledDESC = 1,
+
         [EnumMember(Value = "created_at")]
         CreatedAt = 2,
 
         [EnumMember(Value = "-created_at")]
         CreatedAtDESC = 3,
+        
+        [EnumMember(Value = "connection_name")]
+        ConnectionName = 4,
 
+        [EnumMember(Value = "-connection_name")]
+        ConnectionNameDESC = 5,
+        
         [EnumMember(Value = "name")]
-        Name = 4,
+        Name = 6,
 
         [EnumMember(Value = "-name")]
-        NameDESC = 5,
+        NameDESC = 7,
 
         [EnumMember(Value = "service_plan")]
-        ServicePlan = 6,
+        ServicePlan = 8,
 
         [EnumMember(Value = "-service_plan")]
-        ServicePlanDESC = 7,
+        ServicePlanDESC = 9,
+        
         [EnumMember(Value = "traffic_type")]
-        TrafficType = 8,
+        TrafficType = 10,
 
         [EnumMember(Value = "-traffic_type")]
-        TrafficTypeDESC = 9,
+        TrafficTypeDESC = 11,
+        
         [EnumMember(Value = "usage_payment_method")]
-        UsagePaymentMethod = 10,
+        UsagePaymentMethod = 12,
 
         [EnumMember(Value = "-usage_payment_method")]
-        UsagePaymentMethodDESC = 11,
+        UsagePaymentMethodDESC = 13,
+        
+        [EnumMember(Value = "active")]
+        Active = 14,
+
+        [EnumMember(Value = "-active")]
+        ActiveDESC = 15,
     }
 
 }

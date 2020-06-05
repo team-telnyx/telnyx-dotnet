@@ -23,7 +23,7 @@ namespace Telnyx.net.Services.Connections.FQDNs
         /// Port to use when connecting to the FQDN. Example: 5060
         /// </summary>
         [JsonProperty("filter[port]")]
-        public int Port { get; set; }
+        public int? Port { get; set; }
         /// <summary>
         /// DNS record type used by the FQDN. Example: "a"
         /// </summary>

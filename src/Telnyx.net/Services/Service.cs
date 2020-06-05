@@ -547,8 +547,7 @@ namespace Telnyx
             // page.PageInfo.NextPageUrl = page.Url.Replace($"page[number]={options.PageNumber}", $"page[number]={page.PageInfo.NextPage}");
 
             if (page.HasMore && options.NumberOfPagesToFetch.HasValue
-                && options.NumberOfPagesToFetch > 1
-                && options.NumberOfPagesToFetch < page.PageInfo.TotalPages)
+                && options.NumberOfPagesToFetch > 1)
             {
                 var listOfEntities = page.Data;
                 int count = 1;
