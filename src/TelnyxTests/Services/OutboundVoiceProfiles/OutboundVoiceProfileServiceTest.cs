@@ -49,7 +49,7 @@
         {
             var result = this.service.Create(this.createOptions);
             Assert.NotNull(result);
-            Assert.Equal("Telnyx.OutboundVoiceProfile", result.GetType().ToString());
+            Assert.Equal(typeof(OutboundVoiceProfile), result.GetType());
         }
 
         [Fact]
@@ -57,7 +57,7 @@
         {
             var result = await this.service.CreateAsync(this.createOptions);
             Assert.NotNull(result);
-            Assert.Equal("Telnyx.OutboundVoiceProfile", result.GetType().ToString());
+            Assert.Equal(typeof(OutboundVoiceProfile), result.GetType());
         }
 
         [Fact]
@@ -66,7 +66,7 @@
             var result = this.service.Get(Id);
             Assert.NotNull(result);
             Assert.IsType<OutboundVoiceProfile>(result);
-            Assert.Equal("Telnyx.OutboundVoiceProfile", result.GetType().ToString());
+            Assert.Equal(typeof(OutboundVoiceProfile), result.GetType());
         }
 
         [Fact]
@@ -74,7 +74,7 @@
         {
             var result = await this.service.GetAsync(Id);
             Assert.NotNull(result);
-            Assert.Equal("Telnyx.OutboundVoiceProfile", result.GetType().ToString());
+            Assert.Equal(typeof(OutboundVoiceProfile), result.GetType());
         }
 
         [Fact]
@@ -82,7 +82,7 @@
         {
             var result = this.service.List(this.listOptions, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal("Telnyx.OutboundVoiceProfile", result.Data[0].GetType().ToString());
+            Assert.Equal(typeof(OutboundVoiceProfile), result.Data[0].GetType());
         }
 
         [Fact]
@@ -90,7 +90,7 @@
         {
             var result = await this.service.ListAsync(this.listOptions, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal("Telnyx.OutboundVoiceProfile", result.Data[0].GetType().ToString());
+            Assert.Equal(typeof(OutboundVoiceProfile), result.Data[0].GetType());
         }
 
         [Fact]
@@ -98,7 +98,7 @@
         {
             var result = this.service.Update(Id, this.updateOptions);
             Assert.NotNull(result);
-            Assert.Equal("Telnyx.OutboundVoiceProfile", result.GetType().ToString());
+            Assert.Equal(typeof(OutboundVoiceProfile), result.GetType());
         }
 
         [Fact]
@@ -106,7 +106,7 @@
         {
             var result = await this.service.UpdateAsync(Id, this.updateOptions);
             Assert.NotNull(result);
-            Assert.Equal("Telnyx.OutboundVoiceProfile", result.GetType().ToString());
+            Assert.Equal(typeof(OutboundVoiceProfile), result.GetType());
         }
     }
 }
