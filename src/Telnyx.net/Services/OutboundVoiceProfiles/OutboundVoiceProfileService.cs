@@ -19,9 +19,9 @@
             return this.CreateEntity(createOptions, requestOptions);
         }
 
-        public Task<OutboundVoiceProfile> CreateAsync(CreateOutboundVoiceProfileOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public async Task<OutboundVoiceProfile> CreateAsync(CreateOutboundVoiceProfileOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
         }
 
         public OutboundVoiceProfile Delete(string id, RequestOptions requestOptions = null)
