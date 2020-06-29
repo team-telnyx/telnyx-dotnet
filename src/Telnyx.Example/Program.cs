@@ -96,6 +96,12 @@ namespace Telnyx.Example
             callControlApplicationsExample.Get();
             callControlApplicationsExample.Delete();
             callControlApplicationsExample.Update();
+
+
+            Console.WriteLine("NumberLookupExample...");
+            NumberLookupExample numberLookupExample = new NumberLookupExample();
+            numberLookupExample.List();
+            numberLookupExample.ListAsync();
         }
     }
 }
