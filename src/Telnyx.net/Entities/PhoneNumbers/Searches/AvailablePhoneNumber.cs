@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
     using Telnyx.net.Entities.PhoneNumbers.Searches;
 
     /// <summary>
@@ -13,7 +14,7 @@
         /// Gets or sets RecordType.
         /// </summary>
         [JsonProperty("record_type")]
-        public RecordTypeEnum? RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
 
         /// <summary>
         /// Gets or sets PhoneNumber.

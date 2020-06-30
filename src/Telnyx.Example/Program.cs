@@ -74,7 +74,6 @@ namespace Telnyx.Example
             callControlExample.SendDTMF();
             callControlExample.Transfer();
 
-
             Console.WriteLine("ConferenceCommandsExample...");
             ConferenceCommandsExample conferenceCommandsExample = new ConferenceCommandsExample();
             conferenceCommandsExample.SetCallControlId("v2:ZKoCq-ggJPRhO3H9KxQa5zVQphVX8Hx9d_FRl2b-W2dQfVUHfhe13g");
@@ -88,7 +87,6 @@ namespace Telnyx.Example
             await numConfigExample.ListMessagingOptionsAsync();
             await numConfigExample.ListVoiceSettingsWithFiltersAsync();
 
-
             Console.WriteLine("CallControlApplicationExample...");
             CallControlApplicationsExample callControlApplicationsExample = new CallControlApplicationsExample();
             callControlApplicationsExample.List();
@@ -96,6 +94,24 @@ namespace Telnyx.Example
             callControlApplicationsExample.Get();
             callControlApplicationsExample.Delete();
             callControlApplicationsExample.Update();
+
+            Console.WriteLine("OutboundVoiceProfilesExample...");
+            OutboundVoiceProfilesExample outboundVoiceProfilesExample = new OutboundVoiceProfilesExample();
+            outboundVoiceProfilesExample.List();
+            outboundVoiceProfilesExample.Create();
+            outboundVoiceProfilesExample.Get();
+            outboundVoiceProfilesExample.Delete();
+            outboundVoiceProfilesExample.Update();
+
+            Console.WriteLine("Connections Example....");
+            ConnectionsExample connectionsExample = new ConnectionsExample();
+            await connectionsExample.ListConnectionsAsync();
+            await connectionsExample.ListCredConnectionsAsync();
+            await connectionsExample.ListIPConnectionsAsync();
+            await connectionsExample.ListIPsAsync();
+            await connectionsExample.ListFQDNConnectionsAsync();
+            await connectionsExample.ListFQDNsAsync();
+
 
 
             Console.WriteLine("NumberLookupExample...");

@@ -4,52 +4,20 @@ namespace Telnyx
     using System.Collections.Generic;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
 
     /// <summary>
     /// Messaging Profile.
     /// </summary>
     public class MessagingProfile : TelnyxEntity, IHasId
     {
-        /// <summary>
-        /// Identifies the type of the resource.
-        /// </summary>
-        /// <value>Type of the resource.</value>
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public enum RecordTypeEnum
-        {
-            /// <summary>
-            /// Enum ProfileEnum for messaging_profile
-            /// </summary>
-            [EnumMember(Value = "messaging_profile")]
-            ProfileEnum = 0
-        }
-
-        /// <summary>
-        /// Determines which webhook format will be used, API V1 or API V2.
-        /// </summary>
-        /// <value>Webhook format: API V1 or API V2.</value>
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public enum WebhookApiVersionEnum
-        {
-            /// <summary>
-            /// Enum ApiV1 for 1
-            /// </summary>
-            [EnumMember(Value = "1")]
-            ApiV1 = 0,
-
-            /// <summary>
-            /// Enum ApiV2 for 2
-            /// </summary>
-            [EnumMember(Value = "2")]
-            ApiV2 = 1
-        }
 
         /// <summary>
         /// Gets or sets identifies the type of the resource.
         /// </summary>
         /// <value>Identifies the type of the resource.</value>
         [JsonProperty("record_type")]
-        public RecordTypeEnum? RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
 
         /// <summary>
         /// Gets or sets uniquely identifies the resource or object.
@@ -112,7 +80,7 @@ namespace Telnyx
         /// </summary>
         /// <value>Determines which webhook format will be used, API V1 or API V2.</value>
         [JsonProperty("webhook_api_version")]
-        public WebhookApiVersionEnum? WebhookApiVersion { get; set; }
+        public WebhookAPIVersion? WebhookApiVersion { get; set; }
 
         /// <summary>
         /// Gets or sets iSO 8601 formatted date indicating when the resource was created.

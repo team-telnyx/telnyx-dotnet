@@ -4,6 +4,7 @@ namespace Telnyx
     using System.Collections.Generic;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
     using Telnyx.net.Entities.Messaging.Messaging;
 
     /// <summary>
@@ -11,19 +12,6 @@ namespace Telnyx
     /// </summary>
     public class OutboundMessage : TelnyxEntity, IHasId
     {
-        /// <summary>
-        /// Identifies the type of the resource.
-        /// </summary>
-        /// <value>Identifies the type of the resource.</value>
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public enum RecordTypeEnum
-        {
-            /// <summary>
-            /// Enum MessageEnum for message
-            /// </summary>
-            [EnumMember(Value = "message")]
-            MessageEnum = 0
-        }
 
         /// <summary>
         /// The direction of the message. Inbound messages are sent to you whereas outbound messages are sent from you.
@@ -102,7 +90,7 @@ namespace Telnyx
         /// </summary>
         /// <value>Identifies the type of the resource.</value>
         [JsonProperty("record_type")]
-        public RecordTypeEnum? RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
 
         /// <summary>
         /// Gets or sets the direction of the message. Inbound messages are sent to you whereas outbound messages are sent from you.
