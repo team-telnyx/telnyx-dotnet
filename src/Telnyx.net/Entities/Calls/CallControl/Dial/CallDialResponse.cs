@@ -3,31 +3,19 @@
     using System;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
 
     /// <summary>
     /// Call Dial Response.
     /// </summary>
     public class CallDialResponse : TelnyxEntity
     {
-        /// <summary>
-        /// The status of the Call.
-        /// </summary>
-        /// <value>The status of the call.</value>
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public enum RecordTypeEnum
-        {
-            /// <summary>
-            /// Enum PendingEnum for answered
-            /// </summary>
-            [EnumMember(Value = "call")]
-            Call = 0,
-        }
 
         /// <summary>
         /// Gets or sets destination number or SIP URI of the call.
         /// </summary>
         [JsonProperty("record_type")]
-        public RecordTypeEnum? RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
 
         /// <summary>
         /// Gets or sets destination number or SIP URI of the call.

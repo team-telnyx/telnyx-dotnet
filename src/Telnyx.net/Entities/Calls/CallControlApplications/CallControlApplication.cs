@@ -17,7 +17,7 @@
         /// </summary>
         /// <value>Identifies the type of the resource.</value>
         [JsonProperty("record_type")]
-        public RecordTypeEnum? RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
 
         /// <summary>
         /// Gets or Sets ApplicationName
@@ -103,5 +103,5 @@
         [JsonProperty("updated_at")]
         public DateTime UpdatedAt { get; set; }
 
-}
+    }
 }

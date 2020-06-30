@@ -3,6 +3,7 @@
     using Newtonsoft.Json;
     using Telnyx.net.Entities.Calls.CallControlApplications;
     using Telnyx.net.Entities.Enum;
+    using DTMFType = Entities.Enum.DTMFType;
 
     public class CreateCallControlApplicationOptions : BaseOptions
     {
@@ -11,7 +12,7 @@
         /// </summary>
         /// <value>Identifies the type of the resource.</value>
         [JsonProperty("record_type")]
-        public RecordTypeEnum? RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
 
         /// <summary>
         /// Gets or Sets ApplicationName

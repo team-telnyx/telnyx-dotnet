@@ -144,6 +144,56 @@ namespace Telnyx
         {
             return await this.GetRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, false, cancellationToken);
         }
+
+        /// <summary>
+        /// DeleteEntity.
+        /// </summary>
+        /// <param name="id">id.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>{EntityReturned}.</returns>
+        protected EntityReturned DeleteEntity(string id, RequestOptions requestOptions)
+        {
+            return this.DeleteRequest<EntityReturned>(this.InstanceUrl(id), null, requestOptions);
+        }
+
+        /// <summary>
+        /// DeleteEntityAsync.
+        /// </summary>
+        /// <param name="id">id.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>{EntityReturned}.</returns>
+        protected async Task<EntityReturned> DeleteEntityAsync(string id, RequestOptions requestOptions, CancellationToken cancellationToken)
+        {
+            return await this.DeleteRequestAsync<EntityReturned>(this.InstanceUrl(id), null, requestOptions, cancellationToken);
+        }
+
+        /// <summary>
+        /// GetEntity.
+        /// </summary>
+        /// <param name="id">id.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>{EntityReturned}.</returns>
+        protected EntityReturned GetEntity(string id, RequestOptions requestOptions)
+        {
+            return this.GetRequest<EntityReturned>(this.InstanceUrl(id), null, requestOptions, false);
+        }
+
+        /// <summary>
+        /// GetEntityAsync.
+        /// </summary>
+        /// <param name="id">id.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>{EntityReturned}.</returns>
+        protected async Task<EntityReturned> GetEntityAsync(string id, RequestOptions requestOptions, CancellationToken cancellationToken)
+        {
+            return await this.GetRequestAsync<EntityReturned>(this.InstanceUrl(id), null, requestOptions, false, cancellationToken);
+        }
         /// <summary>
         /// GetEntity
         /// </summary>
@@ -497,8 +547,7 @@ namespace Telnyx
             // page.PageInfo.NextPageUrl = page.Url.Replace($"page[number]={options.PageNumber}", $"page[number]={page.PageInfo.NextPage}");
 
             if (page.HasMore && options.NumberOfPagesToFetch.HasValue
-                && options.NumberOfPagesToFetch > 1
-                && options.NumberOfPagesToFetch < page.PageInfo.TotalPages)
+                && options.NumberOfPagesToFetch > 1)
             {
                 var listOfEntities = page.Data;
                 int count = 1;
