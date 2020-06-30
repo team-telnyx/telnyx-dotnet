@@ -1,7 +1,7 @@
 ﻿namespace Telnyx.net.Entities.Calls.CallControlApplications
 {
-    using Newtonsoft.Json;
     using System;
+    using Newtonsoft.Json;
     using Telnyx.net.Entities.Enum;
 
     public class CallControlApplication : TelnyxEntity, IHasId
@@ -86,7 +86,7 @@
         public CallControlApplicationInbound Inbound { get; set; }
 
         /// <summary>
-        /// Gets or Sets Outbound
+        /// Gets or Sets Outbound.
         /// </summary>
         [JsonProperty("outbound")]
         public CallControlApplicationOutbound Outbound { get; set; }
@@ -94,14 +94,12 @@
         /// <summary>
         /// ISO 8601 formatted date indicating when the resource was created.
         /// </summary>
-        /// <value>ISO 8601 formatted date indicating when the resource was created.</value>
         [JsonProperty("created_at")]
         public DateTime CreatedAt { get; set; }
 
         /// <summary>
         /// ISO 8601 formatted date indicating when the resource was updated.
         /// </summary>
-        /// <value>ISO 8601 formatted date indicating when the resource was updated.</value>
         [JsonProperty("updated_at")]
         public DateTime UpdatedAt { get; set; }
 
