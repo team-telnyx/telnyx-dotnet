@@ -35,8 +35,9 @@ namespace Telnyx.Example
             return list;
         }
 
-        public Task<TelnyxList<NumberLookupRecord>> ListAsync()
+        public async Task<TelnyxList<NumberLookupRecord>> ListAsync()
         {
+            TelnyxList<NumberLookupRecord> list = new TelnyxList<NumberLookupRecord>();
             NumberLookupRecordListOptions options = new NumberLookupRecordListOptions
             {
                 PhoneNumber = "+18665552368",
@@ -46,16 +47,15 @@ namespace Telnyx.Example
 
             try
             {
-                var list = service.ListAsync(options, null, new CancellationToken());
+                list = await service.ListAsync(options, null, new CancellationToken());
                 Console.WriteLine(JsonConvert.SerializeObject(list));
-                return list;
             }
             catch (TelnyxException ex)
             {
                 Console.WriteLine("exception");
                 Console.WriteLine(JsonConvert.SerializeObject(ex));
             }
-            return null;
+            return list;
         }
     }
 }
