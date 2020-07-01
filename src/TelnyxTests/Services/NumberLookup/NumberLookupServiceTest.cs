@@ -6,6 +6,7 @@ namespace TelnyxTests.Services.NumberLookup
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Telnyx;
     using Telnyx.net.Entities.NumberLookup;
     using Telnyx.net.Services;
     using Xunit;
@@ -13,35 +14,36 @@ namespace TelnyxTests.Services.NumberLookup
     public class NumberLookupServiceTest : BaseTelnyxTest
     {
         private readonly NumberLookupService service;
-        private readonly NumberLookupRecordListOptions listOptions;
+        private readonly NumberLookupRecordOptions options;
+        private readonly RequestOptions reqOptions;
         private readonly CancellationToken cancellationToken;
+        private const string _phoneNumber = "+18665552368";
 
         public NumberLookupServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
             this.service = new NumberLookupService();
 
-            this.listOptions = new NumberLookupRecordListOptions()
+            this.options = new NumberLookupRecordOptions()
             {
-                PhoneNumber = "+18665552368",
-                Type = "undefined",
+
             };
 
             this.cancellationToken = default(CancellationToken);
         }
 
         [Fact]
-        public void List()
+        public void Get()
         {
-            var result = this.service.List(this.listOptions, null);
+            var result = this.service.Get(_phoneNumber, this.options);
             Assert.NotNull(result);
             Assert.Equal(typeof(NumberLookupRecord), result.GetType());
         }
 
         [Fact]
-        public async Task ListAsync()
+        public async Task GetAsync()
         {
-            var result = await this.service.ListAsync(this.listOptions, null, this.cancellationToken);
+            var result = await this.service.GetAsync(_phoneNumber, this.options, cancellationToken: this.cancellationToken);
             Assert.NotNull(result);
             Assert.Equal(typeof(NumberLookupRecord), result.GetType());
         }

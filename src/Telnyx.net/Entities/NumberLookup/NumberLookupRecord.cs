@@ -54,7 +54,7 @@
         /// <summary>
         /// Gets id.
         /// </summary>
-        [JsonProperty("phone_number")]
+        [JsonProperty("id")]
         public string Id { get; set; }
     }
 }

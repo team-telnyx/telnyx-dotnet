@@ -6,19 +6,18 @@
     using Telnyx.net.Entities;
     using Telnyx.net.Entities.NumberLookup;
 
-    public class NumberLookupService : Service<NumberLookupRecord>,
-        IListable<NumberLookupRecord, NumberLookupRecordListOptions>
+    public class NumberLookupService : Service<NumberLookupRecord>
     {
         public override string BasePath => "/number_lookup";
 
-        public TelnyxList<NumberLookupRecord> List(NumberLookupRecordListOptions listOptions = null, RequestOptions requestOptions = null)
+        public NumberLookupRecord Get(string number, NumberLookupRecordOptions options,  RequestOptions requestOptions = null)
         {
-            return this.List(listOptions, requestOptions);
+            return this.GetEntity(number, options, requestOptions);
         }
 
-        public async Task<TelnyxList<NumberLookupRecord>> ListAsync(NumberLookupRecordListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public async Task<NumberLookupRecord> GetAsync(string number, NumberLookupRecordOptions options, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.ListAsync(listOptions, requestOptions, cancellationToken);
+            return await this.GetEntityAsync(number, options, requestOptions, cancellationToken);
         }
     }
 }

@@ -11,51 +11,49 @@ namespace Telnyx.Example
     public class NumberLookupExample
     {
         private readonly NumberLookupService service = new NumberLookupService();
-
-        public TelnyxList<NumberLookupRecord> List()
+        private const string phoneNumber = "+18665552368";
+        public NumberLookupRecord Get()
         {
-            TelnyxList<NumberLookupRecord> list = new TelnyxList<NumberLookupRecord>();
-            NumberLookupRecordListOptions options = new NumberLookupRecordListOptions
+            NumberLookupRecord record = new NumberLookupRecord();
+            NumberLookupRecordOptions options = new NumberLookupRecordOptions
             {
-                PhoneNumber = "+18665552368",
                 Type = "undefined"
             };
             Console.WriteLine(JsonConvert.SerializeObject(options));
 
             try
             {
-                list = service.List(options);
-                Console.WriteLine(JsonConvert.SerializeObject(list));
+                record = service.Get(phoneNumber,options);
+                Console.WriteLine(JsonConvert.SerializeObject(record));
             }
             catch (TelnyxException ex)
             {
                 Console.WriteLine("exception");
                 Console.WriteLine(JsonConvert.SerializeObject(ex));
             }
-            return list;
+            return record;
         }
 
-        public async Task<TelnyxList<NumberLookupRecord>> ListAsync()
+        public async Task<NumberLookupRecord> GetAsync()
         {
-            TelnyxList<NumberLookupRecord> list = new TelnyxList<NumberLookupRecord>();
-            NumberLookupRecordListOptions options = new NumberLookupRecordListOptions
+            NumberLookupRecord record = new NumberLookupRecord();
+            NumberLookupRecordOptions options = new NumberLookupRecordOptions
             {
-                PhoneNumber = "+18665552368",
                 Type = "undefined"
             };
             Console.WriteLine(JsonConvert.SerializeObject(options));
 
             try
             {
-                list = await service.ListAsync(options, null, new CancellationToken());
-                Console.WriteLine(JsonConvert.SerializeObject(list));
+                record = await service.GetAsync(phoneNumber, options, null, new CancellationToken());
+                Console.WriteLine(JsonConvert.SerializeObject(record));
             }
             catch (TelnyxException ex)
             {
                 Console.WriteLine("exception");
                 Console.WriteLine(JsonConvert.SerializeObject(ex));
             }
-            return list;
+            return record;
         }
     }
 }

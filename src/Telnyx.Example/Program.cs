@@ -116,8 +116,8 @@ namespace Telnyx.Example
 
             Console.WriteLine("NumberLookupExample...");
             NumberLookupExample numberLookupExample = new NumberLookupExample();
-            numberLookupExample.List();
-            await numberLookupExample.ListAsync();
+            numberLookupExample.Get();
+            await numberLookupExample.GetAsync();
         }
     }
 }
