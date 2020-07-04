@@ -112,12 +112,15 @@ namespace Telnyx.Example
             await connectionsExample.ListFQDNConnectionsAsync();
             await connectionsExample.ListFQDNsAsync();
 
-
-
             Console.WriteLine("NumberLookupExample...");
             NumberLookupExample numberLookupExample = new NumberLookupExample();
             numberLookupExample.Get();
             await numberLookupExample.GetAsync();
+
+            Console.WriteLine("MobileOperatorNetworksExample...");
+            MobileOperatorNetworksExample mobileOperatorNetworksExample = new MobileOperatorNetworksExample();
+            mobileOperatorNetworksExample.List();
+            await mobileOperatorNetworksExample.ListAsync();
         }
     }
 }
