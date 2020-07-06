@@ -121,6 +121,13 @@ namespace Telnyx.Example
             MobileOperatorNetworksExample mobileOperatorNetworksExample = new MobileOperatorNetworksExample();
             mobileOperatorNetworksExample.List();
             await mobileOperatorNetworksExample.ListAsync();
+
+            Console.WriteLine("OTAUpdatesExample...");
+            OTAUpdatesExample oTAUpdatesExample = new OTAUpdatesExample();
+            oTAUpdatesExample.Get();
+            await oTAUpdatesExample.GetAsync();
+            oTAUpdatesExample.List();
+            await oTAUpdatesExample.ListAsync();
         }
     }
 }
