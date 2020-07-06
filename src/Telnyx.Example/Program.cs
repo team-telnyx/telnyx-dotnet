@@ -128,6 +128,17 @@ namespace Telnyx.Example
             await oTAUpdatesExample.GetAsync();
             oTAUpdatesExample.List();
             await oTAUpdatesExample.ListAsync();
+
+            Console.WriteLine("WDRReportsExample...");
+            WDRReportsExample wDRReportsExample = new WDRReportsExample();
+            wDRReportsExample.Get();
+            await wDRReportsExample.GetAsync();
+            wDRReportsExample.List();
+            await wDRReportsExample.ListAsync();
+            wDRReportsExample.Create();
+            await wDRReportsExample.CreateAsync();
+            wDRReportsExample.Delete();
+            await wDRReportsExample.DeleteAsync();
         }
     }
 }
