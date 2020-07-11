@@ -13,12 +13,12 @@
 
         public OTAUpdatesRecord Get(string id, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(id, requestOptions);
+            return this.GetEntity(id, null, requestOptions);
         }
 
         public async Task<OTAUpdatesRecord> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.GetEntityAsync(id, requestOptions, cancellationToken);
+            return await this.GetEntityAsync(id, null, requestOptions, cancellationToken);
         }
 
         public TelnyxList<OTAUpdatesRecord> List(ListOTAUpdatesOptions listOptions = null, RequestOptions requestOptions = null)
