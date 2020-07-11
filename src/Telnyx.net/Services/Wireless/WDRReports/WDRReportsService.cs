@@ -7,51 +7,51 @@ using Telnyx.net.Entities.Wireless.WDRReports;
 namespace Telnyx.net.Services.Wireless.WDRReports
 {
     public class WDRReportsService : Service<WDRReportsRecord>,
-        IListable<WDRReportsRecord, ListWDRReportsOptions>,
+        IListable<WDRReportsRecord, ListOptions>,
         ICreatable<WDRReportsRecord, CreateWDRReportsOptions>,
         IRetrievable<WDRReportsRecord>,
         IDeletable<WDRReportsRecord>
     {
-        public override string BasePath => throw new NotImplementedException();
+        public override string BasePath => "/wireless/detail_records_reports";
 
-        public TelnyxList<WDRReportsRecord> List(ListWDRReportsOptions listOptions = null, RequestOptions requestOptions = null)
+        public TelnyxList<WDRReportsRecord> List(ListOptions listOptions = null, RequestOptions requestOptions = null)
         {
-            throw new NotImplementedException();
+            return this.ListEntities(listOptions, requestOptions);
         }
 
-        public Task<TelnyxList<WDRReportsRecord>> ListAsync(ListWDRReportsOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public Task<TelnyxList<WDRReportsRecord>> ListAsync(ListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
         }
 
         public WDRReportsRecord Create(CreateWDRReportsOptions createOptions, RequestOptions requestOptions = null)
         {
-            return this.Create(createOptions, requestOptions);
+            return this.CreateEntity(createOptions, requestOptions);
         }
 
         public async Task<WDRReportsRecord> CreateAsync(CreateWDRReportsOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.CreateAsync(createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
         }
 
         public WDRReportsRecord Get(string id, RequestOptions requestOptions = null)
         {
-            return this.Get(id, requestOptions);
+            return this.GetEntity(id, requestOptions);
         }
 
         public async Task<WDRReportsRecord> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.GetAsync(id, requestOptions);
+            return await this.GetEntityAsync(id, null, requestOptions, CancellationToken.None);
         }
 
         public WDRReportsRecord Delete(string id, RequestOptions requestOptions = null)
         {
-            return this.Delete(id, requestOptions);
+            return this.DeleteEntity(id, requestOptions);
         }
 
         public async Task<WDRReportsRecord> DeleteAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.DeleteAsync(id, requestOptions);
+            return await this.DeleteEntityAsync(id, null, requestOptions, cancellationToken);
         }
     }
 }

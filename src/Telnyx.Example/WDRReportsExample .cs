@@ -51,7 +51,7 @@ namespace Telnyx.Example
         public TelnyxList<WDRReportsRecord> List()
         {
             TelnyxList<WDRReportsRecord> result = new TelnyxList<WDRReportsRecord>();
-            ListWDRReportsOptions listOptions = new ListWDRReportsOptions
+            ListOptions listOptions = new ListOptions
             {
                 PageNumber = 1,
                 PageSize = 20
@@ -74,7 +74,7 @@ namespace Telnyx.Example
         public async Task<TelnyxList<WDRReportsRecord>> ListAsync()
         {
             TelnyxList<WDRReportsRecord> result = new TelnyxList<WDRReportsRecord>();
-            ListWDRReportsOptions listOptions = new ListWDRReportsOptions
+            ListOptions listOptions = new ListOptions
             {
                 PageNumber = 1,
                 PageSize = 20

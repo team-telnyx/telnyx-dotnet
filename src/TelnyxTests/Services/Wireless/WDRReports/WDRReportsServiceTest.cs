@@ -9,7 +9,7 @@ namespace TelnyxTests.Services.Wireless.MobileOperatorNetworks
     public class WDRReportsServiceTest : BaseTelnyxTest
     {
         private readonly WDRReportsService service;
-        private readonly ListWDRReportsOptions listOptions;
+        private readonly ListOptions listOptions;
         private readonly CreateWDRReportsOptions createOptions;
         private readonly RequestOptions requestOptions;
 
@@ -20,11 +20,7 @@ namespace TelnyxTests.Services.Wireless.MobileOperatorNetworks
         {
             this.service = new WDRReportsService();
 
-            this.listOptions = new ListWDRReportsOptions
-            {
-                PageNumber = 1,
-                PageSize = 20,
-            };
+            this.listOptions = new ListOptions();
 
             this.createOptions = new CreateWDRReportsOptions
             {
