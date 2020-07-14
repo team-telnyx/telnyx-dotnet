@@ -112,12 +112,33 @@ namespace Telnyx.Example
             await connectionsExample.ListFQDNConnectionsAsync();
             await connectionsExample.ListFQDNsAsync();
 
-
-
             Console.WriteLine("NumberLookupExample...");
             NumberLookupExample numberLookupExample = new NumberLookupExample();
             numberLookupExample.Get();
             await numberLookupExample.GetAsync();
+
+            Console.WriteLine("MobileOperatorNetworksExample...");
+            MobileOperatorNetworksExample mobileOperatorNetworksExample = new MobileOperatorNetworksExample();
+            mobileOperatorNetworksExample.List();
+            await mobileOperatorNetworksExample.ListAsync();
+
+            Console.WriteLine("OTAUpdatesExample...");
+            OTAUpdatesExample oTAUpdatesExample = new OTAUpdatesExample();
+            oTAUpdatesExample.Get();
+            await oTAUpdatesExample.GetAsync();
+            oTAUpdatesExample.List();
+            await oTAUpdatesExample.ListAsync();
+
+            Console.WriteLine("WDRReportsExample...");
+            WDRReportsExample wDRReportsExample = new WDRReportsExample();
+            wDRReportsExample.Get();
+            await wDRReportsExample.GetAsync();
+            wDRReportsExample.List();
+            await wDRReportsExample.ListAsync();
+            wDRReportsExample.Create();
+            await wDRReportsExample.CreateAsync();
+            wDRReportsExample.Delete();
+            await wDRReportsExample.DeleteAsync();
         }
     }
 }
