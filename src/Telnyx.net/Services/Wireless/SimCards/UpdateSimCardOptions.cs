@@ -1,13 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-
-namespace Telnyx.net.Entities.Wireless
+﻿namespace Telnyx.net.Services.Wireless.SimCards
 {
-    /// <summary>
-    /// Sim Card record
-    /// </summary>
-    public class SimCardRecord: TelnyxEntity, IHasId
+    using System;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+
+    public class UpdateSimCardOptions : BaseOptions
     {
         /// <summary>
         /// Gets or sets id.
