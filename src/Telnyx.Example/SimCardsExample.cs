@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Telnyx.net.Entities;
 using Telnyx.net.Entities.Wireless;
+using Telnyx.net.Entities.Wireless.SimCards;
 using Telnyx.net.Services.Wireless.SimCards;
 
 namespace Telnyx.Example
@@ -11,6 +12,7 @@ namespace Telnyx.Example
     public class SimCardsExample
     {
         private readonly SimCardsService service = new SimCardsService();
+        private readonly SimCardEnableService simCardEnableService = new SimCardEnableService();
 
         private const string id = "6a09cdc3-8948-47f0-aa62-74ac943d6c58";
 
@@ -127,6 +129,75 @@ namespace Telnyx.Example
             try
             {
                 result = await service.DeleteAsync(id, null);
+                Console.WriteLine(JsonConvert.SerializeObject(result));
+            }
+            catch (TelnyxException ex)
+            {
+                Console.WriteLine("exception");
+                Console.WriteLine(JsonConvert.SerializeObject(ex));
+            }
+            return result;
+        }
+
+        public SimCardRecord Enable()
+        {
+            SimCardRecord result = new SimCardRecord();
+
+            SimCardEnableOptions baseOptions = new SimCardEnableOptions
+            {
+                RegistrationCodes = new string[]
+                {
+                    "0000000001",
+                    "0000000002",
+                    "0000000003",
+                },
+                SimCardGroupId = "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+                Tags = new string[]
+                {
+                    "personal",
+                    "customers",
+                    "active-customers",
+                },
+            };
+
+            try
+            {
+                result = simCardEnableService.Create(id, baseOptions);
+                Console.WriteLine(JsonConvert.SerializeObject(result));
+            }
+            catch (TelnyxException ex)
+            {
+                Console.WriteLine("exception");
+                Console.WriteLine(JsonConvert.SerializeObject(ex));
+            }
+            return result;
+        }
+
+        public async Task<SimCardRecord> EnableAsync()
+        {
+            SimCardRecord result = new SimCardRecord();
+
+            SimCardEnableOptions baseOptions = new SimCardEnableOptions
+            {
+                RegistrationCodes = new string[]
+                {
+                    "0000000001",
+                    "0000000002",
+                    "0000000003",
+                },
+                SimCardGroupId = "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+                Tags = new string[]
+                {
+                    "personal",
+                    "customers",
+                    "active-customers",
+                },
+            };
+
+
+            try
+            {
+                result = await simCardEnableService.CreateAsync(id, baseOptions);
                 Console.WriteLine(JsonConvert.SerializeObject(result));
             }
             catch (TelnyxException ex)

@@ -148,6 +148,9 @@ namespace Telnyx.Example
             await simCardsExample.ListAsync();
             simCardsExample.Delete();
             await simCardsExample.DeleteAsync();
+
+            simCardsExample.Enable();
+            await simCardsExample.EnableAsync();
         }
     }
 }

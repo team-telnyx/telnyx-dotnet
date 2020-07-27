@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using Telnyx;
     using Telnyx.net.Entities.Wireless;
+    using Telnyx.net.Entities.Wireless.SimCards;
     using Telnyx.net.Services.Wireless.SimCards;
     using Xunit;
 

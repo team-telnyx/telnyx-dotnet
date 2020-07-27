@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Telnyx.net.Entities.Wireless
+namespace Telnyx.net.Entities.Wireless.SimCards
 {
     /// <summary>
     /// Sim Card record

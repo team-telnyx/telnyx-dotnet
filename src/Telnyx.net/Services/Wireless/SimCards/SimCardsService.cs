@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using Telnyx.net.Entities;
     using Telnyx.net.Entities.Wireless;
+    using Telnyx.net.Entities.Wireless.SimCards;
 
     public class SimCardsService : Service<SimCardRecord>,
         IListable<SimCardRecord, ListSimCardOptions>,
