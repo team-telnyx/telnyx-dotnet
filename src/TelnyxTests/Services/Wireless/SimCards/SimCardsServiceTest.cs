@@ -1,4 +1,4 @@
-﻿namespace TelnyxTests.Services.Wireless.MobileOperatorNetworks
+﻿namespace TelnyxTests.Services.Wireless.SimCards
 {
     using System.Threading.Tasks;
     using Telnyx;

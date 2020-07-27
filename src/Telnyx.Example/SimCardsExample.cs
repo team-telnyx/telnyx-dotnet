@@ -143,22 +143,7 @@ namespace Telnyx.Example
         {
             SimCardRecord result = new SimCardRecord();
 
-            SimCardEnableOptions baseOptions = new SimCardEnableOptions
-            {
-                RegistrationCodes = new string[]
-                {
-                    "0000000001",
-                    "0000000002",
-                    "0000000003",
-                },
-                SimCardGroupId = "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-                Tags = new string[]
-                {
-                    "personal",
-                    "customers",
-                    "active-customers",
-                },
-            };
+            BaseOptions baseOptions = new BaseOptions();
 
             try
             {
@@ -177,23 +162,7 @@ namespace Telnyx.Example
         {
             SimCardRecord result = new SimCardRecord();
 
-            SimCardEnableOptions baseOptions = new SimCardEnableOptions
-            {
-                RegistrationCodes = new string[]
-                {
-                    "0000000001",
-                    "0000000002",
-                    "0000000003",
-                },
-                SimCardGroupId = "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-                Tags = new string[]
-                {
-                    "personal",
-                    "customers",
-                    "active-customers",
-                },
-            };
-
+            BaseOptions baseOptions = new BaseOptions();
 
             try
             {
