@@ -30,12 +30,12 @@
         /// <inheritdoc/>
         public override string BasePath => "/sim_cards";
 
-        public SimCardRecord Create(string parentId, BaseOptions createOptions, string postFix = "actions/enable", RequestOptions requestOptions = null)
+        public SimCardRecord Create(string parentId, BaseOptions createOptions = null, string postFix = "actions/enable", RequestOptions requestOptions = null)
         {
             return this.CreateEntity(parentId, postFix, createOptions, requestOptions);
         }
 
-        public async Task<SimCardRecord> CreateAsync(string parentId, BaseOptions createOptions, string postFix = "actions/enable", RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public async Task<SimCardRecord> CreateAsync(string parentId, BaseOptions createOptions = null, string postFix = "actions/enable", RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
             return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
         }
