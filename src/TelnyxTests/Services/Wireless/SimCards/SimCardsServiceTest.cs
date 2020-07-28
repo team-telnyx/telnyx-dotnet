@@ -2,7 +2,6 @@
 {
     using System.Threading.Tasks;
     using Telnyx;
-    using Telnyx.net.Entities.Wireless;
     using Telnyx.net.Entities.Wireless.SimCards;
     using Telnyx.net.Services.Wireless.SimCards;
     using Xunit;
@@ -10,7 +9,7 @@
     public class SimCardsServiceTest : BaseTelnyxTest
     {
         private readonly SimCardsService service;
-        private readonly ListSimCardOptions listOptions;
+        private readonly ListOptions listOptions;
         private readonly RequestOptions requestOptions;
         private readonly BaseOptions baseOptions;
 
@@ -21,7 +20,7 @@
         {
             this.service = new SimCardsService();
 
-            this.listOptions = new ListSimCardOptions
+            this.listOptions = new ListOptions
             {
                 PageNumber = 1,
                 PageSize = 20,

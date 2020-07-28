@@ -151,6 +151,9 @@ namespace Telnyx.Example
 
             simCardsExample.Enable();
             await simCardsExample.EnableAsync();
+
+            simCardsExample.Disable();
+            await simCardsExample.DisableAsync();
         }
     }
 }

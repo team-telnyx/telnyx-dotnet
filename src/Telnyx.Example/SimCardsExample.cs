@@ -3,7 +3,6 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Telnyx.net.Entities;
-using Telnyx.net.Entities.Wireless;
 using Telnyx.net.Entities.Wireless.SimCards;
 using Telnyx.net.Services.Wireless.SimCards;
 
@@ -13,6 +12,7 @@ namespace Telnyx.Example
     {
         private readonly SimCardsService service = new SimCardsService();
         private readonly SimCardEnableService simCardEnableService = new SimCardEnableService();
+        private readonly SimCardDisableService simCardDisableService = new SimCardDisableService();
 
         private const string id = "6a09cdc3-8948-47f0-aa62-74ac943d6c58";
 
@@ -25,7 +25,7 @@ namespace Telnyx.Example
                 var baseOptions = new BaseOptions();
                 baseOptions.AddExtraParam("include_sim_card_group", "true");
 
-                result = service.Get(id, baseOptions, null);
+                result = service.Get(id, null);
                 Console.WriteLine(JsonConvert.SerializeObject(result));
             }
             catch (TelnyxException ex)
@@ -59,7 +59,7 @@ namespace Telnyx.Example
         public TelnyxList<SimCardRecord> List()
         {
             TelnyxList<SimCardRecord> result = new TelnyxList<SimCardRecord>();
-            ListSimCardOptions listOptions = new ListSimCardOptions
+            ListOptions listOptions = new ListOptions
             {
                 PageNumber = 1,
                 PageSize = 20
@@ -82,7 +82,7 @@ namespace Telnyx.Example
         public async Task<TelnyxList<SimCardRecord>> ListAsync()
         {
             TelnyxList<SimCardRecord> result = new TelnyxList<SimCardRecord>();
-            ListSimCardOptions listOptions = new ListSimCardOptions
+            ListOptions listOptions = new ListOptions
             {
                 PageNumber = 1,
                 PageSize = 20
@@ -143,11 +143,9 @@ namespace Telnyx.Example
         {
             SimCardRecord result = new SimCardRecord();
 
-            BaseOptions baseOptions = new BaseOptions();
-
             try
             {
-                result = simCardEnableService.Create(id, baseOptions);
+                result = simCardEnableService.Create(id);
                 Console.WriteLine(JsonConvert.SerializeObject(result));
             }
             catch (TelnyxException ex)
@@ -161,12 +159,47 @@ namespace Telnyx.Example
         public async Task<SimCardRecord> EnableAsync()
         {
             SimCardRecord result = new SimCardRecord();
+            try
+            {
+                result = await simCardEnableService.CreateAsync(id);
+                Console.WriteLine(JsonConvert.SerializeObject(result));
+            }
+            catch (TelnyxException ex)
+            {
+                Console.WriteLine("exception");
+                Console.WriteLine(JsonConvert.SerializeObject(ex));
+            }
+            return result;
+        }
+
+        public SimCardRecord Disable()
+        {
+            SimCardRecord result = new SimCardRecord();
 
             BaseOptions baseOptions = new BaseOptions();
 
             try
             {
-                result = await simCardEnableService.CreateAsync(id, baseOptions);
+                result = simCardDisableService.Create(id, baseOptions);
+                Console.WriteLine(JsonConvert.SerializeObject(result));
+            }
+            catch (TelnyxException ex)
+            {
+                Console.WriteLine("exception");
+                Console.WriteLine(JsonConvert.SerializeObject(ex));
+            }
+            return result;
+        }
+
+        public async Task<SimCardRecord> DisableAsync()
+        {
+            SimCardRecord result = new SimCardRecord();
+
+            BaseOptions baseOptions = new BaseOptions();
+
+            try
+            {
+                result = await simCardDisableService.CreateAsync(id, baseOptions);
                 Console.WriteLine(JsonConvert.SerializeObject(result));
             }
             catch (TelnyxException ex)

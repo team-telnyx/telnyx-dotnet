@@ -3,11 +3,10 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx.net.Entities;
-    using Telnyx.net.Entities.Wireless;
     using Telnyx.net.Entities.Wireless.SimCards;
 
     public class SimCardsService : Service<SimCardRecord>,
-        IListable<SimCardRecord, ListSimCardOptions>,
+        IListable<SimCardRecord, ListOptions>,
         IDeletable<SimCardRecord>,
         IUpdatable<SimCardRecord, UpdateSimCardOptions>
     {
@@ -23,12 +22,12 @@
             return await this.GetEntityAsync(id, baseOptions, requestOptions, cancellationToken);
         }
 
-        public TelnyxList<SimCardRecord> List(ListSimCardOptions listOptions = null, RequestOptions requestOptions = null)
+        public TelnyxList<SimCardRecord> List(ListOptions listOptions = null, RequestOptions requestOptions = null)
         {
             return this.ListEntities(listOptions, requestOptions);
         }
 
-        public async Task<TelnyxList<SimCardRecord>> ListAsync(ListSimCardOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public async Task<TelnyxList<SimCardRecord>> ListAsync(ListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
             return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
         }
