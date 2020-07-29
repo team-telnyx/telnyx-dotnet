@@ -44,7 +44,7 @@
         {
             var result = this.service.Create(this.baseOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(SimCardRecordList), result.GetType());
+            Assert.Equal(typeof(SimCardRecord), result.Data[0].GetType());
         }
 
         [Fact]
@@ -52,7 +52,7 @@
         {
             var result = await this.service.CreateAsync(this.baseOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(SimCardRecordList), result.GetType());
+            Assert.Equal(typeof(SimCardRecord), result.Data[0].GetType());
         }
     }
 }

@@ -2,23 +2,24 @@
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Telnyx.net.Entities;
     using Telnyx.net.Entities.Wireless.SimCards;
 
     /// <summary>
     /// SimCardRegisterService
     /// </summary>
-    public class SimCardRegisterService : Service<SimCardRecordList>,
-        ICreatable<SimCardRecordList, SimCardRegisterOptions>
+    public class SimCardRegisterService : Service<TelnyxCollection<SimCardRecord>>,
+        ICreatable<TelnyxCollection<SimCardRecord>, SimCardRegisterOptions>
     {
 
         public override string BasePath => "/actions/register/sim_cards";
 
-        public SimCardRecordList Create(SimCardRegisterOptions createOptions, RequestOptions requestOptions = null)
+        public TelnyxCollection<SimCardRecord> Create(SimCardRegisterOptions createOptions, RequestOptions requestOptions = null)
         {
             return this.CreateEntity(createOptions, requestOptions);
         }
 
-        public Task<SimCardRecordList> CreateAsync(SimCardRegisterOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TelnyxCollection<SimCardRecord>> CreateAsync(SimCardRegisterOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
         }

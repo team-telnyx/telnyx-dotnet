@@ -211,9 +211,9 @@ namespace Telnyx.Example
             return result;
         }
 
-        public SimCardRecordList Register()
+        public TelnyxCollection<SimCardRecord> Register()
         {
-            SimCardRecordList result = new SimCardRecordList();
+            TelnyxCollection<SimCardRecord> result = new TelnyxCollection<SimCardRecord>();
             SimCardRegisterOptions baseOptions = new SimCardRegisterOptions
             {
                 RegistrationCodes = new string[]
@@ -244,9 +244,9 @@ namespace Telnyx.Example
             return result;
         }
 
-        public async Task<SimCardRecordList> RegisterAsync()
+        public async Task<TelnyxCollection<SimCardRecord>> RegisterAsync()
         {
-            SimCardRecordList result = new SimCardRecordList();
+            TelnyxCollection<SimCardRecord> result = new TelnyxCollection<SimCardRecord>();
             SimCardRegisterOptions baseOptions = new SimCardRegisterOptions
             {
                 RegistrationCodes = new string[]
