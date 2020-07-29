@@ -2,7 +2,7 @@
 
 namespace Telnyx.net.Services.Wireless.SimCards
 {
-    public class SimCardEnableOptions : BaseOptions
+    public class SimCardRegisterOptions : ListOptions
     {
         /// <summary>
         /// Gets or sets sim_card_group_id
