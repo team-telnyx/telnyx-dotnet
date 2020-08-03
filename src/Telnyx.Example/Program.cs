@@ -154,6 +154,8 @@ namespace Telnyx.Example
             await simCardsExample.DisableAsync();
             simCardsExample.Register();
             await simCardsExample.RegisterAsync();
+            simCardsExample.BulkUpdateNetworkPreference();
+            await simCardsExample.BulkUpdateNetworkPreferenceAsync();
         }
     }
 }

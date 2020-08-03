@@ -5,13 +5,13 @@
     using Telnyx.net.Entities;
     using Telnyx.net.Entities.Wireless.SimCards;
 
-    public class SimCardBulkNetworkPreferenceService : Service<TelnyxCollection<MobileOperatorNetworksPreferencesRecord>>,
+    internal class SimCardBulkNetworkPreferenceService : Service<TelnyxCollection<MobileOperatorNetworksPreferencesRecord>>,
         IBulkUpdatable<TelnyxCollection<MobileOperatorNetworksPreferencesRecord>, SimCardBulkNetworkPreferenceUpdateOptions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SimCardBulkNetworkPreferenceService"/> class.
         /// </summary>
-        public SimCardBulkNetworkPreferenceService()
+        internal SimCardBulkNetworkPreferenceService()
             : base(null)
         {
         }
@@ -20,7 +20,7 @@
         /// Initializes a new instance of the <see cref="SimCardBulkNetworkPreferenceService"/> class.
         /// </summary>
         /// <param name="apiKey">api key.</param>
-        public SimCardBulkNetworkPreferenceService(string apiKey)
+        internal SimCardBulkNetworkPreferenceService(string apiKey)
             : base(apiKey)
         {
         }

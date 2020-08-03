@@ -8,7 +8,7 @@
     /// <summary>
     /// SimCardRegisterService
     /// </summary>
-    public class SimCardRegisterService : Service<TelnyxCollection<SimCardRecord>>,
+    internal class SimCardRegisterService : Service<TelnyxCollection<SimCardRecord>>,
         ICreatable<TelnyxCollection<SimCardRecord>, SimCardRegisterOptions>
     {
 

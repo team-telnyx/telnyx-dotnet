@@ -1,7 +1,11 @@
 ﻿namespace TelnyxTests.Services.Wireless.SimCards
 {
+    using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Telnyx;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.Wireless.OTAUpdates;
     using Telnyx.net.Entities.Wireless.SimCards;
     using Telnyx.net.Services.Wireless.SimCards;
     using Xunit;
@@ -12,6 +16,8 @@
         private readonly ListOptions listOptions;
         private readonly RequestOptions requestOptions;
         private readonly BaseOptions baseOptions;
+        private readonly SimCardRegisterOptions simCardRegisterOptions;
+        private readonly SimCardBulkNetworkPreferenceUpdateOptions simCardBulkNetworkPreferenceUpdateOptions;
 
         private const string Id = "6a09cdc3-8948-47f0-aa62-74ac943d6c58";
 
@@ -30,6 +36,40 @@
             this.baseOptions.AddExtraParam("include_sim_card_group", "true");
 
             this.requestOptions = new RequestOptions();
+
+            this.simCardRegisterOptions = new SimCardRegisterOptions
+            {
+                RegistrationCodes = new string[]
+                {
+                    "0000000001",
+                    "0000000002",
+                    "0000000003",
+                },
+                SimCardGroupId = "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+                Tags = new string[]
+                {
+                    "personal",
+                    "customers",
+                    "active-customers",
+                },
+            };
+
+            this.simCardBulkNetworkPreferenceUpdateOptions = new SimCardBulkNetworkPreferenceUpdateOptions
+            {
+                SimCardIds = new string[]
+               {
+                    "6b14e151-8493-4fa1-8664-1cc4e6d14158",
+                    "6b14e151-8493-4fa1-8664-1cc4e6d14158",
+               },
+                MobileOperatorNetworksPreferences = new List<MobileOperatorNetworksPreferences>()
+                {
+                    new MobileOperatorNetworksPreferences()
+                    {
+                        MobileOperatorNetworkId = new Guid("6a09cdc3-8948-47f0-aa62-74ac943d6c58"),
+                        Priority = 0,
+                    },
+                },
+            };
         }
 
         [Fact]
@@ -78,6 +118,70 @@
             var result = await this.service.DeleteAsync(Id, this.requestOptions);
             Assert.NotNull(result);
             Assert.Equal(typeof(SimCardRecord), result.GetType());
+        }
+
+        [Fact]
+        public void Enable()
+        {
+            var result = this.service.Enable(Id);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(SimCardRecord), result.GetType());
+        }
+
+        [Fact]
+        public async Task EnableAsync()
+        {
+            var result = await this.service.EnableAsync(Id);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(SimCardRecord), result.GetType());
+        }
+
+        [Fact]
+        public void Disable()
+        {
+            var result = this.service.Disable(Id);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(SimCardRecord), result.GetType());
+        }
+
+        [Fact]
+        public async Task DisableAsync()
+        {
+            var result = await this.service.DisableAsync(Id);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(SimCardRecord), result.GetType());
+        }
+
+        [Fact]
+        public void Register()
+        {
+            var result = this.service.Register(this.simCardRegisterOptions);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(TelnyxCollection<SimCardRecord>), result.GetType());
+        }
+
+        [Fact]
+        public async Task RegisterAsync()
+        {
+            var result = await this.service.RegisterAsync(this.simCardRegisterOptions);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(TelnyxCollection<SimCardRecord>), result.GetType());
+        }
+
+        [Fact]
+        public void BulkUpdateNetworkPreference()
+        {
+            var result = this.service.BulkUpdateNetworkPreference(this.simCardBulkNetworkPreferenceUpdateOptions);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(TelnyxCollection<MobileOperatorNetworksPreferencesRecord>), result.GetType());
+        }
+
+        [Fact]
+        public async Task BulkUpdateNetworkPreferenceAsync()
+        {
+            var result = await this.service.BulkUpdateNetworkPreferenceAsync(this.simCardBulkNetworkPreferenceUpdateOptions);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(TelnyxCollection<MobileOperatorNetworksPreferencesRecord>), result.GetType());
         }
     }
 }
