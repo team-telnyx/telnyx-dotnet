@@ -183,5 +183,89 @@
             Assert.NotNull(result);
             Assert.Equal(typeof(TelnyxCollection<MobileOperatorNetworksPreferencesRecord>), result.GetType());
         }
+
+        [Fact]
+        public void GetNetworkPreference()
+        {
+            var baseOptions = new BaseOptions();
+            baseOptions.AddExtraParam("include_ota_updates", "true");
+            var result = this.service.GetNetworkPreference(Id, baseOptions, this.requestOptions);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(SimCardRecord), result.GetType());
+        }
+
+        [Fact]
+        public async Task GetNetworkPreferenceAsync()
+        {
+            var baseOptions = new BaseOptions();
+            baseOptions.AddExtraParam("include_ota_updates", "true");
+            var result = await this.service.GetNetworkPreferenceAsync(Id, baseOptions, this.requestOptions);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(SimCardRecord), result.GetType());
+        }
+
+        [Fact]
+        public void SetNetworkPreference()
+        {
+            var baseOptions = new SimCardBulkNetworkPreferenceUpdateOptions
+            {
+                SimCardIds = new string[]
+              {
+                    "6b14e151-8493-4fa1-8664-1cc4e6d14158",
+                    "6b14e151-8493-4fa1-8664-1cc4e6d14158",
+              },
+                MobileOperatorNetworksPreferences = new List<MobileOperatorNetworksPreferences>()
+                {
+                    new MobileOperatorNetworksPreferences()
+                    {
+                        MobileOperatorNetworkId = new Guid("6a09cdc3-8948-47f0-aa62-74ac943d6c58"),
+                        Priority = 0,
+                    },
+                },
+            };
+            var result = this.service.SetNetworkPreference(Id, baseOptions, this.requestOptions);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(MobileOperatorNetworksPreferencesRecord), result.GetType());
+        }
+
+        [Fact]
+        public async Task SetNetworkPreferenceAsync()
+        {
+            var baseOptions = new SimCardBulkNetworkPreferenceUpdateOptions
+            {
+                SimCardIds = new string[]
+              {
+                    "6b14e151-8493-4fa1-8664-1cc4e6d14158",
+                    "6b14e151-8493-4fa1-8664-1cc4e6d14158",
+              },
+                MobileOperatorNetworksPreferences = new List<MobileOperatorNetworksPreferences>()
+                {
+                    new MobileOperatorNetworksPreferences()
+                    {
+                        MobileOperatorNetworkId = new Guid("6a09cdc3-8948-47f0-aa62-74ac943d6c58"),
+                        Priority = 0,
+                    },
+                },
+            };
+            var result = await this.service.SetNetworkPreferenceAsync(Id, baseOptions, this.requestOptions);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(MobileOperatorNetworksPreferencesRecord), result.GetType());
+        }
+
+        [Fact]
+        public void DeleteNetworkPreference()
+        {
+            var result = this.service.DeleteNetworkPreference(Id, this.requestOptions);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(MobileOperatorNetworksPreferencesRecord), result.GetType());
+        }
+
+        [Fact]
+        public async Task DeleteNetworkPreferenceAsync()
+        {
+            var result = await this.service.DeleteNetworkPreferenceAsync(Id, this.requestOptions);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(MobileOperatorNetworksPreferencesRecord), result.GetType());
+        }
     }
 }

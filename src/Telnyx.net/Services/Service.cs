@@ -388,6 +388,33 @@ namespace Telnyx
         }
 
         /// <summary>
+        /// UpgradeEntity.
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="options">options</param>
+        /// <param name="requestOptions">requestOptions</param>
+        /// <param name="postPath">postPath</param>
+        /// <returns>{EntityReturned}</returns>
+        protected EntityReturned UpgradeEntity(string id, BaseOptions options, RequestOptions requestOptions, string postPath = null)
+        {
+            return this.PutRequest<EntityReturned>(this.CallUrl(id, postPath), options, requestOptions);
+        }
+
+        /// <summary>
+        /// UpgradeEntityAsync.
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="options">options</param>
+        /// <param name="requestOptions">requestOptions</param>
+        /// <param name="cancellationToken">cancellationToken</param>
+        /// <param name="postPath">postPath</param>
+        /// <returns>{EntityReturned}</returns>
+        protected async Task<EntityReturned> UpgradeEntityAsync(string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken, string postPath = null)
+        {
+            return await this.PutRequestAsync<EntityReturned>(this.CallUrl(id, postPath), options, requestOptions, cancellationToken);
+        }
+
+        /// <summary>
         /// BulkUpdateEntity.
         /// </summary>
         /// <param name="options">options</param>
