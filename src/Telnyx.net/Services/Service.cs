@@ -407,9 +407,9 @@ namespace Telnyx
         /// <param name="cancellationToken">cancellationToken</param>
         /// <param name="postPath">postPath</param>
         /// <returns>{EntityReturned}</returns>
-        protected Task<EntityReturned> BulkUpdateEntityAsync(BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken, string postPath = null)
+        protected async Task<EntityReturned> BulkUpdateEntityAsync(BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken, string postPath = null)
         {
-            return this.PutRequestAsync<EntityReturned>(this.ClassUrl(), options, requestOptions, cancellationToken);
+            return await this.PutRequestAsync<EntityReturned>(this.ClassUrl(), options, requestOptions, cancellationToken);
         }
 
         /// <summary>
