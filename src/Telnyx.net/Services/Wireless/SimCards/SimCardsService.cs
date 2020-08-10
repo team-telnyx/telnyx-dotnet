@@ -71,22 +71,22 @@
 
         public SimCardRecord Enable(string parentId)
         {
-            return this.simCardEnableService.Create(parentId);
+            return this.simCardEnableService.Create(parentId, new BaseOptions());
         }
 
         public async Task<SimCardRecord> EnableAsync(string parentId)
         {
-            return await this.simCardEnableService.CreateAsync(parentId);
+            return await this.simCardEnableService.CreateAsync(parentId, new BaseOptions());
         }
 
         public SimCardRecord Disable(string parentId)
         {
-            return this.simCardDisableService.Create(parentId);
+            return this.simCardDisableService.Create(parentId, new BaseOptions());
         }
 
         public async Task<SimCardRecord> DisableAsync(string parentId)
         {
-            return await this.simCardDisableService.CreateAsync(parentId);
+            return await this.simCardDisableService.CreateAsync(parentId, new BaseOptions());
         }
 
         public TelnyxCollection<SimCardRecord> Register(SimCardRegisterOptions createOptions, RequestOptions requestOptions = null)
@@ -94,9 +94,9 @@
             return this.simCardRegisterService.Create(createOptions, requestOptions);
         }
 
-        public Task<TelnyxCollection<SimCardRecord>> RegisterAsync(SimCardRegisterOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TelnyxCollection<SimCardRecord>> RegisterAsync(SimCardRegisterOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.simCardRegisterService.CreateAsync(createOptions, requestOptions, cancellationToken);
+            return await this.simCardRegisterService.CreateAsync(createOptions, requestOptions, cancellationToken);
         }
 
         public TelnyxCollection<MobileOperatorNetworksPreferencesRecord> BulkUpdateNetworkPreference(SimCardBulkNetworkPreferenceUpdateOptions updateOptions, RequestOptions requestOptions = null)
