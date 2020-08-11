@@ -5,7 +5,7 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// CallControlRejectCreateOptions
+    /// CallControlRejectCreateOptions.
     /// </summary>
     public class CallControlRejectOptions : BaseOptions
     {
@@ -35,7 +35,7 @@
         public RejectCauseEnum? Cause { get; set; }
 
         /// <summary>
-        /// Gets or sets use this field to add state to every subsequent webhook. It must be a valid Base-64 encoded string
+        /// Gets or sets use this field to add state to every subsequent webhook. It must be a valid Base-64 encoded string.
         /// </summary>
         [JsonProperty("client_state")]
         public string ClientState { get; set; }

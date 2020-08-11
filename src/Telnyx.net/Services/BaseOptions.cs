@@ -3,7 +3,7 @@ namespace Telnyx
     using System.Collections.Generic;
 
     /// <summary>
-    /// BaseOptions
+    /// BaseOptions.
     /// </summary>
     public class BaseOptions : INestedOptions
     {
@@ -17,29 +17,29 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// Gets or sets extraParams
+        /// Gets or sets extraParams.
         /// </summary>
         public Dictionary<string, string> ExtraParams { get; set; }
 
         /// <summary>
-        /// Gets or sets expand
+        /// Gets or sets expand.
         /// </summary>
         public List<string> Expand { get; set; }
 
         /// <summary>
-        /// AddExtraParam
+        /// AddExtraParam.
         /// </summary>
-        /// <param name="key">key</param>
-        /// <param name="value">value</param>
+        /// <param name="key">key.</param>
+        /// <param name="value">value.</param>
         public void AddExtraParam(string key, string value)
         {
             this.ExtraParams.Add(key, value);
         }
 
         /// <summary>
-        /// AddExpand
+        /// AddExpand.
         /// </summary>
-        /// <param name="value">value</param>
+        /// <param name="value">value.</param>
         public void AddExpand(string value)
         {
             this.Expand.Add(value);

@@ -4,30 +4,19 @@ namespace Telnyx
     using System.Collections.Generic;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
+    using Telnyx.net.Entities.Messaging.Messaging;
 
     /// <summary>
-    /// Outbound message
+    /// Outbound message.
     /// </summary>
     public class OutboundMessage : TelnyxEntity, IHasId
     {
-        /// <summary>
-        /// Identifies the type of the resource.
-        /// </summary>
-        /// <value>Identifies the type of the resource</value>
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public enum RecordTypeEnum
-        {
-            /// <summary>
-            /// Enum MessageEnum for message
-            /// </summary>
-            [EnumMember(Value = "message")]
-            MessageEnum = 0
-        }
 
         /// <summary>
         /// The direction of the message. Inbound messages are sent to you whereas outbound messages are sent from you.
         /// </summary>
-        /// <value>The direction of the message. Inbound messages are sent to you whereas outbound messages are sent from you</value>
+        /// <value>The direction of the message. Inbound messages are sent to you whereas outbound messages are sent from you.</value>
         [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum DirectionEnum
         {
@@ -41,7 +30,7 @@ namespace Telnyx
         /// <summary>
         /// The type of message. This value can be either 'sms' or 'mms'.
         /// </summary>
-        /// <value>This value can be either 'sms' or 'mms'</value>
+        /// <value>This value can be either 'sms' or 'mms'.</value>
         [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum TypeEnum
         {
@@ -61,7 +50,7 @@ namespace Telnyx
         /// <summary>
         /// The line-type of the receiver.
         /// </summary>
-        /// <value>The line-type of the receiver</value>
+        /// <value>The line-type of the receiver.</value>
         [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum LineTypeEnum
         {
@@ -101,7 +90,7 @@ namespace Telnyx
         /// </summary>
         /// <value>Identifies the type of the resource.</value>
         [JsonProperty("record_type")]
-        public RecordTypeEnum? RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
 
         /// <summary>
         /// Gets or sets the direction of the message. Inbound messages are sent to you whereas outbound messages are sent from you.
@@ -125,27 +114,27 @@ namespace Telnyx
         public TypeEnum? Type { get; set; }
 
         /// <summary>
-        /// Gets or sets sending address (+E.164 formatted phone number, alphanumeric sender, or short code)
+        /// Gets or sets sending address (+E.164 formatted phone number, alphanumeric sender, or short code).
         /// </summary>
-        /// <value>Sending address (+E.164 formatted phone number, alphanumeric sender, or short code)</value>
+        /// <value>Sending address (+E.164 formatted phone number, alphanumeric sender, or short code).</value>
         [JsonProperty("from")]
-        public string From { get; set; }
+        public OutboundMessageFrom From { get; set; }
 
         /// <summary>
-        /// Gets or sets To
+        /// Gets or sets To.
         /// </summary>
         [JsonProperty("to")]
         public List<OutboundMessageTo> To { get; set; }
 
         /// <summary>
-        /// Gets or sets message body (i.e., content) as a non-empty string
+        /// Gets or sets message body (i.e., content) as a non-empty string.
         /// </summary>
-        /// <value>Message body (i.e., content) as a non-empty string</value>
+        /// <value>Message body (i.e., content) as a non-empty string.</value>
         [JsonProperty("text")]
         public string Text { get; set; }
 
         /// <summary>
-        /// Gets or sets Media
+        /// Gets or sets Media.
         /// </summary>
         [JsonProperty("media")]
         public List<OutboundMessageMedia> Media { get; set; }
@@ -172,7 +161,7 @@ namespace Telnyx
         public bool? UseProfileWebhooks { get; set; }
 
         /// <summary>
-        /// Gets or sets Cost
+        /// Gets or sets Cost.
         /// </summary>
         [JsonProperty("cost")]
         public OutboundMessageCost Cost { get; set; }
@@ -199,14 +188,14 @@ namespace Telnyx
         public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
-        /// Gets or sets message must be out of the queue by this time or else it will be discarded and marked as &#x27;sending_failed&#x27;. Once the message moves out of the queue, this field will be nulled
+        /// Gets or sets message must be out of the queue by this time or else it will be discarded and marked as &#x27;sending_failed&#x27;. Once the message moves out of the queue, this field will be nulled.
         /// </summary>
-        /// <value>Message must be out of the queue by this time or else it will be discarded and marked as &#x27;sending_failed&#x27;. Once the message moves out of the queue, this field will be nulled</value>
+        /// <value>Message must be out of the queue by this time or else it will be discarded and marked as &#x27;sending_failed&#x27;. Once the message moves out of the queue, this field will be nulled.</value>
         [JsonProperty("valid_until")]
         public DateTime? ValidUntil { get; set; }
 
         /// <summary>
-        /// Gets or sets InfoBlobFieldname
+        /// Gets or sets InfoBlobFieldname.
         /// </summary>
         [JsonProperty("info_blob_fieldname")]
         public string InfoBlobFieldname { get; set; }

@@ -4,7 +4,7 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// CallControlBridgeCreateOptions
+    /// CallControlBridgeCreateOptions.
     /// </summary>
     public class CallControlBridgeOptions : BaseOptions
     {
@@ -21,16 +21,16 @@
         public string ClientState { get; set; }
 
         /// <summary>
-        /// Gets or sets use this field to avoid duplicate commands. Telnyx will ignore commands with the same "command_id"
+        /// Gets or sets use this field to avoid duplicate commands. Telnyx will ignore commands with the same "command_id".
         /// </summary>
-        /// <value>Example: "891510ac-f3e4-11e8-af5b-de00688a4901"</value>
+        /// <value>Example: "891510ac-f3e4-11e8-af5b-de00688a4901".</value>
         [JsonProperty("command_id")]
         public Guid CommandId { get; set; }
 
         /// <summary>
         /// Gets or sets specifies behavior after the bridge ends (i.e. the opposite leg either hangs up or is transferred). If supplied with the value 'self', the current leg will be parked after unbridge. If not set, the default behavior is to hang up the leg.
         /// </summary>
-        /// <value>Example: "891510ac-f3e4-11e8-af5b-de00688a4901"</value>
+        /// <value>Example: "891510ac-f3e4-11e8-af5b-de00688a4901".</value>
         [JsonProperty("park_after_unbridge")]
         public string ParkAfterUnbridge { get; set; }
     }

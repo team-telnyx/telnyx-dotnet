@@ -6,7 +6,7 @@ namespace Telnyx
     public interface ITelnyxEntity
     {
         /// <summary>
-        /// Gets or sets telnyx Response
+        /// Gets or sets telnyx Response.
         /// </summary>
         TelnyxResponse TelnyxResponse { get; set; }
     }

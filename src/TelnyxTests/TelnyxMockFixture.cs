@@ -15,7 +15,7 @@ namespace TelnyxTests
 
     public class TelnyxMockFixture : IDisposable
     {
-        /// <value>Minimum required version of Telnyx-mock</value>
+        /// <value>Minimum required version of Telnyx-mock.</value>
         /// <remarks>
         /// If you bump this, don't forget to bump `Telnyx_MOCK_VERSION` in `appveyor.yml` as well.
         /// </remarks>
@@ -73,9 +73,9 @@ namespace TelnyxTests
         /// Use the special <c>*</c> character to specify that all fields should be
         /// expanded.
         /// </summary>
-        /// <param name="path">API path to use to get a fixture for telnyx-mock</param>
-        /// <param name="expansions">Set of expansions that should be applied</param>
-        /// <returns>Fixture data encoded as JSON</returns>
+        /// <param name="path">API path to use to get a fixture for telnyx-mock.</param>
+        /// <param name="expansions">Set of expansions that should be applied.</param>
+        /// <returns>Fixture data encoded as JSON.</returns>
         public string GetFixture(string path, string[] expansions = null)
         {
             string url = $"http://localhost:{this.port}{path}";
@@ -121,7 +121,7 @@ namespace TelnyxTests
         /// </summary>
         /// <param name="a">A version string (e.g. "1.2.3").</param>
         /// <param name="b">Another version string.</param>
-        /// <returns>-1 if a > b, 1 if a < b, 0 if a == b</returns>
+        /// <returns>-1 if a > b, 1 if a. < b, 0 if a == b</returns>
         private static int CompareVersions(string a, string b)
         {
             var version1 = new Version(a);

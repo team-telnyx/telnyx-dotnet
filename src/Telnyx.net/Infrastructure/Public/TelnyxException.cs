@@ -5,7 +5,7 @@ namespace Telnyx
     using System.Net;
 
     /// <summary>
-    /// Telnyx Exception
+    /// Telnyx Exception.
     /// </summary>
     public class TelnyxException : Exception
     {
@@ -19,7 +19,7 @@ namespace Telnyx
         /// <summary>
         /// Initializes a new instance of the <see cref="TelnyxException"/> class.
         /// </summary>
-        /// <param name="message">message</param>
+        /// <param name="message">message.</param>
         public TelnyxException(string message)
             : base(message)
         {
@@ -28,8 +28,8 @@ namespace Telnyx
         /// <summary>
         /// Initializes a new instance of the <see cref="TelnyxException"/> class.
         /// </summary>
-        /// <param name="message">message</param>
-        /// <param name="err">exception</param>
+        /// <param name="message">message.</param>
+        /// <param name="err">exception.</param>
         public TelnyxException(string message, Exception err)
             : base(message, err)
         {
@@ -38,9 +38,9 @@ namespace Telnyx
         /// <summary>
         /// Initializes a new instance of the <see cref="TelnyxException"/> class.
         /// </summary>
-        /// <param name="httpStatusCode">httpStatusCode</param>
-        /// <param name="telnyxErrors">telnyxErrors</param>
-        /// <param name="message">message</param>
+        /// <param name="httpStatusCode">httpStatusCode.</param>
+        /// <param name="telnyxErrors">telnyxErrors.</param>
+        /// <param name="message">message.</param>
         public TelnyxException(HttpStatusCode httpStatusCode, IEnumerable<TelnyxError> telnyxErrors, string message)
             : base(message)
         {
@@ -55,17 +55,17 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// Gets or sets HttpStatusCode
+        /// Gets or sets HttpStatusCode.
         /// </summary>
         public HttpStatusCode HttpStatusCode { get; set; }
 
         /// <summary>
-        /// Gets or sets TelnyxError
+        /// Gets or sets TelnyxError.
         /// </summary>
         public IEnumerable<TelnyxError> TelnyxErrors { get; set; }
 
         /// <summary>
-        /// Gets or sets TelnyxResponse
+        /// Gets or sets TelnyxResponse.
         /// </summary>
         public TelnyxResponse TelnyxResponse { get; set; }
     }

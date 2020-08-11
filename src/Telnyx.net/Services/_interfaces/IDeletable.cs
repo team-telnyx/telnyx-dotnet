@@ -4,27 +4,27 @@ namespace Telnyx
     using System.Threading.Tasks;
 
     /// <summary>
-    /// IDeletable
+    /// IDeletable.
     /// </summary>
-    /// <typeparam name="T">ITelnyxEntity</typeparam>
+    /// <typeparam name="T">ITelnyxEntity.</typeparam>
     public interface IDeletable<T>
         where T : ITelnyxEntity, IHasId
     {
         /// <summary>
-        /// Delete
+        /// Delete.
         /// </summary>
-        /// <param name="id">id</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>ITelnyxEntity</returns>
+        /// <param name="id">id.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>ITelnyxEntity.</returns>
         T Delete(string id, RequestOptions requestOptions = null);
 
         /// <summary>
-        /// Delete
+        /// Delete.
         /// </summary>
-        /// <param name="id">id</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>ITelnyxEntity</returns>
+        /// <param name="id">id.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>ITelnyxEntity.</returns>
         Task<T> DeleteAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

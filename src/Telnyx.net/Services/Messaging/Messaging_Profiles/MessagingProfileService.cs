@@ -1,10 +1,12 @@
 ﻿namespace Telnyx
 {
+    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using Telnyx.net.Entities;
 
     /// <summary>
-    /// MessagingProfileService
+    /// MessagingProfileService.
     /// </summary>
     public class MessagingProfileService : Service<MessagingProfile>,
         IListable<MessagingProfile, ListMessagingProfilesPhoneNumbersOptions>,
@@ -24,7 +26,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="MessagingProfileService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public MessagingProfileService(string apiKey)
             : base(apiKey)
         {
@@ -79,6 +81,18 @@
         public async Task<TelnyxList<MessagingProfile>> ListAsync(ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        public IEnumerable<MessagingProfile> ListPaged(ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null)
+        {
+            return this.ListEntitiesAutoPaging(listOptions, requestOptions);
+        }
+
+        /// <inheritdoc/>
+        public async Task<IEnumerable<MessagingProfile>> ListPagedAsync(ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return await this.ListEntitiesAutoPagingAsync(listOptions, requestOptions, cancellationToken);
         }
 
         /// <inheritdoc/>

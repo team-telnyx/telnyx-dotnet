@@ -12,14 +12,14 @@ namespace Telnyx.Infrastructure
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Client
+    /// Client.
     /// </summary>
     internal class Client
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Client"/> class.
         /// </summary>
-        /// <param name="requestMessage">Request Message</param>
+        /// <param name="requestMessage">Request Message.</param>
         public Client(HttpRequestMessage requestMessage)
         {
             this.RequestMessage = requestMessage;
@@ -28,7 +28,7 @@ namespace Telnyx.Infrastructure
         private HttpRequestMessage RequestMessage { get; set; }
 
         /// <summary>
-        /// Apply user agent
+        /// Apply user agent.
         /// </summary>
         public void ApplyUserAgent()
         {
@@ -36,7 +36,7 @@ namespace Telnyx.Infrastructure
         }
 
         /// <summary>
-        /// Apply client data
+        /// Apply client data.
         /// </summary>
         public void ApplyClientData()
         {

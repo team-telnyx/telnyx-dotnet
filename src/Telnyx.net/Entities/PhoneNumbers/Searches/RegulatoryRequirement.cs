@@ -1,15 +1,15 @@
-﻿namespace Telnyx
+﻿namespace Telnyx.net.Entities.PhoneNumbers.Searches
 {
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Regulatory Requirement
+    /// Regulatory Requirement.
     /// </summary>
-    public class RegulatoryRequirement
+    public class RegulatoryRequirement : TelnyxEntity
     {
         /// <summary>
-        /// Gets or sets RequirementType
+        /// Gets or sets RequirementType.
         /// </summary>
         [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum RequirementTypeEnum
@@ -34,7 +34,7 @@
         }
 
         /// <summary>
-        /// Gets or sets FieldType
+        /// Gets or sets FieldType.
         /// </summary>
         [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum FieldTypeEnum
@@ -65,25 +65,25 @@
         }
 
         /// <summary>
-        /// Gets or sets RequirementType
+        /// Gets or sets RequirementType.
         /// </summary>
         [JsonProperty("requirement_type")]
         public RequirementTypeEnum? RequirementType { get; set; }
 
         /// <summary>
-        /// Gets or sets Label
+        /// Gets or sets Label.
         /// </summary>
         [JsonProperty("label")]
         public string Label { get; set; }
 
         /// <summary>
-        /// Gets or sets FieldType
+        /// Gets or sets FieldType.
         /// </summary>
         [JsonProperty("field_type")]
         public FieldTypeEnum? FieldType { get; set; }
 
         /// <summary>
-        /// Gets or sets Description
+        /// Gets or sets Description.
         /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; }

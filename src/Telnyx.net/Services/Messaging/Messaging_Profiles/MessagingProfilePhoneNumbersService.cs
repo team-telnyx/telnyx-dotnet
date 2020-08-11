@@ -1,10 +1,13 @@
 ﻿namespace Telnyx
 {
+    using System;
+    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using Telnyx.net.Entities;
 
     /// <summary>
-    /// Messaging Profile Service
+    /// Messaging Profile Service.
     /// </summary>
     public class MessagingProfilePhoneNumbersService : ServiceNested<MessagingPhoneNumber>,
         IRetrievable<MessagingPhoneNumber>,
@@ -21,7 +24,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="MessagingProfilePhoneNumbersService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public MessagingProfilePhoneNumbersService(string apiKey)
             : base(apiKey)
         {
@@ -47,12 +50,22 @@
         {
             return this.ListNestedEntities(id, listOptions, requestOptions);
         }
-
         /// <inheritdoc/>
         public async Task<TelnyxList<MessagingPhoneNumber>> ListAsync(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await this.ListNestedEntitiesAsync(id, listOptions, requestOptions, cancellationToken);
         }
+        /// <inheritdoc/>
+        public IEnumerable<MessagingPhoneNumber> ListPaged(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null)
+        {
+            return this.ListEntitiesAutoPaging(id, listOptions, requestOptions);
+        }
 
+        /// <inheritdoc/>
+        public async Task<IEnumerable<MessagingPhoneNumber>> ListPagedAsync(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return await this.ListNestedEntitiesAutoPagingAsync(id, listOptions, requestOptions, cancellationToken);
+        }
+        
     }
 }

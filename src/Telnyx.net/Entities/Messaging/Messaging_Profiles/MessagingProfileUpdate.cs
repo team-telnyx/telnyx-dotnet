@@ -6,7 +6,7 @@ namespace Telnyx
     using Telnyx.net.Entities.Messaging.Messaging_Profiles;
 
     /// <summary>
-    /// Messaging Profile Update
+    /// Messaging Profile Update.
     /// </summary>
     public class MessagingProfileUpdate : BaseOptions
     {
@@ -31,9 +31,9 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// Gets or sets a user friendly name for the messaging profile
+        /// Gets or sets a user friendly name for the messaging profile.
         /// </summary>
-        /// <value>A user friendly name for the messaging profile</value>
+        /// <value>A user friendly name for the messaging profile.</value>
         [JsonProperty("name")]
         public string Name { get; set; }
 
@@ -80,7 +80,7 @@ namespace Telnyx
         public WebhookApiVersionEnum? WebhookApiVersion { get; set; }
 
         /// <summary>
-        /// Gets or sets NumberPoolSettings
+        /// Gets or sets NumberPoolSettings.
         /// </summary>
         [JsonProperty("number_pool_settings")]
         public NumberPoolSettings NumberPoolSettings { get; set; }

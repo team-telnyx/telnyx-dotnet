@@ -15,14 +15,14 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
         private const string CallControllId = "call_123";
 
         private readonly JoinConferenceService service;
-        private readonly JoinConferenceCreateOptions createOptions;
+        private readonly JoinConferenceOptions createOptions;
 
         public JoinConferenceServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
             this.service = new JoinConferenceService();
 
-            this.createOptions = new JoinConferenceCreateOptions()
+            this.createOptions = new JoinConferenceOptions()
             {
                 CallControlId = "AgDIxmoRX6QMuaIj_uXRXnPAXP0QlNfXczRrZvZakpWxBlpw48KyZQ==",
                 ClientState = "aGF2ZSBhIG5pY2UgZGF5ID1d",

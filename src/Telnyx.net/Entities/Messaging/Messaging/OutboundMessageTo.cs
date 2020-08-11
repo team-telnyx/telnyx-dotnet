@@ -5,13 +5,13 @@ namespace Telnyx
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Outbound Message To
+    /// Outbound Message To.
     /// </summary>
     [DataContract]
     public class OutboundMessageTo
     {
         /// <summary>
-        /// Gets or sets status
+        /// Gets or sets status.
         /// </summary>
         [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum StatusEnum
@@ -60,13 +60,13 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// Gets or sets Address
+        /// Gets or sets Address.
         /// </summary>
         [DataMember(Name = "address")]
         public string Address { get; set; }
 
         /// <summary>
-        /// Gets or sets Status
+        /// Gets or sets Status.
         /// </summary>
         [DataMember(Name = "status")]
         public StatusEnum? Status { get; set; }
@@ -74,7 +74,7 @@ namespace Telnyx
         /// <summary>
         /// Gets or sets ISO 8601 formatted date indicating when the resource was updated.
         /// </summary>
-        /// <value>ISO 8601 formatted date indicating when the resource was updated</value>
+        /// <value>ISO 8601 formatted date indicating when the resource was updated.</value>
         [DataMember(Name = "updated_at")]
         public DateTime? UpdatedAt { get; set; }
     }
