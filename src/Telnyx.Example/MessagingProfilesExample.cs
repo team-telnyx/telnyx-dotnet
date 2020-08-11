@@ -2,6 +2,7 @@
 {
     using System;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Messaging.Messaging_Profiles;
 
     /// <summary>
     /// Messaging Profiles Example
@@ -19,7 +20,13 @@
         {
             var createOptions = new NewMessagingProfile
             {
-                Name = "Summer Campaign"
+                Name = "Summer Campaign",
+                UrlShortnerSettings = new UrlShortnerSettings
+                {
+                    Domain = "google.com",
+                    ReplaceBlackListOnly = true,
+                    SendWebhooks = true,
+                }
             };
             Console.WriteLine(JsonConvert.SerializeObject(createOptions));
 
@@ -100,7 +107,13 @@
         {
             var updateOptions = new MessagingProfileUpdate
             {
-                Name = "Summer Campaign"
+                Name = "Summer Campaign",
+                UrlShortnerSettings = new UrlShortnerSettings
+                {
+                    Domain = "yahoo.com",
+                    ReplaceBlackListOnly = true,
+                    SendWebhooks = true,
+                }
             };
             Console.WriteLine(JsonConvert.SerializeObject(updateOptions));
 

@@ -1,10 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Telnyx.net.Entities.Messaging.Messaging_Profiles;
+
 namespace Telnyx
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Runtime.Serialization;
-    using Newtonsoft.Json;
-
     /// <summary>
     /// Messaging Profile
     /// </summary>
@@ -135,7 +136,13 @@ namespace Telnyx
         public NumberPoolSettings NumberPoolSettings { get; set; }
 
         /// <summary>
-        /// Gets or sets Id
+        /// Gets or sets UrlShortnerSettings.
+        /// </summary>
+        [JsonProperty("url_shortner_settings")]
+        public UrlShortnerSettings UrlShortnerSettings { get; set; }
+
+        /// <summary>
+        /// Gets or sets Id.
         /// </summary>
         string IHasId.Id { get => this.Id.ToString(); set => Guid.Parse(value); }
     }
