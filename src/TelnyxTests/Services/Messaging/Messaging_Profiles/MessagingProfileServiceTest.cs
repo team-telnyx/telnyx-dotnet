@@ -9,7 +9,6 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
     using System.Linq;
     using System.Net.Http;
     using System.Runtime.Serialization;
-    using System.Text.Json.Serialization;
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx;
@@ -160,79 +159,79 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             Assert.NotNull(messagingPhoneNumber.Data[0]);
             Assert.Equal(typeof(MockMessagingPhoneNumber), messagingPhoneNumber.Data[0].GetType());
         }
-        internal class MockMessagingProfilePhoneNumbersService : ServiceNested<MockMessagingPhoneNumber>,
-        INestedListable<MockMessagingPhoneNumber, ListMessagingProfilesPhoneNumbersOptions>
+
+    }
+    internal class MockMessagingProfilePhoneNumbersService : ServiceNested<MockMessagingPhoneNumber>,
+    INestedListable<MockMessagingPhoneNumber, ListMessagingProfilesPhoneNumbersOptions>
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessagingProfilePhoneNumbersService"/> class.
+        /// </summary>
+        public MockMessagingProfilePhoneNumbersService()
+            : base(null)
         {
-            /// <summary>	
-            /// Initializes a new instance of the <see cref="MessagingProfilePhoneNumbersService"/> class.	
-            /// </summary>	
-            public MockMessagingProfilePhoneNumbersService()
-                : base(null)
-            {
-            }
-
-            /// <summary>	
-            /// Initializes a new instance of the <see cref="MessagingProfilePhoneNumbersService"/> class.	
-            /// </summary>	
-            /// <param name="apiKey">api key.</param>	
-            public MockMessagingProfilePhoneNumbersService(string apiKey)
-                : base(apiKey)
-            {
-            }
-
-            /// <inheritdoc/>	
-            public override string BasePath => "/messaging_profiles/{PARENT_ID}/phone_numbers";
-
-            /// <inheritdoc/>	
-            public TelnyxList<MockMessagingPhoneNumber> List(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null)
-            {
-                return this.ListNestedEntities(id, listOptions, requestOptions);
-            }
-            /// <inheritdoc/>	
-            public async Task<TelnyxList<MockMessagingPhoneNumber>> ListAsync(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                return await this.ListNestedEntitiesAsync(id, listOptions, requestOptions, cancellationToken);
-            }
-            /// <inheritdoc/>	
-            public IEnumerable<MockMessagingPhoneNumber> ListPaged(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null)
-            {
-                return this.ListEntitiesAutoPaging(id, listOptions, requestOptions);
-            }
-
-            /// <inheritdoc/>	
-            public async Task<IEnumerable<MockMessagingPhoneNumber>> ListPagedAsync(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                return await this.ListNestedEntitiesAutoPagingAsync(id, listOptions, requestOptions, cancellationToken);
-            }
-
-        }
-        public class MockMessagingPhoneNumber : MessagingPhoneNumber
-        {
-            [JsonProperty("type")]
-            public new MockPhoneNumberTypeEnum? Type { get; set; }
-
-        }
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public enum MockPhoneNumberTypeEnum
-        {
-            /// <summary>	
-            /// long-code	
-            /// </summary>	
-            [EnumMember(Value = "longcode")]
-            LongCodeEnum = 0,
-
-            /// <summary>	
-            /// toll-free	
-            /// </summary>	
-            [EnumMember(Value = "toll-free")]
-            TollFreeEnum = 1,
-
-            /// <summary>	
-            /// short-code	
-            /// </summary>	
-            [EnumMember(Value = "shortcode")]
-            ShortCodeEnum = 2
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessagingProfilePhoneNumbersService"/> class.
+        /// </summary>
+        /// <param name="apiKey">api key.</param>
+        public MockMessagingProfilePhoneNumbersService(string apiKey)
+            : base(apiKey)
+        {
+        }
+
+        /// <inheritdoc/>
+        public override string BasePath => "/messaging_profiles/{PARENT_ID}/phone_numbers";
+
+        /// <inheritdoc/>
+        public TelnyxList<MockMessagingPhoneNumber> List(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null)
+        {
+            return this.ListNestedEntities(id, listOptions, requestOptions);
+        }
+        /// <inheritdoc/>
+        public async Task<TelnyxList<MockMessagingPhoneNumber>> ListAsync(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return await this.ListNestedEntitiesAsync(id, listOptions, requestOptions, cancellationToken);
+        }
+        /// <inheritdoc/>
+        public IEnumerable<MockMessagingPhoneNumber> ListPaged(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null)
+        {
+            return this.ListEntitiesAutoPaging(id, listOptions, requestOptions);
+        }
+
+        /// <inheritdoc/>
+        public async Task<IEnumerable<MockMessagingPhoneNumber>> ListPagedAsync(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return await this.ListNestedEntitiesAutoPagingAsync(id, listOptions, requestOptions, cancellationToken);
+        }
+
+    }
+    public class MockMessagingPhoneNumber : MessagingPhoneNumber
+    {
+        [JsonProperty("type")]
+        public new MockPhoneNumberTypeEnum? Type { get; set; }
+
+    }
+    [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+    public enum MockPhoneNumberTypeEnum
+    {
+        /// <summary>
+        /// long-code
+        /// </summary>
+        [EnumMember(Value = "longcode")]
+        LongCodeEnum = 0,
+
+        /// <summary>
+        /// toll-free
+        /// </summary>
+        [EnumMember(Value = "toll-free")]
+        TollFreeEnum = 1,
+
+        /// <summary>
+        /// short-code
+        /// </summary>
+        [EnumMember(Value = "shortcode")]
+        ShortCodeEnum = 2
     }
 }
