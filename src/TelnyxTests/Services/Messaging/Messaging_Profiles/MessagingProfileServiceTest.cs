@@ -46,7 +46,7 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             var messagingProfile = this.service.Create(this.createOptions);
             //this.AssertRequest(HttpMethod.Post, "/v2/messaging_profiles");
             Assert.NotNull(messagingProfile);
-            Assert.Equal("Telnyx.MessagingProfile", messagingProfile.GetType().ToString());
+            Assert.Equal(typeof(MessagingProfile), messagingProfile.GetType());
         }
 
         [Fact]
@@ -55,7 +55,7 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             var messagingProfile = await this.service.CreateAsync(this.createOptions);
             //this.AssertRequest(HttpMethod.Post, "/v2/messaging_profiles");
             Assert.NotNull(messagingProfile);
-            Assert.Equal("Telnyx.MessagingProfile", messagingProfile.GetType().ToString());
+            Assert.Equal(typeof(MessagingProfile), messagingProfile.GetType());
         }
 
         [Fact]
@@ -64,6 +64,8 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             var deleted = this.service.Delete(MessagingProfileId);
             //this.AssertRequest(HttpMethod.Delete, "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
             Assert.NotNull(deleted);
+            Assert.Equal(typeof(MessagingProfile), deleted.GetType());
+
         }
 
         [Fact]
@@ -72,6 +74,7 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             var deleted = await this.service.DeleteAsync(MessagingProfileId);
             //this.AssertRequest(HttpMethod.Delete, "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
             Assert.NotNull(deleted);
+            Assert.Equal(typeof(MessagingProfile), deleted.GetType());
         }
 
         [Fact]
@@ -80,7 +83,7 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             var messagingProfile = this.service.Get(MessagingProfileId);
             //this.AssertRequest(HttpMethod.Get, "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
             Assert.NotNull(messagingProfile);
-            Assert.Equal("Telnyx.MessagingProfile", messagingProfile.GetType().ToString());
+            Assert.Equal(typeof(MessagingProfile), messagingProfile.GetType());
         }
 
         [Fact]
@@ -89,7 +92,7 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             var messagingProfile = await this.service.GetAsync(MessagingProfileId);
             //this.AssertRequest(HttpMethod.Get, "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
             Assert.NotNull(messagingProfile);
-            Assert.Equal("Telnyx.MessagingProfile", messagingProfile.GetType().ToString());
+            Assert.Equal(typeof(MessagingProfile), messagingProfile.GetType());
         }
 
         [Fact]
@@ -99,7 +102,7 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             //this.AssertRequest(HttpMethod.Get, "/v2/messaging_profiles");
             Assert.NotNull(messagingProfile);
             Assert.Single(messagingProfile.Data);
-            Assert.Equal("Telnyx.MessagingProfile", messagingProfile.Data[0].GetType().ToString());
+            Assert.Equal(typeof(MessagingProfile), messagingProfile.Data[0].GetType());
         }
 
         [Fact]
@@ -108,9 +111,8 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             var messagingProfile = await this.service.ListAsync(this.listOptions, this.requestOptions, this.cancellationToken);
             //this.AssertRequest(HttpMethod.Get, "/v2/messaging_profiles");
             Assert.NotNull(messagingProfile);
-            Assert.Equal("Telnyx.MessagingProfile", messagingProfile.Data[0].GetType().ToString());
+            Assert.Equal(typeof(MessagingProfile), messagingProfile.Data[0].GetType());
             Assert.Single(messagingProfile.Data);
-            Assert.Equal("Telnyx.MessagingProfile", messagingProfile.Data[0].GetType().ToString());
         }
 
         [Fact]
@@ -119,7 +121,7 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             var messagingProfile = this.service.Update(MessagingProfileId, this.updateOptions);
             //this.AssertRequest(new HttpMethod("PATCH"), "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
             Assert.NotNull(messagingProfile);
-            Assert.Equal("Telnyx.MessagingProfile", messagingProfile.GetType().ToString());
+            Assert.Equal(typeof(MessagingProfile), messagingProfile.GetType());
         }
 
         [Fact]
@@ -128,7 +130,7 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             var messagingProfile = await this.service.UpdateAsync(MessagingProfileId, this.updateOptions);
             //this.AssertRequest(new HttpMethod("PATCH"), "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
             Assert.NotNull(messagingProfile);
-            Assert.Equal("Telnyx.MessagingProfile", messagingProfile.GetType().ToString());
+            Assert.Equal(typeof(MessagingProfile), messagingProfile.GetType());
         }
 
         [Fact]
@@ -148,7 +150,7 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             //this.AssertRequest(HttpMethod.Get, "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6/phone_numbers");
             Assert.NotNull(messagingPhoneNumber);
             Assert.NotNull(messagingPhoneNumber.Data[0]);
-            Assert.Equal("Telnyx.MessagingPhoneNumber", messagingPhoneNumber.Data[0].GetType().ToString());
+            Assert.Equal(typeof(MessagingPhoneNumber), messagingPhoneNumber.Data[0].GetType());
         }
     }
 }
