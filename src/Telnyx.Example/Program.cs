@@ -156,6 +156,12 @@ namespace Telnyx.Example
             await simCardsExample.RegisterAsync();
             simCardsExample.BulkUpdateNetworkPreference();
             await simCardsExample.BulkUpdateNetworkPreferenceAsync();
+            simCardsExample.GetNetworkPreference();
+            await simCardsExample.GetNetworkPreferenceAsync();
+            simCardsExample.SetNetworkPreference();
+            await simCardsExample.SetNetworkPreferenceAsync();
+            simCardsExample.DeleteNetworkPreference();
+            await simCardsExample.DeleteNetworkPreferenceAsync();
         }
     }
 }

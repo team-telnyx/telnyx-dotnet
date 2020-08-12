@@ -55,30 +55,12 @@
 
         public MobileOperatorNetworksPreferencesRecord Delete(string id, RequestOptions requestOptions)
         {
-            if (string.IsNullOrEmpty(id))
-            {
-                id = $"{this.PostPath}";
-            }
-            else
-            {
-                id = $"{id}/{this.PostPath}";
-            }
-
-            return this.DeleteEntity(id, requestOptions);
+            return this.DeleteEntity(id, this.PostPath, null, requestOptions);
         }
 
         public async Task<MobileOperatorNetworksPreferencesRecord> DeleteAsync(string id, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
-            if (string.IsNullOrEmpty(id))
-            {
-                id = $"{this.PostPath}";
-            }
-            else
-            {
-                id = $"{id}/{this.PostPath}";
-            }
-
-            return await this.DeleteEntityAsync(id, requestOptions, cancellationToken);
+            return await this.DeleteEntityAsync(id, this.PostPath, null, requestOptions, cancellationToken);
         }
     }
 }

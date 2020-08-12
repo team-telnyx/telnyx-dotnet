@@ -121,6 +121,33 @@ namespace Telnyx
         }
 
         /// <summary>
+        /// DeleteEntity.
+        /// </summary>
+        /// <param name="id">id.</param>
+        /// <param name="postFix">postFix.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>{EntityReturned}.</returns>
+        protected EntityReturned DeleteEntity(string id, string postFix, BaseOptions options, RequestOptions requestOptions)
+        {
+            return this.DeleteRequest<EntityReturned>(this.CallUrl(id, postFix), options, requestOptions);
+        }
+
+        /// <summary>
+        /// DeleteEntityAsync.
+        /// </summary>
+        /// <param name="id">id.</param>
+        /// <param name="postFix">postFix.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>{EntityReturned}.</returns>
+        protected async Task<EntityReturned> DeleteEntityAsync(string id, string postFix, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        {
+            return await this.DeleteRequestAsync<EntityReturned>(this.CallUrl(id, postFix), options, requestOptions, cancellationToken);
+        }
+
+        /// <summary>
         /// GetEntity.
         /// </summary>
         /// <param name="id">id.</param>

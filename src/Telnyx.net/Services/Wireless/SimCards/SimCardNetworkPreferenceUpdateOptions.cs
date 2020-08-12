@@ -4,7 +4,7 @@
     using Newtonsoft.Json;
     using Telnyx.net.Entities.Wireless.OTAUpdates;
 
-    public class SimCardNetworkPreferenceServiceUpdateOptions : BaseOptions
+    public class SimCardNetworkPreferenceUpdateOptions : BaseOptions
     {
         /// <summary>
         /// Gets or Sets MobileOperatorNetworksPreferences.

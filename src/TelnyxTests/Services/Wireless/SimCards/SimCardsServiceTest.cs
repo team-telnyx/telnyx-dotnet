@@ -207,13 +207,8 @@
         [Fact]
         public void SetNetworkPreference()
         {
-            var baseOptions = new SimCardBulkNetworkPreferenceUpdateOptions
+            var baseOptions = new SimCardNetworkPreferenceUpdateOptions
             {
-                SimCardIds = new string[]
-              {
-                    "6b14e151-8493-4fa1-8664-1cc4e6d14158",
-                    "6b14e151-8493-4fa1-8664-1cc4e6d14158",
-              },
                 MobileOperatorNetworksPreferences = new List<MobileOperatorNetworksPreferences>()
                 {
                     new MobileOperatorNetworksPreferences()
@@ -231,13 +226,8 @@
         [Fact]
         public async Task SetNetworkPreferenceAsync()
         {
-            var baseOptions = new SimCardBulkNetworkPreferenceUpdateOptions
+            var baseOptions = new SimCardNetworkPreferenceUpdateOptions
             {
-                SimCardIds = new string[]
-              {
-                    "6b14e151-8493-4fa1-8664-1cc4e6d14158",
-                    "6b14e151-8493-4fa1-8664-1cc4e6d14158",
-              },
                 MobileOperatorNetworksPreferences = new List<MobileOperatorNetworksPreferences>()
                 {
                     new MobileOperatorNetworksPreferences()
