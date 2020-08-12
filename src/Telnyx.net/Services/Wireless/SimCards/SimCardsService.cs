@@ -19,8 +19,6 @@
 
         private readonly SimCardBulkNetworkPreferenceService simCardBulkNetworkPreferenceService;
 
-        private readonly SimCardNetworkPreferenceService simCardNetworkPreferenceService;
-
         public override string BasePath => "/sim_cards";
 
         public SimCardsService()
@@ -29,7 +27,6 @@
             this.simCardDisableService = new SimCardDisableService();
             this.simCardRegisterService = new SimCardRegisterService();
             this.simCardBulkNetworkPreferenceService = new SimCardBulkNetworkPreferenceService();
-            this.simCardNetworkPreferenceService = new SimCardNetworkPreferenceService();
         }
 
         public SimCardRecord Get(string id, BaseOptions baseOptions, RequestOptions requestOptions = null)
@@ -74,22 +71,22 @@
 
         public SimCardRecord Enable(string parentId)
         {
-            return this.simCardEnableService.Create(parentId);
+            return this.simCardEnableService.Create(parentId, new BaseOptions());
         }
 
         public async Task<SimCardRecord> EnableAsync(string parentId)
         {
-            return await this.simCardEnableService.CreateAsync(parentId);
+            return await this.simCardEnableService.CreateAsync(parentId, new BaseOptions());
         }
 
         public SimCardRecord Disable(string parentId)
         {
-            return this.simCardDisableService.Create(parentId);
+            return this.simCardDisableService.Create(parentId, new BaseOptions());
         }
 
         public async Task<SimCardRecord> DisableAsync(string parentId)
         {
-            return await this.simCardDisableService.CreateAsync(parentId);
+            return await this.simCardDisableService.CreateAsync(parentId, new BaseOptions());
         }
 
         public TelnyxCollection<SimCardRecord> Register(SimCardRegisterOptions createOptions, RequestOptions requestOptions = null)
@@ -97,9 +94,9 @@
             return this.simCardRegisterService.Create(createOptions, requestOptions);
         }
 
-        public Task<TelnyxCollection<SimCardRecord>> RegisterAsync(SimCardRegisterOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TelnyxCollection<SimCardRecord>> RegisterAsync(SimCardRegisterOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.simCardRegisterService.CreateAsync(createOptions, requestOptions, cancellationToken);
+            return await this.simCardRegisterService.CreateAsync(createOptions, requestOptions, cancellationToken);
         }
 
         public TelnyxCollection<MobileOperatorNetworksPreferencesRecord> BulkUpdateNetworkPreference(SimCardBulkNetworkPreferenceUpdateOptions updateOptions, RequestOptions requestOptions = null)
@@ -112,6 +109,7 @@
             return await this.simCardBulkNetworkPreferenceService.UpdateAsync(updateOptions, requestOptions, cancellationToken);
         }
 
+        
         public MobileOperatorNetworksPreferencesRecord GetNetworkPreference(string id, BaseOptions baseOptions, RequestOptions requestOptions = null, string postFix = "network_preferences")
         {
             return this.simCardNetworkPreferenceService.Get(id, baseOptions, requestOptions, postFix);
