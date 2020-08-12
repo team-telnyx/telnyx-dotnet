@@ -19,6 +19,8 @@
 
         private readonly SimCardBulkNetworkPreferenceService simCardBulkNetworkPreferenceService;
 
+        private readonly SimCardNetworkPreferenceService simCardNetworkPreferenceService;
+
         public override string BasePath => "/sim_cards";
 
         public SimCardsService()
@@ -27,6 +29,7 @@
             this.simCardDisableService = new SimCardDisableService();
             this.simCardRegisterService = new SimCardRegisterService();
             this.simCardBulkNetworkPreferenceService = new SimCardBulkNetworkPreferenceService();
+            this.simCardNetworkPreferenceService = new SimCardNetworkPreferenceService();
         }
 
         public SimCardRecord Get(string id, BaseOptions baseOptions, RequestOptions requestOptions = null)
