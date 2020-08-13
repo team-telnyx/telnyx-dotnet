@@ -52,7 +52,7 @@ namespace Telnyx.net.Services.Messaging.Messaging_Profiles.Metrics
         /// <param name="requestOptions">Api Request Options (optional).</param>
         /// <param name="ct"></param>
         /// <returns>Metrics Detail Response</returns>
-        public async Task<MessagingProfileMetricsDetailResponse> GetDetailedMetricsAsync(string messagingProfileId, MetricsOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
+        public async Task<MessagingProfileMetricsDetail> GetDetailedMetricsAsync(string messagingProfileId, MetricsOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
             return await _detailService.GetByIdAsync(messagingProfileId, options, requestOptions, ct);
         }
@@ -64,7 +64,7 @@ namespace Telnyx.net.Services.Messaging.Messaging_Profiles.Metrics
         /// <param name="options">Query string options for timeframe.</param>
         /// <param name="requestOptions">Api Request Options (optional).</param>
         /// <returns>Metrics Detail Response</returns>
-        public MessagingProfileMetricsDetailResponse GetDetailedMetrics(string messagingProfileId, MetricsOptions options, RequestOptions requestOptions = null)
+        public MessagingProfileMetricsDetail GetDetailedMetrics(string messagingProfileId, MetricsOptions options, RequestOptions requestOptions = null)
         {
             return _detailService.GetById(messagingProfileId, options, requestOptions);
         }

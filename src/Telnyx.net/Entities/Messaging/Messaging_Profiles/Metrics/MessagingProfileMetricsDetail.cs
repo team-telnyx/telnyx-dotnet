@@ -9,7 +9,7 @@ namespace Telnyx.net.Entities.Messaging.Messaging_Profiles.Metrics
 {
     public class MessagingProfileMetricsDetail : TelnyxEntity
     {
-        [JsonProperty("detialed")]
+        [JsonProperty("detailed")]
         public IEnumerable<MessagingProfileMetricsDetailed> Detailed { get; set; }
         
         [JsonProperty("overview")]

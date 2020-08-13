@@ -27,7 +27,7 @@ namespace TelnyxTests.Services.Messaging.Messaging_Profiles.Metrics
         {
             var messagingProfileMetrics = this.service.GetDetailedMetrics(MessagingProfileId, getOptions);
             Assert.NotNull(messagingProfileMetrics);
-            Assert.Equal(typeof(MessagingProfileMetricsDetailResponse), messagingProfileMetrics.GetType());
+            Assert.Equal(typeof(MessagingProfileMetricsDetail), messagingProfileMetrics.GetType());
         }
 
         [Fact]
@@ -35,7 +35,7 @@ namespace TelnyxTests.Services.Messaging.Messaging_Profiles.Metrics
         {
             var messagingProfileMetrics = await this.service.GetDetailedMetricsAsync(MessagingProfileId, getOptions);
             Assert.NotNull(messagingProfileMetrics);
-            Assert.Equal(typeof(MessagingProfileMetricsDetailResponse), messagingProfileMetrics.GetType());
+            Assert.Equal(typeof(MessagingProfileMetricsDetail), messagingProfileMetrics.GetType());
         }
 
         [Fact]
