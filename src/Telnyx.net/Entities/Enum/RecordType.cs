@@ -49,5 +49,7 @@ namespace Telnyx.net.Entities.Enum
         CredentialConnection = 7,
         [EnumMember(Value = "fqdn_connection")]
         FQDNConnection = 8,
+        [EnumMember(Value = "messaging_profile_metrics")]
+        NessagingProfileMetrics = 9,
     }
 }
