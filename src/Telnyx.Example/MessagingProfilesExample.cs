@@ -193,7 +193,7 @@
                 TimeFrame = "16h"
             };
             var response = await metricsService.GetDetailedMetricsAsync(messagingProfileId, getOptions);
-            Console.WriteLine(JsonConvert.SerializeObject(response));
+            Console.WriteLine(JsonConvert.SerializeObject(response,Formatting.Indented));
         }
 
         public async Task ListOverviewAsync()
@@ -203,7 +203,7 @@
                 TimeFrame = "16h"
             };
             var response = await metricsService.ListHighLevelMetricsAsync(listOptions);
-            Console.WriteLine(JsonConvert.SerializeObject(response));
+            Console.WriteLine(JsonConvert.SerializeObject(response, Formatting.Indented));
         }
     }
 }
