@@ -79,6 +79,33 @@ namespace Telnyx.Infrastructure
         }
 
         /// <summary>
+        /// PutString.
+        /// </summary>
+        /// <param name="url">url.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>telnyxResponse.</returns>
+        public static TelnyxResponse PutString(string url, RequestOptions requestOptions)
+        {
+            var wr = GetRequestMessage(url, HttpMethod.Put, requestOptions);
+
+            return ExecuteRequest(wr);
+        }
+
+        /// <summary>
+        /// PutStringAsync.
+        /// </summary>
+        /// <param name="url">url.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>telnyxResponse.</returns>
+        public static async Task<TelnyxResponse> PutStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var wr = GetRequestMessage(url, HttpMethod.Put, requestOptions);
+
+            return await ExecuteRequestAsync(wr, cancellationToken);
+        }
+
+        /// <summary>
         /// Delete.
         /// </summary>
         /// <param name="url">url.</param>
@@ -265,7 +292,7 @@ namespace Telnyx.Infrastructure
 
         private static HttpRequestMessage BuildRequest(HttpMethod method, string url)
         {
-            if (method != HttpMethod.Post && method != new HttpMethod("PATCH"))
+            if (method != HttpMethod.Post && method != new HttpMethod("PATCH") && method != HttpMethod.Put)
             {
                 return new HttpRequestMessage(method, new Uri(url));
             }

@@ -144,6 +144,23 @@ namespace Telnyx.Example
             await wDRReportsExample.CreateAsync();
             wDRReportsExample.Delete();
             await wDRReportsExample.DeleteAsync();
+
+            Console.WriteLine("SimCardsExample...");
+            SimCardsExample simCardsExample = new SimCardsExample();
+            simCardsExample.Get();
+            await simCardsExample.GetAsync();
+            simCardsExample.List();
+            await simCardsExample.ListAsync();
+            simCardsExample.Delete();
+            await simCardsExample.DeleteAsync();
+            simCardsExample.Enable();
+            await simCardsExample.EnableAsync();
+            simCardsExample.Disable();
+            await simCardsExample.DisableAsync();
+            simCardsExample.Register();
+            await simCardsExample.RegisterAsync();
+            simCardsExample.BulkUpdateNetworkPreference();
+            await simCardsExample.BulkUpdateNetworkPreferenceAsync();
         }
     }
 }

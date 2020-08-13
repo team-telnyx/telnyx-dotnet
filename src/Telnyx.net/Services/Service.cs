@@ -359,6 +359,7 @@ namespace Telnyx
         {
             return await this.PatchRequestAsync<EntityReturned>(this.InstanceUrl(id), options, requestOptions, cancellationToken);
         }
+
         /// <summary>
         /// UpdateEntity
         /// </summary>
@@ -385,6 +386,32 @@ namespace Telnyx
         {
             return await this.PatchRequestAsync<EntityReturned>(this.CallUrl(id, postPath), options, requestOptions, cancellationToken);
         }
+
+        /// <summary>
+        /// BulkUpdateEntity.
+        /// </summary>
+        /// <param name="options">options</param>
+        /// <param name="requestOptions">requestOptions</param>
+        /// <param name="postPath">postPath</param>
+        /// <returns>{EntityReturned}</returns>
+        protected EntityReturned BulkUpdateEntity(BaseOptions options, RequestOptions requestOptions, string postPath = null)
+        {
+            return this.PutRequest<EntityReturned>(this.ClassUrl(), options, requestOptions);
+        }
+
+        /// <summary>
+        /// BulkUpdateEntity.
+        /// </summary>
+        /// <param name="options">options</param>
+        /// <param name="requestOptions">requestOptions</param>
+        /// <param name="cancellationToken">cancellationToken</param>
+        /// <param name="postPath">postPath</param>
+        /// <returns>{EntityReturned}</returns>
+        protected async Task<EntityReturned> BulkUpdateEntityAsync(BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken, string postPath = null)
+        {
+            return await this.PutRequestAsync<EntityReturned>(this.ClassUrl(), options, requestOptions, cancellationToken);
+        }
+
         /// <summary>
         /// DeleteRequest
         /// </summary>
@@ -634,6 +661,40 @@ namespace Telnyx
         {
             return Mapper<T>.MapFromJson(
                 await Requestor.PatchStringAsync(
+                    this.ApplyAllParameters(options, url),
+                    this.SetupRequestOptions(requestOptions),
+                    cancellationToken).ConfigureAwait(false), "data");
+        }
+
+        /// <summary>
+        /// PatchRequest.
+        /// </summary>
+        /// <typeparam name="T">Request for {EntityReturned}.</typeparam>
+        /// <param name="url">url.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>{EntityReturned}.</returns>
+        protected T PutRequest<T>(string url, BaseOptions options, RequestOptions requestOptions)
+        {
+            return Mapper<T>.MapFromJson(
+                Requestor.PutString(
+                    this.ApplyAllParameters(options, url),
+                    this.SetupRequestOptions(requestOptions)), "data");
+        }
+
+        /// <summary>
+        /// PatchRequestAsync.
+        /// </summary>
+        /// <typeparam name="T">Request for {EntityReturned}.</typeparam>
+        /// <param name="url">url.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>{EntityReturned}.</returns>
+        protected async Task<T> PutRequestAsync<T>(string url, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        {
+            return Mapper<T>.MapFromJson(
+                await Requestor.PutStringAsync(
                     this.ApplyAllParameters(options, url),
                     this.SetupRequestOptions(requestOptions),
                     cancellationToken).ConfigureAwait(false), "data");
