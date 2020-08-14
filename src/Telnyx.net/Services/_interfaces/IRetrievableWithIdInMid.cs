@@ -12,7 +12,7 @@
         /// <param name="id">id.</param>
         /// <param name="requestOptions">requestOptions.</param>
         /// <returns>ITelnyxEntity.</returns>
-        T Get(string id, BaseOptions baseOptions, RequestOptions requestOptions = null, string postFix = null);
+        T Get(string id, BaseOptions baseOptions, RequestOptions requestOptions = null);
 
         /// <summary>
         /// GetAsync.
@@ -21,6 +21,6 @@
         /// <param name="requestOptions">requestOptions.</param>
         /// <param name="cancellationToken">cancellationToken.</param>
         /// <returns>ITelnyxEntity.</returns>
-        Task<T> GetAsync(string id, BaseOptions baseOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken), string postFix = null);
+        Task<T> GetAsync(string id, BaseOptions baseOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

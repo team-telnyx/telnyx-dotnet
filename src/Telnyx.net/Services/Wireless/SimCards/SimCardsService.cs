@@ -10,7 +10,6 @@
         IDeletable<SimCardRecord>,
         IUpdatable<SimCardRecord, UpdateSimCardOptions>
     {
-
         private readonly SimCardEnableService simCardEnableService;
 
         private readonly SimCardDisableService simCardDisableService;
@@ -112,15 +111,14 @@
             return await this.simCardBulkNetworkPreferenceService.UpdateAsync(updateOptions, requestOptions, cancellationToken);
         }
 
-        
-        public MobileOperatorNetworksPreferencesRecord GetNetworkPreference(string id, BaseOptions baseOptions, RequestOptions requestOptions = null, string postFix = "network_preferences")
+        public MobileOperatorNetworksPreferencesRecord GetNetworkPreference(string id, BaseOptions baseOptions, RequestOptions requestOptions = null)
         {
-            return this.simCardNetworkPreferenceService.Get(id, baseOptions, requestOptions, postFix);
+            return this.simCardNetworkPreferenceService.Get(id, baseOptions, requestOptions);
         }
 
-        public async Task<MobileOperatorNetworksPreferencesRecord> GetNetworkPreferenceAsync(string id, BaseOptions baseOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default, string postFix = "network_preferences")
+        public async Task<MobileOperatorNetworksPreferencesRecord> GetNetworkPreferenceAsync(string id, BaseOptions baseOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.simCardNetworkPreferenceService.GetAsync(id, baseOptions, requestOptions, cancellationToken, postFix);
+            return await this.simCardNetworkPreferenceService.GetAsync(id, baseOptions, requestOptions, cancellationToken);
         }
 
         public MobileOperatorNetworksPreferencesRecord SetNetworkPreference(string id, BaseOptions baseOptions, RequestOptions requestOptions = null)

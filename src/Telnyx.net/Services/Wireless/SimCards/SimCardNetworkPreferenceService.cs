@@ -2,7 +2,6 @@
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Telnyx.net.Entities.Wireless.OTAUpdates;
     using Telnyx.net.Entities.Wireless.SimCards;
     using Telnyx.net.Services._interfaces;
 
@@ -33,14 +32,14 @@
 
         public override string PostPath => "network_preferences";
 
-        public MobileOperatorNetworksPreferencesRecord Get(string id, BaseOptions baseOptions, RequestOptions requestOptions = null, string postFix = "network_preferences")
+        public MobileOperatorNetworksPreferencesRecord Get(string id, BaseOptions baseOptions, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(id, baseOptions, requestOptions, postFix);
+            return this.GetEntity(id, baseOptions, requestOptions, this.PostPath);
         }
 
-        public async Task<MobileOperatorNetworksPreferencesRecord> GetAsync(string id, BaseOptions baseOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default, string postFix = "network_preferences")
+        public async Task<MobileOperatorNetworksPreferencesRecord> GetAsync(string id, BaseOptions baseOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.GetEntityAsync(id, baseOptions, requestOptions, cancellationToken, postFix);
+            return await this.GetEntityAsync(id, baseOptions, requestOptions, cancellationToken, this.PostPath);
         }
 
         public MobileOperatorNetworksPreferencesRecord Update(string id, BaseOptions updateOptions, RequestOptions requestOptions = null)
