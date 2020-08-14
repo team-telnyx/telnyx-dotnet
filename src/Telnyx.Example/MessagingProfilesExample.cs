@@ -1,16 +1,21 @@
 ﻿namespace Telnyx.Example
 {
     using System;
+    using System.Threading.Tasks;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Messaging.Messaging_Profiles;
+    using Telnyx.net.Entities.Messaging.Messaging_Profiles.Metrics;
+    using Telnyx.net.Services.Messaging.Messaging_Profiles.Metrics;
 
     /// <summary>
     /// Messaging Profiles Example
     /// </summary>
     public class MessagingProfilesExample
     {
-        private const string MessagingProfileId = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
+        private const string MessagingProfileId = "4001722f-5463-460b-adc9-c4ecba582176";
         private readonly MessagingProfileService service = new MessagingProfileService();
         private readonly MessagingProfilePhoneNumbersService phoneNumbersService = new MessagingProfilePhoneNumbersService();
+        private readonly MessagingProfileMetricsService metricsService = new MessagingProfileMetricsService();
 
         /// <summary>
         /// Create messaging profile
@@ -19,7 +24,13 @@
         {
             var createOptions = new NewMessagingProfile
             {
-                Name = "Summer Campaign"
+                Name = "Summer Campaign",
+                UrlShortnerSettings = new UrlShortnerSettings
+                {
+                    Domain = "google.com",
+                    ReplaceBlackListOnly = true,
+                    SendWebhooks = true,
+                }
             };
             Console.WriteLine(JsonConvert.SerializeObject(createOptions));
 
@@ -128,7 +139,13 @@
         {
             var updateOptions = new MessagingProfileUpdate
             {
-                Name = "Summer Campaign"
+                Name = "Summer Campaign",
+                UrlShortnerSettings = new UrlShortnerSettings
+                {
+                    Domain = "yahoo.com",
+                    ReplaceBlackListOnly = true,
+                    SendWebhooks = true,
+                }
             };
             Console.WriteLine(JsonConvert.SerializeObject(updateOptions));
 
@@ -163,6 +180,30 @@
                 Console.WriteLine("exception");
                 Console.WriteLine(JsonConvert.SerializeObject(ex));
             }
+        }
+
+        public async Task GetDetailAsync(string messagingProfileId = null)
+        {
+            if (string.IsNullOrEmpty(messagingProfileId))
+            {
+                messagingProfileId = MessagingProfileId;
+            }
+            var getOptions = new MetricsOptions
+            {
+                TimeFrame = "16h"
+            };
+            var response = await metricsService.GetDetailedMetricsAsync(messagingProfileId, getOptions);
+            Console.WriteLine(JsonConvert.SerializeObject(response,Formatting.Indented));
+        }
+
+        public async Task ListOverviewAsync()
+        {
+            var listOptions = new ListMetricsOptions
+            {
+                TimeFrame = "16h"
+            };
+            var response = await metricsService.ListHighLevelMetricsAsync(listOptions);
+            Console.WriteLine(JsonConvert.SerializeObject(response, Formatting.Indented));
         }
     }
 }

@@ -32,6 +32,11 @@ namespace Telnyx.Example
             messagingProfilesExample.Update();
             messagingProfilesExample.Delete();
 
+            Console.WriteLine("MessagingProfilesMetricsExample...");
+            //Optional add your own messaging profile ID
+            await messagingProfilesExample.GetDetailAsync();
+            await messagingProfilesExample.ListOverviewAsync();
+
             Console.WriteLine("NumberOrderExample...");
             NumberOrderExample numberOrderExample = new NumberOrderExample();
             numberOrderExample.ListNumberOrder();
