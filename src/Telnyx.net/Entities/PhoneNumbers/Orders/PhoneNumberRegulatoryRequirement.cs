@@ -3,6 +3,7 @@
     using System;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
 
     /// <summary>
     /// Phone Number Regulatory Requirement.
@@ -44,7 +45,7 @@
         /// Gets or sets recordType.
         /// </summary>
         [JsonProperty("record_type")]
-        public string RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
 
         /// <summary>
         /// Gets or sets unique id for a requirement.

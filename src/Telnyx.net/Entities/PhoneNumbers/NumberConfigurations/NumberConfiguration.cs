@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using Telnyx.net.Entities.Enum;
 
 namespace Telnyx.net.Entities.PhoneNumbers.NumberConfigurations
 {
@@ -114,7 +115,7 @@ namespace Telnyx.net.Entities.PhoneNumbers.NumberConfigurations
         public DateTimeOffset? PurchasedAt { get; set; }
 
         [JsonProperty("record_type")]
-        public string RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
 
         [JsonProperty("status")]
         public NumberConfigStatus? Status { get; set; }

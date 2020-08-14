@@ -1,6 +1,7 @@
 ﻿namespace Telnyx.net.Entities.Wireless.MobileOperatorNetworks
 {
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
 
     public class MobileOperatorNetworksRecord : TelnyxEntity, IHasId
     {
@@ -14,7 +15,7 @@
         /// Identifies the type of the resource.
         /// </summary>
         [JsonProperty("record_type")]
-        public string RecordType { get; private set; }
+        public RecordType? RecordType { get; private set; }
 
         /// <summary>
         /// The operator network name.

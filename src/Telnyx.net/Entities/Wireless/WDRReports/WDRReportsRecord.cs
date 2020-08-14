@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Telnyx.net.Entities.Enum;
 
 namespace Telnyx.net.Entities.Wireless.WDRReports
 {
@@ -14,7 +15,7 @@ namespace Telnyx.net.Entities.Wireless.WDRReports
         /// Gets or Sets RecordType.
         /// </summary>
         [JsonProperty("record_type")]
-        public string RecordType { get; private set; }
+        public RecordType? RecordType { get; private set; }
 
         /// <summary>
         /// ISO 8601 formatted date-time indicating when the resource was created.
