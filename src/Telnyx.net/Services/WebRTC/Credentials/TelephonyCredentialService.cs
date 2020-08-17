@@ -6,7 +6,8 @@
     using Telnyx.net.Entities.WebRTC.Credentials;
 
     public class TelephonyCredentialService : Service<WebRtcCredential>,
-        IListable<WebRtcCredential, ListOptions>
+        IListable<WebRtcCredential, ListOptions>,
+        ICreatable<WebRtcCredential, TelephonyCredentialCreateOptions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TelephonyCredentialService"/> class.
@@ -27,6 +28,16 @@
 
         /// <inheritdoc/>
         public override string BasePath => "/telephony_credentials";
+
+        public WebRtcCredential Create(TelephonyCredentialCreateOptions createOptions, RequestOptions requestOptions = null)
+        {
+            return this.CreateEntity(createOptions, requestOptions);
+        }
+
+        public async Task<WebRtcCredential> CreateAsync(TelephonyCredentialCreateOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        {
+            return await this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
+        }
 
         public TelnyxList<WebRtcCredential> List(ListOptions listOptions = null, RequestOptions requestOptions = null)
         {
