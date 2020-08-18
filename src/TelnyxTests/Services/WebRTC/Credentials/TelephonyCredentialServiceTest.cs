@@ -71,5 +71,21 @@
             Assert.NotNull(result);
             Assert.Equal(typeof(WebRtcCredential), result.GetType());
         }
+
+        [Fact]
+        public void Get()
+        {
+            var result = this.service.Get(Id, this.requestOptions);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(WebRtcCredential), result.GetType());
+        }
+
+        [Fact]
+        public async Task GetAsync()
+        {
+            var result = await this.service.GetAsync(Id, this.requestOptions);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(WebRtcCredential), result.GetType());
+        }
     }
 }
