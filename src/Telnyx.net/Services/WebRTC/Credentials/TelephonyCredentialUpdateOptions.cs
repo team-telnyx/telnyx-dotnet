@@ -2,7 +2,7 @@
 {
     using Newtonsoft.Json;
 
-    public class TelephonyCredentialCreateOptions : BaseOptions
+    public class TelephonyCredentialUpdateOptions : BaseOptions
     {
         /// <summary>
         /// Gets or sets connection_id.
@@ -15,5 +15,11 @@
         /// </summary>
         [JsonProperty("expires_at")]
         public string ExpiresAt { get; set; }
+
+        /// <summary>
+        /// Gets or sets name.
+        /// </summary>
+        [JsonProperty("name")]
+        public string Name { get; set; }
     }
 }

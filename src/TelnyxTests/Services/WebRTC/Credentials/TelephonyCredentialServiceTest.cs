@@ -16,6 +16,7 @@
         private readonly RequestOptions requestOptions;
         private readonly BaseOptions baseOptions;
         private readonly TelephonyCredentialCreateOptions createOptions;
+        private readonly TelephonyCredentialUpdateOptions updateOptions;
 
         private const string Id = "6a09cdc3-8948-47f0-aa62-74ac943d6c58";
 
@@ -37,6 +38,13 @@
             {
                 ConnectionId = "1234567890",
                 ExpiresAt = "2018-02-02T22:25:27.521Z",
+            };
+
+            this.updateOptions = new TelephonyCredentialUpdateOptions()
+            {
+                ConnectionId = "987654321",
+                ExpiresAt = "2018-02-02T22:25:27.521Z",
+                Name = "My Creds",
             };
         }
 
@@ -86,6 +94,22 @@
             var result = await this.service.GetAsync(Id, this.requestOptions);
             Assert.NotNull(result);
             Assert.Equal(typeof(WebRtcCredential), result.GetType());
+        }
+
+        [Fact]
+        public void Update()
+        {
+            var response = this.service.Update(Id, this.updateOptions);
+            Assert.NotNull(response);
+            Assert.Equal(typeof(WebRtcCredential), response.GetType());
+        }
+
+        [Fact]
+        public async Task UpdateAsync()
+        {
+            var response = await this.service.UpdateAsync(Id, this.updateOptions);
+            Assert.NotNull(response);
+            Assert.Equal(typeof(WebRtcCredential), response.GetType());
         }
     }
 }

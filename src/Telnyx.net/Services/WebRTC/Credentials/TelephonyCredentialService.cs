@@ -8,7 +8,8 @@
     public class TelephonyCredentialService : Service<WebRtcCredential>,
         IListable<WebRtcCredential, ListOptions>,
         ICreatable<WebRtcCredential, TelephonyCredentialCreateOptions>,
-        IRetrievable<WebRtcCredential>
+        IRetrievable<WebRtcCredential>,
+        IUpdatable<WebRtcCredential, TelephonyCredentialUpdateOptions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TelephonyCredentialService"/> class.
@@ -58,6 +59,16 @@
         public async Task<TelnyxList<WebRtcCredential>> ListAsync(ListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
             return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+        }
+
+        public WebRtcCredential Update(string id, TelephonyCredentialUpdateOptions updateOptions, RequestOptions requestOptions = null)
+        {
+            return this.UpdateEntity(id, updateOptions, requestOptions);
+        }
+
+        public async Task<WebRtcCredential> UpdateAsync(string id, TelephonyCredentialUpdateOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        {
+            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
         }
     }
 }
