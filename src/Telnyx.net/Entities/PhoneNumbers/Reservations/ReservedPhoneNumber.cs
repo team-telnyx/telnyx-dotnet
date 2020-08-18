@@ -3,6 +3,7 @@
     using System;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
 
     /// <summary>
     /// Reserved Phone Number.
@@ -45,7 +46,7 @@
         /// Gets recordType.
         /// </summary>
         [JsonProperty("record_type", NullValueHandling = NullValueHandling.Ignore)]
-        public string RecordType { get; private set; }
+        public RecordType? RecordType { get; private set; }
 
         /// <summary>
         /// Gets or sets PhoneNumber.

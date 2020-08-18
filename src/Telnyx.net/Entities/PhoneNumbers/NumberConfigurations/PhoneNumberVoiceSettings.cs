@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Telnyx.net.Entities.Enum;
 
 namespace Telnyx.net.Entities.PhoneNumbers.NumberConfigurations
 {
@@ -31,7 +32,7 @@ namespace Telnyx.net.Entities.PhoneNumbers.NumberConfigurations
         public MediaFeatures MediaFeatures { get; set; }
 
         [JsonProperty("record_type")]
-        public string RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
 
         [JsonProperty("tech_prefix_enabled")]
         public bool TechPrefixEnabled { get; set; }

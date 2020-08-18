@@ -2,6 +2,7 @@
 {
     using System;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
 
     public partial class CreateConferenceResponse : TelnyxEntity
     {
@@ -24,6 +25,6 @@
         public string Name { get; set; }
 
         [JsonProperty("record_type")]
-        public string RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
     }
 }

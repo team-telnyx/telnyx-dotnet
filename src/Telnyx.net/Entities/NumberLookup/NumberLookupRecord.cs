@@ -1,13 +1,14 @@
 ﻿namespace Telnyx.net.Entities.NumberLookup
 {
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
 
     public class NumberLookupRecord : TelnyxEntity, IHasId
     { /// <summary>
       /// Identifies the type of record.
       /// </summary>
         [JsonProperty("record_type")]
-        public string RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
 
         /// <summary>
         /// Region code that matches the specific country calling code.

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Telnyx.net.Entities.Enum;
 
 namespace Telnyx.net.Entities.Connections.IPs
 {
@@ -25,7 +26,7 @@ namespace Telnyx.net.Entities.Connections.IPs
         public int Port { get; set; }
 
         [JsonProperty("record_type")]
-        public string RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
 
         [JsonProperty("updated_at")]
         public DateTimeOffset? UpdatedAt { get; set; }

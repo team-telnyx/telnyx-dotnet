@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
 
     public class OutboundVoiceProfile : TelnyxEntity, IHasId
     {
@@ -16,7 +17,7 @@
         /// Identifies the type of the resource.
         /// </summary>
         [JsonProperty("record_type")]
-        public string RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
 
         /// <summary>
         /// A user-supplied name to help with organization.

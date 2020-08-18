@@ -1,6 +1,17 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Reflection;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using Telnyx.Infrastructure;
+using Telnyx.net.Entities;
+using Telnyx.net.Entities.Enum.Webhooks;
 
 namespace Telnyx.Example
 {
@@ -167,6 +178,106 @@ namespace Telnyx.Example
             await simCardsExample.SetNetworkPreferenceAsync();
             simCardsExample.DeleteNetworkPreference();
             await simCardsExample.DeleteNetworkPreferenceAsync();
+
+            Console.WriteLine("Start Webhook Example....");
+            await ReceiveAndHandleWebhook();
         }
+        public async static Task<HttpStatusCode> ReceiveAndHandleWebhook()
+        {
+            Console.WriteLine("Beginning WebhookExample...");
+            Console.WriteLine("Send Message...");
+            MessagesExample messagesExample = new MessagesExample();
+            await messagesExample.SendMessage();
+            Console.WriteLine("Message sent waiting for webhook...");
+            await Task.Delay(3000);
+            Console.WriteLine("Webhook Listener...");
+            await Task.Delay(2000);
+            var request = new MockHTTPRequest("{\r\n  \"data\": {\r\n    \"event_type\": \"message.finalized\",\r\n    \"id\": \"4ee8c3a6-4995-4309-a3c6-38e3db9ea4be\",\r\n    \"occurred_at\": \"2019-12-09T21:32:14.148+00:00\",\r\n    \"payload\": {\r\n      \"completed_at\": \"2019-12-09T21:32:14.148+00:00\",\r\n      \"cost\": null,\r\n      \"direction\": \"outbound\",\r\n      \"encoding\": \"GSM-7\",\r\n      \"errors\": [],\r\n      \"from\": {\r\n        \"carrier\": \"T-Mobile USA\",\r\n        \"line_type\": \"Wireless\",\r\n        \"phone_number\": \"+13125000000\",\r\n        \"status\": \"webhook_delivered\"\r\n      },\r\n      \"id\": \"ac012cbf-5e09-46af-a69a-7c0e2d90993c\",\r\n      \"media\": [],\r\n      \"messaging_profile_id\": \"83d2343b-553f-4c5f-b8c8-fd27004f94bf\",\r\n      \"organization_id\": \"9d76d591-1b7d-405d-8c64-1320ee070245\",\r\n      \"parts\": 1,\r\n      \"received_at\": \"2019-12-09T21:32:13.552+00:00\",\r\n      \"record_type\": \"message\",\r\n      \"sent_at\": \"2019-12-09T21:32:13.596+00:00\",\r\n      \"tags\": [],\r\n      \"text\": \"Hello there!\",\r\n      \"to\": [\r\n        {\r\n          \"carrier\": \"T-MOBILE USA, INC.\",\r\n          \"line_type\": \"Wireless\",\r\n          \"phone_number\": \"+13125000000\",\r\n          \"status\": \"delivered\"\r\n        }\r\n      ],\r\n      \"type\": \"SMS\",\r\n      \"valid_until\": \"2019-12-09T22:32:13.552+00:00\",\r\n      \"webhook_failover_url\": \"\",\r\n      \"webhook_url\": \"http://webhook.site/af3a92e7-e150-442c-9fe6-61658ce26b1a\"\r\n    },\r\n    \"record_type\": \"event\"\r\n  },\r\n  \"meta\": {\r\n    \"attempt\": 1,\r\n    \"delivered_to\": \"http://webhook.site/af3a92e7-e150-442c-9fe6-61658ce26b1a\"\r\n  }\r\n}");
+            Console.WriteLine($"Webhook Received at {DateTime.Now} via {request.Method}");
+            //Get the Message body from the HTTP POST Request
+            var body = request.Body;
+            try
+            {
+                //Can get the object type two ways if wanting webhook url to be generic:
+                //Method 1:
+                JObject parsedJson = JObject.Parse(body);
+                EventType eventType = ToEnum<EventType>(parsedJson["data"]["event_type"].ToString());
+                //TODO: build event type to object mapping, for now, can use a dicitionary for example:
+                var typeLookup = GetTypeLookup(eventType);
+
+                //Method2:
+                var objectToParse = JsonConvert.DeserializeObject<TelnyxWebhook<object>>(body);
+                var typeofObject = objectToParse.Data.Payload.GetType();
+                TelnyxWebhook<OutboundMessage> message = (TelnyxWebhook<OutboundMessage>)JsonConvert.DeserializeObject(body, typeofObject);
+
+                if (eventType == EventType.MessageFinalized || typeLookup.GetType() == typeof(OutboundMessage))
+                {
+                    var messageFinalWebhook = JsonConvert.DeserializeObject<TelnyxWebhook<OutboundMessage>>(body);
+                    var myRepository = new SaveResponseRepository<OutboundMessage>();
+                    
+                    Console.WriteLine("Save properties from webhook or do stuff...");
+                    
+                    if (messageFinalWebhook != null && messageFinalWebhook.Data.Payload.CreatedAt != null)
+                        await myRepository.Save(messageFinalWebhook.Data.Payload);
+                    
+                    Console.WriteLine("Return 200 OK");
+                    return HttpStatusCode.OK;
+                }
+                /*
+                 * else... do something else. 
+                 * Ideally webhook URLs should know the type that they are expecting when the webhook is registered via the webhook_url property.
+                 * For example, when creating an OutBoundMessage, you explicitly set the webhook_url the webhook will ping for updates. 
+                 */
+                return HttpStatusCode.NotFound;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Something went wrong.. {ex.Message}");
+                return HttpStatusCode.InternalServerError;
+            }
+
+        }
+        public static Type GetTypeLookup(EventType enumType)
+        {
+            var typeLookup = new Dictionary<EventType, Type> { 
+                { EventType.MessageFinalized, typeof(OutboundMessage) },
+                { EventType.MessageReceived, typeof(OutboundMessage) },
+                { EventType.MessageSent, typeof(OutboundMessage) },
+                /*
+                 * {...} //More Enum mappings etc.
+                 */
+            };
+            return typeLookup[enumType];
+        }
+        public static T ToEnum<T>(string str)
+        {
+            var enumType = typeof(T);
+            foreach (var name in Enum.GetNames(enumType))
+            {
+                var enumMemberAttribute = ((EnumMemberAttribute[])enumType.GetField(name).GetCustomAttributes(typeof(EnumMemberAttribute), true)).Single();
+                if (enumMemberAttribute.Value == str) return (T)Enum.Parse(enumType, name);
+            }
+            return default;
+        }
+
+    }
+  
+    public class SaveResponseRepository<T>
+    {
+        public async Task Save(T objectToSave)
+        {
+            Console.WriteLine("Succesfully Saved!");
+            await Task.Delay(2000);
+        }
+    }
+    public class MockHTTPRequest
+    {
+        public MockHTTPRequest(string body)
+        {
+            this.Body = body;
+        }
+        public string Body { get; set; }
+        public HttpMethod Method => HttpMethod.Post;
+
     }
 }

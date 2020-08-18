@@ -6,6 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
 
     public partial class RegulatoryRequirementPerPhone : TelnyxEntity
     {
@@ -13,7 +14,7 @@
         public string PhoneNumber { get; set; }
 
         [JsonProperty("record_type")]
-        public string RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
 
         [JsonProperty("regulatory_group_id")]
         public Guid RegulatoryGroupId { get; set; }
