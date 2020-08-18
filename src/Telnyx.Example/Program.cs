@@ -1,8 +1,13 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Telnyx.Infrastructure;
 using Telnyx.net.Entities;
@@ -193,8 +198,19 @@ namespace Telnyx.Example
             var body = request.Body;
             try
             {
-                TelnyxWebhook<object> objectToConvert = JsonConvert.DeserializeObject<TelnyxWebhook<object>>(body);
-                if (objectToConvert.Data.EventType == EventTypes.MessageFinalized || objectToConvert.Data.Payload.GetType() == typeof(OutboundMessage))
+                //Can get the object type two ways if wanting webhook url to be generic:
+                //Method 1:
+                JObject parsedJson = JObject.Parse(body);
+                EventType eventType = ToEnum<EventType>(parsedJson["data"]["event_type"].ToString());
+                //TODO: build event type to object mapping, for now, can use a dicitionary for example:
+                var typeLookup = GetTypeLookup(eventType);
+
+                //Method2:
+                var objectToParse = JsonConvert.DeserializeObject<TelnyxWebhook<object>>(body);
+                var typeofObject = objectToParse.Data.Payload.GetType();
+                TelnyxWebhook<OutboundMessage> message = (TelnyxWebhook<OutboundMessage>)JsonConvert.DeserializeObject(body, typeofObject);
+
+                if (eventType == EventType.MessageFinalized || typeLookup.GetType() == typeof(OutboundMessage))
                 {
                     var messageFinalWebhook = JsonConvert.DeserializeObject<TelnyxWebhook<OutboundMessage>>(body);
                     var myRepository = new SaveResponseRepository<OutboundMessage>();
@@ -207,17 +223,45 @@ namespace Telnyx.Example
                     Console.WriteLine("Return 200 OK");
                     return HttpStatusCode.OK;
                 }
+                /*
+                 * else... do something else. 
+                 * Ideally webhook URLs should know the type that they are expecting when the webhook is registered via the webhook_url property.
+                 * For example, when creating an OutBoundMessage, you explicitly set the webhook_url the webhook will ping for updates. 
+                 */
                 return HttpStatusCode.NotFound;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Console.WriteLine("Something went wrong..");
+                Console.WriteLine($"Something went wrong.. {ex.Message}");
                 return HttpStatusCode.InternalServerError;
             }
 
         }
-        
+        public static Type GetTypeLookup(EventType enumType)
+        {
+            var typeLookup = new Dictionary<EventType, Type> { 
+                { EventType.MessageFinalized, typeof(OutboundMessage) },
+                { EventType.MessageReceived, typeof(OutboundMessage) },
+                { EventType.MessageSent, typeof(OutboundMessage) },
+                /*
+                 * {...} //More Enum mappings etc.
+                 */
+            };
+            return typeLookup[enumType];
+        }
+        public static T ToEnum<T>(string str)
+        {
+            var enumType = typeof(T);
+            foreach (var name in Enum.GetNames(enumType))
+            {
+                var enumMemberAttribute = ((EnumMemberAttribute[])enumType.GetField(name).GetCustomAttributes(typeof(EnumMemberAttribute), true)).Single();
+                if (enumMemberAttribute.Value == str) return (T)Enum.Parse(enumType, name);
+            }
+            return default;
+        }
+
     }
+  
     public class SaveResponseRepository<T>
     {
         public async Task Save(T objectToSave)

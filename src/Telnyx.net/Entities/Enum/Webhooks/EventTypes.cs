@@ -5,7 +5,7 @@ using Telnyx.net.Infrastructure.JsonConverters;
 namespace Telnyx.net.Entities.Enum.Webhooks
 {
     [JsonConverter(typeof(SafeStringEnumConverter), Unknown)]
-    public enum EventTypes
+    public enum EventType
     {
         Unknown = -1,
         [EnumMember(Value = "message.received")]

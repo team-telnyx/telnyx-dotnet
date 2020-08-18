@@ -28,7 +28,7 @@ namespace Telnyx.net.Entities
     public class WebhookData<T>
     {
         [JsonProperty("event_type")]
-        public EventTypes? EventType { get; set; }
+        public EventType? EventType { get; set; }
 
         [JsonProperty("id")]
         public Guid? Id { get; set; }
