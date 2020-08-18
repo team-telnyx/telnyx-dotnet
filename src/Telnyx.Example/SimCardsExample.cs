@@ -340,5 +340,135 @@ namespace Telnyx.Example
             }
             return result;
         }
+
+        public MobileOperatorNetworksPreferencesRecord GetNetworkPreference()
+        {
+            MobileOperatorNetworksPreferencesRecord result = new MobileOperatorNetworksPreferencesRecord();
+
+            try
+            {
+                var baseOptions = new BaseOptions();
+                baseOptions.AddExtraParam("include_ota_updates", "true");
+
+                result = service.GetNetworkPreference(id, baseOptions);
+                Console.WriteLine(JsonConvert.SerializeObject(result));
+            }
+            catch (TelnyxException ex)
+            {
+                Console.WriteLine("exception");
+                Console.WriteLine(JsonConvert.SerializeObject(ex));
+            }
+            return result;
+        }
+
+        public async Task<MobileOperatorNetworksPreferencesRecord> GetNetworkPreferenceAsync()
+        {
+            MobileOperatorNetworksPreferencesRecord result = new MobileOperatorNetworksPreferencesRecord();
+
+            try
+            {
+                var baseOptions = new BaseOptions();
+                baseOptions.AddExtraParam("include_ota_updates", "true");
+
+                result = await service.GetNetworkPreferenceAsync(id, baseOptions);
+                Console.WriteLine(JsonConvert.SerializeObject(result));
+            }
+            catch (TelnyxException ex)
+            {
+                Console.WriteLine("exception");
+                Console.WriteLine(JsonConvert.SerializeObject(ex));
+            }
+            return result;
+        }
+
+        public MobileOperatorNetworksPreferencesRecord SetNetworkPreference()
+        {
+            MobileOperatorNetworksPreferencesRecord result = new MobileOperatorNetworksPreferencesRecord();
+            
+            try
+            {
+                var baseOptions = new SimCardNetworkPreferenceUpdateOptions
+                {
+                    MobileOperatorNetworksPreferences = new List<MobileOperatorNetworksPreferences>()
+                {
+                    new MobileOperatorNetworksPreferences()
+                    {
+                        MobileOperatorNetworkId = new Guid("6a09cdc3-8948-47f0-aa62-74ac943d6c58"),
+                        Priority = 0,
+                    },
+                },
+                };
+                result = service.SetNetworkPreference(id, baseOptions);
+                Console.WriteLine(JsonConvert.SerializeObject(result));
+            }
+            catch (TelnyxException ex)
+            {
+                Console.WriteLine("exception");
+                Console.WriteLine(JsonConvert.SerializeObject(ex));
+            }
+            return result;
+        }
+
+        public async Task<MobileOperatorNetworksPreferencesRecord> SetNetworkPreferenceAsync()
+        {
+            MobileOperatorNetworksPreferencesRecord result = new MobileOperatorNetworksPreferencesRecord();
+
+            try
+            {
+                var baseOptions = new SimCardNetworkPreferenceUpdateOptions
+                {
+                    MobileOperatorNetworksPreferences = new List<MobileOperatorNetworksPreferences>()
+                {
+                    new MobileOperatorNetworksPreferences()
+                    {
+                        MobileOperatorNetworkId = new Guid("6a09cdc3-8948-47f0-aa62-74ac943d6c58"),
+                        Priority = 0,
+                    },
+                },
+                };
+                result = await service.SetNetworkPreferenceAsync(id, baseOptions);
+                Console.WriteLine(JsonConvert.SerializeObject(result));
+            }
+            catch (TelnyxException ex)
+            {
+                Console.WriteLine("exception");
+                Console.WriteLine(JsonConvert.SerializeObject(ex));
+            }
+            return result;
+        }
+
+        public MobileOperatorNetworksPreferencesRecord DeleteNetworkPreference()
+        {
+            MobileOperatorNetworksPreferencesRecord result = new MobileOperatorNetworksPreferencesRecord();
+
+            try
+            {
+                result = service.DeleteNetworkPreference(id);
+                Console.WriteLine(JsonConvert.SerializeObject(result));
+            }
+            catch (TelnyxException ex)
+            {
+                Console.WriteLine("exception");
+                Console.WriteLine(JsonConvert.SerializeObject(ex));
+            }
+            return result;
+        }
+
+        public async Task<MobileOperatorNetworksPreferencesRecord> DeleteNetworkPreferenceAsync()
+        {
+            MobileOperatorNetworksPreferencesRecord result = new MobileOperatorNetworksPreferencesRecord();
+
+            try
+            {
+                result = await service.DeleteNetworkPreferenceAsync(id);
+                Console.WriteLine(JsonConvert.SerializeObject(result));
+            }
+            catch (TelnyxException ex)
+            {
+                Console.WriteLine("exception");
+                Console.WriteLine(JsonConvert.SerializeObject(ex));
+            }
+            return result;
+        }
     }
 }
