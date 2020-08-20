@@ -1,5 +1,6 @@
 ﻿namespace Telnyx.net.Services.WebRTC.Credentials
 {
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx.net.Entities;
@@ -9,7 +10,8 @@
         IListable<WebRtcCredential, ListOptions>,
         ICreatable<WebRtcCredential, TelephonyCredentialCreateOptions>,
         IRetrievable<WebRtcCredential>,
-        IUpdatable<WebRtcCredential, TelephonyCredentialUpdateOptions>
+        IUpdatable<WebRtcCredential, TelephonyCredentialUpdateOptions>,
+        IDeletable<WebRtcCredential>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TelephonyCredentialService"/> class.
@@ -69,6 +71,21 @@
         public async Task<WebRtcCredential> UpdateAsync(string id, TelephonyCredentialUpdateOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
             return await this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
+        }
+
+        public WebRtcCredential Delete(string id, RequestOptions requestOptions = null)
+        {
+            return this.DeleteEntity(id, requestOptions);
+        }
+
+        public async Task<WebRtcCredential> DeleteAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        {
+            return await this.DeleteEntityAsync(id, requestOptions, cancellationToken);
+        }
+
+        public string GetToken(string id, RequestOptions requestOptions = null, string postFix = "/token")
+        {
+            throw new NotImplementedException();
         }
     }
 }

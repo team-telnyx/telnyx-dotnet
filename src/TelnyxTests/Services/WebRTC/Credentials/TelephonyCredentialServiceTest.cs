@@ -111,5 +111,21 @@
             Assert.NotNull(response);
             Assert.Equal(typeof(WebRtcCredential), response.GetType());
         }
+
+        [Fact]
+        public void Delete()
+        {
+            var response = this.service.Delete(Id, this.requestOptions);
+            Assert.NotNull(response);
+            Assert.Equal(typeof(WebRtcCredential), response.GetType());
+        }
+
+        [Fact]
+        public async Task DeleteAsync()
+        {
+            var response = await this.service.DeleteAsync(Id, this.requestOptions);
+            Assert.NotNull(response);
+            Assert.Equal(typeof(WebRtcCredential), response.GetType());
+        }
     }
 }
