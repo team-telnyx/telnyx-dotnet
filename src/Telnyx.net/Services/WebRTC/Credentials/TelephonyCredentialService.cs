@@ -83,9 +83,14 @@
             return await this.DeleteEntityAsync(id, requestOptions, cancellationToken);
         }
 
-        public string GetToken(string id, RequestOptions requestOptions = null, string postFix = "/token")
+        public string GetToken(string id, RequestOptions requestOptions = null, string postFix = "token")
         {
-            throw new NotImplementedException();
+            return this.CreateEntity(id, postFix, null, requestOptions, false);
+        }
+
+        public async Task<string> GetTokenAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default, string postFix = "token")
+        {
+            return await this.CreateEntityAsync(id, postFix, null, requestOptions, cancellationToken, false);
         }
     }
 }

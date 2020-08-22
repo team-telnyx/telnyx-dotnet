@@ -54,6 +54,16 @@ namespace Telnyx
         }
 
         /// <summary>
+        /// Get plain text response straightforword without mapping.
+        /// </summary>
+        /// <param name="response">Response.</param>
+        /// <returns>object response.</returns>
+        public static T MapFromPlainText(string response)
+        {
+            return (T)System.Convert.ChangeType(response, typeof(T));
+        }
+
+        /// <summary>
         /// The ResponseJson on a list method is the entire list (as json) returned from Telnyx.
         /// </summary>
         /// <param name="json">The JSON string.</param>

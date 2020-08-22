@@ -161,6 +161,21 @@ namespace Telnyx.Example
             await simCardsExample.RegisterAsync();
             simCardsExample.BulkUpdateNetworkPreference();
             await simCardsExample.BulkUpdateNetworkPreferenceAsync();
+
+            Console.WriteLine("TelephonyCredentialExample...");
+            TelephonyCredentialExample telephonyCredentialExample = new TelephonyCredentialExample();
+            telephonyCredentialExample.Get();
+            await telephonyCredentialExample.GetAsync();
+            telephonyCredentialExample.List();
+            await telephonyCredentialExample.ListAsync();
+            telephonyCredentialExample.Create();
+            await telephonyCredentialExample.CreateAsync();
+            telephonyCredentialExample.Update();
+            await telephonyCredentialExample.UpdateAsync();
+            telephonyCredentialExample.Delete();
+            await telephonyCredentialExample.DeleteAsync();
+            telephonyCredentialExample.GetToken();
+            await telephonyCredentialExample.GetTokenAsync();
         }
     }
 }

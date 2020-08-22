@@ -127,5 +127,21 @@
             Assert.NotNull(response);
             Assert.Equal(typeof(WebRtcCredential), response.GetType());
         }
+
+        [Fact]
+        public void GetToken()
+        {
+            var response = this.service.GetToken(Id, this.requestOptions);
+            Assert.NotNull(response);
+            Assert.Equal(typeof(string), response.GetType());
+        }
+
+        [Fact]
+        public async Task GetTokenAsync()
+        {
+            var response = await this.service.GetTokenAsync(Id, this.requestOptions);
+            Assert.NotNull(response);
+            Assert.Equal(typeof(string), response.GetType());
+        }
     }
 }
