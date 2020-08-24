@@ -2,6 +2,7 @@
 {
     using System;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
 
     public class OTAUpdatesRecord : TelnyxEntity, IHasId
     {
@@ -15,7 +16,7 @@
         /// Gets ts RecordType.
         /// </summary>
         [JsonProperty("record_type")]
-        public string RecordType { get; private set; }
+        public RecordType? RecordType { get; private set; }
 
         /// <summary>
         /// The indentification UUID of the related SIM card resource.

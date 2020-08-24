@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
 
     /// <summary>
     /// Number Order.
@@ -46,7 +47,7 @@
         /// Gets recordType.
         /// </summary>
         [JsonProperty("record_type")]
-        public string RecordType { get; private set; }
+        public RecordType? RecordType { get; private set; }
 
         /// <summary>
         /// Gets or sets PhoneNumbers.

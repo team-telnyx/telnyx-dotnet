@@ -70,7 +70,7 @@ namespace Telnyx.net.Entities.Connections
         ///  Identifies the type of the resource.
         /// </summary>
         [JsonProperty("record_type")]
-        public string RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
 
         [JsonProperty("rtcp_settings")]
         public RtcpSettings RtcpSettings { get; set; }

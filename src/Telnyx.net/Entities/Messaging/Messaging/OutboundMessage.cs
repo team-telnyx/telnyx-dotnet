@@ -4,6 +4,7 @@ namespace Telnyx
     using System.Collections.Generic;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
+    using Telnyx.Infrastructure;
     using Telnyx.net.Entities.Enum;
     using Telnyx.net.Entities.Messaging.Messaging;
 
@@ -220,6 +221,9 @@ namespace Telnyx
         /// <value>The line-type of the receiver.</value>
         [JsonProperty("line_type")]
         public LineTypeEnum? LineType { get; set; }
+
+        [JsonProperty("completed_at")]
+        public DateTime? CompletedAt { get; set; }
 
         /// <inheritdoc/>
         string IHasId.Id
