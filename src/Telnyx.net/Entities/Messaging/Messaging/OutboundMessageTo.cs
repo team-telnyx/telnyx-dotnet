@@ -3,12 +3,13 @@ namespace Telnyx
     using System;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Messaging.Messaging;
 
     /// <summary>
     /// Outbound Message To.
     /// </summary>
     [DataContract]
-    public class OutboundMessageTo
+    public class OutboundMessageTo : MessageTo
     {
         /// <summary>
         /// Gets or sets status.
@@ -60,22 +61,9 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// Gets or sets Address.
-        /// </summary>
-        [DataMember(Name = "address")]
-        public string Address { get; set; }
-
-        /// <summary>
         /// Gets or sets Status.
         /// </summary>
         [DataMember(Name = "status")]
-        public StatusEnum? Status { get; set; }
-
-        /// <summary>
-        /// Gets or sets ISO 8601 formatted date indicating when the resource was updated.
-        /// </summary>
-        /// <value>ISO 8601 formatted date indicating when the resource was updated.</value>
-        [DataMember(Name = "updated_at")]
-        public DateTime? UpdatedAt { get; set; }
+        public new StatusEnum? Status { get; set; }
     }
 }
