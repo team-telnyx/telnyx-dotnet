@@ -43,8 +43,8 @@ namespace Telnyx
         /// <summary>
         /// Gets or sets Media
         /// </summary>
-        [JsonProperty("media_url")]
-        public List<string> MediaUrl { get; set; }
+        [JsonProperty("media_urls")]
+        public List<string> MediaUrls { get; set; }
 
         /// <summary>
         /// Gets or sets the URL where webhooks related to this message will be sent.
