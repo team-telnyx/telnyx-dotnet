@@ -73,6 +73,33 @@ namespace Telnyx
         }
 
         /// <summary>
+        /// CreateEntity for PlainText response.
+        /// </summary>
+        /// <param name="id">id.</param>
+        /// <param name="postFix">postFix.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>{EntityReturned}.</returns>
+        protected string CreateEntity(string id, string postFix, BaseOptions options, RequestOptions requestOptions, bool isJsonResponse = true)
+        {
+            return this.PostRequest<string>(this.CallUrl(id, postFix), options, requestOptions, isJsonResponse);
+        }
+
+        /// <summary>
+        /// CreateEntityAsync for PlainText response.
+        /// </summary>
+        /// <param name="id">id.</param>
+        /// <param name="postFix">postFix.</param>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>{EntityReturned}.</returns>
+        protected async Task<string> CreateEntityAsync(string id, string postFix, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken, bool isJsonResponse = true)
+        {
+            return await this.PostRequestAsync<string>(this.CallUrl(id, postFix), options, requestOptions, cancellationToken, isJsonResponse);
+        }
+
+        /// <summary>
         /// CreateEntity.
         /// </summary>
         /// <param name="options">options.</param>
@@ -660,12 +687,21 @@ namespace Telnyx
         /// <param name="options">options.</param>
         /// <param name="requestOptions">requestOptions.</param>
         /// <returns>{EntityReturned}.</returns>
-        protected T PostRequest<T>(string url, BaseOptions options, RequestOptions requestOptions)
+        protected T PostRequest<T>(string url, BaseOptions options, RequestOptions requestOptions, bool isJsonResponse = true)
         {
-            return Mapper<T>.MapFromJson(
-                Requestor.PostString(
-                    this.ApplyAllParameters(options, url),
-                    this.SetupRequestOptions(requestOptions)), "data");
+            if (isJsonResponse)
+            {
+                return Mapper<T>.MapFromJson(
+                    Requestor.PostString(
+                        this.ApplyAllParameters(options, url),
+                        this.SetupRequestOptions(requestOptions)), "data");
+            }  
+            else
+            {
+                return Mapper<T>.MapFromPlainText(Requestor.PostString(
+                        this.ApplyAllParameters(options, url),
+                        this.SetupRequestOptions(requestOptions)).ResponseJson);
+            }
         }
 
         /// <summary>
@@ -677,14 +713,24 @@ namespace Telnyx
         /// <param name="requestOptions">requestOptions.</param>
         /// <param name="cancellationToken">cancellationToken.</param>
         /// <returns>{EntityReturned}.</returns>
-        protected async Task<T> PostRequestAsync<T>(string url, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        protected async Task<T> PostRequestAsync<T>(string url, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken, bool isJsonResponse = true)
         {
-            return Mapper<T>.MapFromJson(
+            if (isJsonResponse)
+            {
+                return Mapper<T>.MapFromJson(
                 await Requestor.PostStringAsync(
                     this.ApplyAllParameters(options, url),
                     this.SetupRequestOptions(requestOptions),
                     cancellationToken).ConfigureAwait(false), "data");
+        }  
+            else
+            {
+                var response = await Requestor.PostStringAsync(
+                        this.ApplyAllParameters(options, url),
+                        this.SetupRequestOptions(requestOptions));
+                return Mapper<T>.MapFromPlainText(response.ResponseJson);
         }
+    }
 
         /// <summary>
         /// PatchRequest.

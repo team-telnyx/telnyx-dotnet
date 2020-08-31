@@ -181,7 +181,23 @@ namespace Telnyx.Example
 
             Console.WriteLine("Start Webhook Example....");
             await ReceiveAndHandleWebhook();
+
+            Console.WriteLine("TelephonyCredentialExample...");
+            TelephonyCredentialExample telephonyCredentialExample = new TelephonyCredentialExample();
+            telephonyCredentialExample.Get();
+            await telephonyCredentialExample.GetAsync();
+            telephonyCredentialExample.List();
+            await telephonyCredentialExample.ListAsync();
+            telephonyCredentialExample.Create();
+            await telephonyCredentialExample.CreateAsync();
+            telephonyCredentialExample.Update();
+            await telephonyCredentialExample.UpdateAsync();
+            telephonyCredentialExample.Delete();
+            await telephonyCredentialExample.DeleteAsync();
+            telephonyCredentialExample.GetToken();
+            await telephonyCredentialExample.GetTokenAsync();
         }
+
         public async static Task<HttpStatusCode> ReceiveAndHandleWebhook()
         {
             Console.WriteLine("Beginning WebhookExample...");
@@ -237,6 +253,7 @@ namespace Telnyx.Example
             }
 
         }
+
         public static Type GetTypeLookup(EventType enumType)
         {
             var typeLookup = new Dictionary<EventType, Type> { 
@@ -249,6 +266,7 @@ namespace Telnyx.Example
             };
             return typeLookup[enumType];
         }
+
         public static T ToEnum<T>(string str)
         {
             var enumType = typeof(T);
