@@ -6,15 +6,17 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using Telnyx.net.Infrastructure.JsonConverters;
 
 namespace Telnyx.net.Entities.Enum.Webhooks
 {
-    [JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(SafeStringEnumConverter), Unknown)]
     /// <summary>
     /// The Telnyx Messaging Services will attempt to notify you about each status update based on the hierarchy of URLs using the following statuses.
     /// </summary>
     public enum DeliveryStatus
     {
+        Unknown = -1,
         /// <summary>
         /// The message is queued up on Telnyx's side.
         /// </summary>
@@ -56,5 +58,17 @@ namespace Telnyx.net.Entities.Enum.Webhooks
         /// </summary>
         [EnumMember(Value = "delivery_unconfirmed")]
         DeliveryUnconfirmed = 6,
+
+        /// <summary>
+        /// Expired
+        /// </summary>
+        [EnumMember(Value = "expired")]
+        Expired = 7,
+
+        /// <summary>
+        /// Webhook Delivered
+        /// </summary>
+        [EnumMember(Value = "webhook_delivered")]
+        WebHookDelivered = 8,
     }
 }

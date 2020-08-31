@@ -20,5 +20,12 @@ namespace Telnyx.net.Entities.Messaging.Messaging
         /// </summary>
         [JsonProperty("content_type")]
         public string ContentType { get; set; }
+
+        [JsonProperty("hash_sha256")]
+        public string Sha256 { get; set; }
+
+        [JsonProperty("size")]
+        public long? Size { get; set; }
+
     }
 }

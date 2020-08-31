@@ -30,7 +30,7 @@ namespace Telnyx
         /// Gets or sets Media.
         /// </summary>
         [JsonProperty("media")]
-        public new List<MessageMedia> Media { get; set; }
+        public new List<OutboundMessageMedia> Media { get; set; }
         /// <summary>
         /// Gets or sets Cost.
         /// </summary>

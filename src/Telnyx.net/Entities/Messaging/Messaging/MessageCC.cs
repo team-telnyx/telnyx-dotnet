@@ -9,7 +9,7 @@ using Telnyx.net.Entities.Enum.Webhooks;
 
 namespace Telnyx.net.Entities.Messaging.Messaging
 {
-    public class MessageTo
+    public class MessageCC
     {
         /// <summary>
         /// Gets or sets Phone Number.
@@ -33,5 +33,6 @@ namespace Telnyx.net.Entities.Messaging.Messaging
         /// </summary>
         [JsonProperty("status")]
         public DeliveryStatus? Status { get; set; }
+
     }
 }

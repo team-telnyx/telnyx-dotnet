@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Telnyx.net.Entities.Enum;
 using Telnyx.net.Entities.Enum.Messaging;
+using Telnyx.net.Entities.Enum.Webhooks;
 
 namespace Telnyx.net.Entities.Messaging.Messaging
 {
@@ -34,6 +35,18 @@ namespace Telnyx.net.Entities.Messaging.Messaging
         /// </summary>
         [JsonProperty("type")]
         public TypeEnum? Type { get; set; }
+
+        [JsonProperty("encoding")]
+        public string Encoding { get; set; }
+
+        [JsonProperty("cc")]
+        public List<MessageCC> Cc { get; set; }
+
+        [JsonProperty("messaging_profile_id")]
+        public Guid? MessagingProfileId { get; set; }
+
+        [JsonProperty("organization_id")]
+        public Guid? OrganizationId { get; set; }
 
         /// <summary>
         /// Gets or sets sending address (+E.164 formatted phone number, alphanumeric sender, or short code).
@@ -120,6 +133,12 @@ namespace Telnyx.net.Entities.Messaging.Messaging
         public List<Error> Errors { get; set; }
 
         /// <summary>
+        /// Gets or sets these errors may point at addressees when referring to unsuccessful/unconfirmed delivery statuses.
+        /// </summary>
+        [JsonProperty("tags")]
+        public List<string> Tags { get; set; }
+
+        /// <summary>
         /// Gets or sets the carrier of the receiver.
         /// </summary>
         /// <value>The carrier of the receiver.</value>
@@ -132,6 +151,12 @@ namespace Telnyx.net.Entities.Messaging.Messaging
         /// <value>The line-type of the receiver.</value>
         [JsonProperty("line_type")]
         public LineTypeEnum? LineType { get; set; }
+
+        /// <summary>
+        /// The delivery status of the message.
+        /// </summary>
+        [JsonProperty("status")]
+        public DeliveryStatus? Status { get; set; }
 
         [JsonProperty("completed_at")]
         public DateTime? CompletedAt { get; set; }
