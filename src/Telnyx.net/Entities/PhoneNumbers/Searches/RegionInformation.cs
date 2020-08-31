@@ -3,12 +3,12 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Region Information
+    /// Region Information.
     /// </summary>
     public class RegionInformation
     {
         /// <summary>
-        /// Gets or sets RegionType
+        /// Gets or sets RegionType.
         /// </summary>
         [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum RegionTypeEnum
@@ -39,13 +39,13 @@
         }
 
         /// <summary>
-        /// Gets or sets RegionType
+        /// Gets or sets RegionType.
         /// </summary>
         [JsonProperty("region_type")]
         public string RegionType { get; set; }
 
         /// <summary>
-        /// Gets or sets RegionName
+        /// Gets or sets RegionName.
         /// </summary>
         [JsonProperty("region_name")]
         public string RegionName { get; set; }

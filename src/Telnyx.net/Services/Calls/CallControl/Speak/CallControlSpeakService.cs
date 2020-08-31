@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// CallControlSpeakService
+    /// CallControlSpeakService.
     /// </summary>
     public class CallControlSpeakService : Service<CallSpeakResponse>,
         INestedCreatableWithIdInMid<CallSpeakResponse, CallControlSpeakOptions>
@@ -20,7 +20,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlSpeakService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public CallControlSpeakService(string apiKey)
             : base(apiKey)
         {

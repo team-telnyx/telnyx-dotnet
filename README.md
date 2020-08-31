@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/team-telnyx/telnyx-dotnet.svg?branch=master)](https://travis-ci.org/team-telnyx/telnyx-dotnet)
 [![NuGet](https://img.shields.io/nuget/v/Telnyx.net.svg)](https://www.nuget.org/packages/Telnyx.net/)
 [![Coverage Status](https://coveralls.io/repos/github/team-telnyx/telnyx-dotnet/badge.svg?branch=master)](https://coveralls.io/github/team-telnyx/telnyx-dotnet?branch=master)
+[![Join Slack](https://img.shields.io/badge/join-slack-infomational)](https://joinslack.telnyx.com/)
 
 The official Telnyx library, supporting .NET Standard 2.0, .NET Core 1.0+, and .NET Framework 4.5+
 
@@ -127,6 +128,111 @@ public class TelnyxResponse
 	public DateTime RequestDate { get; set; }
 }
 ```
+
+### Pagination
+
+The [`TelnyxList`](https://github.com/thedonmon/telnyx-dotnet/blob/master/src/Telnyx.net/Entities/TelnyxList.cs) object that includes the collection of data as well as pagination properties.
+
+**Example: Access a TelynxList**
+```csharp
+var numberReservationsService = new NumberReservationsService();
+TelnyxList reservationList = numberReservationsService.List(...);
+List<NumberReservation> reservationData = reservationList.Data;
+PageInfo pages = reservationList.PageInfo;
+```
+
+```csharp
+
+    public class TelnyxList<T> : TelnyxEntity, IEnumerable<T>
+    {
+        /// <summary>
+        /// Gets or sets a string describing the object type returned.
+        /// </summary>
+        public string Object => typeof(T).Name;
+
+        /// <summary>
+        /// Gets or sets a list containing the actual response elements, paginated by any request parameters.
+        /// </summary>
+        public List<T> Data { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether whether or not there are more elements available after this set. If <c>false</c>,
+        /// this set comprises the end of the list.
+        /// </summary>
+        public bool HasMore => PageInfo?.HasMore ?? false;
+
+        /// <summary>
+        /// Gets or sets the URL for accessing this list.
+        /// </summary>
+        public string Url => this?.TelnyxResponse?.Url ?? string.Empty;
+
+        /// <summary>
+        /// Gets or sets pageinformation from the API Response
+        /// </summary>
+        public PageInfo PageInfo { get; set; }
+        
+    }
+```
+**Pagination with ListOptions**
+```csharp
+    public class ListOptions : BaseOptions
+    {
+        /// <summary>
+        /// The size of the page
+        /// </summary>
+        public int? PageSize { get; set; }
+
+        /// <summary>
+        /// The page number to load
+        /// </summary>
+        public int? PageNumber { get; set; }
+
+        /// <summary>
+        /// Set number of pages to get and return as list of entities. Default: null (all pages)
+        /// Can page a set amount by specifying the amount of pages to fetch. 
+        /// If greater than actual pages will just return the total amount of results. 
+        /// </summary>
+        public int? NumberOfPagesToFetch { get; set; }
+    }
+```
+
+In order to paginate automatically through a list method be sure to setup the corresponding ListOption object. 
+The NumberOfPagesToFetch is optional but allows the call to gather data from multiple pages. Enter the amount of pages you want
+to page through and all the results will be returned in the `TelynxList.Data` property. 
+
+*NOTE*: Use any number greater than 1 for the `NumberOfPagesToFetch`.
+1 page is just like setting the pagenumber. E.g. NumberOfPagesToFetch = 2 will give you the first page and next page. 
+
+**Example:**
+```csharp
+    var listOptions = new NumberConfigurationsListOptions
+                      {
+                          Status = NumberConfigStatus.Active,
+                          PageNumber = 1,
+                          NumberOfPagesToFetch = 3,
+                          PageSize = 3
+
+                      };
+    
+    var res = await numConfigService.ListPhoneNumbersAsync(listOptions); //if you dont specify a pagenumber, pagination will begin at the first page.
+    var phoneNumberConfigurationsList = res.Data;
+    
+    //you can access if the endpoint has more data and how many pages are left via the PageInfo object thats returned
+    if(res.HasMore){
+        var nextPage = res.PageInfo.NextPage;
+        var totalPages = res.PageInfo.TotalPages;
+            var listOptions = new NumberConfigurationsListOptions
+                      {
+                          Status = NumberConfigStatus.Active,
+                          PageNumber = nextPage,
+                          NumberOfPagesToFetch = 3,
+                          PageSize = 3
+
+                      };
+        res = await numConfigService.ListPhoneNumbersAsync(listOptions); 
+	}
+```
+
 
 ## Contribution Guidelines
 

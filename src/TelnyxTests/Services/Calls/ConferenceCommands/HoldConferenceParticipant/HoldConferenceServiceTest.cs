@@ -15,14 +15,14 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
         private const string CallControllId = "call_123";
 
         private readonly HoldConferenceService service;
-        private readonly HoldConferenceCreateOptions createOptions;
+        private readonly HoldConferenceOptions createOptions;
 
         public HoldConferenceServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
             this.service = new HoldConferenceService();
 
-            this.createOptions = new HoldConferenceCreateOptions()
+            this.createOptions = new HoldConferenceOptions()
             {
                 CallControlIds = new List<string> { "AgDIxmoRX6QMuaIj_uXRXnPAXP0QlNfXczRrZvZakpWxBlpw48KyZQ==" },
                 AudioUrl = "http://example.com/message.wav"

@@ -5,7 +5,7 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Number Order Example
+    /// Number Order Example.
     /// </summary>
     public class NumberOrderExample
     {
@@ -13,7 +13,7 @@
         private readonly NumberOrderService service = new NumberOrderService();
 
         /// <summary>
-        /// Create number order
+        /// Create number order.
         /// </summary>
         public void CreateNumberOrder()
         {
@@ -40,7 +40,7 @@
         }
 
         /// <summary>
-        /// List number order
+        /// List number order.
         /// </summary>
         public void ListNumberOrder()
         {

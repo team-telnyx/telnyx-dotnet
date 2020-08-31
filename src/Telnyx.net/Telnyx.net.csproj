@@ -112,7 +112,6 @@
     <Folder Include="Entities\Calls\CallInformations\" />
     <Folder Include="Entities\Calls\ConferenceCommands\HoldConferenceParticipant\" />
     <Folder Include="Entities\Calls\ConferenceCommands\JoinConference\" />
-    <Folder Include="Entities\Calls\ConferenceCommands\ListConference\" />
     <Folder Include="Entities\Calls\ConferenceCommands\MuteConferenceParticipant\" />
     <Folder Include="Entities\Calls\ConferenceCommands\UnHoldConferenceParticipant\" />
     <Folder Include="Entities\Calls\ConferenceCommands\UnMuteConferenceParticipant\" />

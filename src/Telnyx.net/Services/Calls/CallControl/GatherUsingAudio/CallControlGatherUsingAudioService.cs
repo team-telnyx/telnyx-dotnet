@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// CallControlGatherUsingAudioService
+    /// CallControlGatherUsingAudioService.
     /// </summary>
     public class CallControlGatherUsingAudioService : Service<CallGatherUsingAudioResponse>,
         INestedCreatableWithIdInMid<CallGatherUsingAudioResponse, CallControlGatherUsingAudioOptions>
@@ -20,7 +20,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="CallControlGatherUsingAudioService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public CallControlGatherUsingAudioService(string apiKey)
             : base(apiKey)
         {

@@ -4,12 +4,12 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// CallControlSendDTMFCreateOptions
+    /// CallControlSendDTMFCreateOptions.
     /// </summary>
     public class CallControlSendDTMFOptions : BaseOptions
     {
         /// <summary>
-        /// Gets or sets specifies for how many milliseconds each digit will be played in the audio stream.Ranges from 100 to 500ms
+        /// Gets or sets specifies for how many milliseconds each digit will be played in the audio stream.Ranges from 100 to 500ms.
         /// </summary>
         [JsonProperty("duration_millis")]
         public int DurationMillis { get; set; }

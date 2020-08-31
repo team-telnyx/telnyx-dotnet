@@ -5,7 +5,7 @@ namespace Telnyx
     using Newtonsoft.Json;
 
     /// <summary>
-    /// NewMessage
+    /// NewMessage.
     /// </summary>
     public class NewMessage : BaseOptions
     {
@@ -16,19 +16,19 @@ namespace Telnyx
         public Guid? MessagingProfileId { get; set; }
 
         /// <summary>
-        /// Gets or sets sending address (+E.164 formatted phone number, alphanumeric sender, or short code)
+        /// Gets or sets sending address (+E.164 formatted phone number, alphanumeric sender, or short code).
         /// </summary>
         [JsonProperty("from")]
         public string From { get; set; }
 
         /// <summary>
-        /// Gets or sets To
+        /// Gets or sets To.
         /// </summary>
         [JsonProperty("to")]
         public string To { get; set; }
 
         /// <summary>
-        /// Gets or sets message body (i.e., content) as a non-empty string
+        /// Gets or sets message body (i.e., content) as a non-empty string.
         /// </summary>
         [JsonProperty("text")]
         public string Text { get; set; }
@@ -64,7 +64,7 @@ namespace Telnyx
         public decimal? ValidityPeriodSecs { get; set; }
 
         /// <summary>
-        /// Gets or sets typically, if the LRN dip indicates that the phone number is a land-line, the request will be rejected. However, some landlines can receive SMS, so that behavior can be overridden by setting this value to &#x60;true&#x60;
+        /// Gets or sets typically, if the LRN dip indicates that the phone number is a land-line, the request will be rejected. However, some landlines can receive SMS, so that behavior can be overridden by setting this value to &#x60;true&#x60;.
         /// </summary>
         [JsonProperty("ignore_wire_type")]
         public bool? IgnoreWireType { get; set; }

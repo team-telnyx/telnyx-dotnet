@@ -4,9 +4,10 @@ namespace Telnyx
     using System.Collections.Generic;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
 
     /// <summary>
-    /// Phone Number Type Enum
+    /// Phone Number Type Enum.
     /// </summary>
     [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum PhoneNumberTypeEnum
@@ -31,30 +32,16 @@ namespace Telnyx
     }
 
     /// <summary>
-    /// Messaging Phone Number
+    /// Messaging Phone Number.
     /// </summary>
     public class MessagingPhoneNumber : TelnyxEntity, IHasId
     {
-        /// <summary>
-        /// Identifies the type of the resource.
-        /// </summary>
-        /// <value>Type of the resource.</value>
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public enum RecordTypeEnum
-        {
-            /// <summary>
-            /// Enum NumberEnum for messaging_phone_number
-            /// </summary>
-            [EnumMember(Value = "messaging_phone_number")]
-            MessagingPhoneNumberEnum = 0
-        }
-
         /// <summary>
         /// Gets or sets identifies the type of the resource.
         /// </summary>
         /// <value>Identifies the type of the resource.</value>
         [JsonProperty("record_type")]
-        public RecordTypeEnum? RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
 
         /// <summary>
         /// Gets or sets uniquely identifies the resource or object.
@@ -99,13 +86,13 @@ namespace Telnyx
         public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
-        /// Gets or sets iSO 3166-1 alpha-2 country code
+        /// Gets or sets iSO 3166-1 alpha-2 country code.
         /// </summary>
         [JsonProperty("country_code")]
         public string CountryCode { get; set; }
 
         /// <summary>
-        /// Gets or sets the type of the phone number
+        /// Gets or sets the type of the phone number.
         /// </summary>
         [JsonProperty("type")]
         public PhoneNumberTypeEnum? Type { get; set; }
@@ -117,25 +104,25 @@ namespace Telnyx
         public MessagingPhoneNumberHealth Health { get; set; }
 
         /// <summary>
-        /// Gets or sets the messaging products that this number can be registered to use
+        /// Gets or sets the messaging products that this number can be registered to use.
         /// </summary>
         [JsonProperty("eligible_messaging_products")]
         public List<string> EligibleMessagingProducts { get; set; }
 
         /// <summary>
-        /// Gets or sets the messaging traffic or use case for which the number is currently configured
+        /// Gets or sets the messaging traffic or use case for which the number is currently configured.
         /// </summary>
         [JsonProperty("traffic_type")]
         public string TrafficType { get; set; }
 
         /// <summary>
-        /// Gets or sets the messaging product that the number is registered to use
+        /// Gets or sets the messaging product that the number is registered to use.
         /// </summary>
         [JsonProperty("messaging_product")]
         public string MessagingProduct { get; set; }
 
         /// <summary>
-        /// Gets or sets features
+        /// Gets or sets features.
         /// </summary>
         [JsonProperty("features")]
         public MessagingPhoneNumberFeatures Features { get; set; }

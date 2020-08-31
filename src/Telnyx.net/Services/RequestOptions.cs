@@ -1,17 +1,17 @@
 namespace Telnyx
 {
     /// <summary>
-    /// RequestOptions
+    /// RequestOptions.
     /// </summary>
     public class RequestOptions
     {
         /// <summary>
-        /// Gets or sets apiKey
+        /// Gets or sets apiKey.
         /// </summary>
         public string ApiKey { get; set; }
 
         /// <summary>
-        /// Gets or sets idempotencyKey
+        /// Gets or sets idempotencyKey.
         /// </summary>
         public string IdempotencyKey { get; set; }
 
