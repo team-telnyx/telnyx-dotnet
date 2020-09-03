@@ -25,7 +25,7 @@
             var createOptions = new NewMessagingProfile
             {
                 Name = "Summer Campaign",
-                UrlShortnerSettings = new UrlShortnerSettings
+                UrlShortenerSettings = new UrlShortenerSettings
                 {
                     Domain = "google.com",
                     ReplaceBlackListOnly = true,
@@ -140,7 +140,7 @@
             var updateOptions = new MessagingProfileUpdate
             {
                 Name = "Summer Campaign",
-                UrlShortnerSettings = new UrlShortnerSettings
+                UrlShortenerSettings = new UrlShortenerSettings
                 {
                     Domain = "yahoo.com",
                     ReplaceBlackListOnly = true,

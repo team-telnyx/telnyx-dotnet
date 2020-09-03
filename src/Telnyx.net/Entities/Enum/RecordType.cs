@@ -96,9 +96,6 @@ namespace Telnyx.net.Entities.Enum
         [EnumMember(Value = "messaging_hosted_number_order")]
         MessagingHostedNumberOrder = 22,
 
-        [EnumMember(Value = "messaging_phone_number")]
-        MessagingPhoneNumber = 23,
-
         [EnumMember(Value = "messaging_settings")]
         MessagingSettings = 24,
 
@@ -168,35 +165,32 @@ namespace Telnyx.net.Entities.Enum
         [EnumMember(Value = "sim_card_network_preference")]
         SimCardNetworkPreference = 46,
 
-        [EnumMember(Value = "short_code")]
-        ShortCode = 47,
-
         [EnumMember(Value = "short_code_info_blob")]
-        ShortCodeInfoBlob = 48,
+        ShortCodeInfoBlob = 47,
 
         [EnumMember(Value = "credential")]
-        Credential = 49,
+        Credential = 48,
 
         [EnumMember(Value = "texml_application")]
-        TexmlApplication = 50,
+        TexmlApplication = 49,
 
         [EnumMember(Value = "balance")]
-        Balance = 51,
+        Balance = 50,
 
         [EnumMember(Value = "detail_records_report")]
-        DetailRecordReport = 52,
+        DetailRecordReport = 51,
 
         [EnumMember(Value = "messaging_hosted_number")]
-        MessagingHostedNumber = 53,
+        MessagingHostedNumber = 52,
 
         [EnumMember(Value = "ip")]
         IP = 54,
 
         [EnumMember(Value = "ledger_billing_group_report")]
-        LedgerBillingGroupReport = 55,
+        LedgerBillingGroupReport = 53,
 
         [EnumMember(Value = "billing_group")]
-        BillingGroup = 56,
+        BillingGroup = 54,
     }
 
 }

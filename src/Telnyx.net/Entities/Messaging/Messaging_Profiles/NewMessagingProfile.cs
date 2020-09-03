@@ -80,7 +80,7 @@ namespace Telnyx
         ///
         /// To disable this feature, set the object field to `null`.
         /// </summary>
-        [JsonProperty("url_shortner_settings")]
-        public UrlShortnerSettings UrlShortnerSettings { get; set; }
+        [JsonProperty("url_shortener_settings")]
+        public UrlShortenerSettings UrlShortenerSettings { get; set; }
     }
 }

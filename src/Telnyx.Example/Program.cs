@@ -95,7 +95,7 @@ namespace Telnyx.Example
             conferenceCommandsExample.SetCallControlId("v2:ZKoCq-ggJPRhO3H9KxQa5zVQphVX8Hx9d_FRl2b-W2dQfVUHfhe13g");
 
             conferenceCommandsExample.Create();
-
+            conferenceCommandsExample.List();
             Console.WriteLine("NumberConfigurationExample..");
             NumberConfigurationExample numConfigExample = new NumberConfigurationExample();
             await numConfigExample.ListPhoneNumbersWithPagingAsync();
