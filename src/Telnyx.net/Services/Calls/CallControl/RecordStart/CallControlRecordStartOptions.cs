@@ -79,5 +79,16 @@
         /// </summary>
         [JsonProperty("play_beep")]
         public bool PlayBeep { get; set; }
+        /// <summary>
+        /// URL where to make its GET or POST request when the recording is available.
+        /// </summary>
+        [JsonProperty("status_callback")]
+        public string StatusCallback { get; set; }
+
+        /// <summary>
+        /// HTTP request type used for status_callback. Defaults to POST.
+        /// </summary>
+        [JsonProperty("status_callback_method")]
+        public string StatusCallbackMethod { get; set; } = "POST";
     }
 }

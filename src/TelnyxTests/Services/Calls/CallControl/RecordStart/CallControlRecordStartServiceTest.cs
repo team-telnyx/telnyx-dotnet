@@ -27,7 +27,8 @@ namespace TelnyxTests.Services.Calls.CallCommands
                 CommandId = new System.Guid("891510ac-f3e4-11e8-af5b-de00688a4901"),
                 Channel = CallControlRecordStartOptions.ChannelEnum.DualEnum,
                 Format = CallControlRecordStartOptions.FormatEnum.Mp3Enum,
-                PlayBeep = false
+                PlayBeep = false,
+                StatusCallback = "www.google.com",
             };
         }
 

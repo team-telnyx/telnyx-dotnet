@@ -5,13 +5,15 @@ namespace Telnyx
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
     using Telnyx.net.Entities.Enum;
+    using Telnyx.net.Infrastructure.JsonConverters;
 
     /// <summary>
     /// Phone Number Type Enum.
     /// </summary>
-    [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+    [JsonConverter(typeof(SafeStringEnumConverter), Unknown)]
     public enum PhoneNumberTypeEnum
     {
+        Unknown = -1,
         /// <summary>
         /// long-code
         /// </summary>
@@ -21,7 +23,7 @@ namespace Telnyx
         /// <summary>
         /// toll-free
         /// </summary>
-        [EnumMember(Value = "toll-free")]
+        [EnumMember(Value = "tollfree")]
         TollFreeEnum = 1,
 
         /// <summary>

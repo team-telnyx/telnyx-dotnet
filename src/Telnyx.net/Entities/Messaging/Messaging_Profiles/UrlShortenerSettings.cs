@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Telnyx.net.Entities.Messaging.Messaging_Profiles
 {
-    public class UrlShortnerSettings
+    public class UrlShortenerSettings
     {
         /// <summary>
         /// One of the domains provided by the Telnyx URL shortener service. Example: "acct.fyi".
