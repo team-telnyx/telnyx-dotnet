@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Telnyx.Infrastructure;
 using Telnyx.net.Entities;
 using Telnyx.net.Entities.Enum.Webhooks;
+using Telnyx.net.Infrastructure.Public;
 
 namespace Telnyx.Example
 {
@@ -29,173 +30,175 @@ namespace Telnyx.Example
             TelnyxConfiguration.SetApiBase("https://api.telnyx.com/v2");
             TelnyxConfiguration.SetApiKey(config["TelnyxApiKey"]);
 
-            Console.WriteLine("MessagesExample...");
-            MessagesExample messagesExample = new MessagesExample();
-            await messagesExample.SendMessage();
-            messagesExample.RetrieveMessage();
+            //Console.WriteLine("MessagesExample...");
+            //MessagesExample messagesExample = new MessagesExample();
+            //await messagesExample.SendMessage();
+            //messagesExample.RetrieveMessage();
 
-            Console.WriteLine("MessagingProfilesExample...");
-            MessagingProfilesExample messagingProfilesExample = new MessagingProfilesExample();
-            messagingProfilesExample.ListPaged();
-            messagingProfilesExample.List();
-            messagingProfilesExample.ListAllMessagingProfilePhoneNumbers();
-            messagingProfilesExample.Create();
-            messagingProfilesExample.Update();
-            messagingProfilesExample.Delete();
+            //Console.WriteLine("MessagingProfilesExample...");
+            //MessagingProfilesExample messagingProfilesExample = new MessagingProfilesExample();
+            //messagingProfilesExample.ListPaged();
+            //messagingProfilesExample.List();
+            //messagingProfilesExample.ListAllMessagingProfilePhoneNumbers();
+            //messagingProfilesExample.Create();
+            //messagingProfilesExample.Update();
+            //messagingProfilesExample.Delete();
 
-            Console.WriteLine("MessagingProfilesMetricsExample...");
-            //Optional add your own messaging profile ID
-            await messagingProfilesExample.GetDetailAsync();
-            await messagingProfilesExample.ListOverviewAsync();
+            //Console.WriteLine("MessagingProfilesMetricsExample...");
+            ////Optional add your own messaging profile ID
+            //await messagingProfilesExample.GetDetailAsync();
+            //await messagingProfilesExample.ListOverviewAsync();
 
-            Console.WriteLine("NumberOrderExample...");
-            NumberOrderExample numberOrderExample = new NumberOrderExample();
-            numberOrderExample.ListNumberOrder();
-            numberOrderExample.CreateNumberOrder();
+            //Console.WriteLine("NumberOrderExample...");
+            //NumberOrderExample numberOrderExample = new NumberOrderExample();
+            //numberOrderExample.ListNumberOrder();
+            //numberOrderExample.CreateNumberOrder();
 
-            Console.WriteLine("NumberReservationExample...");
-            NumberReservationExample numberReservationExample = new NumberReservationExample();
-            numberReservationExample.CreateNumberReservation();
-            numberReservationExample.ListNumberReservation();
+            //Console.WriteLine("NumberReservationExample...");
+            //NumberReservationExample numberReservationExample = new NumberReservationExample();
+            //numberReservationExample.CreateNumberReservation();
+            //numberReservationExample.ListNumberReservation();
 
-            Console.WriteLine("NumberSearchExample...");
-            NumberSearchExample numberSearchExample = new NumberSearchExample();
-            numberSearchExample.ListNumberService();
-            numberSearchExample.ListNumberServicePaged();
+            //Console.WriteLine("NumberSearchExample...");
+            //NumberSearchExample numberSearchExample = new NumberSearchExample();
+            //numberSearchExample.ListNumberService();
+            //numberSearchExample.ListNumberServicePaged();
 
-            Console.WriteLine("PhoneNumbersExample...");
-            PhoneNumbersExample phoneNumbersExample = new PhoneNumbersExample();
-            phoneNumbersExample.GetPhoneNumber();
-            phoneNumbersExample.ListNumberOrder();
-            phoneNumbersExample.UpdatePhoneNumber();
+            //Console.WriteLine("PhoneNumbersExample...");
+            //PhoneNumbersExample phoneNumbersExample = new PhoneNumbersExample();
+            //phoneNumbersExample.GetPhoneNumber();
+            //phoneNumbersExample.ListNumberOrder();
+            //phoneNumbersExample.UpdatePhoneNumber();
 
-            Console.WriteLine("CallControlExample...");
-            CallControlExample callControlExample = new CallControlExample();
-            callControlExample.Dial();
+            //Console.WriteLine("CallControlExample...");
+            //CallControlExample callControlExample = new CallControlExample();
+            //callControlExample.Dial();
 
-            callControlExample.SetCallControlId("v2:ZKoCq-ggJPRhO3H9KxQa5zVQphVX8Hx9d_FRl2b-W2dQfVUHfhe13g");
+            //callControlExample.SetCallControlId("v2:ZKoCq-ggJPRhO3H9KxQa5zVQphVX8Hx9d_FRl2b-W2dQfVUHfhe13g");
 
-            callControlExample.Speak();
-            callControlExample.Bridge();
-            callControlExample.ForkingStart();
-            callControlExample.ForkingStop();
-            callControlExample.GatherUsingAudio();
-            callControlExample.GatherUsingSpeak();
-            callControlExample.Hangup();
-            callControlExample.PlaybackStart();
-            callControlExample.PlaybackStop();
-            callControlExample.RecordStart();
-            callControlExample.RecordStop();
-            callControlExample.Reject();
-            callControlExample.SendDTMF();
-            callControlExample.Transfer();
+            //callControlExample.Speak();
+            //callControlExample.Bridge();
+            //callControlExample.ForkingStart();
+            //callControlExample.ForkingStop();
+            //callControlExample.GatherUsingAudio();
+            //callControlExample.GatherUsingSpeak();
+            //callControlExample.Hangup();
+            //callControlExample.PlaybackStart();
+            //callControlExample.PlaybackStop();
+            //callControlExample.RecordStart();
+            //callControlExample.RecordStop();
+            //callControlExample.Reject();
+            //callControlExample.SendDTMF();
+            //callControlExample.Transfer();
 
-            Console.WriteLine("ConferenceCommandsExample...");
-            ConferenceCommandsExample conferenceCommandsExample = new ConferenceCommandsExample();
-            conferenceCommandsExample.SetCallControlId("v2:ZKoCq-ggJPRhO3H9KxQa5zVQphVX8Hx9d_FRl2b-W2dQfVUHfhe13g");
+            //Console.WriteLine("ConferenceCommandsExample...");
+            //ConferenceCommandsExample conferenceCommandsExample = new ConferenceCommandsExample();
+            //conferenceCommandsExample.SetCallControlId("v2:ZKoCq-ggJPRhO3H9KxQa5zVQphVX8Hx9d_FRl2b-W2dQfVUHfhe13g");
 
-            conferenceCommandsExample.Create();
-            conferenceCommandsExample.List();
-            Console.WriteLine("NumberConfigurationExample..");
-            NumberConfigurationExample numConfigExample = new NumberConfigurationExample();
-            await numConfigExample.ListPhoneNumbersWithPagingAsync();
-            await numConfigExample.ListPhoneNumbersWithFiltersAsync();
-            await numConfigExample.ListMessagingOptionsAsync();
-            await numConfigExample.ListVoiceSettingsWithFiltersAsync();
+            //conferenceCommandsExample.Create();
+            //conferenceCommandsExample.List();
+            //Console.WriteLine("NumberConfigurationExample..");
+            //NumberConfigurationExample numConfigExample = new NumberConfigurationExample();
+            //await numConfigExample.ListPhoneNumbersWithPagingAsync();
+            //await numConfigExample.ListPhoneNumbersWithFiltersAsync();
+            //await numConfigExample.ListMessagingOptionsAsync();
+            //await numConfigExample.ListVoiceSettingsWithFiltersAsync();
 
-            Console.WriteLine("CallControlApplicationExample...");
-            CallControlApplicationsExample callControlApplicationsExample = new CallControlApplicationsExample();
-            callControlApplicationsExample.List();
-            callControlApplicationsExample.Create();
-            callControlApplicationsExample.Get();
-            callControlApplicationsExample.Delete();
-            callControlApplicationsExample.Update();
+            //Console.WriteLine("CallControlApplicationExample...");
+            //CallControlApplicationsExample callControlApplicationsExample = new CallControlApplicationsExample();
+            //callControlApplicationsExample.List();
+            //callControlApplicationsExample.Create();
+            //callControlApplicationsExample.Get();
+            //callControlApplicationsExample.Delete();
+            //callControlApplicationsExample.Update();
 
-            Console.WriteLine("OutboundVoiceProfilesExample...");
-            OutboundVoiceProfilesExample outboundVoiceProfilesExample = new OutboundVoiceProfilesExample();
-            outboundVoiceProfilesExample.List();
-            outboundVoiceProfilesExample.Create();
-            outboundVoiceProfilesExample.Get();
-            outboundVoiceProfilesExample.Delete();
-            outboundVoiceProfilesExample.Update();
+            //Console.WriteLine("OutboundVoiceProfilesExample...");
+            //OutboundVoiceProfilesExample outboundVoiceProfilesExample = new OutboundVoiceProfilesExample();
+            //outboundVoiceProfilesExample.List();
+            //outboundVoiceProfilesExample.Create();
+            //outboundVoiceProfilesExample.Get();
+            //outboundVoiceProfilesExample.Delete();
+            //outboundVoiceProfilesExample.Update();
 
-            Console.WriteLine("Connections Example....");
-            ConnectionsExample connectionsExample = new ConnectionsExample();
-            await connectionsExample.ListConnectionsAsync();
-            await connectionsExample.ListCredConnectionsAsync();
-            await connectionsExample.ListIPConnectionsAsync();
-            await connectionsExample.ListIPsAsync();
-            await connectionsExample.ListFQDNConnectionsAsync();
-            await connectionsExample.ListFQDNsAsync();
+            //Console.WriteLine("Connections Example....");
+            //ConnectionsExample connectionsExample = new ConnectionsExample();
+            //await connectionsExample.ListConnectionsAsync();
+            //await connectionsExample.ListCredConnectionsAsync();
+            //await connectionsExample.ListIPConnectionsAsync();
+            //await connectionsExample.ListIPsAsync();
+            //await connectionsExample.ListFQDNConnectionsAsync();
+            //await connectionsExample.ListFQDNsAsync();
 
-            Console.WriteLine("NumberLookupExample...");
-            NumberLookupExample numberLookupExample = new NumberLookupExample();
-            numberLookupExample.Get();
-            await numberLookupExample.GetAsync();
+            //Console.WriteLine("NumberLookupExample...");
+            //NumberLookupExample numberLookupExample = new NumberLookupExample();
+            //numberLookupExample.Get();
+            //await numberLookupExample.GetAsync();
 
-            Console.WriteLine("MobileOperatorNetworksExample...");
-            MobileOperatorNetworksExample mobileOperatorNetworksExample = new MobileOperatorNetworksExample();
-            mobileOperatorNetworksExample.List();
-            await mobileOperatorNetworksExample.ListAsync();
+            //Console.WriteLine("MobileOperatorNetworksExample...");
+            //MobileOperatorNetworksExample mobileOperatorNetworksExample = new MobileOperatorNetworksExample();
+            //mobileOperatorNetworksExample.List();
+            //await mobileOperatorNetworksExample.ListAsync();
 
-            Console.WriteLine("OTAUpdatesExample...");
-            OTAUpdatesExample oTAUpdatesExample = new OTAUpdatesExample();
-            oTAUpdatesExample.Get();
-            await oTAUpdatesExample.GetAsync();
-            oTAUpdatesExample.List();
-            await oTAUpdatesExample.ListAsync();
+            //Console.WriteLine("OTAUpdatesExample...");
+            //OTAUpdatesExample oTAUpdatesExample = new OTAUpdatesExample();
+            //oTAUpdatesExample.Get();
+            //await oTAUpdatesExample.GetAsync();
+            //oTAUpdatesExample.List();
+            //await oTAUpdatesExample.ListAsync();
 
-            Console.WriteLine("WDRReportsExample...");
-            WDRReportsExample wDRReportsExample = new WDRReportsExample();
-            wDRReportsExample.Get();
-            await wDRReportsExample.GetAsync();
-            wDRReportsExample.List();
-            await wDRReportsExample.ListAsync();
-            wDRReportsExample.Create();
-            await wDRReportsExample.CreateAsync();
-            wDRReportsExample.Delete();
-            await wDRReportsExample.DeleteAsync();
+            //Console.WriteLine("WDRReportsExample...");
+            //WDRReportsExample wDRReportsExample = new WDRReportsExample();
+            //wDRReportsExample.Get();
+            //await wDRReportsExample.GetAsync();
+            //wDRReportsExample.List();
+            //await wDRReportsExample.ListAsync();
+            //wDRReportsExample.Create();
+            //await wDRReportsExample.CreateAsync();
+            //wDRReportsExample.Delete();
+            //await wDRReportsExample.DeleteAsync();
 
-            Console.WriteLine("SimCardsExample...");
-            SimCardsExample simCardsExample = new SimCardsExample();
-            simCardsExample.Get();
-            await simCardsExample.GetAsync();
-            simCardsExample.List();
-            await simCardsExample.ListAsync();
-            simCardsExample.Delete();
-            await simCardsExample.DeleteAsync();
-            simCardsExample.Enable();
-            await simCardsExample.EnableAsync();
-            simCardsExample.Disable();
-            await simCardsExample.DisableAsync();
-            simCardsExample.Register();
-            await simCardsExample.RegisterAsync();
-            simCardsExample.BulkUpdateNetworkPreference();
-            await simCardsExample.BulkUpdateNetworkPreferenceAsync();
-            simCardsExample.GetNetworkPreference();
-            await simCardsExample.GetNetworkPreferenceAsync();
-            simCardsExample.SetNetworkPreference();
-            await simCardsExample.SetNetworkPreferenceAsync();
-            simCardsExample.DeleteNetworkPreference();
-            await simCardsExample.DeleteNetworkPreferenceAsync();
+            //Console.WriteLine("SimCardsExample...");
+            //SimCardsExample simCardsExample = new SimCardsExample();
+            //simCardsExample.Get();
+            //await simCardsExample.GetAsync();
+            //simCardsExample.List();
+            //await simCardsExample.ListAsync();
+            //simCardsExample.Delete();
+            //await simCardsExample.DeleteAsync();
+            //simCardsExample.Enable();
+            //await simCardsExample.EnableAsync();
+            //simCardsExample.Disable();
+            //await simCardsExample.DisableAsync();
+            //simCardsExample.Register();
+            //await simCardsExample.RegisterAsync();
+            //simCardsExample.BulkUpdateNetworkPreference();
+            //await simCardsExample.BulkUpdateNetworkPreferenceAsync();
+            //simCardsExample.GetNetworkPreference();
+            //await simCardsExample.GetNetworkPreferenceAsync();
+            //simCardsExample.SetNetworkPreference();
+            //await simCardsExample.SetNetworkPreferenceAsync();
+            //simCardsExample.DeleteNetworkPreference();
+            //await simCardsExample.DeleteNetworkPreferenceAsync();
 
-            Console.WriteLine("Start Webhook Example....");
-            await ReceiveAndHandleWebhook();
+            //Console.WriteLine("Start Webhook Example....");
+            //await ReceiveAndHandleWebhook();
 
-            Console.WriteLine("TelephonyCredentialExample...");
-            TelephonyCredentialExample telephonyCredentialExample = new TelephonyCredentialExample();
-            telephonyCredentialExample.Get();
-            await telephonyCredentialExample.GetAsync();
-            telephonyCredentialExample.List();
-            await telephonyCredentialExample.ListAsync();
-            telephonyCredentialExample.Create();
-            await telephonyCredentialExample.CreateAsync();
-            telephonyCredentialExample.Update();
-            await telephonyCredentialExample.UpdateAsync();
-            telephonyCredentialExample.Delete();
-            await telephonyCredentialExample.DeleteAsync();
-            telephonyCredentialExample.GetToken();
-            await telephonyCredentialExample.GetTokenAsync();
+            //Console.WriteLine("TelephonyCredentialExample...");
+            //TelephonyCredentialExample telephonyCredentialExample = new TelephonyCredentialExample();
+            //telephonyCredentialExample.Get();
+            //await telephonyCredentialExample.GetAsync();
+            //telephonyCredentialExample.List();
+            //await telephonyCredentialExample.ListAsync();
+            //telephonyCredentialExample.Create();
+            //await telephonyCredentialExample.CreateAsync();
+            //telephonyCredentialExample.Update();
+            //await telephonyCredentialExample.UpdateAsync();
+            //telephonyCredentialExample.Delete();
+            //await telephonyCredentialExample.DeleteAsync();
+            //telephonyCredentialExample.GetToken();
+            //await telephonyCredentialExample.GetTokenAsync();
+
+            GetWebhook();
         }
 
         public async static Task<HttpStatusCode> ReceiveAndHandleWebhook()
@@ -277,6 +280,18 @@ namespace Telnyx.Example
             }
             return default;
         }
+
+        public static TelnyxWebhook<dynamic> GetWebhook()
+        {
+            var payload = "{\r\n  \"data\": {\r\n    \"event_type\": \"message.received\",\r\n    \"id\": \"62636d81-3815-4ca1-8901-5cfe2e180a68\",\r\n    \"occurred_at\": \"2020-10-02T19:35:24.409+00:00\",\r\n    \"payload\": {\r\n      \"cc\": [],\r\n      \"completed_at\": null,\r\n      \"cost\": null,\r\n      \"direction\": \"inbound\",\r\n      \"encoding\": \"GSM-7\",\r\n      \"errors\": [],\r\n      \"from\": {\r\n        \"carrier\": \"Verizon Wireless\",\r\n        \"line_type\": \"Wireless\",\r\n        \"phone_number\": \"+12408213782\"\r\n      },\r\n      \"id\": \"7dc73487-6540-44f6-9ca1-55ab63a108b9\",\r\n      \"media\": [],\r\n      \"messaging_profile_id\": \"4001722f-5463-460b-adc9-c4ecba582176\",\r\n      \"organization_id\": \"7d711162-48e6-4c7f-a37b-bf4c0bccd511\",\r\n      \"parts\": 1,\r\n      \"received_at\": \"2020-10-02T19:35:24.396+00:00\",\r\n      \"record_type\": \"message\",\r\n      \"sent_at\": null,\r\n      \"tags\": [],\r\n      \"text\": \"Yo\",\r\n      \"to\": [\r\n        {\r\n          \"carrier\": \"Telnyx\",\r\n          \"line_type\": \"Wireless\",\r\n          \"phone_number\": \"+19712881359\",\r\n          \"status\": \"webhook_delivered\"\r\n        }\r\n      ],\r\n      \"type\": \"SMS\",\r\n      \"valid_until\": null,\r\n      \"webhook_failover_url\": null,\r\n      \"webhook_url\": \"https://webhook.site/efd0a605-18dc-4a6b-ac3f-222226be78aa\"\r\n    },\r\n    \"record_type\": \"event\"\r\n  },\r\n  \"meta\": {\r\n    \"attempt\": 1,\r\n    \"delivered_to\": \"https://webhook.site/efd0a605-18dc-4a6b-ac3f-222226be78aa\"\r\n  }\r\n}";
+
+            var publicKey = "4S5rFllksz20qtRP/7cwj8g8PeypQg4/Ym5V69mEBL0=";
+            var telnyxSignature = "hk0AvSYv+xze5WKnEwNoE2zisVK6R3whPKkso8drRZhYjkpgXd9MkSnjsJGhQ+sEUqaMF5fQdaHSZnz/ET3pDA==";
+            var telnyxTimeStamp = 1601667324.ToString();
+            var @event = Webhook.ConstructEvent(payload, telnyxSignature, telnyxTimeStamp, publicKey);
+            return @event;
+        }
+
 
     }
   
