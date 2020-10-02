@@ -24,7 +24,8 @@ namespace TelnyxTests.Services.Calls.CallCommands
             this.createOptions = new CallControlRejectOptions()
             {
                 ClientState = "aGF2ZSBhIG5pY2UgZGF5ID1d",
-                CommandId = new System.Guid("891510ac-f3e4-11e8-af5b-de00688a4901")
+                CommandId = new System.Guid("891510ac-f3e4-11e8-af5b-de00688a4901"),
+                Cause = CallControlRejectOptions.RejectCauseEnum.CALLREJECTED
             };
         }
 
