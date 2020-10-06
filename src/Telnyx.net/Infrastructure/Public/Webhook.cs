@@ -61,10 +61,7 @@ namespace Telnyx.net.Infrastructure.Public
             bool isVerified;
             try
             {
-                var jsonBytes = Encoding.UTF8.GetBytes(json);
-                var timestampEncoded = Encoding.UTF8.GetBytes(telnyxtimestamp);
-                var payloadBytes = Encoding.UTF8.GetBytes($"{timestampEncoded}|{jsonBytes}");
-
+                var payloadBytes = Encoding.UTF8.GetBytes($"{telnyxtimestamp}|{json}");
                 var algo = new Ed25519();
                 algo.FromPublicKey(base64decodedPublicKey); // load public key
                 isVerified = algo.VerifyMessage(payloadBytes, base64decodedSignatureHeader);
