@@ -108,5 +108,21 @@
             Assert.NotNull(result);
             Assert.Equal(typeof(OutboundVoiceProfile), result.GetType());
         }
+
+        [Fact]
+        public void Delete()
+        {
+            var result = this.service.Delete(Id);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(OutboundVoiceProfile), result.GetType());
+        }
+
+        [Fact]
+        public async Task DeleteAsync()
+        {
+            var result = await this.service.DeleteAsync(Id);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(OutboundVoiceProfile), result.GetType());
+        }
     }
 }

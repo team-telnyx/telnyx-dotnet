@@ -12,9 +12,9 @@ namespace TelnyxTests.Services.Connections
 {
     public class ConnectionsServiceTest : BaseTelnyxTest
     {
-
         private readonly ConnectionService service;
         private readonly ConnectionListOptions listOptions;
+        private readonly string connectionServiceId = "Id123";
 
         public ConnectionsServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
@@ -40,6 +40,22 @@ namespace TelnyxTests.Services.Connections
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
             Assert.NotNull(message);
             Assert.Equal(typeof(TelnyxList<Connection>), message.GetType());
+        }
+
+        [Fact]
+        public void RetrieveConnection()
+        {
+            var message = this.service.RetrieveConnection(this.connectionServiceId);
+            Assert.NotNull(message);
+            Assert.Equal(typeof(Connection), message.GetType());
+        }
+
+        [Fact]
+        public async Task RetrieveConnectionAsync()
+        {
+            var message = await this.service.RetrieveConnectionAsync(this.connectionServiceId);
+            Assert.NotNull(message);
+            Assert.Equal(typeof(Connection), message.GetType());
         }
     }
 }
