@@ -23,6 +23,14 @@ namespace TelnyxTests.Services.Numbers.Reservation
             : base(mockHttpClientFixture)
         {
             this.service = new NumberReservationsService();
+            this.listOptions = new NumberReservationsListOptions()
+            {
+                Status = "enabled",
+                CreatedAtGt = null,
+                CreatedAtLt = null,
+                PhoneNumbersPhoneNumber = "9830094821",
+                CustomerReference = "Reference001"
+            };
 
             this.createOptions = new NumberReservation
             {

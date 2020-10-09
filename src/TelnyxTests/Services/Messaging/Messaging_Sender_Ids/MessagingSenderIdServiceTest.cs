@@ -5,6 +5,7 @@
 namespace TelnyxTests.Services.Messages.MessagingSenderId
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Net.Http;
     using System.Threading;
@@ -33,14 +34,26 @@ namespace TelnyxTests.Services.Messages.MessagingSenderId
             {
                 From = "+18665552368", // alphanumeric sender id
                 To = "+18665552367",
-                Text = "Hello, World!"
+                Text = "Hello, World!",
+                MessagingProfileId = Guid.NewGuid(),
+                Subject = "Subject",
+                MediaUrls = new List<string> { "url1", "url2" },
+                WebhookUrl = "webhookUrl",
+                WebhookFailoverUrl = "failureUrl",
+                UseProfileWebhooks = true
             };
 
             this.sendMessageUsingNumberPoolOptions = new NewMessagingSenderId
             {
                 MessagingProfileId = new Guid("dd50eba1-a0c0-4563-9925-b25e842a7cb6"),
+                From = "+18665552368",
                 To = "+18005550199",
-                Text = "Hello, World!"
+                Text = "Hello, World!",
+                Subject = "Subject",
+                MediaUrls = new List<string> { "url1", "url2" },
+                WebhookUrl = "webhookUrl",
+                WebhookFailoverUrl = "failureUrl",
+                UseProfileWebhooks = false
             };
 
             this.updateOptions = new MessagingSenderIdUpdate

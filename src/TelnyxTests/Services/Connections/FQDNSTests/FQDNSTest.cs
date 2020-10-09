@@ -22,9 +22,19 @@ namespace TelnyxTests.Services.Connections.FQDNSTests
         {
             this.service = new FQDNService();
 
-            this.listOptions = new FQDNListOptions();
-            this.createOptions = new UpsertFQDNOptions() {
-                Fqdn = "example.com"
+            this.listOptions = new FQDNListOptions()
+            {
+                ConnectionId = "Connection001",
+                Fqdn = "Fqdn",
+                Port = 1302,
+                DNSRecordType = "DNSRecordType"
+            };
+            this.createOptions = new UpsertFQDNOptions()
+            {
+                ConnectionId = "Connection001",
+                Fqdn = "example.com",
+                Port = 1303,
+                DNSRecordType = "DNSRecordType"
             };
         }
 

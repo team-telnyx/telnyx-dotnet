@@ -1,12 +1,14 @@
 ﻿namespace Telnyx
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
 
     /// <summary>
     /// Payload.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class Payload
     {
         /// <summary>

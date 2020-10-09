@@ -2,11 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Newtonsoft.Json;
 
     /// <summary>
     /// Number Reservation Example.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class NumberReservationExample
     {
         private const string YOURAPIKEY = "YOUR_API_KEY";

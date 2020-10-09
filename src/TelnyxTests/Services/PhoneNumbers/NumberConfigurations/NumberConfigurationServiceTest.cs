@@ -28,10 +28,8 @@
             {
                 BillingGroupId = "86f58db9-0fe3-4adc-9d1f-46e66e6e9323",
                 ConnectionId = "1293384261075731499",
-                Tags = new List<string>
-                {
-                    "test"
-                }
+                ExternalPin = "0738",
+                Tags = new List<string> { "test" }
             };
             this.listOptions = new NumberConfigurationsListOptions
             {

@@ -14,12 +14,24 @@ namespace TelnyxTests.Services.Numbers.Search
     {
         private readonly NumberSearchService numberSearchService;
         private readonly NumberSearchOptions listOptions;
-        private readonly RequestOptions requestOptions;
 
         public NumberSearchServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
             this.numberSearchService = new NumberSearchService();
+            this.listOptions = new NumberSearchOptions()
+            {
+                StartsWith = "A",
+                EndsWith = "D",
+                Contains = "Ax",
+                Locality = "Test",
+                AdministrativeArea = "Test",
+                RateCenter = "Test",
+                NumberType = null,
+                BestEffort = true,
+                Quickship = false,
+                Limit = 12
+            };
         }
 
         [Fact]

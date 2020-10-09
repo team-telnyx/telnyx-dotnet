@@ -21,10 +21,17 @@ namespace TelnyxTests.Services.Connections.IPTests
         {
             this.service = new IPService();
 
-            this.listOptions = new IPListOptions();
+            this.listOptions = new IPListOptions()
+            {
+                ConnectionId = "Connection001",
+                IPAddress = "192.168.0.1",
+                Port = 4455
+            };
             this.createOptions = new UpsertIPOptions()
             {
-                IPAddress = "192.168.0.1"
+                ConnectionId = "Connection001",
+                IPAddress = "192.168.0.1",
+                Port = 4455
             };
         }
 

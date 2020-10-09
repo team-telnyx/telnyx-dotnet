@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Telnyx.net.Entities;
 using Telnyx.net.Entities.Connections.CredentialConnections;
 using Telnyx.net.Entities.Enum.Connections;
+using Telnyx.net.Entities.Messaging.Messaging_Profiles.Metrics;
 using Telnyx.net.Services.Connections;
 using Telnyx.net.Services.Connections.CredentialConnections;
 using Xunit;
@@ -24,7 +25,13 @@ namespace TelnyxTests.Services.Connections.CredentialConnections
             this.service = new CredentialConnectionService();
 
             this.listOptions = null;
-            this.createOptions = new UpsertCredentialConnectionOptions();
+            this.createOptions = new UpsertCredentialConnectionOptions()
+            {
+                SipUriCallingPreference = "disabled",
+                UserName = "user001",
+                Outbound = null,
+                Password = "pwd001"
+            };
         }
 
         [Fact]

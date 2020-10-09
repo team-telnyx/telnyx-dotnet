@@ -23,7 +23,10 @@ namespace TelnyxTests.Services.Connections.FQDNConnectionsTest
             this.service = new FQDNConnectionService();
 
             this.listOptions = null;
-            this.createOptions = new UpsertFQDNConnectionOptions();
+            this.createOptions = new UpsertFQDNConnectionOptions()
+            {
+                TransportProtocol = Telnyx.net.Entities.Enum.TransportProtocol.TCP
+            };
         }
 
         [Fact]
