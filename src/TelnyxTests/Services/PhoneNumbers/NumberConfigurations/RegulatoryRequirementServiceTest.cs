@@ -35,9 +35,9 @@ namespace TelnyxTests.Services.PhoneNumbers.NumberConfigurations
             };
             this.listOptionsRegReq = new RegulatoryRequirementListOptions
             {
-                RequirementId = "Id001",
-                FieldType = RegulatoryRequirement.FieldTypeEnum.AddressEnum,
-                RequirementType = RegulatoryRequirement.RequirementTypeEnum.EndUserAddressEnum
+                RequirementId = null,
+                FieldType = null,
+                RequirementType = null
             };
 
         }
