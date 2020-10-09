@@ -9,19 +9,26 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
     using System.Threading.Tasks;
     using Telnyx.net.Entities.Calls.CallControlApplications;
     using Telnyx.net.Services.Calls.CallControlApplications;
+    using Telnyx.net.Entities.Enum;
 
     public class CallControlApplicationServiceTest : BaseTelnyxTest
     {
         private const string CallControllId = "call_123";
         private readonly CallControlApplicationService service;
-        private readonly CreateCallControlApplicationOptions option;
+        private readonly CreateCallControlApplicationOptions createOption;
 
         public CallControlApplicationServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
             this.service = new CallControlApplicationService();
-            this.option = new CreateCallControlApplicationOptions()
+            this.createOption = new CreateCallControlApplicationOptions()
             {
+                RecordType = RecordType.CallControlApplication,
+                DtmfType = DTMFType.Inband,
+                WebhookEventFailoverUrl = "FailureURL",
+                WebhookApiVersion = WebhookAPIVersion.V1,
+                FirstCommandTimeoutSecs = 10,
+                WebhookTimeoutSecs = 12,
                 Active = true,
                 WebhookEventUrl = "TestURL",
                 ApplicationName = "Telnyx"
@@ -31,7 +38,7 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
         [Fact]
         public void Create()
         {
-            var message = this.service.Create(this.option);
+            var message = this.service.Create(this.createOption);
             Assert.NotNull(message);
             Assert.Equal(typeof(CallControlApplication), message.GetType());
         }
@@ -39,7 +46,7 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
         [Fact]
         public async Task CreateAsync()
         {
-            var message = await this.service.CreateAsync(this.option);
+            var message = await this.service.CreateAsync(this.createOption);
             Assert.NotNull(message);
             Assert.Equal(typeof(CallControlApplication), message.GetType());
         }
@@ -79,7 +86,7 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
         [Fact]
         public void List()
         {
-            var message = this.service.List();
+            var message = this.service.List(new ListCallControlApplicationOptions());
             Assert.NotNull(message);
             Assert.Equal(typeof(TelnyxList<CallControlApplication>), message.GetType());
         }
@@ -87,7 +94,7 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
         [Fact]
         public async Task ListAsync()
         {
-            var message = await this.service.ListAsync();
+            var message = await this.service.ListAsync(new ListCallControlApplicationOptions());
             Assert.NotNull(message);
             Assert.Equal(typeof(TelnyxList<CallControlApplication>), message.GetType());
         }
@@ -95,7 +102,7 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
         [Fact]
         public void Update()
         {
-            var message = this.service.Update(CallControllId, option);
+            var message = this.service.Update(CallControllId, createOption);
             Assert.NotNull(message);
             Assert.Equal(typeof(CallControlApplication), message.GetType());
         }
@@ -103,7 +110,7 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
         [Fact]
         public async Task UpdateAsync()
         {
-            var message = this.service.UpdateAsync(CallControllId, option);
+            var message = this.service.UpdateAsync(CallControllId, createOption);
             Assert.NotNull(message);
         }
     }
