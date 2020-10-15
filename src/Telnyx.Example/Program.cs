@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Telnyx.Infrastructure;
 using Telnyx.net.Entities;
 using Telnyx.net.Entities.Enum.Webhooks;
+using Telnyx.net.Infrastructure.Public;
 
 namespace Telnyx.Example
 {
@@ -196,6 +197,9 @@ namespace Telnyx.Example
             await telephonyCredentialExample.DeleteAsync();
             telephonyCredentialExample.GetToken();
             await telephonyCredentialExample.GetTokenAsync();
+
+            /*Only call with your credentials*/
+            //GetWebhook();
         }
 
         public async static Task<HttpStatusCode> ReceiveAndHandleWebhook()
@@ -277,6 +281,19 @@ namespace Telnyx.Example
             }
             return default;
         }
+
+        public static TelnyxWebhook<dynamic> GetWebhook()
+        {
+            var payload = "SAMPLE_PAYLOAD";
+            var publicKey = "YOUR_PUBLIC_KEY";
+            /*From request object example: Request.Headers["telnyx-signature-ed25519"]; */
+            var telnyxSignature = "hk0AvSYv+xze5WKnEwNoE2zisVK6R3whPKkso8drRZhYjkpgXd9MkSnjsJGhQ+sEUqaMF5fQdaHSZnz/ET3pDA==";
+            /*From request object example: Request.Headers["telnyx-timestamp"]; */
+            var telnyxTimeStamp = 1601667324.ToString();
+            var @event = Webhook.ConstructEvent(payload, telnyxSignature, telnyxTimeStamp, publicKey);
+            return @event;
+        }
+
 
     }
   
