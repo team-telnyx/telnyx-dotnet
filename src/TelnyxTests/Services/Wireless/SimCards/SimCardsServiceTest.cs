@@ -16,6 +16,7 @@
         private readonly ListOptions listOptions;
         private readonly RequestOptions requestOptions;
         private readonly BaseOptions baseOptions;
+        private readonly UpdateSimCardOptions updateSimCardOptions;
         private readonly SimCardRegisterOptions simCardRegisterOptions;
         private readonly SimCardBulkNetworkPreferenceUpdateOptions simCardBulkNetworkPreferenceUpdateOptions;
 
@@ -36,6 +37,12 @@
             this.baseOptions.AddExtraParam("include_sim_card_group", "true");
 
             this.requestOptions = new RequestOptions();
+            this.updateSimCardOptions = new UpdateSimCardOptions()
+            {
+                Id = "001",
+                Status = null,
+                SimCardGroupId = Guid.NewGuid(),
+            };
 
             this.simCardRegisterOptions = new SimCardRegisterOptions
             {
@@ -108,6 +115,22 @@
         public void Delete()
         {
             var result = this.service.Delete(Id, this.requestOptions);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(SimCardRecord), result.GetType());
+        }
+
+        [Fact]
+        public void Update()
+        {
+            var result = this.service.Update(Id, this.updateSimCardOptions);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(SimCardRecord), result.GetType());
+        }
+
+        [Fact]
+        public async Task UpdateAsync()
+        {
+            var result = await this.service.UpdateAsync(Id, this.updateSimCardOptions);
             Assert.NotNull(result);
             Assert.Equal(typeof(SimCardRecord), result.GetType());
         }

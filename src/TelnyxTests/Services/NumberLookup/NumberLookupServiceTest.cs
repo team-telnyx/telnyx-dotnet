@@ -26,7 +26,7 @@ namespace TelnyxTests.Services.NumberLookup
 
             this.options = new NumberLookupRecordOptions()
             {
-
+                Type = null
             };
 
             this.cancellationToken = default(CancellationToken);

@@ -1,37 +1,36 @@
-﻿// <copyright file="CreateConferenceServiceTest.cs" company="Telnyx">
+﻿// <copyright file="UnMuteConferenceServiceTest.cs" company="Telnyx">
 // Copyright (c) Telnyx. All rights reserved.
 // </copyright>
 
 namespace TelnyxTests.Services.Calls.ConfrenceCommands
 {
     using System;
+    using System.Collections.Generic;
     using System.Net.Http;
-    using System.Threading;
     using System.Threading.Tasks;
     using Telnyx;
     using Xunit;
 
-    public class CreateConferenceServiceTest : BaseTelnyxTest
+    public class ConferenceCommandServiceTest : BaseTelnyxTest
     {
         private const string CallControllId = "call_123";
 
         private readonly ConferenceCommandsService service;
         private readonly CreateConferenceOptions createOptions;
 
-        public CreateConferenceServiceTest(MockHttpClientFixture mockHttpClientFixture)
+        public ConferenceCommandServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
             this.service = new ConferenceCommandsService();
-
             this.createOptions = new CreateConferenceOptions()
             {
-                BeepEnabled = CreateConferenceOptions.BeepEnum.ON_ENTER,
+                BeepEnabled = CreateConferenceOptions.BeepEnum.NEVER,
                 DurationMinutes = 01,
-                HoldAudioUrl = "AudioURL",
-                CallControlId = "AgDIxmoRX6QMuaIj_uXRXnPAXP0QlNfXczRrZvZakpWxBlpw48KyZQ==",
-                Name = "Business",
-                ClientState = "aGF2ZSBhIG5pY2UgZGF5ID1d",
-                CommandId = new Guid("891510ac-f3e4-11e8-af5b-de00688a4901"),
+                CallControlId = "001",
+                HoldAudioUrl = "HoldAudioURL",
+                ClientState = "State1",
+                CommandId = Guid.NewGuid(),
+                Name = "Name",
                 StartConferenceOnCreate = true
             };
         }
@@ -41,7 +40,7 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
         {
             var message = this.service.Create(this.createOptions);
             Assert.NotNull(message);
-            Assert.Equal(typeof(CreateConferenceResponse), message.GetType());
+            Assert.Equal("Telnyx.CreateConferenceResponse", message.GetType().ToString());
         }
 
         [Fact]
@@ -49,7 +48,8 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
         {
             var message = await this.service.CreateAsync(this.createOptions);
             Assert.NotNull(message);
-            Assert.Equal(typeof(CreateConferenceResponse), message.GetType());
+            Assert.Equal("Telnyx.CreateConferenceResponse", message.GetType().ToString());
         }
     }
 }
+

@@ -33,13 +33,32 @@ namespace TelnyxTests.Services.Numbers.Order
 
             this.createOptions = new NumberOrderCreateOptions()
             {
+                Id = Guid.NewGuid(),
+                RecordType = Telnyx.net.Entities.Enum.RecordType.Address,
+                PhoneNumbersCount = 12,
+                Status = NumberOrderCreateOptions.StatusEnum.PendingEnum,
+                CustomerReference = "Test",
+                ConnectionId = "Id001",
+                MessagingProfileId = Guid.NewGuid(),
+                WebhookUrl = "TestUrl",
+                WebhookFailoverUrl = "FailureUrl",
+                CreatedAt = null,
+                UpdatedAt = null,
+                RequirementsMet = true,
                 PhoneNumbers = new List<PhoneNumber>()
                 {
-                    new PhoneNumber
-                    {
-                        Phone_Number = "+13127000090"
-                    }
+                    new PhoneNumber { Phone_Number = "+13127000090" }
                 }
+            };
+
+            this.listOptions = new NumberOrderListOptions()
+            {
+                Status = "enabled",
+                CreatedAtGt = null,
+                CreatedAtLt = null,
+                PhoneNumbersPhoneNumber = "9089983721",
+                CustomerReference = "Test",
+                RequirementsMet = true
             };
 
             this.updateOptions = new NumberOrderUpdateOptions

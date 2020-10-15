@@ -23,7 +23,10 @@ namespace TelnyxTests.Services.Connections.IPConnectionsTest
             this.service = new IPConnectionService();
 
             this.listOptions = null;
-            this.createOptions = new UpsertIPConnectionOptions();
+            this.createOptions = new UpsertIPConnectionOptions()
+            {
+                TransportProtocol = Telnyx.net.Entities.Enum.TransportProtocol.TLS
+            };
         }
 
         [Fact]

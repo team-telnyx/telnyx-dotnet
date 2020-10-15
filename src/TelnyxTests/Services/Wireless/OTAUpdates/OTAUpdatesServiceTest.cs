@@ -23,11 +23,14 @@
             {
                 PageNumber = 1,
                 PageSize = 20,
+                FilterSimCardId = null,
+                FilterStatus = null,
+                FilterType = null
             };
 
             this.requestOptions = new RequestOptions();
         }
-        
+
         [Fact(Skip = "Mock not working")]
         public void Get()
         {

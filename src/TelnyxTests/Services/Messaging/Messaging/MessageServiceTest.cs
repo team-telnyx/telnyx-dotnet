@@ -4,6 +4,8 @@
 
 namespace TelnyxTests.Services.Messages.Messages
 {
+    using System;
+    using System.Collections.Generic;
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
@@ -27,6 +29,13 @@ namespace TelnyxTests.Services.Messages.Messages
 
             this.createOptions = new NewMessage()
             {
+                MessagingProfileId = Guid.NewGuid(),
+                MediaUrls = new List<string>() { "example1.com", "example2.com" },
+                WebhookUrl = "webhookurl.com",
+                WebhookFailoverUrl = "failureurl.com",
+                UseProfileWebhooks = true,
+                ValidityPeriodSecs = 01,
+                IgnoreWireType = true,
                 From = "+18665552368",
                 To = "+18665552367",
                 Text = "Hello, World!"

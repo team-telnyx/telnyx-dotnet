@@ -1,11 +1,13 @@
 ﻿namespace Telnyx
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Newtonsoft.Json;
 
     /// <summary>
     /// Messages example.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class MessagesExample
     {
         private const string YOURAPIKEY = "YOUR_API_KEY";

@@ -14,8 +14,6 @@ namespace TelnyxTests.Services.PhoneNumbers.NumberConfiguration
     public class NumberConfigurationMessagingTest : BaseTelnyxTest
     {
         private const string NumberOrderId = "12ade33a-21c0-473b-b055-b3c836e1c292";
-        private const string PhoneNumber = "+13127000090";
-
         private readonly NumberConfigurationMessagingService service;
         private readonly MessagingSettingUpdateOptions updateOptions;
 

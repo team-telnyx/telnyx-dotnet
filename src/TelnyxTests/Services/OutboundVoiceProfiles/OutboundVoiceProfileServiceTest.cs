@@ -14,8 +14,7 @@
         private const string Id = "1293384261075731499";
 
         private readonly OutboundVoiceProfileService service;
-        private readonly CreateOutboundVoiceProfileOptions createOptions;
-        private readonly CreateOutboundVoiceProfileOptions updateOptions;
+        private readonly CreateOutboundVoiceProfileOptions option;
         private readonly ListOutboundVoiceProfileOptions listOptions;
         private readonly RequestOptions requestOptions;
         private readonly CancellationToken cancellationToken;
@@ -27,27 +26,37 @@
         {
             this.service = new OutboundVoiceProfileService();
 
-            this.createOptions = new CreateOutboundVoiceProfileOptions()
+            this.option = new CreateOutboundVoiceProfileOptions()
             {
                 BillingGroupId = new Guid("6a09cdc3-8948-47f0-aa62-74ac943d6c58"),
                 ConcurrentCallLimit = 10,
+                Name = "TestName",
+                TrafficType = null,
+                ServicePlan = null,
+                Enabled = true,
+                Tags = new List<string> { "Tag1", "Tag2" },
+                UsagePaymentMethod = null,
+                WhitelistedDestinations = new List<string> { "Dest1", "Dest2" },
+                MaxDestinationRate = 1,
+                DailySpendLimit = "Unlimited",
+                DailySpendLimitEnabled = false,
+                CallRecording = null
             };
 
-            this.updateOptions = new CreateOutboundVoiceProfileOptions
+            this.listOptions = new ListOutboundVoiceProfileOptions()
             {
-                BillingGroupId = new Guid("6a09cdc3-8948-47f0-aa62-74ac943d6c58"),
-                ConcurrentCallLimit = 10,
+                FilterNameContains = null,
+                Sort = null
             };
 
             this.requestOptions = new RequestOptions();
-
             this.cancellationToken = default(CancellationToken);
         }
 
         [Fact]
         public void Create()
         {
-            var result = this.service.Create(this.createOptions);
+            var result = this.service.Create(this.option);
             Assert.NotNull(result);
             Assert.Equal(typeof(OutboundVoiceProfile), result.GetType());
         }
@@ -55,7 +64,7 @@
         [Fact]
         public async Task CreateAsync()
         {
-            var result = await this.service.CreateAsync(this.createOptions);
+            var result = await this.service.CreateAsync(this.option);
             Assert.NotNull(result);
             Assert.Equal(typeof(OutboundVoiceProfile), result.GetType());
         }
@@ -96,7 +105,7 @@
         [Fact]
         public void Update()
         {
-            var result = this.service.Update(Id, this.updateOptions);
+            var result = this.service.Update(Id, this.option);
             Assert.NotNull(result);
             Assert.Equal(typeof(OutboundVoiceProfile), result.GetType());
         }
@@ -104,7 +113,23 @@
         [Fact]
         public async Task UpdateAsync()
         {
-            var result = await this.service.UpdateAsync(Id, this.updateOptions);
+            var result = await this.service.UpdateAsync(Id, this.option);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(OutboundVoiceProfile), result.GetType());
+        }
+
+        [Fact]
+        public void Delete()
+        {
+            var result = this.service.Delete(Id);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(OutboundVoiceProfile), result.GetType());
+        }
+
+        [Fact]
+        public async Task DeleteAsync()
+        {
+            var result = await this.service.DeleteAsync(Id);
             Assert.NotNull(result);
             Assert.Equal(typeof(OutboundVoiceProfile), result.GetType());
         }
