@@ -88,7 +88,7 @@
         /// </summary>
         /// <value>The messaging profile id to set the number to upon acquiring the number.</value>
         [JsonProperty("messaging_profile_id")]
-        public Guid? MessagingProfileId { get; set; }
+        public string MessagingProfileId { get; set; }
 
         /// <summary>
         /// Gets or sets a webhook URL for number order status updates.
