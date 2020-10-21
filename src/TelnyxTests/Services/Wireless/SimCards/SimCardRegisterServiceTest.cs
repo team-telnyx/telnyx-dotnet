@@ -1,6 +1,5 @@
 ﻿namespace TelnyxTests.Services.Wireless.SimCards
 {
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
     using Telnyx.net.Entities;
@@ -8,7 +7,6 @@
     using Telnyx.net.Services.Wireless.SimCards;
     using Xunit;
 
-    [ExcludeFromCodeCoverage]
     public class SimCardRegisterServiceTest : BaseTelnyxTest
     {
         private readonly SimCardRegisterService service;
