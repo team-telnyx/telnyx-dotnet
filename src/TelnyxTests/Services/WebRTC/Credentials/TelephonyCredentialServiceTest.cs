@@ -47,6 +47,8 @@
                 ExpiresAt = "2018-02-02T22:25:27.521Z",
                 Name = "My Creds",
             };
+
+            
         }
 
         [Fact]
@@ -153,6 +155,30 @@
             var response = await this.service.GetTokenAsync(Id, this.requestOptions);
             Assert.NotNull(response);
             Assert.Equal(typeof(string), response.GetType());
+        }
+
+        [Fact]
+        public void UnauthorizedRequest()
+        {
+            var badCreateOptions = new TelephonyCredentialCreateOptions()
+            {
+                ConnectionId = "",
+                ExpiresAt = "2018-02-02T22:25:27.521Z",
+                Name = "admin",
+            };
+            this.requestOptions.ApiKey = "wrong_key";
+            try
+            {
+                var result = this.service.Create(this.createOptions, this.requestOptions);
+            }
+            catch (System.Exception ex)
+            {
+                var exceptionType = ex.GetType();
+                Assert.Equal(typeof(Telnyx.TelnyxException), exceptionType);
+
+            }
+            //Assert.Null(result);
+            //Assert.Equal(400, result.);
         }
     }
 }
