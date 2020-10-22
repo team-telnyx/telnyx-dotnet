@@ -1,0 +1,52 @@
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Telnyx.net.Entities.Enum;
+
+namespace Telnyx.net.Entities.Verify
+{
+    public class TwoFA : TwoFABase
+    {
+        [JsonProperty("created_at")]
+        public DateTimeOffset? CreatedAt { get; set; }
+
+        [JsonProperty("id")]
+        public Guid Id { get; set; }
+
+        [JsonProperty("organization_id")]
+        public string OrganizationId { get; set; }
+
+        /// <summary>
+        /// Identifies the type of the resource.
+        /// </summary>
+        [JsonProperty("record_type")]
+        public RecordType? RecordType { get; set; }
+        /// <summary>
+        /// The possible statuses of the 2FA verification request.
+        /// </summary>
+        [JsonProperty("status")]
+        public TwoFAStatus Status { get; set; }
+        /// <summary>
+        /// This is the number of seconds before the code of the request is expired. Once this request has expired, the code will no longer verify the user. 
+        /// <para>Note: this will override the `default_timeout_secs` on the 2FA profile</para>
+        /// </summary>
+        [JsonProperty("timeout_secs")]
+        public long TimeoutSecs { get; set; }
+        /// <summary>
+        /// The identifier of the associated 2FA profile.
+        /// </summary>
+        [JsonProperty("twofa_profile_id")]
+        public Guid TwofaProfileId { get; set; }
+        /// <summary>
+        /// The verification request type
+        /// </summary>
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
+        [JsonProperty("updated_at")]
+        public DateTimeOffset? UpdatedAt { get; set; }
+    }
+}
