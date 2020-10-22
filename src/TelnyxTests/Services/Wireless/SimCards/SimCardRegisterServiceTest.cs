@@ -40,9 +40,9 @@
             var result = this.service.Create(this.simCardRegisterOptions);
             Assert.NotNull(result);
             Assert.Equal(typeof(TelnyxCollection<SimCardRecord>), result.GetType());
-            //var response = result.Data.FirstOrDefault();
-            //Assert.Equal(this.simCardRegisterOptions.SimCardGroupId, response.SimCardGroupId.ToString());
-            //Assert.Equal(this.simCardRegisterOptions.Tags.Length, response.Tags.Count());
+            var response = result.Data.FirstOrDefault();
+            Assert.Equal(this.simCardRegisterOptions.SimCardGroupId, response.SimCardGroupId.ToString());
+            Assert.Equal(this.simCardRegisterOptions.Tags.Length, response.Tags.Count());
         }
 
         [Fact]
@@ -51,9 +51,9 @@
             var result = await this.service.CreateAsync(this.simCardRegisterOptions);
             Assert.NotNull(result);
             Assert.Equal(typeof(TelnyxCollection<SimCardRecord>), result.GetType());
-            //var response = result.Data.FirstOrDefault();
-            //Assert.Equal(this.simCardRegisterOptions.SimCardGroupId, response.SimCardGroupId.ToString());
-            //Assert.Equal(this.simCardRegisterOptions.Tags.Length, response.Tags.Count());
+            var response = result.Data.FirstOrDefault();
+            Assert.Equal(this.simCardRegisterOptions.SimCardGroupId, response.SimCardGroupId.ToString());
+            Assert.Equal(this.simCardRegisterOptions.Tags.Length, response.Tags.Count());
         }
     }
 }
