@@ -38,6 +38,7 @@
             {
                 ConnectionId = "1234567890",
                 ExpiresAt = "2018-02-02T22:25:27.521Z",
+                Name = "admin",
             };
 
             this.updateOptions = new TelephonyCredentialUpdateOptions()
@@ -70,6 +71,13 @@
             var result = this.service.Create(this.createOptions, this.requestOptions);
             Assert.NotNull(result);
             Assert.Equal(typeof(WebRtcCredential), result.GetType());
+            Assert.NotNull(result.Id);
+            Assert.NotNull(result.RecordType);
+            Assert.NotNull(result.SipUsername);
+            Assert.NotNull(result.SipPassword);
+            Assert.Equal("credential", result.RecordType);
+            Assert.Equal(this.createOptions.Name, result.Name);
+            Assert.Equal(this.createOptions.ExpiresAt, result.ExpiredAt);
         }
 
         [Fact]

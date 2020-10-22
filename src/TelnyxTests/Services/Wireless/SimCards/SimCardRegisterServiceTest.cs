@@ -43,6 +43,10 @@
             var response = result.Data.FirstOrDefault();
             Assert.Equal(this.simCardRegisterOptions.SimCardGroupId, response.SimCardGroupId.ToString());
             Assert.Equal(this.simCardRegisterOptions.Tags.Length, response.Tags.Count());
+            Assert.NotNull(response.Id);
+            Assert.NotNull(response.Imsi);
+            Assert.NotNull(response.Msisdn);
+            Assert.Equal("enabled", response.Status);
         }
 
         [Fact]
@@ -54,6 +58,10 @@
             var response = result.Data.FirstOrDefault();
             Assert.Equal(this.simCardRegisterOptions.SimCardGroupId, response.SimCardGroupId.ToString());
             Assert.Equal(this.simCardRegisterOptions.Tags.Length, response.Tags.Count());
+            Assert.NotNull(response.Id);
+            Assert.NotNull(response.Imsi);
+            Assert.NotNull(response.Msisdn);
+            Assert.Equal("enabled", response.Status);
         }
     }
 }
