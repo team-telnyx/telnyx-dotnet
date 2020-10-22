@@ -46,6 +46,8 @@
             Assert.NotNull(response.Id);
             Assert.NotNull(response.Imsi);
             Assert.NotNull(response.Msisdn);
+            Assert.NotNull(response.CreatedAt);
+            Assert.NotNull(response.UpdatedAt);
             Assert.Equal("enabled", response.Status);
         }
 

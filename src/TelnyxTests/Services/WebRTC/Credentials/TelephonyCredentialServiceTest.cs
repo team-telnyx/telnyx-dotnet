@@ -72,9 +72,12 @@
             Assert.NotNull(result);
             Assert.Equal(typeof(WebRtcCredential), result.GetType());
             Assert.NotNull(result.Id);
+            Assert.NotNull(result.ResourceId);
             Assert.NotNull(result.RecordType);
             Assert.NotNull(result.SipUsername);
             Assert.NotNull(result.SipPassword);
+            Assert.NotNull(result.CreatedAt);
+            Assert.NotNull(result.UpdatedAt);
             Assert.Equal("credential", result.RecordType);
             Assert.Equal(this.createOptions.Name, result.Name);
             Assert.Equal(this.createOptions.ExpiresAt, result.ExpiredAt);

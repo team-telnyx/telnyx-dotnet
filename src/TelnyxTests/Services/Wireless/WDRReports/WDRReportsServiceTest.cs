@@ -74,6 +74,8 @@ namespace TelnyxTests.Services.Wireless.MobileOperatorNetworks
             Assert.NotNull(result.RecordType);
             Assert.NotNull(result.Status);
             Assert.NotNull(result.ReportUrl);
+            Assert.NotNull(result.CreatedAt);
+            Assert.NotNull(result.UpdatedAt);
             DateTime startTime, endTime;
             Assert.True(System.DateTime.TryParse(result.StartTime, out startTime));
             Assert.True(System.DateTime.TryParse(result.EndTime, out endTime));
