@@ -160,16 +160,10 @@
         [Fact]
         public void UnauthorizedRequest()
         {
-            var badCreateOptions = new TelephonyCredentialCreateOptions()
-            {
-                ConnectionId = "",
-                ExpiresAt = "2018-02-02T22:25:27.521Z",
-                Name = "admin",
-            };
-            this.requestOptions.ApiKey = "wrong_key";
+            var requestOptions = new RequestOptions() { ApiKey = "wrong_key" };
             try
             {
-                var result = this.service.Create(this.createOptions, this.requestOptions);
+                var result = this.service.Create(this.createOptions, requestOptions);
             }
             catch (System.Exception ex)
             {
