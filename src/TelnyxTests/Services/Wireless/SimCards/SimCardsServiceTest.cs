@@ -125,6 +125,14 @@
             var result = this.service.Update(Id, this.updateSimCardOptions);
             Assert.NotNull(result);
             Assert.Equal(typeof(SimCardRecord), result.GetType());
+            Assert.Equal(Telnyx.net.Entities.Enum.RecordType.SimCard, result.RecordType);
+            Assert.NotNull(result.Iccid);
+            Assert.NotNull(result.Imsi);
+            Assert.NotNull(result.Msisdn);
+            Assert.NotNull(result.Tags);
+            Assert.NotNull(result.Status);
+            Assert.NotNull(result.CreatedAt);
+            Assert.NotNull(result.UpdatedAt);
         }
 
         [Fact]
