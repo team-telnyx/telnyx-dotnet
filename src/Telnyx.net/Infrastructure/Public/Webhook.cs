@@ -1,12 +1,14 @@
 ﻿using Newtonsoft.Json;
 using Rebex.Security.Cryptography;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Telnyx.Infrastructure;
 using Telnyx.net.Entities;
 
 namespace Telnyx.net.Infrastructure.Public
 {
+    [ExcludeFromCodeCoverage] // Only used by Telnyx.Example project which is out of scope of test coverage.
     public static class Webhook
     {
         private const int DEFAULT_TOLERANCE = 300;
