@@ -83,6 +83,10 @@
             Assert.Equal("credential", result.RecordType);
             Assert.Equal(this.createOptions.Name, result.Name);
             Assert.Equal(this.createOptions.ExpiresAt, result.ExpiredAt);
+            var telnyxResponseStr = result.TelnyxResponse.ToString();
+            var strn = result.ToString();
+            var expectedStr = "<Telnyx.net.Entities.WebRTC.Credentials.WebRtcCredential@18280971 id=c215ade3-0d39-418e-94be-c5f780760199> JSON: {\r\n  \"id\": \"c215ade3-0d39-418e-94be-c5f780760199\",\r\n  \"name\": \"admin\",\r\n  \"record_type\": \"credential\",\r\n  \"resource_id\": \"connection:804252963366242252\",\r\n  \"user_id\": null,\r\n  \"sip_password\": \"a92dbcfb60184a8cb330b0acb2f7617b\",\r\n  \"sip_username\": \"gencrednCvHU5IYpSBPPsXI2iQsDX\",\r\n  \"expires_at\": \"2018-02-02T22:25:27.521Z\",\r\n  \"created_at\": \"2020-06-18T21:32:38\",\r\n  \"updated_at\": \"2020-06-18T21:32:38Z\"\r\n}";
+            Assert.NotNull(expectedStr);
         }
 
         [Fact]
@@ -169,10 +173,7 @@
             {
                 var exceptionType = ex.GetType();
                 Assert.Equal(typeof(Telnyx.TelnyxException), exceptionType);
-
             }
-            //Assert.Null(result);
-            //Assert.Equal(400, result.);
         }
     }
 }
