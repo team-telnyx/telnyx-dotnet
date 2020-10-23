@@ -41,10 +41,16 @@ namespace TelnyxTests.Services.NumberLookup
             Assert.Equal("US", result.CountryCode);
             Assert.NotNull(result.NationalFormat);
             Assert.NotNull(result.PhoneNumber);
+            Assert.Null(result.Fraud);
             Assert.NotNull(result.CallerName);
             Assert.NotNull(result.CallerName.ErrorCode);
             Assert.NotNull(result.CallerName._CallerName);
-            Assert.Null(result.Fraud);
+            Assert.NotNull(result.Carrier);
+            Assert.NotNull(result.Carrier.Name);
+            Assert.NotNull(result.Carrier.Type);
+            Assert.NotNull(result.Carrier.MobileCountryCode);
+            Assert.NotNull(result.Carrier.MobileNetworkCode);
+            Assert.Null(result.Carrier.ErrorCode);
         }
 
         [Fact]
