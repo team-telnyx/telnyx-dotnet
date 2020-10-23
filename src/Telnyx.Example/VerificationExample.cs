@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Threading.Tasks;
 using Telnyx.net.Services.Verify;
 
 namespace Telnyx.Example
 {
+    [ExcludeFromCodeCoverage]
     public class VerificationExample
     {
         private VerificationService verifyService = new VerificationService();
