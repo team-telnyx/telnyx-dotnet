@@ -8,13 +8,13 @@
     /// <summary>
     /// SimCardsEnableService
     /// </summary>
+    [ExcludeFromCodeCoverage] // API doesn't work, API Message: Couldn't parse query/body: unexpected end of JSON input.
     internal class SimCardEnableService : Service<SimCardRecord>,
         INestedCreatable<SimCardRecord, BaseOptions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SimCardEnableService"/> class.
         /// </summary>
-        [ExcludeFromCodeCoverage] // API doesn't work, API Message: Couldn't parse query/body: unexpected end of JSON input.
         public SimCardEnableService()
             : base(null)
         {

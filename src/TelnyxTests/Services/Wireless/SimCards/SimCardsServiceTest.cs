@@ -40,8 +40,12 @@
             this.updateSimCardOptions = new UpdateSimCardOptions()
             {
                 Id = "001",
-                Status = null,
                 SimCardGroupId = Guid.NewGuid(),
+                Tags = new List<string>()
+                {
+                    "personal",
+                    "active-customers",
+                },
             };
 
             this.simCardRegisterOptions = new SimCardRegisterOptions
