@@ -9,26 +9,25 @@ using Telnyx.net.Entities.Verify;
 
 namespace Telnyx.net.Services.Verify
 {
-    internal class VerificationAuthenticationPhoneService : Service<TwoFABase>
+    internal class VerificationAuthenticationPhoneService : Service<TwoFA>
     {
-        public override string BasePath => "/2fa_verifications/by_tn/";
-        public override string PostPath => "/actions/verify";
+        internal VerificationAuthenticationPhoneService()
+       : base(null)
+        {
+        }
+        internal VerificationAuthenticationPhoneService(string apiKey)
+            : base(apiKey)
+        {
+        }
+        public override string BasePath => "/2fa_verifications/by_tn";
 
-        public async Task<TwoFA> GetAsync(string phone, RequestOptions requestOptions = null, CancellationToken ct = default)
+        public async Task<TelnyxList<TwoFA>> GetAsync(string phone, ListOptions listOptions, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return (TwoFA)await this.GetEntityAsync(phone, requestOptions, ct);
+            return await this.ListEntitiesAsync(phone, listOptions, requestOptions, ct);
         }
-        public TwoFA Get(string phone, RequestOptions requestOptions = null)
+        public TelnyxList<TwoFA> Get(string phone, ListOptions listOptions, RequestOptions requestOptions = null)
         {
-            return (TwoFA)this.GetEntity(phone, requestOptions);
-        }
-        public async Task<TwoFACode> GetCodeAsync(string phone, TwoFACodeOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
-        {
-            return (TwoFACode)await this.GetEntityAsync(phone, options, requestOptions, ct, postPath: this.PostPath);
-        }
-        public TwoFACode GetCode(string phone, TwoFACodeOptions options, RequestOptions requestOptions = null)
-        {
-            return (TwoFACode)this.GetEntity(phone, options, requestOptions, postPath: this.PostPath);
+            return this.ListEntities(phone, listOptions, requestOptions);
         }
     }
 }

@@ -24,6 +24,15 @@ namespace Telnyx.net.Services.Verify
             _codeService = new VerificationAuthenticationCodeService();
 
         }
+        public VerificationService(string apiKey)
+        {
+            _profileService = new VerificationProfileService(apiKey);
+            _authenticationService = new VerificationAuthenticationService(apiKey);
+            _phoneService = new VerificationAuthenticationPhoneService(apiKey);
+            _codeService = new VerificationAuthenticationCodeService(apiKey);
+
+        }
+
         public async Task<TelnyxList<TwoFAProfile>> List2FAProfilesAsync(TwoFAProfileListOptions listOptions, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
             return await this._profileService.ListAsync(listOptions, requestOptions, ct);
@@ -72,29 +81,34 @@ namespace Telnyx.net.Services.Verify
         {
             return this._authenticationService.Create(options, requestOptions);
         }
-        public async Task<TwoFA> Get2FAVerificationAsync(string verificationId, RequestOptions requestOptions, CancellationToken ct = default)
+        public async Task<TwoFA> Get2FAVerificationAsync(string verificationId, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
             return await this._authenticationService.GetAsync(verificationId, requestOptions, ct);
         }
-        public TwoFA Get2FAVerification(string verificationId, RequestOptions requestOptions)
+        public TwoFA Get2FAVerification(string verificationId, RequestOptions requestOptions = null)
         {
             return this._authenticationService.Get(verificationId, requestOptions);
         }
-        public async Task<TwoFA> GetVerificationByPhoneAsync(string phone, RequestOptions requestOptions = null, CancellationToken ct = default)
+        public async Task<TelnyxList<TwoFA>> GetVerificationByPhoneAsync(string phone, ListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this._phoneService.GetAsync(phone, requestOptions, ct);
+            if (listOptions == null)
+                listOptions = new ListOptions(1, 25);
+            return await this._phoneService.GetAsync(phone, listOptions, requestOptions, ct);
         }
-        public TwoFA Get(string phone, RequestOptions requestOptions = null)
+        public TelnyxList<TwoFA> GetVerificationByPhone(string phone, ListOptions listOptions = null, RequestOptions requestOptions = null)
         {
-            return this._phoneService.Get(phone, requestOptions);
+            if(listOptions == null)
+                listOptions = new ListOptions(1, 25);
+
+            return this._phoneService.Get(phone, listOptions, requestOptions);
         }
-        public async Task<TwoFACode> Get2FACodeAsync(string phone, TwoFACodeOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
+        public async Task<TwoFACode> Submit2FACodeAsync(string phone, TwoFACodeOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this._phoneService.GetCodeAsync(phone, options, requestOptions, ct);
+            return await this._codeService.PostAsync(phone, options, requestOptions, ct);
         }
-        public TwoFACode Get2FACode(string phone, TwoFACodeOptions options, RequestOptions requestOptions = null)
+        public TwoFACode Submit2FACode(string phone, TwoFACodeOptions options, RequestOptions requestOptions = null)
         {
-            return this._phoneService.GetCode(phone, options, requestOptions);
+            return this._codeService.Post(phone, options, requestOptions);
         }
     }
 }

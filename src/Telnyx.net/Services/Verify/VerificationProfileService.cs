@@ -11,6 +11,14 @@ namespace Telnyx.net.Services.Verify
 {
     internal class VerificationProfileService : Service<TwoFAProfile>
     {
+        internal VerificationProfileService()
+       : base(null)
+        {
+        }
+        internal VerificationProfileService(string apiKey)
+            : base(apiKey)
+        {
+        }
         public override string BasePath => "/2fa_profiles";
 
         public async Task<TelnyxList<TwoFAProfile>> ListAsync(TwoFAProfileListOptions listOptions, RequestOptions reqOps = null, CancellationToken ct = default)
@@ -39,11 +47,11 @@ namespace Telnyx.net.Services.Verify
         }
         public async Task<TwoFAProfile> UpdateAsync(string id, TwoFaProfileOptions updateOptions, RequestOptions reqOps = null, CancellationToken ct = default)
         {
-            return await this.UpdateEntityAsync(id, updateOptions, reqOps, ct);
+            return await this.UpgradeEntityAsync(id, updateOptions, reqOps, ct);
         }
         public TwoFAProfile Update(string id, TwoFaProfileOptions updateOptions, RequestOptions reqOps = null)
         {
-            return this.UpdateEntity(id, updateOptions, reqOps);
+            return this.UpgradeEntity(id, updateOptions, reqOps);
         }
         public async Task<TwoFAProfile> DeleteAsync(string id, RequestOptions requestOptions = null, CancellationToken ct = default)
         {

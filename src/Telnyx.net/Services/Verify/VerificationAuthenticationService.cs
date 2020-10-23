@@ -10,6 +10,14 @@ namespace Telnyx.net.Services.Verify
 {
     internal class VerificationAuthenticationService : Service<TwoFA>
     {
+        internal VerificationAuthenticationService()
+       : base(null)
+        {
+        }
+        internal VerificationAuthenticationService(string apiKey)
+            : base(apiKey)
+        {
+        }
         public override string BasePath => "/2fa_verifications";
 
         public async Task<TwoFA> CreateAsync(TwoFAOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)

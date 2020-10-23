@@ -10,16 +10,24 @@ namespace Telnyx.net.Services.Verify
 {
     internal class VerificationAuthenticationCodeService : Service<TwoFACode>
     {
+        internal VerificationAuthenticationCodeService()
+       : base(null)
+        {
+        }
+        internal VerificationAuthenticationCodeService(string apiKey)
+            : base(apiKey)
+        {
+        }
         public override string BasePath => "/2fa_verifications/by_tn";
         public override string PostPath => "/actions/verify";
 
-        public async Task<TwoFACode> GetAsync(string phone, TwoFACodeOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
+        public async Task<TwoFACode> PostAsync(string phone, TwoFACodeOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this.GetEntityAsync(phone, options, requestOptions, ct, postPath: this.PostPath);
+            return await this.CreateEntityAsync(phone, this.PostPath, options, requestOptions, ct);
         }
-        public TwoFACode Get(string phone, TwoFACodeOptions options, RequestOptions requestOptions = null)
+        public TwoFACode Post(string phone, TwoFACodeOptions options, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(phone, options, requestOptions, postPath: this.PostPath);
+            return this.CreateEntity(phone, this.PostPath, options, requestOptions);
         }
     }
 }
