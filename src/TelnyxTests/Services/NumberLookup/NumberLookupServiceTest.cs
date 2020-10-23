@@ -38,6 +38,13 @@ namespace TelnyxTests.Services.NumberLookup
             var result = this.service.Get(_phoneNumber, this.options);
             Assert.NotNull(result);
             Assert.Equal(typeof(NumberLookupRecord), result.GetType());
+            Assert.Equal("US", result.CountryCode);
+            Assert.NotNull(result.NationalFormat);
+            Assert.NotNull(result.PhoneNumber);
+            Assert.NotNull(result.CallerName);
+            Assert.NotNull(result.CallerName.ErrorCode);
+            Assert.NotNull(result.CallerName._CallerName);
+            Assert.Null(result.Fraud);
         }
 
         [Fact]
