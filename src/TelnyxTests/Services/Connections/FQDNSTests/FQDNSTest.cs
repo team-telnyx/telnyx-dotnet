@@ -55,6 +55,7 @@ namespace TelnyxTests.Services.Connections.FQDNSTests
             Assert.NotNull(message);
             Assert.Equal(typeof(TelnyxList<FQDN>), message.GetType());
         }
+
         [Fact]
         public void Create()
         {
@@ -62,6 +63,13 @@ namespace TelnyxTests.Services.Connections.FQDNSTests
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
             Assert.NotNull(message);
             Assert.Equal(typeof(FQDN), message.GetType());
+            Assert.Equal(this.createOptions.ConnectionId, message.ConnectionId);
+            Assert.Equal(this.createOptions.DNSRecordType, message.DnsRecordType);
+            Assert.Equal(this.createOptions.Fqdn, message.Fqdn);
+            Assert.NotNull(message.Id);
+            Assert.True(message.CreatedAt <= message.UpdatedAt);
+            Assert.Equal(this.createOptions.Port, message.Port);
+            Assert.Equal(this.createOptions.ConnectionId, message.ConnectionId);
         }
 
         [Fact]
