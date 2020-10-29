@@ -1,5 +1,6 @@
 ﻿namespace Telnyx.net.Services.Wireless.SimCards
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx.net.Entities.Wireless.SimCards;
@@ -7,6 +8,7 @@
     /// <summary>
     /// SimCardsDisableService
     /// </summary>
+    [ExcludeFromCodeCoverage] // API doesn't work, API Message: Couldn't parse query/body: unexpected end of JSON input.
     internal class SimCardDisableService : Service<SimCardRecord>,
         INestedCreatable<SimCardRecord, BaseOptions>
     {

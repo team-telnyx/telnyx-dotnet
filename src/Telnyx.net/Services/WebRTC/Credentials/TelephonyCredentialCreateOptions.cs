@@ -15,5 +15,19 @@
         /// </summary>
         [JsonProperty("expires_at")]
         public string ExpiresAt { get; set; }
+
+        /// <summary>
+        /// Gets or sets name.
+        /// Optional.
+        /// </summary>
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets tag.
+        /// Optional.
+        /// </summary>
+        [JsonProperty("tag")]
+        public string Tag { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace Telnyx.net.Entities
     /// POCO Representing an incoming webhook.
     /// </summary>
     /// <typeparam name="T">The type of Telynx Entity the webhook is for. Can define own type if type is not available in SDK.</typeparam>
+    [ExcludeFromCodeCoverage] // Only used by Telnyx.Example project which is out of scope of test coverage.
     public class TelnyxWebhook<T>
     {
         [JsonProperty("data")]
@@ -25,6 +27,7 @@ namespace Telnyx.net.Entities
     /// POCO Representing an incoming webhook's payload.
     /// </summary>
     /// <typeparam name="T">The type of Telynx Entity the webhook is for. Can define own type if type is not available in SDK.</typeparam>
+    [ExcludeFromCodeCoverage] // Only used by Telnyx.Example project which is out of scope of test coverage.
     public class WebhookData<T>
     {
         [JsonProperty("event_type")]
@@ -46,6 +49,7 @@ namespace Telnyx.net.Entities
     /// <summary>
     /// Metadata provided by the webhook.
     /// </summary>
+    [ExcludeFromCodeCoverage] // Only used by Telnyx.Example project which is out of scope of test coverage.
     public class WebhookMeta
     {
         [JsonProperty("attempt")]

@@ -1,6 +1,8 @@
 ﻿namespace TelnyxTests
 {
     using Newtonsoft.Json.Linq;
+    using System.Collections.Generic;
+    using System.Security;
     using Telnyx.Infrastructure.Middleware;
     using Xunit;
 
@@ -13,6 +15,27 @@
 
             var response = RequestStringBuilder.BuildRequestStringFromJObject(jObject);
             Assert.NotNull(response);
+        }
+
+        [Fact]
+        public void ApplyParameterToRequestString()
+        {
+            string requestString = "https://example.com";
+            var pairs = new Dictionary<string, string>() {
+                {"a", "x"},
+                {"b", "y"},
+                {"c", "z"},
+            };
+
+            foreach (KeyValuePair<string, string> pair in pairs)
+            {
+                //var key = WebUtility.UrlEncode(pair.Key);
+                RequestStringBuilder.ApplyParameterToRequestString(ref requestString, pair.Key, pair.Value);
+            }
+
+            var expected = "https://example.com?a=x&b=y&c=z";
+
+            Assert.Equal(expected, requestString);
         }
     }
 }

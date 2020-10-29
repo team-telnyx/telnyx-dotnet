@@ -1,5 +1,6 @@
 ﻿namespace TelnyxTests.Services.Wireless.SimCards
 {
+    using System.Linq;
     using System.Threading.Tasks;
     using Telnyx.net.Entities;
     using Telnyx.net.Entities.Wireless.SimCards;
@@ -39,6 +40,15 @@
             var result = this.service.Create(this.simCardRegisterOptions);
             Assert.NotNull(result);
             Assert.Equal(typeof(TelnyxCollection<SimCardRecord>), result.GetType());
+            var response = result.Data.FirstOrDefault();
+            Assert.Equal(this.simCardRegisterOptions.SimCardGroupId, response.SimCardGroupId.ToString());
+            Assert.Equal(this.simCardRegisterOptions.Tags.Length, response.Tags.Count());
+            Assert.NotNull(response.Id);
+            Assert.NotNull(response.Imsi);
+            Assert.NotNull(response.Msisdn);
+            Assert.NotNull(response.CreatedAt);
+            Assert.NotNull(response.UpdatedAt);
+            Assert.Equal("enabled", response.Status);
         }
 
         [Fact]
@@ -47,6 +57,13 @@
             var result = await this.service.CreateAsync(this.simCardRegisterOptions);
             Assert.NotNull(result);
             Assert.Equal(typeof(TelnyxCollection<SimCardRecord>), result.GetType());
+            var response = result.Data.FirstOrDefault();
+            Assert.Equal(this.simCardRegisterOptions.SimCardGroupId, response.SimCardGroupId.ToString());
+            Assert.Equal(this.simCardRegisterOptions.Tags.Length, response.Tags.Count());
+            Assert.NotNull(response.Id);
+            Assert.NotNull(response.Imsi);
+            Assert.NotNull(response.Msisdn);
+            Assert.Equal("enabled", response.Status);
         }
     }
 }

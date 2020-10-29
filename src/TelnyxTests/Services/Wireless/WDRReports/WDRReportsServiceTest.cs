@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Telnyx;
 using Telnyx.net.Entities.Wireless.WDRReports;
 using Telnyx.net.Services.Wireless.WDRReports;
@@ -69,6 +70,16 @@ namespace TelnyxTests.Services.Wireless.MobileOperatorNetworks
             var result = this.service.Create(this.createOptions, this.requestOptions);
             Assert.NotNull(result);
             Assert.Equal(typeof(WDRReportsRecord), result.GetType());
+            Assert.NotNull(result.Id);
+            Assert.NotNull(result.RecordType);
+            Assert.NotNull(result.Status);
+            Assert.NotNull(result.ReportUrl);
+            Assert.NotNull(result.CreatedAt);
+            Assert.NotNull(result.UpdatedAt);
+            DateTime startTime, endTime;
+            Assert.True(System.DateTime.TryParse(result.StartTime, out startTime));
+            Assert.True(System.DateTime.TryParse(result.EndTime, out endTime));
+            Assert.True(startTime <= endTime);
         }
 
         [Fact]

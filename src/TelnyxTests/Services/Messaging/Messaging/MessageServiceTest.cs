@@ -6,10 +6,12 @@ namespace TelnyxTests.Services.Messages.Messages
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx;
+    using Telnyx.net.Entities.Enum;
     using Xunit;
 
     public class MessageServiceTest : BaseTelnyxTest
@@ -55,6 +57,29 @@ namespace TelnyxTests.Services.Messages.Messages
             //this.AssertRequest(HttpMethod.Post, "/v2/messages");
             Assert.NotNull(message);
             Assert.Equal("Telnyx.OutboundMessage", message.GetType().ToString());
+            Assert.NotNull(message.Id);
+            Assert.NotNull(message.Direction);
+            Assert.Equal(0, message.Errors.Count);
+            Assert.NotNull(message.Parts);
+            Assert.NotNull(message.Direction);
+            Assert.Equal(RecordType.MessageEnum, message.RecordType);
+            Assert.NotNull(message.Text);
+            Assert.True(message.To.Count > 0);
+            Assert.True(!message.To.Where(x => x.Status == null).Any());
+            Assert.NotNull(message.From);
+            Assert.NotNull(message.From.Carrier);
+            Assert.NotNull(message.From.LineType);
+            Assert.NotNull(message.From.PhoneNumber);
+            Assert.NotNull(message.Media);
+            Assert.Equal(this.createOptions.WebhookFailoverUrl, message.WebhookFailoverUrl);
+            Assert.Equal(this.createOptions.WebhookUrl, message.WebhookUrl);
+            //Assert.Equal(this.createOptions.UseProfileWebhooks, message.UseProfileWebhooks); // fails
+            //Assert.NotNull(message.ValidUntil); // fails
+            //Assert.NotNull(message.CreatedAt); // fails
+            //Assert.NotNull(message.UpdatedAt); // fails
+            //Assert.NotNull(message.InfoBlobFieldname); // fails
+            Assert.NotNull(message.Type);
+            Assert.Null(message.CompletedAt);
         }
 
         [Fact]

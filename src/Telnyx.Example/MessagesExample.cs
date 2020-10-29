@@ -1,12 +1,14 @@
 ﻿namespace Telnyx.Example
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
 
     /// <summary>
     /// Messages example
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class MessagesExample
     {
         private const string MessagingSenderId = "3fa85f64-5717-4562-b3fc-2c963f66afa6";

@@ -5,12 +5,14 @@
 namespace Telnyx.Infrastructure
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
     /// <summary>
     /// DateTimeConverter.
     /// </summary>
+    [ExcludeFromCodeCoverage] // Excluded as it is not referenced anywhere in the solution.
     public class DateTimeConverter : DateTimeConverterBase
     {
         /// <inheritdoc/>
