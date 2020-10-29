@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Telnyx.net.Entities;
 using Telnyx.net.Entities.Connections.IPs;
+using Telnyx.net.Entities.Enum;
 using Telnyx.net.Services.Connections.IPs;
 using Xunit;
 
@@ -52,6 +53,7 @@ namespace TelnyxTests.Services.Connections.IPTests
             Assert.NotNull(message);
             Assert.Equal(typeof(TelnyxList<IP>), message.GetType());
         }
+
         [Fact]
         public void Create()
         {
@@ -59,6 +61,13 @@ namespace TelnyxTests.Services.Connections.IPTests
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
             Assert.NotNull(message);
             Assert.Equal(typeof(IP), message.GetType());
+            Assert.Equal(this.createOptions.IPAddress, message.IpAddress);
+            Assert.Equal(this.createOptions.Port, message.Port);
+            Assert.Equal(this.createOptions.ConnectionId, message.ConnectionId);
+            Assert.Equal(RecordType.IP, message.RecordType);
+            Assert.NotNull(message.Id);
+            Assert.NotNull(message.CreatedAt);
+            Assert.NotNull(message.UpdatedAt);
         }
 
         [Fact]

@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Telnyx.net.Entities;
 using Telnyx.net.Entities.Connections.FQDNConnections;
+using Telnyx.net.Entities.Enum;
 using Telnyx.net.Services.Connections;
 using Telnyx.net.Services.Connections.FQDNConnections;
 using Xunit;
@@ -62,7 +63,20 @@ namespace TelnyxTests.Services.Connections.FQDNConnectionsTest
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
             Assert.NotNull(message);
             Assert.Equal(typeof(FQDNConnection), message.GetType());
+            Assert.Equal(this.createOptions.OnnetT38PassthroughEnabled, message.OnnetT38PassthroughEnabled);
+            Assert.Equal(RecordType.FQDNConnection, message.RecordType);
+            Assert.NotNull(message.Id);
+            Assert.NotNull(message.RtcpSettings);
+            Assert.NotNull(message.TransportProtocol);
+            Assert.NotNull(message.CreatedAt);
+            Assert.NotNull(message.UpdatedAt);
+            Assert.NotNull(message.AnchorsiteOverride);
+            Assert.NotNull(message.ConnectionName);
+            Assert.NotNull(message.EncryptedMedia);
+            Assert.NotNull(message.DtmfType);
+
         }
+
         [Fact]
         public void Delete()
         {
