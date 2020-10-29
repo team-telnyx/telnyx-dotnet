@@ -41,7 +41,6 @@ namespace TelnyxTests.Services.NumberLookup
             Assert.Equal("US", result.CountryCode);
             Assert.NotNull(result.NationalFormat);
             Assert.NotNull(result.PhoneNumber);
-            Assert.NotNull(result.Id);
             Assert.Null(result.Fraud);
             Assert.NotNull(result.CallerName);
             Assert.NotNull(result.CallerName.ErrorCode);
