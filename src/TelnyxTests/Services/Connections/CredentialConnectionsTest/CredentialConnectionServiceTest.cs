@@ -51,6 +51,7 @@ namespace TelnyxTests.Services.Connections.CredentialConnections
             Assert.NotNull(message);
             Assert.Equal(typeof(TelnyxList<CredentialConnection>), message.GetType());
         }
+
         [Fact]
         public void Create()
         {
@@ -58,6 +59,9 @@ namespace TelnyxTests.Services.Connections.CredentialConnections
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
             Assert.NotNull(message);
             Assert.Equal(typeof(CredentialConnection), message.GetType());
+            Assert.Equal(this.createOptions.UserName, message.UserName);
+            Assert.Equal(this.createOptions.Password, message.Password);
+            Assert.Equal(this.createOptions.SipUriCallingPreference, message.SipUriCallingPreference);
         }
 
         [Fact]

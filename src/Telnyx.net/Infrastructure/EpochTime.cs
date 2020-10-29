@@ -5,10 +5,12 @@
 namespace Telnyx.Infrastructure
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// EpochTime.
     /// </summary>
+    [ExcludeFromCodeCoverage] // Excluded as it is used in class DateTimeConverter which is not referenced anywhere in the solution
     internal static class EpochTime
     {
         private static DateTime epochStartDateTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);

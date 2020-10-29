@@ -1,11 +1,13 @@
 namespace Telnyx
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Newtonsoft.Json;
 
     /// <summary>
     /// ListOptionsWithCreated.
     /// </summary>
+    [ExcludeFromCodeCoverage] // not referenced anywhere
     public class ListOptionsWithCreated : ListOptions
     {
         /// <summary>

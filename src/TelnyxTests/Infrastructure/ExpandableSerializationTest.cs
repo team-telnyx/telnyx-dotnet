@@ -5,6 +5,7 @@
 namespace TelnyxTests
 {
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using Telnyx;
     using Telnyx.Infrastructure;
     using Xunit;
@@ -41,6 +42,32 @@ namespace TelnyxTests
             var expected =
                 "{\n  \"nested\": {\n    \"id\": \"id_expanded\",\n    \"bar\": 42\n  }\n}";
             Assert.Equal(expected, obj.ToJson().Replace("\r\n", "\n"));
+        }
+
+        [Fact]
+        public void StringOrObjectMap()
+        {
+            var nested = new TestNestedObject
+            {
+                Id = "id_expanded",
+                Bar = 42,
+            };
+            var obj = new TestTopLevelObject
+            {
+                NestedId = nested.Id,
+                Nested = nested,
+            };
+
+            obj.InternalNested = "new_id";
+            Assert.Equal("new_id", obj.NestedId);
+
+            obj.InternalNested = new JObject
+            {
+                { "Id", "new2_id" },
+                { "Bar", 44 },
+            };
+
+            Assert.Equal("new2_id", obj.NestedId);
         }
 
         [Fact]

@@ -1,11 +1,13 @@
 namespace Telnyx
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Newtonsoft.Json;
 
     /// <summary>
     /// DateRangeOptions.
     /// </summary>
+    [ExcludeFromCodeCoverage] // only used in class TestOptions which is not referenced anywhere
     public class DateRangeOptions : INestedOptions
     {
         /// <summary>

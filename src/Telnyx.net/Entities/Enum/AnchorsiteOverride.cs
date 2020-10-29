@@ -9,7 +9,7 @@
         /// <summary>
         /// Enum Latency for Latency
         /// </summary>
-        [EnumMember(Value = "Latency")]
+        [EnumMember(Value = "\"Latency\"")]
         Latency = 0,
 
         /// <summary>
