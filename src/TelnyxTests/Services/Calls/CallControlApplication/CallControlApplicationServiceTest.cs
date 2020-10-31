@@ -42,12 +42,12 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
             Assert.NotNull(message);
             Assert.Equal(typeof(CallControlApplication), message.GetType());
             Assert.NotNull(message.Id);
-            Assert.NotNull(message.CreatedAt);
-            Assert.NotNull(message.UpdatedAt);
-            Assert.Equal(DTMFType.Inband, message.DtmfType);
-            Assert.Equal(RecordType.CallControlApplication, message.RecordType);
+            Assert.True(message.CreatedAt <= message.UpdatedAt);
+            Assert.Equal(this.createOption.DtmfType, message.DtmfType);
+            Assert.Equal(this.createOption.RecordType, message.RecordType);
+            Assert.Equal(this.createOption.Active, message.Active);
             Assert.Equal(AnchorsiteOverride.Latency, message.AnchorsiteOverride);
-            Assert.NotNull(message.ApplicationName);
+            Assert.Equal(this.createOption.ApplicationName, message.ApplicationName);
             Assert.NotNull(message.Inbound);
             Assert.NotNull(message.Inbound.ChannelLimit);
             Assert.NotNull(message.Inbound.SipSubdomain);
@@ -55,12 +55,12 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
             Assert.NotNull(message.Outbound);
             Assert.NotNull(message.Outbound.ChannelLimit);
             Assert.NotNull(message.Outbound.OutboundVoiceProfileId);
-            Assert.False(message.FirstCommandTimeout);
-            Assert.Equal(10, message.FirstCommandTimeoutSecs);
-            Assert.NotNull(message.WebhookApiVersion);
-            Assert.NotNull(message.WebhookEventFailoverUrl);
-            Assert.NotNull(message.WebhookEventUrl);
-            Assert.True(message.WebhookTimeoutSecs >= 10);
+            Assert.Equal(this.createOption.FirstCommandTimeout, message.FirstCommandTimeout);
+            Assert.Equal(this.createOption.FirstCommandTimeoutSecs, message.FirstCommandTimeoutSecs);
+            Assert.Equal(this.createOption.WebhookApiVersion, message.WebhookApiVersion);
+            Assert.Equal(this.createOption.WebhookEventFailoverUrl, message.WebhookEventFailoverUrl);
+            Assert.Equal(this.createOption.WebhookEventUrl, message.WebhookEventUrl);
+            Assert.Equal(this.createOption.WebhookTimeoutSecs, message.WebhookTimeoutSecs);
         }
 
         [Fact]
