@@ -41,6 +41,26 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
             var message = this.service.Create(this.createOption);
             Assert.NotNull(message);
             Assert.Equal(typeof(CallControlApplication), message.GetType());
+            Assert.NotNull(message.Id);
+            Assert.NotNull(message.CreatedAt);
+            Assert.NotNull(message.UpdatedAt);
+            Assert.Equal(DTMFType.Inband, message.DtmfType);
+            Assert.Equal(RecordType.CallControlApplication, message.RecordType);
+            Assert.Equal(AnchorsiteOverride.Latency, message.AnchorsiteOverride);
+            Assert.NotNull(message.ApplicationName);
+            Assert.NotNull(message.Inbound);
+            Assert.NotNull(message.Inbound.ChannelLimit);
+            Assert.NotNull(message.Inbound.SipSubdomain);
+            Assert.NotNull(message.Inbound.SipSubdomainReceiveSettings);
+            Assert.NotNull(message.Outbound);
+            Assert.NotNull(message.Outbound.ChannelLimit);
+            Assert.NotNull(message.Outbound.OutboundVoiceProfileId);
+            Assert.False(message.FirstCommandTimeout);
+            Assert.Equal(10, message.FirstCommandTimeoutSecs);
+            Assert.NotNull(message.WebhookApiVersion);
+            Assert.NotNull(message.WebhookEventFailoverUrl);
+            Assert.NotNull(message.WebhookEventUrl);
+            Assert.True(message.WebhookTimeoutSecs >= 10);
         }
 
         [Fact]

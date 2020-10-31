@@ -1,13 +1,14 @@
 ﻿namespace Telnyx.Net.Entities.Calls.ConferenceCommands
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
     using Telnyx.net.Entities.Enum;
 
+    [ExcludeFromCodeCoverage] // Not referenced anywhere in solution.
     public class ConferenceCommandResponse : TelnyxEntity
     {
-
         /// <summary>
         /// Gets or sets destination number or SIP URI of the call.
         /// </summary>
