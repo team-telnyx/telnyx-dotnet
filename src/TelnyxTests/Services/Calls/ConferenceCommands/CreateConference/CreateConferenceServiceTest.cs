@@ -9,6 +9,7 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx;
+    using Telnyx.net.Entities.Enum;
     using Xunit;
 
     public class CreateConferenceServiceTest : BaseTelnyxTest
@@ -42,6 +43,10 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
             var message = this.service.Create(this.createOptions);
             Assert.NotNull(message);
             Assert.Equal(typeof(CreateConferenceResponse), message.GetType());
+            Assert.NotNull(message.Name);
+            Assert.True(message.CreatedAt <= message.ExpiresAt);
+            Assert.NotEqual(Guid.Empty, message.Id);
+            Assert.Equal(RecordType.Conference, message.RecordType);
         }
 
         [Fact]

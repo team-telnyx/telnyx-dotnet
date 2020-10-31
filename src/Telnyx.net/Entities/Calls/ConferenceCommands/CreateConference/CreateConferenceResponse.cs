@@ -4,13 +4,7 @@
     using Newtonsoft.Json;
     using Telnyx.net.Entities.Enum;
 
-    public partial class CreateConferenceResponse : TelnyxEntity
-    {
-        [JsonProperty("data")]
-        public Data Data { get; set; }
-    }
-
-    public partial class Data
+    public class CreateConferenceResponse : TelnyxEntity
     {
         [JsonProperty("created_at")]
         public DateTimeOffset CreatedAt { get; set; }
