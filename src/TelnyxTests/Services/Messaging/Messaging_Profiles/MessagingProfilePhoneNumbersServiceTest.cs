@@ -5,6 +5,7 @@
 namespace TelnyxTests.Services.Messages.MessagingProfiles
 {
     using System.Threading.Tasks;
+    using System.Linq;
     using Telnyx;
     using Telnyx.net.Entities;
     using Xunit;
@@ -27,6 +28,27 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             var messagingPhoneNumber = this.service.List(MessagingProfilePhoneNumberId);
             Assert.NotNull(messagingPhoneNumber);
             Assert.Equal(typeof(TelnyxList<MessagingPhoneNumber>), messagingPhoneNumber.GetType());
+            Assert.True(messagingPhoneNumber.Data.Count > 0);
+            var messagingProfile = messagingPhoneNumber.Data.FirstOrDefault();
+            Assert.NotNull(messagingProfile);
+            Assert.NotNull(messagingProfile.Id);
+            Assert.True(messagingProfile.CreatedAt <= messagingProfile.UpdatedAt);
+            Assert.NotNull(messagingProfile.CountryCode);
+            Assert.NotNull(messagingProfile.MessagingProfileId);
+            Assert.NotNull(messagingProfile.MessagingProduct);
+            Assert.NotNull(messagingProfile.PhoneNumber);
+            Assert.Equal(Telnyx.net.Entities.Enum.RecordType.MessagingSettings, messagingProfile.RecordType);
+            Assert.NotNull(messagingProfile.TrafficType);
+            Assert.NotNull(messagingProfile.Type);
+            Assert.NotNull(messagingProfile.Health);
+            Assert.True(messagingProfile.Health.InboundOutboundRatio >= 0);
+            Assert.True(messagingProfile.Health.MessageCount >= 0);
+            Assert.True(messagingProfile.Health.SpamRatio >= 0);
+            Assert.True(messagingProfile.Health.SuccessRatio >= 0);
+            Assert.NotNull(messagingProfile.EligibleMessagingProducts);
+            Assert.False(messagingProfile.EligibleMessagingProducts.Where(x => x == null).Any());
+            Assert.NotNull(messagingProfile.Features);
+            Assert.NotNull(messagingProfile.Features.Sms);
         }
 
         [Fact]

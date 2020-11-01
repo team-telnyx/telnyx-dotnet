@@ -107,7 +107,7 @@ namespace Telnyx
         /// <summary>
         /// Gets or sets UrlShortnerSettings.
         /// </summary>
-        [JsonProperty("url_shortner_settings")]
+        [JsonProperty("url_shortener_settings")]
         public UrlShortenerSettings UrlShortnerSettings { get; set; }
 
         /// <summary>
