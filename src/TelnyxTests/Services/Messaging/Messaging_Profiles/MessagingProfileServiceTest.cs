@@ -97,6 +97,7 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             Assert.Equal(typeof(MessagingProfile), messagingProfile.GetType());
             Assert.NotNull(messagingProfile.Id);
             Assert.Equal(this.createOptions.Name, messagingProfile.Name);
+            Assert.Equal(this.createOptions.Enabled, messagingProfile.Enabled);
             Assert.NotNull(messagingProfile.NumberPoolSettings);
             Assert.Equal(this.createOptions.NumberPoolSettings.Geomatch, messagingProfile.NumberPoolSettings.Geomatch);
             Assert.Equal(this.createOptions.NumberPoolSettings.LongCodeWeight, messagingProfile.NumberPoolSettings.LongCodeWeight);
@@ -189,6 +190,7 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             Assert.Equal(typeof(MessagingProfile), messagingProfile.GetType());
             Assert.NotNull(messagingProfile.Id);
             Assert.Equal(this.updateOptions.Name, messagingProfile.Name);
+            Assert.Equal(this.updateOptions.Enabled, messagingProfile.Enabled);
             Assert.NotNull(messagingProfile.NumberPoolSettings);
             Assert.Equal(this.updateOptions.NumberPoolSettings.Geomatch, messagingProfile.NumberPoolSettings.Geomatch);
             Assert.Equal(this.updateOptions.NumberPoolSettings.LongCodeWeight, messagingProfile.NumberPoolSettings.LongCodeWeight);
