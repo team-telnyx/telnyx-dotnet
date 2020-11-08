@@ -1,6 +1,7 @@
 ﻿
 namespace Telnyx.net.Services.PhoneNumbers.InboundChannels
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -11,7 +12,7 @@ namespace Telnyx.net.Services.PhoneNumbers.InboundChannels
     /// </summary>
     public class InboundChannelUpdateOptions : BaseOptions
     {
-        
+        [JsonProperty("channels")]
         public int Channels { get; set; }
     }
 }

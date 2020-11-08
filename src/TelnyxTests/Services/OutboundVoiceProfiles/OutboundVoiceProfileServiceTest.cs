@@ -5,6 +5,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx;
+    using Telnyx.net.Entities.Enum;
     using Telnyx.net.Entities.OutboundVoiceProfiles;
     using Telnyx.net.Services.OutboundVoiceProfiles;
     using Xunit;
