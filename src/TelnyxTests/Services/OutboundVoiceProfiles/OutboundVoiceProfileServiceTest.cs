@@ -31,8 +31,8 @@
                 BillingGroupId = new Guid("6a09cdc3-8948-47f0-aa62-74ac943d6c58"),
                 ConcurrentCallLimit = 10,
                 Name = "TestName",
-                TrafficType = null,
-                ServicePlan = null,
+                TrafficType = "conversational",
+                ServicePlan = "global",
                 Enabled = true,
                 Tags = new List<string> { "Tag1", "Tag2" },
                 UsagePaymentMethod = null,
@@ -40,7 +40,13 @@
                 MaxDestinationRate = 1,
                 DailySpendLimit = "Unlimited",
                 DailySpendLimitEnabled = false,
-                CallRecording = null
+                CallRecording = new OutboundVoiceProfileCallRecording()
+                {
+                    CallRecordingCallerPhoneNumbers = new List<string>() { "+19705555099" },
+                    CallRecordingChannels = "dual",
+                    CallRecordingFormat = "mp3",
+                    CallRecordingType = "by_call_phone_number",
+                },
             };
 
             this.listOptions = new ListOutboundVoiceProfileOptions()
@@ -59,6 +65,25 @@
             var result = this.service.Create(this.option);
             Assert.NotNull(result);
             Assert.Equal(typeof(OutboundVoiceProfile), result.GetType());
+            Assert.NotNull(result.Id);
+            Assert.NotNull(result.MaxDestinationRate);
+            Assert.NotNull(result.Name);
+            Assert.NotNull(result.ServicePlan);
+            Assert.NotNull(result.CallRecording);
+            Assert.Equal(this.option.Enabled, result.Enabled);
+            Assert.Equal(this.option.MaxDestinationRate, result.MaxDestinationRate);
+            Assert.Equal(this.option.Name, result.Name);
+            Assert.Equal(this.option.ServicePlan, result.ServicePlan);
+            Assert.Equal(this.option.Tags.Count, result.Tags.Count);
+            Assert.Equal(this.option.TrafficType, result.TrafficType);
+            Assert.Equal(this.option.BillingGroupId, result.BillingGroupId);
+            Assert.Equal(this.option.CallRecording.CallRecordingCallerPhoneNumbers.Count, result.CallRecording.CallRecordingCallerPhoneNumbers.Count);
+            Assert.Equal(this.option.CallRecording.CallRecordingChannels, result.CallRecording.CallRecordingChannels);
+            Assert.Equal(this.option.CallRecording.CallRecordingFormat, result.CallRecording.CallRecordingFormat);
+            Assert.Equal(this.option.CallRecording.CallRecordingType, result.CallRecording.CallRecordingType);
+            Assert.Equal(this.option.ConcurrentCallLimit, result.ConcurrentCallLimit);
+            Assert.Equal(this.option.DailySpendLimit, result.DailySpendLimit);
+            Assert.Equal(this.option.DailySpendLimitEnabled, result.DailySpendLimitEnabled);
         }
 
         [Fact]
@@ -108,6 +133,25 @@
             var result = this.service.Update(Id, this.option);
             Assert.NotNull(result);
             Assert.Equal(typeof(OutboundVoiceProfile), result.GetType());
+            Assert.NotNull(result.Id);
+            Assert.NotNull(result.MaxDestinationRate);
+            Assert.NotNull(result.Name);
+            Assert.NotNull(result.ServicePlan);
+            Assert.NotNull(result.CallRecording);
+            Assert.Equal(this.option.Enabled, result.Enabled);
+            Assert.Equal(this.option.MaxDestinationRate, result.MaxDestinationRate);
+            Assert.Equal(this.option.Name, result.Name);
+            Assert.Equal(this.option.ServicePlan, result.ServicePlan);
+            Assert.Equal(this.option.Tags.Count, result.Tags.Count);
+            Assert.Equal(this.option.TrafficType, result.TrafficType);
+            Assert.Equal(this.option.BillingGroupId, result.BillingGroupId);
+            Assert.Equal(this.option.CallRecording.CallRecordingCallerPhoneNumbers.Count, result.CallRecording.CallRecordingCallerPhoneNumbers.Count);
+            Assert.Equal(this.option.CallRecording.CallRecordingChannels, result.CallRecording.CallRecordingChannels);
+            Assert.Equal(this.option.CallRecording.CallRecordingFormat, result.CallRecording.CallRecordingFormat);
+            Assert.Equal(this.option.CallRecording.CallRecordingType, result.CallRecording.CallRecordingType);
+            Assert.Equal(this.option.ConcurrentCallLimit, result.ConcurrentCallLimit);
+            Assert.Equal(this.option.DailySpendLimit, result.DailySpendLimit);
+            Assert.Equal(this.option.DailySpendLimitEnabled, result.DailySpendLimitEnabled);
         }
 
         [Fact]
