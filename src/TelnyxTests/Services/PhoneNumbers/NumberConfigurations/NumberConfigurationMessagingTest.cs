@@ -58,7 +58,7 @@ namespace TelnyxTests.Services.PhoneNumbers.NumberConfiguration
             Assert.NotNull(response.Id);
             Assert.NotNull(response.MessagingProfileId);
             Assert.NotNull(response.PhoneNumber);
-            Assert.Equal(Telnyx.net.Entities.Enum.RecordType.PhoneNumber, response.RecordType);
+            Assert.Equal(Telnyx.net.Entities.Enum.RecordType.MessagingSettings, response.RecordType);
             Assert.True(response.CreatedAt <= response.UpdatedAt);
             Assert.NotNull(response.CountryCode);
             Assert.NotNull(response.EligibleMessagingProducts);
