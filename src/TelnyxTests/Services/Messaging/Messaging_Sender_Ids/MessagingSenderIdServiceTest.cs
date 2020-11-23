@@ -57,12 +57,6 @@ namespace TelnyxTests.Services.Messages.MessagingSenderId
                 UseProfileWebhooks = false
             };
 
-            // unused object
-            //this.updateOptions = new MessagingSenderIdUpdate
-            //{
-            //    MessagingProfileId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
-            //};
-
             this.requestOptions = new RequestOptions();
 
             this.cancellationToken = default(CancellationToken);
