@@ -41,6 +41,26 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
             var message = this.service.Create(this.createOption);
             Assert.NotNull(message);
             Assert.Equal(typeof(CallControlApplication), message.GetType());
+            Assert.NotNull(message.Id);
+            Assert.True(message.CreatedAt <= message.UpdatedAt);
+            Assert.Equal(this.createOption.DtmfType, message.DtmfType);
+            Assert.Equal(this.createOption.RecordType, message.RecordType);
+            Assert.Equal(this.createOption.Active, message.Active);
+            Assert.Equal(AnchorsiteOverride.Latency, message.AnchorsiteOverride);
+            Assert.Equal(this.createOption.ApplicationName, message.ApplicationName);
+            Assert.NotNull(message.Inbound);
+            Assert.NotNull(message.Inbound.ChannelLimit);
+            Assert.NotNull(message.Inbound.SipSubdomain);
+            Assert.NotNull(message.Inbound.SipSubdomainReceiveSettings);
+            Assert.NotNull(message.Outbound);
+            Assert.NotNull(message.Outbound.ChannelLimit);
+            Assert.NotNull(message.Outbound.OutboundVoiceProfileId);
+            Assert.Equal(this.createOption.FirstCommandTimeout, message.FirstCommandTimeout);
+            Assert.Equal(this.createOption.FirstCommandTimeoutSecs, message.FirstCommandTimeoutSecs);
+            Assert.Equal(this.createOption.WebhookApiVersion, message.WebhookApiVersion);
+            Assert.Equal(this.createOption.WebhookEventFailoverUrl, message.WebhookEventFailoverUrl);
+            Assert.Equal(this.createOption.WebhookEventUrl, message.WebhookEventUrl);
+            Assert.Equal(this.createOption.WebhookTimeoutSecs, message.WebhookTimeoutSecs);
         }
 
         [Fact]

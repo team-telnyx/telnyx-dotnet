@@ -65,21 +65,24 @@ namespace TelnyxTests.Services.Messages.Messages
             Assert.Equal(RecordType.MessageEnum, message.RecordType);
             Assert.NotNull(message.Text);
             Assert.True(message.To.Count > 0);
-            Assert.True(!message.To.Where(x => x.Status == null).Any());
+            Assert.False(message.To.Where(x => x.Status == null).Any());
+            Assert.False(message.To.Where(x => x.Address != null).Any());
             Assert.NotNull(message.From);
             Assert.NotNull(message.From.Carrier);
             Assert.NotNull(message.From.LineType);
             Assert.NotNull(message.From.PhoneNumber);
             Assert.NotNull(message.Media);
+            Assert.True(!message.Media.Where(x => x.Url == null).Any());
             Assert.Equal(this.createOptions.WebhookFailoverUrl, message.WebhookFailoverUrl);
             Assert.Equal(this.createOptions.WebhookUrl, message.WebhookUrl);
             //Assert.Equal(this.createOptions.UseProfileWebhooks, message.UseProfileWebhooks); // fails
-            //Assert.NotNull(message.ValidUntil); // fails
+            Assert.Null(message.ValidUntil);
             //Assert.NotNull(message.CreatedAt); // fails
             //Assert.NotNull(message.UpdatedAt); // fails
             //Assert.NotNull(message.InfoBlobFieldname); // fails
             Assert.NotNull(message.Type);
             Assert.Null(message.CompletedAt);
+            //Assert.NotNull(message.Carrier); // fails
         }
 
         [Fact]

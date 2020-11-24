@@ -3,7 +3,7 @@
     using Newtonsoft.Json;
     using Telnyx.net.Entities.Enum;
 
-    public class NumberLookupRecord : TelnyxEntity, IHasId
+    public class NumberLookupRecord : TelnyxEntity
     { /// <summary>
       /// Identifies the type of record.
       /// </summary>
@@ -51,11 +51,5 @@
         /// </summary>
         [JsonProperty("portability")]
         public Portability Portability { get; set; }
-
-        /// <summary>
-        /// Gets id.
-        /// </summary>
-        [JsonProperty("id")]
-        public string Id { get; set; }
     }
 }
