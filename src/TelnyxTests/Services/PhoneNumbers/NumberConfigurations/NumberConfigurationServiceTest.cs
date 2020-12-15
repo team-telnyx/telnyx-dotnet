@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
@@ -84,6 +85,26 @@
             //this.AssertRequest(new HttpMethod("PATCH"), "/v2/number_orders/" + NumberOrderId);
             Assert.NotNull(response);
             Assert.IsType<NumberConfiguration>(response);
+            Assert.NotNull(response.BillingGroupId);
+            Assert.True(response.CallerIdNameEnabled);
+            Assert.True(response.CallForwardingEnabled);
+            Assert.True(response.CallRecordingEnabled);
+            Assert.True(response.CnamListingEnabled);
+            Assert.Equal(this.updateOptions.ConnectionId, response.ConnectionId);
+            Assert.NotNull(response.ConnectionName);
+            Assert.True(response.CreatedAt <= response.UpdatedAt);
+            Assert.NotNull(response.EmergencyAddressId);
+            Assert.True(response.EmergencyEnabled);
+            Assert.Equal(this.updateOptions.ExternalPin, response.ExternalPin);
+            Assert.NotNull(response.Id);
+            Assert.NotNull(response.MessagingProfileId);
+            Assert.NotNull(response.MessagingProfileName);
+            Assert.NotNull(response.PhoneNumber);
+            Assert.NotNull(response.PurchasedAt);
+            Assert.Equal(Telnyx.net.Entities.Enum.RecordType.PhoneNumber, response.RecordType);
+            Assert.NotNull(response.Status);
+            Assert.True(response.T38FaxGatewayEnabled);
+            Assert.Equal(this.updateOptions.Tags.Count(), response.Tags.Count);
         }
 
         [Fact]

@@ -55,7 +55,7 @@ namespace Telnyx.net.Entities.Enum
         FQDNConnection = 8,
         
         [EnumMember(Value = "messaging_profile_metrics")]
-        NessagingProfileMetrics = 9,
+        MessagingProfileMetrics = 9,
         
         [EnumMember(Value = "event")]
         Event = 10,

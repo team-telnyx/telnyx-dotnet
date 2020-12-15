@@ -75,7 +75,31 @@ namespace TelnyxTests.Services.PhoneNumbers.NumberConfigurations
             //this.AssertRequest(HttpMethod.Get, "/v2/number_orders/12ade33a-21c0-473b-b055-b3c836e1c292");
             Assert.NotNull(response);
             Assert.IsType<PhoneNumberVoiceSettings>(response);
-          
+            Assert.NotNull(response.Id);
+            Assert.NotNull(response.CallForwarding);
+            Assert.True(response.CallForwarding.CallForwardingEnabled);
+            Assert.NotNull(response.CallForwarding.ForwardingType);
+            Assert.NotNull(response.CallForwarding.ForwardsTo);
+            Assert.NotNull(response.CallRecording);
+            Assert.NotNull(response.CallRecording.InboundCallRecordingChannels);
+            Assert.True(response.CallRecording.InboundCallRecordingEnabled);
+            Assert.NotNull(response.CallRecording.InboundCallRecordingFormat);
+            Assert.NotNull(response.CnamListing);
+            Assert.NotNull(response.CnamListing.CnamListingDetails);
+            Assert.True(response.CnamListing.CnamListingEnabled);
+            Assert.NotNull(response.ConnectionId);
+            Assert.NotNull(response.Emergency);
+            Assert.True(response.Emergency.EmergencyEnabled);
+            Assert.NotNull(response.Emergency.EmergencyAddressId);
+            Assert.NotNull(response.MediaFeatures);
+            Assert.True(response.MediaFeatures.AcceptAnyRtpPacketsEnabled);
+            Assert.True(response.MediaFeatures.RtpAutoAdjustEnabled);
+            Assert.True(response.MediaFeatures.T38FaxGatewayEnabled);
+            Assert.NotNull(response.MediaFeatures.MediaHandlingMode);
+            Assert.Equal(Telnyx.net.Entities.Enum.RecordType.VoiceSettings, response.RecordType);
+            Assert.False(response.TechPrefixEnabled);
+            Assert.NotNull(response.TranslatedNumber);
+            Assert.NotNull(response.UsagePaymentMethod);
         }
 
         [Fact]

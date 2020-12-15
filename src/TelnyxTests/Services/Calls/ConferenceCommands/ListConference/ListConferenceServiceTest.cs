@@ -8,6 +8,7 @@ namespace TelnyxTests.Services.Messages.MessagingPhoneNumbers
     using System.Net.Http;
     using System.Threading.Tasks;
     using Telnyx;
+    using Telnyx.net.Entities.Enum;
     using Xunit;
 
     public class ListConferenceServiceTest : BaseTelnyxTest
@@ -24,7 +25,7 @@ namespace TelnyxTests.Services.Messages.MessagingPhoneNumbers
             this.listOptions = new ListConferenceOptions();
         }
 
-        [Fact(Skip = "mock not working")]
+        [Fact]
         public void List()
         {
             var conferenceList = this.service.List(this.listOptions);
@@ -32,9 +33,14 @@ namespace TelnyxTests.Services.Messages.MessagingPhoneNumbers
             Assert.NotNull(conferenceList);
             Assert.Single(conferenceList.Data);
             Assert.Equal(typeof(Telnyx.ListConferenceResponse), conferenceList.Data[0].GetType());
+            var message = conferenceList.Data.FirstOrDefault();
+            Assert.NotNull(message.Name);
+            Assert.True(message.CreatedAt <= message.ExpiresAt);
+            Assert.NotEqual(System.Guid.Empty, message.Id);
+            Assert.Equal(RecordType.Conference, message.RecordType);
         }
 
-        [Fact(Skip = "mock not working")]
+        [Fact]
         public async Task ListAsync()
         {
             var conferenceList = await this.service.ListAsync(this.listOptions);

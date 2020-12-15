@@ -89,6 +89,14 @@ namespace TelnyxTests.Services.Messages.MessagingShortCodes
             //this.AssertRequest(new HttpMethod("PATCH"), "/v2/short_codes/3fa85f64-5717-4562-b3fc-2c963f66afa6");
             Assert.NotNull(numberOrder);
             Assert.Equal("Telnyx.MessagingShortCode", numberOrder.GetType().ToString());
+            Assert.NotNull(numberOrder.Id);
+            Assert.NotNull(numberOrder.MessagingProfileId);
+            Assert.Equal(this.updateOptions.MessagingProfileId, numberOrder.MessagingProfileId);
+            Assert.NotNull(numberOrder.ShortCode);
+            Assert.NotNull(numberOrder.CreatedAt);
+            Assert.NotNull(numberOrder.UpdatedAt);
+            Assert.True(numberOrder.CreatedAt <= numberOrder.UpdatedAt);
+            Assert.Equal(Telnyx.net.Entities.Enum.RecordType.CodeEnum, numberOrder.RecordType);
         }
 
         [Fact]

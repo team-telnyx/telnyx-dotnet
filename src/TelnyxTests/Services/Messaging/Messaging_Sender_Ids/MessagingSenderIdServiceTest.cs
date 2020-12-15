@@ -11,6 +11,7 @@ namespace TelnyxTests.Services.Messages.MessagingSenderId
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx;
+    using Telnyx.net.Entities.Enum;
     using Xunit;
 
     public class MessagingSenderIdServiceTest : BaseTelnyxTest
@@ -20,7 +21,6 @@ namespace TelnyxTests.Services.Messages.MessagingSenderId
         private readonly MessagingSenderIdService service;
         private readonly NewMessagingSenderId sendMessageOptions;
         private readonly NewMessagingSenderId sendMessageUsingNumberPoolOptions;
-        private readonly MessagingSenderIdUpdate updateOptions;
         private readonly MessagingSenderIdListOptions listOptions;
         private readonly RequestOptions requestOptions;
         private readonly CancellationToken cancellationToken;
@@ -54,11 +54,6 @@ namespace TelnyxTests.Services.Messages.MessagingSenderId
                 WebhookUrl = "webhookUrl",
                 WebhookFailoverUrl = "failureUrl",
                 UseProfileWebhooks = false
-            };
-
-            this.updateOptions = new MessagingSenderIdUpdate
-            {
-                MessagingProfileId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
             };
 
             this.requestOptions = new RequestOptions();
@@ -98,6 +93,9 @@ namespace TelnyxTests.Services.Messages.MessagingSenderId
             //this.AssertRequest(HttpMethod.Post, "/v2/messages");
             Assert.NotNull(messagingSender);
             Assert.Equal("Telnyx.MessagingSenderId", messagingSender.GetType().ToString());
+            Assert.NotNull(messagingSender.Id);
+            Assert.NotNull(messagingSender.MessagingProfileId);
+            Assert.Equal(RecordType.MessageEnum, messagingSender.RecordType);
         }
 
         [Fact]

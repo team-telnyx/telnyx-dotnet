@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -54,6 +55,28 @@ namespace TelnyxTests.Services.PhoneNumbers.NumberConfiguration
             //this.AssertRequest(HttpMethod.Get, "/v2/number_orders/12ade33a-21c0-473b-b055-b3c836e1c292");
             Assert.NotNull(response);
             Assert.IsType<PhoneNumberMessaging>(response);
+            Assert.NotNull(response.Id);
+            Assert.NotNull(response.MessagingProfileId);
+            Assert.NotNull(response.PhoneNumber);
+            Assert.Equal(Telnyx.net.Entities.Enum.RecordType.MessagingSettings, response.RecordType);
+            Assert.True(response.CreatedAt <= response.UpdatedAt);
+            Assert.NotNull(response.CountryCode);
+            Assert.NotNull(response.EligibleMessagingProducts);
+            Assert.NotNull(response.EligibleMessagingProducts.First());
+            Assert.NotNull(response.Features);
+            Assert.NotNull(response.Features.Sms);
+            Assert.True(response.Features.Sms.DomesticTwoWay);
+            Assert.True(response.Features.Sms.InternationalOutbound);
+            Assert.True(response.Features.Sms.InternationalInbound);
+            Assert.NotNull(response.Health);
+            Assert.True(response.Health.InboundOutboundRatio >= 0);
+            Assert.True(response.Health.MessageCount >= 0);
+            Assert.True(response.Health.SpamRatio >= 0);
+            Assert.True(response.Health.SuccessRatio >= 0);
+            Assert.NotNull(response.MessagingProduct);
+            Assert.NotNull(response.TrafficType);
+            Assert.NotNull(response.Type);
+            Assert.NotNull(response.MessagingProduct);
         }
 
         [Fact]
@@ -72,6 +95,11 @@ namespace TelnyxTests.Services.PhoneNumbers.NumberConfiguration
             //this.AssertRequest(new HttpMethod("PATCH"), "/v2/number_orders/" + NumberOrderId);
             Assert.NotNull(response);
             Assert.IsType<PhoneNumberMessaging>(response);
+            Assert.NotNull(response.Id);
+            Assert.NotNull(response.MessagingProfileId);
+            Assert.NotNull(response.PhoneNumber);
+            Assert.Equal(Telnyx.net.Entities.Enum.RecordType.PhoneNumber, response.RecordType);
+            Assert.True(response.CreatedAt <= response.UpdatedAt);
         }
 
         [Fact]
