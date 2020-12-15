@@ -10,7 +10,7 @@ using Telnyx.net.Infrastructure.JsonConverters;
 namespace Telnyx.net.Entities.Enum
 {
     [JsonConverter(typeof(SafeStringEnumConverter), Unknown)]
-    public enum TwoFAStatus
+    public enum VerifyStatus
     {
         Unknown = -1,
         [EnumMember(Value = "pending")]

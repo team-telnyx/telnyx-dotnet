@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Telnyx.net.Entities.Enum;
 
-namespace Telnyx.net.Entities.Verify
+namespace Telnyx.net.Entities.VerifyAPI
 {
-    public class TwoFA : TwoFABase
+    public class Verify : VerifyBase
     {
         [JsonProperty("created_at")]
         public DateTimeOffset? CreatedAt { get; set; }
@@ -25,21 +25,21 @@ namespace Telnyx.net.Entities.Verify
         [JsonProperty("record_type")]
         public RecordType? RecordType { get; set; }
         /// <summary>
-        /// The possible statuses of the 2FA verification request.
+        /// The possible statuses of the verify verification request.
         /// </summary>
         [JsonProperty("status")]
-        public TwoFAStatus Status { get; set; }
+        public VerifyStatus Status { get; set; }
         /// <summary>
         /// This is the number of seconds before the code of the request is expired. Once this request has expired, the code will no longer verify the user. 
-        /// <para>Note: this will override the `default_timeout_secs` on the 2FA profile</para>
+        /// <para>Note: this will override the `default_timeout_secs` on the verify profile</para>
         /// </summary>
         [JsonProperty("timeout_secs")]
         public long TimeoutSecs { get; set; }
         /// <summary>
-        /// The identifier of the associated 2FA profile.
+        /// The identifier of the associated verify profile.
         /// </summary>
-        [JsonProperty("twofa_profile_id")]
-        public Guid TwofaProfileId { get; set; }
+        [JsonProperty("verify_profile_id")]
+        public Guid VerifyProfileId { get; set; }
         /// <summary>
         /// The verification request type
         /// </summary>

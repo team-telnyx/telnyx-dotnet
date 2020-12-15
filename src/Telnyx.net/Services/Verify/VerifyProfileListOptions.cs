@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Telnyx.net.Services.Verify
+namespace Telnyx.net.Services.VerifyAPI
 {
-    public class TwoFAProfileListOptions : ListOptions
+    public class VerifyProfileListOptions
+        : ListOptions
     {
-        public TwoFAProfileListOptions()
+        public VerifyProfileListOptions()
             : base(25, 1)
         {
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Threading.Tasks;
-using Telnyx.net.Services.Verify;
+using Telnyx.net.Services.VerifyAPI;
 
 namespace Telnyx.Example
 {
@@ -14,30 +14,30 @@ namespace Telnyx.Example
 
         public async Task RunVerification()
         {
-            TwoFaProfileOptions profileOptions = new TwoFaProfileOptions
+            VerifyProfileOptions profileOptions = new VerifyProfileOptions
             {
                 DefaultTimeoutSecs = 300,
-                MsgEnabled = true,
-                MsgTemplate = "Hello this is a test {code}",
+                MessagingEnabled = true,
+                MessagingTemplate = "Hello this is a test {code}",
                 Name = "Test Profile",
                 RcsEnabled = false
             };
             Console.WriteLine($"Creating profile: {profileOptions.Name}");
-            var profile = await verifyService.Create2FAProfileAsync(profileOptions);
+            var profile = await verifyService.CreateVerificationProfileAsync(profileOptions);
             Console.WriteLine($"Profile Created. Id: {profile.Id.Value}");
-            TwoFAOptions verifyOptions = new TwoFAOptions
+            VerifyOptions verifyOptions = new VerifyOptions
             {
                 TimeoutSecs = 300,
                 PhoneNumber = "+13100000010",
-                TwofaProfileId = profile.Id.Value,
+                VerifyProfileId = profile.Id.Value,
                 Type = "sms",
             };
             Console.WriteLine($"Creating verification");
-            var verification = await verifyService.Create2FAVerificationAsync(verifyOptions);
+            var verification = await verifyService.CreateVerificationAsync(verifyOptions);
             Console.WriteLine($"Verification created successfully: {verification.Id} with status {verification.Status}");
 
             Console.WriteLine($"Checking verification status current status: {verification.Status}");
-            var getStatus = await verifyService.Get2FAVerificationAsync(verification.Id.ToString());
+            var getStatus = await verifyService.GetVerificationAsync(verification.Id.ToString());
             Console.WriteLine($"Verification retrieved previous status: {verification.Status}, current status: {getStatus.Status}");
             
 

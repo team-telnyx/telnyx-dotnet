@@ -192,14 +192,11 @@ namespace Telnyx.net.Entities.Enum
         [EnumMember(Value = "billing_group")]
         BillingGroup = 54,
 
-        [EnumMember(Value = "twofa_profile")]
-        TwoFaProfile = 55,
+        [EnumMember(Value = "verify_profile")]
+        VerifyProfile = 55,
 
-        [EnumMember(Value = "twofa_verification")]
-        TwoFaVerification = 56,
-
-        [EnumMember(Value = "twofa_code_verify")]
-        TwoFaCodeVerify = 57,
+        [EnumMember(Value = "verification")]
+        Verification = 56,
     }
 
 }

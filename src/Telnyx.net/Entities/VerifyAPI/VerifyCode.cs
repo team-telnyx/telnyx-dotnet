@@ -6,16 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Telnyx.net.Entities.Enum;
 
-namespace Telnyx.net.Entities.Verify
+namespace Telnyx.net.Entities.VerifyAPI
 {
-    public class TwoFACode : TwoFABase
+    public class VerifyCode : VerifyBase
     {
-        /// <summary>
-        /// Identifies the type of the resource.
-        /// </summary>
-        [JsonProperty("record_type")]
-        public RecordType? RecordType { get; set; }
-
         /// <summary>
         /// Identifies if the verification code has been accepted or rejected.
         /// <para>Options: ["accepted","rejected"]</para>

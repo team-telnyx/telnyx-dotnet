@@ -6,14 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Telnyx.net.Entities.Enum;
 
-namespace Telnyx.net.Entities.Verify
+namespace Telnyx.net.Entities.VerifyAPI
 {
-    public class TwoFAProfile : TelnyxEntity
+    public class VerifyProfile : TelnyxEntity
     {
         [JsonProperty("created_at")]
         public DateTimeOffset? CreatedAt { get; set; }
         /// <summary>
-        /// For every request that is initiated via this 2FA Profile, this sets the number of seconds before a verification request code expires. Once the verification request expires, the user cannot use the code to verify their identity.
+        /// For every request that is initiated via this verify Profile, this sets the number of seconds before a verification request code expires. Once the verification request expires, the user cannot use the code to verify their identity.
         /// </summary>
         [JsonProperty("default_timeout_secs")]
         public long DefaultTimeoutSecs { get; set; }
@@ -21,17 +21,17 @@ namespace Telnyx.net.Entities.Verify
         [JsonProperty("id")]
         public Guid? Id { get; set; }
         /// <summary>
-        /// Enables SMS text messaging for the 2FA profile.
+        /// Enables SMS text messaging for the verify profile.
         /// </summary>
-        [JsonProperty("msg_enabled")]
-        public bool MsgEnabled { get; set; }
+        [JsonProperty("messaging_enabled")]
+        public bool MessagingEnabled { get; set; }
         /// <summary>
         /// Optionally sets a messaging text template when sending the verification code. Uses `{code}` to template in the actual verification code.
         /// </summary>
-        [JsonProperty("msg_template")]
-        public string MsgTemplate { get; set; }
+        [JsonProperty("messaging_template")]
+        public string MessagingTemplate { get; set; }
         /// <summary>
-        /// The name of the 2FA profile.
+        /// The name of the verify profile.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -39,7 +39,7 @@ namespace Telnyx.net.Entities.Verify
         [JsonProperty("organization_id")]
         public string OrganizationId { get; set; }
         /// <summary>
-        /// Enables RCS messaging for the 2FA profile.
+        /// Enables RCS messaging for the verify profile.
         /// </summary>
         [JsonProperty("rcs_enabled")]
         public bool RcsEnabled { get; set; }

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using Telnyx.net.Entities.Verify;
+using Telnyx.net.Entities.VerifyAPI;
 
-namespace Telnyx.net.Services.Verify
+namespace Telnyx.net.Services.VerifyAPI
 {
-    internal class VerificationAuthenticationService : Service<TwoFA>
+    internal class VerificationAuthenticationService : Service<Verify>
     {
         internal VerificationAuthenticationService()
        : base(null)
@@ -18,21 +14,21 @@ namespace Telnyx.net.Services.Verify
             : base(apiKey)
         {
         }
-        public override string BasePath => "/2fa_verifications";
+        public override string BasePath => "/verifications";
 
-        public async Task<TwoFA> CreateAsync(TwoFAOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
+        public async Task<Verify> CreateAsync(VerifyOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
             return await this.CreateEntityAsync(options, requestOptions, ct);
         }
-        public TwoFA Create(TwoFAOptions options, RequestOptions requestOptions = null)
+        public Verify Create(VerifyOptions options, RequestOptions requestOptions = null)
         {
             return this.CreateEntity(options, requestOptions);
         }
-        public async Task<TwoFA> GetAsync(string id, RequestOptions requestOptions, CancellationToken ct = default)
+        public async Task<Verify> GetAsync(string id, RequestOptions requestOptions, CancellationToken ct = default)
         {
             return await this.GetEntityAsync(id, requestOptions, ct);
         }
-        public TwoFA Get(string id, RequestOptions requestOptions)
+        public Verify Get(string id, RequestOptions requestOptions)
         {
             return this.GetEntity(id, requestOptions);
         }
