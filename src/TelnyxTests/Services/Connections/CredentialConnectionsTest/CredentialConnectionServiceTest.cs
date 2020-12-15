@@ -30,7 +30,8 @@ namespace TelnyxTests.Services.Connections.CredentialConnections
                 SipUriCallingPreference = "disabled",
                 UserName = "user001",
                 Outbound = null,
-                Password = "pwd001"
+                Password = "pwd001",
+                ConnectionName = "name"
             };
         }
 
