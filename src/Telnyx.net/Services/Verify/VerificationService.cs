@@ -9,23 +9,23 @@ namespace Telnyx.net.Services.VerifyAPI
     {
         private VerificationProfileService _profileService;
         private VerificationAuthenticationService _authenticationService;
-        private VerificationAuthenticationPhoneService _phoneService;
-        private VerificationAuthenticationCodeService _codeService;
+        private VerificationByPhoneService _phoneService;
+        private VerificationCodeService _codeService;
 
         public VerificationService()
         {
             _profileService = new VerificationProfileService();
             _authenticationService = new VerificationAuthenticationService();
-            _phoneService = new VerificationAuthenticationPhoneService();
-            _codeService = new VerificationAuthenticationCodeService();
+            _phoneService = new VerificationByPhoneService();
+            _codeService = new VerificationCodeService();
 
         }
         public VerificationService(string apiKey)
         {
             _profileService = new VerificationProfileService(apiKey);
             _authenticationService = new VerificationAuthenticationService(apiKey);
-            _phoneService = new VerificationAuthenticationPhoneService(apiKey);
-            _codeService = new VerificationAuthenticationCodeService(apiKey);
+            _phoneService = new VerificationByPhoneService(apiKey);
+            _codeService = new VerificationCodeService(apiKey);
 
         }
 

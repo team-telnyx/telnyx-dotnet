@@ -4,17 +4,17 @@ using Telnyx.net.Entities.VerifyAPI;
 
 namespace Telnyx.net.Services.VerifyAPI
 {
-    internal class VerificationAuthenticationCodeService : Service<VerifyCode>
+    internal class VerificationCodeService : Service<VerifyCode>
     {
-        internal VerificationAuthenticationCodeService()
+        internal VerificationCodeService()
        : base(null)
         {
         }
-        internal VerificationAuthenticationCodeService(string apiKey)
+        internal VerificationCodeService(string apiKey)
             : base(apiKey)
         {
         }
-        public override string BasePath => "/verify_verifications/by_phone_number";
+        public override string BasePath => "/verifications/by_phone_number";
         public override string PostPath => "/actions/verify";
 
         public async Task<VerifyCode> PostAsync(string phone, VerifyCodeOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)

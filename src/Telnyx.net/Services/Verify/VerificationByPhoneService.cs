@@ -5,13 +5,13 @@ using Telnyx.net.Entities.VerifyAPI;
 
 namespace Telnyx.net.Services.VerifyAPI
 {
-    internal class VerificationAuthenticationPhoneService : Service<Verify>
+    internal class VerificationByPhoneService : Service<Verify>
     {
-        internal VerificationAuthenticationPhoneService()
+        internal VerificationByPhoneService()
        : base(null)
         {
         }
-        internal VerificationAuthenticationPhoneService(string apiKey)
+        internal VerificationByPhoneService(string apiKey)
             : base(apiKey)
         {
         }
