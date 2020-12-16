@@ -198,8 +198,13 @@ namespace Telnyx.Example
             telephonyCredentialExample.GetToken();
             await telephonyCredentialExample.GetTokenAsync();
 
+            Console.WriteLine("2FA Verification Example...");
+            var verificationExample = new VerificationExample();
+            await verificationExample.RunVerification();
+
             /*Only call with your credentials*/
             //GetWebhook();
+
         }
 
         public async static Task<HttpStatusCode> ReceiveAndHandleWebhook()

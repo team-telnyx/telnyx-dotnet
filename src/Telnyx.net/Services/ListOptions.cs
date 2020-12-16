@@ -8,6 +8,17 @@ namespace Telnyx
     /// </summary>
     public class ListOptions : BaseOptions
     {
+        public ListOptions()
+        {
+
+        }
+
+        public ListOptions(int pageSize, int pageNumber)
+        {
+            this.PageSize = pageSize;
+            this.PageNumber = pageNumber;
+        }
+
         /// <summary>
         /// The size of the page
         /// </summary>

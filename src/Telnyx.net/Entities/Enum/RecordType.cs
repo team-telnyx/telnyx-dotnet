@@ -191,6 +191,12 @@ namespace Telnyx.net.Entities.Enum
 
         [EnumMember(Value = "billing_group")]
         BillingGroup = 54,
+
+        [EnumMember(Value = "verify_profile")]
+        VerifyProfile = 55,
+
+        [EnumMember(Value = "verification")]
+        Verification = 56,
     }
 
 }

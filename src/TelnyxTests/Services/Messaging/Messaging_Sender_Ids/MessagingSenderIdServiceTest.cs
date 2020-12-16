@@ -40,7 +40,8 @@ namespace TelnyxTests.Services.Messages.MessagingSenderId
                 MediaUrls = new List<string> { "url1", "url2" },
                 WebhookUrl = "webhookUrl",
                 WebhookFailoverUrl = "failureUrl",
-                UseProfileWebhooks = true
+                UseProfileWebhooks = true,
+                AutoDetect = true,
             };
 
             this.sendMessageUsingNumberPoolOptions = new NewMessagingSenderId

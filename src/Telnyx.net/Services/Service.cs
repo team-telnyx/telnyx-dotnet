@@ -348,9 +348,9 @@ namespace Telnyx
         /// <param name="options">options</param>
         /// <param name="requestOptions">requestOptions</param>
         /// <returns>TelnyxList {EntityReturned}</returns>
-        protected TelnyxList<EntityReturned> ListEntities(string postPath, ListOptions options, RequestOptions requestOptions)
+        protected TelnyxList<EntityReturned> ListEntities(string postPath, ListOptions options, RequestOptions requestOptions, string id = null)
         {
-            return this.ListRequestPaging<EntityReturned>(this.CallUrl(null, postPath), options, requestOptions);
+            return this.ListRequestPaging<EntityReturned>(this.CallUrl(id, postPath), options, requestOptions);
         }
 
         /// <summary>
@@ -361,9 +361,9 @@ namespace Telnyx
         /// <param name="requestOptions">requestOptions</param>
         /// <param name="cancellationToken">cancellationToken</param>
         /// <returns>TelnyxList {EntityReturned}</returns>
-        protected async Task<TelnyxList<EntityReturned>> ListEntitiesAsync(string postPath, ListOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        protected async Task<TelnyxList<EntityReturned>> ListEntitiesAsync(string postPath, ListOptions options, RequestOptions requestOptions, CancellationToken cancellationToken, string id = null)
         {
-            return await this.ListRequestPagingAsync<EntityReturned>(this.CallUrl(null, postPath), options, requestOptions, cancellationToken);
+            return await this.ListRequestPagingAsync<EntityReturned>(this.CallUrl(id, postPath), options, requestOptions, cancellationToken);
         }
 
         /// <summary>
