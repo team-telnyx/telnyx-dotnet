@@ -12,23 +12,23 @@ namespace Telnyx.Infrastructure
     using Telnyx.Infrastructure.Middleware;
 
     /// <summary>
-    /// ParameterBuilder
+    /// ParameterBuilder.
     /// </summary>
     internal static class ParameterBuilder
     {
         /// <summary>
-        /// ApplyAllParameters
+        /// ApplyAllParameters.
         /// </summary>
-        /// <typeparam name="T">T</typeparam>
-        /// <param name="service">service</param>
-        /// <param name="obj">obj</param>
-        /// <param name="url">url</param>
-        /// <param name="isListMethod">isListMethod</param>
-        /// <returns>requestString</returns>
+        /// <typeparam name="T">T.</typeparam>
+        /// <param name="service">service.</param>
+        /// <param name="obj">obj.</param>
+        /// <param name="url">url.</param>
+        /// <param name="isListMethod">isListMethod.</param>
+        /// <returns>requestString.</returns>
         public static string ApplyAllParameters<T>(this Service<T> service, BaseOptions obj, string url, bool isListMethod = false)
             where T : ITelnyxEntity
         {
-            // store the original url from the service call into requestString
+            // store the original url from the service call into requestString (e.g. https://api.Telnyx.com/v1/accounts/account_id)
             // before the Telnyx attributes get applied. all of the attributes that will get passed to Telnyx will be applied to this string,
             // don't worry - if the request is a post, the Requestor will take care of moving the attributes to the post body
             var requestString = url;
@@ -95,12 +95,12 @@ namespace Telnyx.Infrastructure
         }
 
         /// <summary>
-        /// ApplyParameterToUrl
+        /// ApplyParameterToUrl.
         /// </summary>
-        /// <param name="url">url</param>
-        /// <param name="argument">argument</param>
-        /// <param name="value">value</param>
-        /// <returns>url string</returns>
+        /// <param name="url">url.</param>
+        /// <param name="argument">argument.</param>
+        /// <param name="value">value.</param>
+        /// <returns>url string.</returns>
         public static string ApplyParameterToUrl(string url, string argument, string value)
         {
             RequestStringBuilder.ApplyParameterToRequestString(ref url, argument, value);

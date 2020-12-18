@@ -8,22 +8,18 @@ namespace Telnyx.Infrastructure
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Reflection;
-    using Newtonsoft.Json;
-#if NET45
-    using Microsoft.Win32;
-#else
     using System.Runtime.InteropServices;
-#endif
+    using Newtonsoft.Json;
 
     /// <summary>
-    /// Client
+    /// Client.
     /// </summary>
     internal class Client
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Client"/> class.
         /// </summary>
-        /// <param name="requestMessage">Request Message</param>
+        /// <param name="requestMessage">Request Message.</param>
         public Client(HttpRequestMessage requestMessage)
         {
             this.RequestMessage = requestMessage;
@@ -32,7 +28,7 @@ namespace Telnyx.Infrastructure
         private HttpRequestMessage RequestMessage { get; set; }
 
         /// <summary>
-        /// Apply user agent
+        /// Apply user agent.
         /// </summary>
         public void ApplyUserAgent()
         {
@@ -40,13 +36,12 @@ namespace Telnyx.Infrastructure
         }
 
         /// <summary>
-        /// Apply client data
+        /// Apply client data.
         /// </summary>
         public void ApplyClientData()
         {
             this.RequestMessage.Headers.Add("X-Telnyx-Client-User-Agent", this.GetClientUserAgentString());
         }
-
 #if NET45
         private static string GetMonoVersion()
         {
@@ -79,7 +74,6 @@ namespace Telnyx.Infrastructure
                 { "lang", ".net" },
                 { "publisher", "Telnyx" },
             };
-
 #if NET45
             values.Add("lang_version", ".NET Framework 4.5+");
             values.Add("os_version", Environment.OSVersion.ToString());
@@ -93,7 +87,6 @@ namespace Telnyx.Infrastructure
             values.Add("lang_version", RuntimeInformation.FrameworkDescription);
             values.Add("os_version", RuntimeInformation.OSDescription);
 #endif
-
             return JsonConvert.SerializeObject(values, Formatting.None);
         }
     }

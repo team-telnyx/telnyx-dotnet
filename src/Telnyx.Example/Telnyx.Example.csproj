@@ -2,15 +2,24 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.3" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Telnyx.net\Telnyx.net.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Telnyx.net\Telnyx.net.csproj" />
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

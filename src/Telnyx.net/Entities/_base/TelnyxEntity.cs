@@ -5,7 +5,7 @@ namespace Telnyx
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Telnyx Entity
+    /// Telnyx Entity.
     /// </summary>
     public abstract class TelnyxEntity : ITelnyxEntity
     {

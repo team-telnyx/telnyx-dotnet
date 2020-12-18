@@ -5,6 +5,7 @@
 namespace Telnyx.Infrastructure
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
     using System.Linq;
@@ -16,7 +17,7 @@ namespace Telnyx.Infrastructure
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Requestor
+    /// Requestor.
     /// </summary>
     internal static class Requestor
     {
@@ -34,16 +35,16 @@ namespace Telnyx.Infrastructure
         }
 
         /// <summary>
-        /// Gets HttpClient
+        /// Gets HttpClient.
         /// </summary>
         internal static HttpClient HttpClient { get; private set; }
 
         /// <summary>
-        /// GetString
+        /// GetString.
         /// </summary>
-        /// <param name="url">url</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>telnyxResponse</returns>
+        /// <param name="url">url.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>telnyxResponse.</returns>
         public static TelnyxResponse GetString(string url, RequestOptions requestOptions)
         {
             var wr = GetRequestMessage(url, HttpMethod.Get, requestOptions);
@@ -52,11 +53,11 @@ namespace Telnyx.Infrastructure
         }
 
         /// <summary>
-        /// PostString
+        /// PostString.
         /// </summary>
-        /// <param name="url">url</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>telnyxResponse</returns>
+        /// <param name="url">url.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>telnyxResponse.</returns>
         public static TelnyxResponse PostString(string url, RequestOptions requestOptions)
         {
             var wr = GetRequestMessage(url, HttpMethod.Post, requestOptions);
@@ -65,11 +66,11 @@ namespace Telnyx.Infrastructure
         }
 
         /// <summary>
-        /// PatchString
+        /// PatchString.
         /// </summary>
-        /// <param name="url">url</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>telnyxResponse</returns>
+        /// <param name="url">url.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>telnyxResponse.</returns>
         public static TelnyxResponse PatchString(string url, RequestOptions requestOptions)
         {
             var wr = GetRequestMessage(url, new HttpMethod("PATCH"), requestOptions);
@@ -78,11 +79,38 @@ namespace Telnyx.Infrastructure
         }
 
         /// <summary>
-        /// Delete
+        /// PutString.
         /// </summary>
-        /// <param name="url">url</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>telnyxResponse</returns>
+        /// <param name="url">url.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>telnyxResponse.</returns>
+        public static TelnyxResponse PutString(string url, RequestOptions requestOptions)
+        {
+            var wr = GetRequestMessage(url, HttpMethod.Put, requestOptions);
+
+            return ExecuteRequest(wr);
+        }
+
+        /// <summary>
+        /// PutStringAsync.
+        /// </summary>
+        /// <param name="url">url.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>telnyxResponse.</returns>
+        public static async Task<TelnyxResponse> PutStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var wr = GetRequestMessage(url, HttpMethod.Put, requestOptions);
+
+            return await ExecuteRequestAsync(wr, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete.
+        /// </summary>
+        /// <param name="url">url.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>telnyxResponse.</returns>
         public static TelnyxResponse Delete(string url, RequestOptions requestOptions)
         {
             var wr = GetRequestMessage(url, HttpMethod.Delete, requestOptions);
@@ -91,13 +119,13 @@ namespace Telnyx.Infrastructure
         }
 
         /// <summary>
-        /// PostFile
+        /// PostFile.
         /// </summary>
-        /// <param name="url">url</param>
-        /// <param name="stream">stream</param>
-        /// <param name="purpose">purpose</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>telnyxResponse</returns>
+        /// <param name="url">url.</param>
+        /// <param name="stream">stream.</param>
+        /// <param name="purpose">purpose.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>telnyxResponse.</returns>
         public static TelnyxResponse PostFile(string url, Stream stream, string purpose, RequestOptions requestOptions)
         {
             var wr = GetRequestMessage(url, HttpMethod.Post, requestOptions);
@@ -108,10 +136,10 @@ namespace Telnyx.Infrastructure
         }
 
         /// <summary>
-        /// ExecuteRequest
+        /// ExecuteRequest.
         /// </summary>
-        /// <param name="requestMessage">requestMessage</param>
-        /// <returns>telnyxResponse</returns>
+        /// <param name="requestMessage">requestMessage.</param>
+        /// <returns>telnyxResponse.</returns>
         public static TelnyxResponse ExecuteRequest(HttpRequestMessage requestMessage)
         {
             var response = HttpClient.SendAsync(requestMessage).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -121,6 +149,7 @@ namespace Telnyx.Infrastructure
 
             if (response.IsSuccessStatusCode)
             {
+                result.Url = requestMessage.RequestUri.ToString();
                 return result;
             }
 
@@ -128,85 +157,85 @@ namespace Telnyx.Infrastructure
         }
 
         /// <summary>
-        /// GetStringAsync
+        /// GetStringAsync.
         /// </summary>
-        /// <param name="url">url</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>telnyxResponse</returns>
-        public static Task<TelnyxResponse> GetStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
+        /// <param name="url">url.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>telnyxResponse.</returns>
+        public static async Task<TelnyxResponse> GetStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
         {
             var wr = GetRequestMessage(url, HttpMethod.Get, requestOptions);
 
-            return ExecuteRequestAsync(wr, cancellationToken);
+            return await ExecuteRequestAsync(wr, cancellationToken);
         }
 
         /// <summary>
-        /// PostStringAsync
+        /// PostStringAsync.
         /// </summary>
-        /// <param name="url">url</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>telnyxResponse</returns>
-        public static Task<TelnyxResponse> PostStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
+        /// <param name="url">url.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>telnyxResponse.</returns>
+        public static async Task<TelnyxResponse> PostStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
         {
             var wr = GetRequestMessage(url, HttpMethod.Post, requestOptions);
 
-            return ExecuteRequestAsync(wr, cancellationToken);
+            return await ExecuteRequestAsync(wr, cancellationToken);
         }
 
         /// <summary>
-        /// PatchStringAsync
+        /// PatchStringAsync.
         /// </summary>
-        /// <param name="url">url</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>telnyxResponse</returns>
-        public static Task<TelnyxResponse> PatchStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
+        /// <param name="url">url.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>telnyxResponse.</returns>
+        public static async Task<TelnyxResponse> PatchStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
         {
             var wr = GetRequestMessage(url, new HttpMethod("PATCH"), requestOptions);
 
-            return ExecuteRequestAsync(wr, cancellationToken);
+            return await ExecuteRequestAsync(wr, cancellationToken);
         }
 
         /// <summary>
-        /// DeleteAsync
+        /// DeleteAsync.
         /// </summary>
-        /// <param name="url">url</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>telnyxResponse</returns>
-        public static Task<TelnyxResponse> DeleteAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
+        /// <param name="url">url.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>telnyxResponse.</returns>
+        public static async Task<TelnyxResponse> DeleteAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
         {
             var wr = GetRequestMessage(url, HttpMethod.Delete, requestOptions);
 
-            return ExecuteRequestAsync(wr, cancellationToken);
+            return await ExecuteRequestAsync(wr, cancellationToken);
         }
 
         /// <summary>
-        /// PostFileAsync
+        /// PostFileAsync.
         /// </summary>
-        /// <param name="url">url</param>
-        /// <param name="stream">stream</param>
-        /// <param name="purpose">purpose</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>telnyxResponse</returns>
-        public static Task<TelnyxResponse> PostFileAsync(string url, Stream stream, string purpose, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
+        /// <param name="url">url.</param>
+        /// <param name="stream">stream.</param>
+        /// <param name="purpose">purpose.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>telnyxResponse.</returns>
+        public static async Task<TelnyxResponse> PostFileAsync(string url, Stream stream, string purpose, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
         {
             var wr = GetRequestMessage(url, HttpMethod.Post, requestOptions);
 
             ApplyMultiPartFileToRequest(wr, stream, purpose);
 
-            return ExecuteRequestAsync(wr, cancellationToken);
+            return await ExecuteRequestAsync(wr, cancellationToken);
         }
 
         /// <summary>
-        /// ExecuteRequestAsync
+        /// ExecuteRequestAsync.
         /// </summary>
-        /// <param name="requestMessage">requestMessage</param>
-        /// <param name="cancellationToken">cancellationToken</param>
-        /// <returns>telnyxResponse</returns>
+        /// <param name="requestMessage">requestMessage.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>telnyxResponse.</returns>
         public static async Task<TelnyxResponse> ExecuteRequestAsync(HttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
         {
             var response = await HttpClient.SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
@@ -216,6 +245,7 @@ namespace Telnyx.Infrastructure
 
             if (response.IsSuccessStatusCode)
             {
+                result.Url = requestMessage.RequestUri.ToString();
                 return result;
             }
 
@@ -223,19 +253,15 @@ namespace Telnyx.Infrastructure
         }
 
         /// <summary>
-        /// GetRequestMessage
+        /// GetRequestMessage.
         /// </summary>
-        /// <param name="url">url</param>
-        /// <param name="method">method</param>
-        /// <param name="requestOptions">requestOptions</param>
-        /// <returns>http request message</returns>
+        /// <param name="url">url.</param>
+        /// <param name="method">method.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>http request message.</returns>
         public static HttpRequestMessage GetRequestMessage(string url, HttpMethod method, RequestOptions requestOptions)
         {
             requestOptions.ApiKey = requestOptions.ApiKey ?? TelnyxConfiguration.GetApiKey();
-
-#if NET45
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-#endif
 
             var request = BuildRequest(method, url);
 
@@ -266,7 +292,7 @@ namespace Telnyx.Infrastructure
 
         private static HttpRequestMessage BuildRequest(HttpMethod method, string url)
         {
-            if (method != HttpMethod.Post && method != new HttpMethod("PATCH"))
+            if (method != HttpMethod.Post && method != new HttpMethod("PATCH") && method != HttpMethod.Put)
             {
                 return new HttpRequestMessage(method, new Uri(url));
             }
@@ -299,17 +325,6 @@ namespace Telnyx.Infrastructure
 
             string fileName = "blob";
 
-#if NET45
-            // Doing this on .NET Standard would require us to bump the minimum framework version
-            // to .NET Standard 1.3, which isn't worth it since the filename is basically ignored
-            // by the server.
-            FileStream fileStream = stream as FileStream;
-            if ((fileStream != null) && (!string.IsNullOrWhiteSpace(fileStream.Name)))
-            {
-                fileName = fileStream.Name;
-            }
-#endif
-
             var fileContent = new StreamContent(stream);
             fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
             {
@@ -333,22 +348,13 @@ namespace Telnyx.Infrastructure
         {
             try
             {
-                var telnyxError = requestUri.Contains("oauth")
-                    ? Mapper<TelnyxError>.MapFromJsonError(responseContent, null, response)
-                    : requestUri.Contains("errors")
-                    ? Mapper<TelnyxError>.MapFromJsonError(responseContent, "errors", response)
-                    : Mapper<TelnyxError>.MapFromJsonError(responseContent, "error", response);
+                var telnyxErrors = Mapper<IEnumerable<TelnyxError>>.MapFromJsonErrors(responseContent, "errors", response);
+                //todo: double check with API on these fields. seems errors always return as array
+                var message = telnyxErrors.Any() ? (string.Join(" | ", telnyxErrors.Select(x => 
+                    $"{x.ErrorTitle ?? string.Empty} {x.ErrorDetail ?? string.Empty} {x.ErrorDescription ?? string.Empty} {x.Message ?? string.Empty}"))).Trim() 
+                    : string.Empty;
 
-                string message = !string.IsNullOrWhiteSpace(telnyxError.Message)
-                    ? telnyxError.Message
-                    : !string.IsNullOrWhiteSpace(telnyxError.ErrorDescription)
-                    ? telnyxError.ErrorDescription
-                    : telnyxError.ErrorTitle;
-
-                return new TelnyxException(statusCode, telnyxError, message)
-                {
-                    TelnyxResponse = response
-                };
+                return new TelnyxException(statusCode, telnyxErrors, message);
             }
             catch
             {

@@ -3,12 +3,12 @@
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using Telnyx.net.Entities;
 
     /// <summary>
-    /// ListConferenceService
+    /// ListConferenceService.
     /// </summary>
-    public class ListConferenceService : Service<ConferenceResponse>,
-        IListable<ConferenceResponse, ListConferenceCreateOptions>
+    public class ListConferenceService : Service<ListConferenceResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ListConferenceService"/> class.
@@ -21,7 +21,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="ListConferenceService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public ListConferenceService(string apiKey)
             : base(apiKey)
         {
@@ -31,15 +31,15 @@
         public override string BasePath => "/conferences";
 
         /// <inheritdoc/>
-        public TelnyxList<ConferenceResponse> List(ListConferenceCreateOptions listOptions = null, RequestOptions requestOptions = null)
+        public TelnyxList<ListConferenceResponse> List(ListConferenceOptions listOptions = null, RequestOptions requestOptions = null)
         {
             return this.ListEntities(listOptions, requestOptions);
         }
 
         /// <inheritdoc/>
-        public Task<TelnyxList<ConferenceResponse>> ListAsync(ListConferenceCreateOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TelnyxList<ListConferenceResponse>> ListAsync(ListConferenceOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
         }
     }
 }

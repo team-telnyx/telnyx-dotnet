@@ -4,7 +4,7 @@ namespace Telnyx
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Messaging Phone Number Update
+    /// Messaging Phone Number Update.
     /// </summary>
     public class MessagingPhoneNumberUpdate : BaseOptions
     {

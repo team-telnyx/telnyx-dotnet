@@ -4,31 +4,38 @@ namespace Telnyx
 
     /// <summary>
     /// ListOptions
+    /// Possible base list options can be added here. 
     /// </summary>
     public class ListOptions : BaseOptions
     {
-        /// <summary>
-        /// Gets or sets a limit on the number of objects to be returned, between 1 and 100.
-        /// </summary>
-        [JsonProperty("limit")]
-        public long? Limit { get; set; }
+        public ListOptions()
+        {
+
+        }
+
+        public ListOptions(int pageSize, int pageNumber)
+        {
+            this.PageSize = pageSize;
+            this.PageNumber = pageNumber;
+        }
 
         /// <summary>
-        /// Gets or sets a cursor for use in pagination. <c>starting_after</c> is an object ID that defines
-        /// your place in the list. For instance, if you make a list request and receive 100
-        /// objects, ending with <c>obj_foo</c>, your subsequent call can include
-        /// <c>starting_after=obj_foo</c> in order to fetch the next page of the list.
+        /// The size of the page
         /// </summary>
-        [JsonProperty("starting_after")]
-        public string StartingAfter { get; set; }
+        [JsonProperty("page[size]")]
+        public int? PageSize { get; set; }
 
         /// <summary>
-        /// Gets or sets a cursor for use in pagination. <c>ending_before</c> is an object ID that defines
-        /// your place in the list. For instance, if you make a list request and receive 100
-        /// objects, starting with <c>obj_bar</c>, your subsequent call can include
-        /// <c>ending_before=obj_bar</c> in order to fetch the previous page of the list.
+        /// The page number to load
         /// </summary>
-        [JsonProperty("ending_before")]
-        public string EndingBefore { get; set; }
+        [JsonProperty("page[number]")]
+        public int? PageNumber { get; set; }
+
+        /// <summary>
+        /// Set number of pages to get and return as list of entities. Default: null (all pages)
+        /// Can page a set amount by specifying the amount of pages to fetch. 
+        /// If greater than actual pages will just return the total amount of results. 
+        /// </summary>
+        public int? NumberOfPagesToFetch { get; set; }
     }
 }

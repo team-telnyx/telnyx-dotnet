@@ -5,14 +5,14 @@ namespace Telnyx
     using Newtonsoft.Json;
 
     /// <summary>
-    /// New Messaging Sender Id
+    /// New Messaging Sender Id.
     /// </summary>
     public class NewMessagingSenderId : BaseOptions
     {
         /// <summary>
-        /// Gets or sets sending address (+E.164 formatted phone number, alphanumeric sender, or short code)
+        /// Gets or sets sending address (+E.164 formatted phone number, alphanumeric sender, or short code).
         /// </summary>
-        /// <value>Sending address (+E.164 formatted phone number, alphanumeric sender, or short code)</value>
+        /// <value>Sending address (+E.164 formatted phone number, alphanumeric sender, or short code).</value>
         [JsonProperty("from")]
         public string From { get; set; }
 
@@ -23,7 +23,7 @@ namespace Telnyx
         public Guid? MessagingProfileId { get; set; }
 
         /// <summary>
-        /// Gets or sets receiving address (+E.164 formatted phone number, alphanumeric sender, or short code)
+        /// Gets or sets receiving address (+E.164 formatted phone number, alphanumeric sender, or short code).
         /// </summary>
         [JsonProperty("to")]
         public string To { get; set; }
@@ -35,16 +35,16 @@ namespace Telnyx
         public string Text { get; set; }
 
         /// <summary>
-        /// Gets or sets Subject of multimedia message
+        /// Gets or sets Subject of multimedia message.
         /// </summary>
         [JsonProperty("subject")]
         public string Subject { get; set; }
 
         /// <summary>
-        /// Gets or sets Media
+        /// Gets or sets Media.
         /// </summary>
-        [JsonProperty("media_url")]
-        public List<string> MediaUrl { get; set; }
+        [JsonProperty("media_urls")]
+        public List<string> MediaUrls { get; set; }
 
         /// <summary>
         /// Gets or sets the URL where webhooks related to this message will be sent.
@@ -66,5 +66,11 @@ namespace Telnyx
         /// <value>If the profile this number is associated with has webhooks, use them for delivery notifications. If webhooks are also specified on the message itself, they will be attempted first, then those on the profile.</value>
         [JsonProperty("use_profile_webhooks")]
         public bool? UseProfileWebhooks { get; set; }
+
+        /// <summary>
+        /// Automatically detect if an SMS message is unusually long and exceeds a recommended limit of message parts.
+        /// </summary>
+        [JsonProperty("auto_detect")]
+        public bool AutoDetect { get; set; }
     }
 }

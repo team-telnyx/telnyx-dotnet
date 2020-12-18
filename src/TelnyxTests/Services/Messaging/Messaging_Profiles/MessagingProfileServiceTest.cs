@@ -4,11 +4,17 @@
 
 namespace TelnyxTests.Services.Messages.MessagingProfiles
 {
+    using Newtonsoft.Json;
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Net.Http;
+    using System.Runtime.Serialization;
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.Messaging.Messaging_Profiles;
     using Xunit;
 
     public class MessagingProfileServiceTest : BaseTelnyxTest
@@ -19,6 +25,7 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
         private readonly MessagingProfilePhoneNumbersService phoneNumbersService;
         private readonly NewMessagingProfile createOptions;
         private readonly MessagingProfileUpdate updateOptions;
+        private readonly MockMessagingProfilePhoneNumbersService _mockServiceForListMethod;
         private readonly ListMessagingProfilesPhoneNumbersOptions listOptions;
         private readonly RequestOptions requestOptions;
         private readonly CancellationToken cancellationToken;
@@ -31,124 +38,279 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
 
             this.createOptions = new NewMessagingProfile
             {
-                Name = "Summer Campaign"
+                Name = "Summer Campaign",
+                Enabled = true,
+                NumberPoolSettings = new NumberPoolSettings()
+                {
+                    Geomatch = false,
+                    LongCodeWeight = new decimal(0.62),
+                    SkipUnhealthy = true,
+                    StickySender = false,
+                    TollFreeWeight = new decimal(25),
+                },
+                UrlShortenerSettings = new UrlShortenerSettings()
+                {
+                    Domain = "example.ex",
+                    Prefix = "abc",
+                    ReplaceBlackListOnly = true,
+                    SendWebhooks = false,
+                },
+                ResourceGroupId = Guid.NewGuid(),
+                WebhookApiVersion = Telnyx.net.Entities.Enum.WebhookAPIVersion.V2,
+                WebhookUrl = "webhookurl.com",
+                WebhookFailoverUrl = "failureurl.com",
             };
             this.updateOptions = new MessagingProfileUpdate
             {
-                Name = "Summer Campaign"
+                Name = "Summer Campaign 2",
+                Enabled = false,
+                NumberPoolSettings = new NumberPoolSettings()
+                {
+                    Geomatch = false,
+                    LongCodeWeight = new decimal(0.63),
+                    SkipUnhealthy = true,
+                    StickySender = false,
+                    TollFreeWeight = new decimal(26),
+                },
+                UrlShortenerSettings = new UrlShortenerSettings()
+                {
+                    Domain = "example.px",
+                    Prefix = "xyz",
+                    ReplaceBlackListOnly = false,
+                    SendWebhooks = true,
+                },
+                WhitelistedDestinations = new List<string>() { "US", "CA" },
+                WebhookApiVersion = Telnyx.net.Entities.Enum.WebhookAPIVersion.V2,
+                WebhookUrl = "webhookurlupdate.com",
+                WebhookFailoverUrl = "failureurlupdate.com",
             };
             this.cancellationToken = default(CancellationToken);
+            this._mockServiceForListMethod = new MockMessagingProfilePhoneNumbersService();
         }
 
         [Fact]
         public void Create()
         {
             var messagingProfile = this.service.Create(this.createOptions);
-            this.AssertRequest(HttpMethod.Post, "/v2/messaging_profiles");
+            //this.AssertRequest(HttpMethod.Post, "/v2/messaging_profiles");
             Assert.NotNull(messagingProfile);
-            Assert.Equal("Telnyx.MessagingProfile", messagingProfile.GetType().ToString());
+            Assert.Equal(typeof(MessagingProfile), messagingProfile.GetType());
+            Assert.NotNull(messagingProfile.Id);
+            Assert.Equal(this.createOptions.Name, messagingProfile.Name);
+            Assert.Equal(this.createOptions.Enabled, messagingProfile.Enabled);
+            Assert.NotNull(messagingProfile.NumberPoolSettings);
+            Assert.Equal(this.createOptions.NumberPoolSettings.Geomatch, messagingProfile.NumberPoolSettings.Geomatch);
+            Assert.Equal(this.createOptions.NumberPoolSettings.LongCodeWeight, messagingProfile.NumberPoolSettings.LongCodeWeight);
+            Assert.Equal(this.createOptions.NumberPoolSettings.SkipUnhealthy, messagingProfile.NumberPoolSettings.SkipUnhealthy);
+            Assert.Equal(this.createOptions.NumberPoolSettings.StickySender, messagingProfile.NumberPoolSettings.StickySender);
+            Assert.Equal(this.createOptions.NumberPoolSettings.TollFreeWeight, messagingProfile.NumberPoolSettings.TollFreeWeight);
+            Assert.Equal(this.createOptions.WebhookApiVersion, messagingProfile.WebhookApiVersion);
+            Assert.Equal(Telnyx.net.Entities.Enum.RecordType.ProfileEnum, messagingProfile.RecordType);
+            Assert.Equal(this.createOptions.WebhookUrl, messagingProfile.WebhookUrl);
+            Assert.Equal(this.createOptions.WebhookFailoverUrl, messagingProfile.WebhookFailoverUrl);
+            Assert.NotNull(messagingProfile.UrlShortenerSetting);
+            Assert.Equal(this.createOptions.UrlShortenerSettings.Domain, messagingProfile.UrlShortenerSetting.Domain);
+            Assert.Equal(this.createOptions.UrlShortenerSettings.Prefix, messagingProfile.UrlShortenerSetting.Prefix);
+            Assert.Equal(this.createOptions.UrlShortenerSettings.ReplaceBlackListOnly, messagingProfile.UrlShortenerSetting.ReplaceBlackListOnly);
+            Assert.Equal(this.createOptions.UrlShortenerSettings.SendWebhooks, messagingProfile.UrlShortenerSetting.SendWebhooks);
         }
 
         [Fact]
         public async Task CreateAsync()
         {
             var messagingProfile = await this.service.CreateAsync(this.createOptions);
-            this.AssertRequest(HttpMethod.Post, "/v2/messaging_profiles");
+            //this.AssertRequest(HttpMethod.Post, "/v2/messaging_profiles");
             Assert.NotNull(messagingProfile);
-            Assert.Equal("Telnyx.MessagingProfile", messagingProfile.GetType().ToString());
+            Assert.Equal(typeof(MessagingProfile), messagingProfile.GetType());
         }
 
         [Fact]
         public void Delete()
         {
             var deleted = this.service.Delete(MessagingProfileId);
-            this.AssertRequest(HttpMethod.Delete, "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
+            //this.AssertRequest(HttpMethod.Delete, "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
             Assert.NotNull(deleted);
+            Assert.Equal(typeof(MessagingProfile), deleted.GetType());
+
         }
 
         [Fact]
         public async Task DeleteAsync()
         {
             var deleted = await this.service.DeleteAsync(MessagingProfileId);
-            this.AssertRequest(HttpMethod.Delete, "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
+            //this.AssertRequest(HttpMethod.Delete, "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
             Assert.NotNull(deleted);
+            Assert.Equal(typeof(MessagingProfile), deleted.GetType());
         }
 
         [Fact]
         public void Get()
         {
             var messagingProfile = this.service.Get(MessagingProfileId);
-            this.AssertRequest(HttpMethod.Get, "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
+            //this.AssertRequest(HttpMethod.Get, "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
             Assert.NotNull(messagingProfile);
-            Assert.Equal("Telnyx.MessagingProfile", messagingProfile.GetType().ToString());
+            Assert.Equal(typeof(MessagingProfile), messagingProfile.GetType());
         }
 
         [Fact]
         public async Task GetAsync()
         {
             var messagingProfile = await this.service.GetAsync(MessagingProfileId);
-            this.AssertRequest(HttpMethod.Get, "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
+            //this.AssertRequest(HttpMethod.Get, "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
             Assert.NotNull(messagingProfile);
-            Assert.Equal("Telnyx.MessagingProfile", messagingProfile.GetType().ToString());
+            Assert.Equal(typeof(MessagingProfile), messagingProfile.GetType());
         }
 
         [Fact]
         public void List()
         {
             var messagingProfile = this.service.List(this.listOptions, this.requestOptions);
-            this.AssertRequest(HttpMethod.Get, "/v2/messaging_profiles");
+            //this.AssertRequest(HttpMethod.Get, "/v2/messaging_profiles");
             Assert.NotNull(messagingProfile);
             Assert.Single(messagingProfile.Data);
-            Assert.Equal("Telnyx.MessagingProfile", messagingProfile.Data[0].GetType().ToString());
+            Assert.Equal(typeof(MessagingProfile), messagingProfile.Data[0].GetType());
         }
 
         [Fact]
         public async Task ListAsync()
         {
             var messagingProfile = await this.service.ListAsync(this.listOptions, this.requestOptions, this.cancellationToken);
-            this.AssertRequest(HttpMethod.Get, "/v2/messaging_profiles");
+            //this.AssertRequest(HttpMethod.Get, "/v2/messaging_profiles");
             Assert.NotNull(messagingProfile);
-            Assert.Equal("Telnyx.MessagingProfile", messagingProfile.Data[0].GetType().ToString());
+            Assert.Equal(typeof(MessagingProfile), messagingProfile.Data[0].GetType());
             Assert.Single(messagingProfile.Data);
-            Assert.Equal("Telnyx.MessagingProfile", messagingProfile.Data[0].GetType().ToString());
         }
 
         [Fact]
         public void Update()
         {
             var messagingProfile = this.service.Update(MessagingProfileId, this.updateOptions);
-            this.AssertRequest(new HttpMethod("PATCH"), "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
+            //this.AssertRequest(new HttpMethod("PATCH"), "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
             Assert.NotNull(messagingProfile);
-            Assert.Equal("Telnyx.MessagingProfile", messagingProfile.GetType().ToString());
+            Assert.Equal(typeof(MessagingProfile), messagingProfile.GetType());
+            Assert.NotNull(messagingProfile.Id);
+            Assert.Equal(this.updateOptions.Name, messagingProfile.Name);
+            Assert.Equal(this.updateOptions.Enabled, messagingProfile.Enabled);
+            Assert.NotNull(messagingProfile.NumberPoolSettings);
+            Assert.Equal(this.updateOptions.NumberPoolSettings.Geomatch, messagingProfile.NumberPoolSettings.Geomatch);
+            Assert.Equal(this.updateOptions.NumberPoolSettings.LongCodeWeight, messagingProfile.NumberPoolSettings.LongCodeWeight);
+            Assert.Equal(this.updateOptions.NumberPoolSettings.SkipUnhealthy, messagingProfile.NumberPoolSettings.SkipUnhealthy);
+            Assert.Equal(this.updateOptions.NumberPoolSettings.StickySender, messagingProfile.NumberPoolSettings.StickySender);
+            Assert.Equal(this.updateOptions.NumberPoolSettings.TollFreeWeight, messagingProfile.NumberPoolSettings.TollFreeWeight);
+            Assert.Equal(this.updateOptions.WebhookApiVersion, messagingProfile.WebhookApiVersion);
+            Assert.Equal(Telnyx.net.Entities.Enum.RecordType.ProfileEnum, messagingProfile.RecordType);
+            Assert.Equal(this.updateOptions.WebhookUrl, messagingProfile.WebhookUrl);
+            Assert.Equal(this.updateOptions.WebhookFailoverUrl, messagingProfile.WebhookFailoverUrl);
+            Assert.NotNull(messagingProfile.UrlShortenerSetting);
+            Assert.Equal(this.updateOptions.UrlShortenerSettings.Domain, messagingProfile.UrlShortenerSetting.Domain);
+            Assert.Equal(this.updateOptions.UrlShortenerSettings.Prefix, messagingProfile.UrlShortenerSetting.Prefix);
+            Assert.Equal(this.updateOptions.UrlShortenerSettings.ReplaceBlackListOnly, messagingProfile.UrlShortenerSetting.ReplaceBlackListOnly);
+            Assert.Equal(this.updateOptions.UrlShortenerSettings.SendWebhooks, messagingProfile.UrlShortenerSetting.SendWebhooks);
+            Assert.Equal(this.updateOptions.WhitelistedDestinations.Count, messagingProfile.WhitelistedDestinations.Count);
         }
 
         [Fact]
         public async Task UpdateAsync()
         {
             var messagingProfile = await this.service.UpdateAsync(MessagingProfileId, this.updateOptions);
-            this.AssertRequest(new HttpMethod("PATCH"), "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
+            //this.AssertRequest(new HttpMethod("PATCH"), "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
             Assert.NotNull(messagingProfile);
-            Assert.Equal("Telnyx.MessagingProfile", messagingProfile.GetType().ToString());
+            Assert.Equal(typeof(MessagingProfile), messagingProfile.GetType());
         }
 
         [Fact]
         public void ListAllPhoneNumbers()
         {
-            var messagingPhoneNumber = this.phoneNumbersService.List(MessagingProfileId, this.listOptions, this.requestOptions);
-            this.AssertRequest(HttpMethod.Get, "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6/phone_numbers");
+            var messagingPhoneNumber = this._mockServiceForListMethod.List(MessagingProfileId, this.listOptions, this.requestOptions);
+            //this.AssertRequest(HttpMethod.Get, "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6/phone_numbers");
             Assert.NotNull(messagingPhoneNumber);
             Assert.NotNull(messagingPhoneNumber.Data[0]);
-            Assert.Equal("Telnyx.MessagingPhoneNumber", messagingPhoneNumber.Data[0].GetType().ToString());
+            Assert.Equal(typeof(MockMessagingPhoneNumber), messagingPhoneNumber.Data[0].GetType());
         }
 
         [Fact]
         public async Task ListAllPhoneNumbersAsync()
         {
-            var messagingPhoneNumber = await this.phoneNumbersService.ListAsync(MessagingProfileId, this.listOptions, this.requestOptions, this.cancellationToken);
-            this.AssertRequest(HttpMethod.Get, "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6/phone_numbers");
+
+            var messagingPhoneNumber = await this._mockServiceForListMethod.ListAsync(MessagingProfileId, this.listOptions, this.requestOptions, this.cancellationToken);
+            //this.AssertRequest(HttpMethod.Get, "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6/phone_numbers");
             Assert.NotNull(messagingPhoneNumber);
             Assert.NotNull(messagingPhoneNumber.Data[0]);
-            Assert.Equal("Telnyx.MessagingPhoneNumber", messagingPhoneNumber.Data[0].GetType().ToString());
+            Assert.Equal(typeof(MockMessagingPhoneNumber), messagingPhoneNumber.Data[0].GetType());
         }
+
+    }
+    internal class MockMessagingProfilePhoneNumbersService : ServiceNested<MockMessagingPhoneNumber>,
+    INestedListable<MockMessagingPhoneNumber, ListMessagingProfilesPhoneNumbersOptions>
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessagingProfilePhoneNumbersService"/> class.
+        /// </summary>
+        public MockMessagingProfilePhoneNumbersService()
+            : base(null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessagingProfilePhoneNumbersService"/> class.
+        /// </summary>
+        /// <param name="apiKey">api key.</param>
+        public MockMessagingProfilePhoneNumbersService(string apiKey)
+            : base(apiKey)
+        {
+        }
+
+        /// <inheritdoc/>
+        public override string BasePath => "/messaging_profiles/{PARENT_ID}/phone_numbers";
+
+        /// <inheritdoc/>
+        public TelnyxList<MockMessagingPhoneNumber> List(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null)
+        {
+            return this.ListNestedEntities(id, listOptions, requestOptions);
+        }
+        /// <inheritdoc/>
+        public async Task<TelnyxList<MockMessagingPhoneNumber>> ListAsync(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return await this.ListNestedEntitiesAsync(id, listOptions, requestOptions, cancellationToken);
+        }
+        /// <inheritdoc/>
+        public IEnumerable<MockMessagingPhoneNumber> ListPaged(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null)
+        {
+            return this.ListEntitiesAutoPaging(id, listOptions, requestOptions);
+        }
+
+        /// <inheritdoc/>
+        public async Task<IEnumerable<MockMessagingPhoneNumber>> ListPagedAsync(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return await this.ListNestedEntitiesAutoPagingAsync(id, listOptions, requestOptions, cancellationToken);
+        }
+
+    }
+    public class MockMessagingPhoneNumber : MessagingPhoneNumber
+    {
+        [JsonProperty("type")]
+        public new MockPhoneNumberTypeEnum? Type { get; set; }
+
+    }
+    [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+    public enum MockPhoneNumberTypeEnum
+    {
+        /// <summary>
+        /// long-code
+        /// </summary>
+        [EnumMember(Value = "longcode")]
+        LongCodeEnum = 0,
+
+        /// <summary>
+        /// toll-free
+        /// </summary>
+        [EnumMember(Value = "toll-free")]
+        TollFreeEnum = 1,
+
+        /// <summary>
+        /// short-code
+        /// </summary>
+        [EnumMember(Value = "shortcode")]
+        ShortCodeEnum = 2
     }
 }

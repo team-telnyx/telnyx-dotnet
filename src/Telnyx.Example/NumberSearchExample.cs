@@ -16,13 +16,32 @@
         /// </summary>
         public void ListNumberService()
         {
-            var numberSearchListOptions = new NumberSearchListOptions()
+            var numberSearchListOptions = new NumberSearchOptions()
             {
                 CountryCode = "US",
-                AdministrativeArea = "IL",
-                Locality = "Chicago",
-                Features = new List<string> { "sms" },
-                Limit = 2
+                Limit = 3,
+                NumberType = "toll-free",
+                Quickship = true
+            };
+            Console.WriteLine(JsonConvert.SerializeObject(numberSearchListOptions));
+
+            try
+            {
+                var numberSearchList = this.service.List(numberSearchListOptions);
+                Console.WriteLine("numberSearchList");
+                Console.WriteLine(JsonConvert.SerializeObject(numberSearchList));
+            }
+            catch (TelnyxException ex)
+            {
+                Console.WriteLine("exception");
+                Console.WriteLine(JsonConvert.SerializeObject(ex));
+            }
+        }
+        public void ListNumberServicePaged()
+        {
+            var numberSearchListOptions = new NumberSearchOptions()
+            {
+                CountryCode = "US",
             };
             Console.WriteLine(JsonConvert.SerializeObject(numberSearchListOptions));
 

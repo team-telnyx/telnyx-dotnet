@@ -3,72 +3,72 @@ namespace Telnyx
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Telnyx Error: For regular API errors
+    /// Telnyx Error: For regular API errors.
     /// </summary>
     public class TelnyxError : TelnyxEntity
     {
         /// <summary>
-        /// Gets or sets charge Id
+        /// Gets or sets charge Id.
         /// </summary>
         [JsonProperty("charge")]
         public string ChargeId { get; set; }
 
         /// <summary>
-        /// Gets or sets code
+        /// Gets or sets code.
         /// </summary>
         [JsonProperty("code")]
         public string Code { get; set; }
 
         /// <summary>
-        /// Gets or sets decline code
+        /// Gets or sets decline code.
         /// </summary>
         [JsonProperty("decline_code")]
         public string DeclineCode { get; set; }
 
         /// <summary>
-        /// Gets or sets message
+        /// Gets or sets message.
         /// </summary>
         [JsonProperty("message")]
         public string Message { get; set; }
 
         /// <summary>
-        /// Gets or sets parameter
+        /// Gets or sets parameter.
         /// </summary>
         [JsonProperty("param")]
         public string Parameter { get; set; }
 
         /// <summary>
-        /// Gets or sets error type
+        /// Gets or sets error type.
         /// </summary>
         [JsonProperty("type")]
         public string ErrorType { get; set; }
 
         /// <summary>
-        /// Gets or sets OAuth Error
+        /// Gets or sets OAuth Error.
         /// </summary>
         [JsonProperty("error")]
         public string Error { get; set; }
 
         /// <summary>
-        /// Gets or sets OAuth Error Description
+        /// Gets or sets OAuth Error Description.
         /// </summary>
         [JsonProperty("error_description")]
         public string ErrorDescription { get; set; }
 
         /// <summary>
-        /// Gets or sets error title
+        /// Gets or sets error title.
         /// </summary>
         [JsonProperty("title")]
         public string ErrorTitle { get; set; }
 
         /// <summary>
-        /// Gets or sets error detail
+        /// Gets or sets error detail.
         /// </summary>
         [JsonProperty("detail")]
         public string ErrorDetail { get; set; }
 
         /// <summary>
-        /// Gets or sets Request URI
+        /// Gets or sets Request URI.
         /// </summary>
         public string RequestUri { get; set; }
     }

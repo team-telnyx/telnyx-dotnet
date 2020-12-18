@@ -3,9 +3,10 @@
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using Telnyx.net.Entities;
 
     /// <summary>
-    /// MessagingShortCodesService
+    /// MessagingShortCodesService.
     /// </summary>
     public class MessagingShortCodesService : Service<MessagingShortCode>,
         IListable<MessagingShortCode, MessagingShortCodeListOptions>,
@@ -23,7 +24,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="MessagingShortCodesService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public MessagingShortCodesService(string apiKey)
             : base(apiKey)
         {
@@ -63,9 +64,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<MessagingShortCode> UpdateAsync(string id, MessagingShortCodeUpdate updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<MessagingShortCode> UpdateAsync(string id, MessagingShortCodeUpdate updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
+            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
         }
     }
 }

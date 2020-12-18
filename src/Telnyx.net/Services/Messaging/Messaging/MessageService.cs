@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// MessageService
+    /// MessageService.
     /// </summary>
     public class MessageService : Service<OutboundMessage>,
         ICreatable<OutboundMessage, NewMessage>,
@@ -21,7 +21,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="MessageService"/> class.
         /// </summary>
-        /// <param name="apiKey">api key</param>
+        /// <param name="apiKey">api key.</param>
         public MessageService(string apiKey)
             : base(apiKey)
         {
@@ -37,9 +37,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<OutboundMessage> CreateAsync(NewMessage createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<OutboundMessage> CreateAsync(NewMessage createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -49,9 +49,9 @@
         }
 
         /// <inheritdoc/>
-        public Task<OutboundMessage> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<OutboundMessage> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.GetEntityAsync(id, null, requestOptions, cancellationToken);
         }
     }
 }

@@ -8,18 +8,18 @@ namespace Telnyx.Infrastructure
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// String Or Object
+    /// String Or Object.
     /// </summary>
-    /// <typeparam name="T">T</typeparam>
+    /// <typeparam name="T">T.</typeparam>
     internal static class StringOrObject<T>
         where T : IHasId
     {
         /// <summary>
-        /// Map
+        /// Map.
         /// </summary>
-        /// <param name="value">value</param>
-        /// <param name="updateId">updateId</param>
-        /// <param name="updateObject">updateObject</param>
+        /// <param name="value">value.</param>
+        /// <param name="updateId">updateId.</param>
+        /// <param name="updateObject">updateObject.</param>
         public static void Map(object value, Action<string> updateId, Action<T> updateObject)
         {
             if (value is JObject)
@@ -44,13 +44,13 @@ namespace Telnyx.Infrastructure
                     // the ID from the raw JObject.
                     var id = ((JObject)value).SelectToken("id")?.ToString();
                     updateId(id);
-                    updateObject(default(T));
+                    updateObject(default);
                 }
             }
             else if (value is string)
             {
                 updateId((string)value);
-                updateObject(default(T));
+                updateObject(default);
             }
         }
     }

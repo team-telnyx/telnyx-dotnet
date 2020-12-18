@@ -3,32 +3,19 @@ namespace Telnyx
     using System;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
 
     /// <summary>
-    /// Messaging Short Code
+    /// Messaging Short Code.
     /// </summary>
     public class MessagingShortCode : TelnyxEntity, IHasId
     {
-        /// <summary>
-        /// Identifies the type of the resource.
-        /// </summary>
-        /// <value>Type of the resource.</value>
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public enum RecordTypeEnum
-        {
-            /// <summary>
-            /// Enum CodeEnum for short_code
-            /// </summary>
-            [EnumMember(Value = "short_code")]
-            CodeEnum = 0
-        }
-
         /// <summary>
         /// Gets or sets identifies the type of the resource.
         /// </summary>
         /// <value>Identifies the type of the resource.</value>
         [JsonProperty("record_type")]
-        public RecordTypeEnum? RecordType { get; set; }
+        public RecordType? RecordType { get; set; }
 
         /// <summary>
         /// Gets or sets uniquely identifies the resource or object.
@@ -80,7 +67,7 @@ namespace Telnyx
         public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
-        /// Gets or sets Id
+        /// Gets or sets Id.
         /// </summary>
         string IHasId.Id { get => this.Id.ToString(); set => Guid.Parse(value); }
     }
