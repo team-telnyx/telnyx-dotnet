@@ -25,4 +25,4 @@ jobs:
     - name: Build
       run: dotnet build ./src/Telnyx.net.sln /clp:ErrorsOnly
     - name: Test
-      run: dotnet test -./src/TelnyxTests/TelnyxTests.csproj --configuration Release /clp:ErrorsOnly
+      run: dotnet test ./src/TelnyxTests/TelnyxTests.csproj --configuration Release /clp:ErrorsOnly
