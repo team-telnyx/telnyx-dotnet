@@ -46,7 +46,7 @@
                     CallRecordingCallerPhoneNumbers = new List<string>() { "+19705555099" },
                     CallRecordingChannels = "dual",
                     CallRecordingFormat = "mp3",
-                    CallRecordingType = "by_call_phone_number",
+                    CallRecordingType = "by_caller_phone_number",
                 },
             };
 
