@@ -9,9 +9,9 @@
     /// MessagingSenderIdService.
     /// </summary>
     public class MessagingSenderIdService : Service<MessagingSenderId>,
-        IListable<MessagingSenderId, MessagingSenderIdListOptions>,
+        //IListable<MessagingSenderId, MessagingSenderIdListOptions>,
         IRetrievable<MessagingSenderId>,
-        IDeletable<MessagingSenderId>,
+        //IDeletable<MessagingSenderId>,
         IUpdatable<MessagingSenderId, MessagingSenderIdUpdate>,
         ICreatable<MessagingSenderId, NewMessagingSenderId>
     {
@@ -35,17 +35,18 @@
         /// <inheritdoc/>
         public override string BasePath => "/messages";
 
-        /// <inheritdoc/>
-        public MessagingSenderId Delete(string id, RequestOptions requestOptions = null)
-        {
-            return this.DeleteEntity(id, null, requestOptions);
-        }
+        // API not available in telnyx doc
+        ///// <inheritdoc/>
+        //public MessagingSenderId Delete(string id, RequestOptions requestOptions = null)
+        //{
+        //    return this.DeleteEntity(id, null, requestOptions);
+        //}
 
-        /// <inheritdoc/>
-        public async Task<MessagingSenderId> DeleteAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            return await this.DeleteEntityAsync(id, null, requestOptions, cancellationToken);
-        }
+        ///// <inheritdoc/>
+        //public async Task<MessagingSenderId> DeleteAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        //{
+        //    return await this.DeleteEntityAsync(id, null, requestOptions, cancellationToken);
+        //}
 
         /// <inheritdoc/>
         public MessagingSenderId Get(string id, RequestOptions requestOptions = null)
@@ -59,17 +60,18 @@
             return await this.GetEntityAsync(id, null, requestOptions, cancellationToken);
         }
 
-        /// <inheritdoc/>
-        public TelnyxList<MessagingSenderId> List(MessagingSenderIdListOptions listOptions = null, RequestOptions requestOptions = null)
-        {
-            return this.ListEntities(listOptions, requestOptions);
-        }
+        // API not available in telnyx doc
+        ///// <inheritdoc/>
+        //public TelnyxList<MessagingSenderId> List(MessagingSenderIdListOptions listOptions = null, RequestOptions requestOptions = null)
+        //{
+        //    return this.ListEntities(listOptions, requestOptions);
+        //}
 
-        /// <inheritdoc/>
-        public async Task<TelnyxList<MessagingSenderId>> ListAsync(MessagingSenderIdListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
-        }
+        ///// <inheritdoc/>
+        //public async Task<TelnyxList<MessagingSenderId>> ListAsync(MessagingSenderIdListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        //{
+        //    return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+        //}
 
         /// <inheritdoc/>
         public MessagingSenderId Update(string id, MessagingSenderIdUpdate updateOptions, RequestOptions requestOptions = null)

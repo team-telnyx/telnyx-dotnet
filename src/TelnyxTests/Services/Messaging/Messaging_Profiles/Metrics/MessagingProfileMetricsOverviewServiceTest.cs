@@ -14,14 +14,19 @@ namespace TelnyxTests.Services.Messaging.Messaging_Profiles.Metrics
         public MessagingProfileMetricsOverviewServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
-            listMetricsOptions = null;
-            service = new MessagingProfileMetricsOverviewService();
+            this.listMetricsOptions = new ListMetricsOptions()
+            {
+                PageNumber = 1,
+                PageSize = 20,
+                TimeFrame = "30d",
+            };
+            this.service = new MessagingProfileMetricsOverviewService();
         }
 
         [Fact]
         public void List()
         {
-            var messagingProfileMetrics = this.service.List(listMetricsOptions);
+            var messagingProfileMetrics = this.service.List(this.listMetricsOptions);
             Assert.NotNull(messagingProfileMetrics);
             Assert.Equal(typeof(TelnyxList<MessagingProfileMetricsOverview>), messagingProfileMetrics.GetType());
         }
@@ -29,11 +34,9 @@ namespace TelnyxTests.Services.Messaging.Messaging_Profiles.Metrics
         [Fact]
         public async Task ListAsync()
         {
-            var messagingProfileMetrics = await this.service.ListAsync(listMetricsOptions);
+            var messagingProfileMetrics = await this.service.ListAsync(this.listMetricsOptions);
             Assert.NotNull(messagingProfileMetrics);
             Assert.Equal(typeof(TelnyxList<MessagingProfileMetricsOverview>), messagingProfileMetrics.GetType());
         }
     }
 }
-
-

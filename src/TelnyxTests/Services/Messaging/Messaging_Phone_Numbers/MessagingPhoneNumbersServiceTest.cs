@@ -32,7 +32,7 @@ namespace TelnyxTests.Services.Messages.MessagingPhoneNumbers
                 MessagingProfileId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
             };
         }
-        
+
         [Fact(Skip = "Failing Telynx-Mock Validation valid request")]
         public void Get()
         {

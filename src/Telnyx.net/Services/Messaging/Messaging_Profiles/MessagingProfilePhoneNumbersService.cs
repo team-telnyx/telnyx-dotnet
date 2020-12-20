@@ -10,7 +10,7 @@
     /// Messaging Profile Service.
     /// </summary>
     public class MessagingProfilePhoneNumbersService : ServiceNested<MessagingPhoneNumber>,
-        IRetrievable<MessagingPhoneNumber>,
+        //IRetrievable<MessagingPhoneNumber>,
         INestedListable<MessagingPhoneNumber, ListMessagingProfilesPhoneNumbersOptions>
     {
         /// <summary>
@@ -33,17 +33,18 @@
         /// <inheritdoc/>
         public override string BasePath => "/messaging_profiles/{PARENT_ID}/phone_numbers";
 
-        /// <inheritdoc/>
-        public MessagingPhoneNumber Get(string id, RequestOptions requestOptions = null)
-        {
-            return this.GetNestedEntity(id, null, null, requestOptions);
-        }
+        // Not needed as this API is not listed in telnyx doc
+        ///// <inheritdoc/>
+        //public MessagingPhoneNumber Get(string id, RequestOptions requestOptions = null)
+        //{
+        //    return this.GetNestedEntity(id, null, null, requestOptions);
+        //}
 
-        /// <inheritdoc/>
-        public async Task<MessagingPhoneNumber> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            return await this.GetNestedEntityAsync(id, null, null, requestOptions, cancellationToken);
-        }
+        ///// <inheritdoc/>
+        //public async Task<MessagingPhoneNumber> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        //{
+        //    return await this.GetNestedEntityAsync(id, null, null, requestOptions, cancellationToken);
+        //}
 
         /// <inheritdoc/>
         public TelnyxList<MessagingPhoneNumber> List(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null)

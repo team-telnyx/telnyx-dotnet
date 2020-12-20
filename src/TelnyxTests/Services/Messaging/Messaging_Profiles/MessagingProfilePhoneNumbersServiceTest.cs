@@ -58,6 +58,15 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             Assert.NotNull(messagingPhoneNumber);
             Assert.Equal(typeof(TelnyxList<MessagingPhoneNumber>), messagingPhoneNumber.GetType());
         }
+
+        //[Fact]
+        //public void Get()
+        //{
+        //    var messagingProfilePhoneNumber = this.service.Get(MessagingProfilePhoneNumberId, requestOptions);
+        //    Assert.NotNull(messagingProfilePhoneNumber);
+        //    Assert.Equal(typeof(MessagingPhoneNumber), messagingProfilePhoneNumber.GetType());
+        //    Assert.NotNull(messagingProfilePhoneNumber.PhoneNumber);
+        //}
     }
 }
 
