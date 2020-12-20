@@ -27,6 +27,7 @@ namespace TelnyxTests.Services.Connections.CredentialConnections
             this.listOptions = null;
             this.createOptions = new UpsertCredentialConnectionOptions()
             {
+                ConnectionName = "my_conn",
                 SipUriCallingPreference = "disabled",
                 UserName = "user001",
                 Outbound = null,
