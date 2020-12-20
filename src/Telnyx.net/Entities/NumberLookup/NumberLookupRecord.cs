@@ -51,11 +51,5 @@
         /// </summary>
         [JsonProperty("portability")]
         public Portability Portability { get; set; }
-
-        ///// <summary>
-        ///// Gets id.
-        ///// </summary>
-        //[JsonProperty("id")]
-        //public string Id { get; set; }
     }
 }

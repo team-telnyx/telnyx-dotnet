@@ -21,7 +21,6 @@ namespace TelnyxTests.Services.Messages.MessagingSenderId
         private readonly MessagingSenderIdService service;
         private readonly NewMessagingSenderId sendMessageOptions;
         private readonly NewMessagingSenderId sendMessageUsingNumberPoolOptions;
-        //private readonly MessagingSenderIdUpdate updateOptions;
         private readonly MessagingSenderIdListOptions listOptions;
         private readonly RequestOptions requestOptions;
         private readonly CancellationToken cancellationToken;
@@ -56,12 +55,6 @@ namespace TelnyxTests.Services.Messages.MessagingSenderId
                 WebhookFailoverUrl = "failureUrl",
                 UseProfileWebhooks = false
             };
-
-            // unused object
-            //this.updateOptions = new MessagingSenderIdUpdate
-            //{
-            //    MessagingProfileId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
-            //};
 
             this.requestOptions = new RequestOptions();
 

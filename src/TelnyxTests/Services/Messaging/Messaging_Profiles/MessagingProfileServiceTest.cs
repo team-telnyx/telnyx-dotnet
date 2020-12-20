@@ -108,11 +108,11 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             Assert.Equal(Telnyx.net.Entities.Enum.RecordType.ProfileEnum, messagingProfile.RecordType);
             Assert.Equal(this.createOptions.WebhookUrl, messagingProfile.WebhookUrl);
             Assert.Equal(this.createOptions.WebhookFailoverUrl, messagingProfile.WebhookFailoverUrl);
-            Assert.NotNull(messagingProfile.UrlShortnerSettings);
-            Assert.Equal(this.createOptions.UrlShortenerSettings.Domain, messagingProfile.UrlShortnerSettings.Domain);
-            Assert.Equal(this.createOptions.UrlShortenerSettings.Prefix, messagingProfile.UrlShortnerSettings.Prefix);
-            Assert.Equal(this.createOptions.UrlShortenerSettings.ReplaceBlackListOnly, messagingProfile.UrlShortnerSettings.ReplaceBlackListOnly);
-            Assert.Equal(this.createOptions.UrlShortenerSettings.SendWebhooks, messagingProfile.UrlShortnerSettings.SendWebhooks);
+            Assert.NotNull(messagingProfile.UrlShortenerSetting);
+            Assert.Equal(this.createOptions.UrlShortenerSettings.Domain, messagingProfile.UrlShortenerSetting.Domain);
+            Assert.Equal(this.createOptions.UrlShortenerSettings.Prefix, messagingProfile.UrlShortenerSetting.Prefix);
+            Assert.Equal(this.createOptions.UrlShortenerSettings.ReplaceBlackListOnly, messagingProfile.UrlShortenerSetting.ReplaceBlackListOnly);
+            Assert.Equal(this.createOptions.UrlShortenerSettings.SendWebhooks, messagingProfile.UrlShortenerSetting.SendWebhooks);
         }
 
         [Fact]
@@ -201,11 +201,11 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             Assert.Equal(Telnyx.net.Entities.Enum.RecordType.ProfileEnum, messagingProfile.RecordType);
             Assert.Equal(this.updateOptions.WebhookUrl, messagingProfile.WebhookUrl);
             Assert.Equal(this.updateOptions.WebhookFailoverUrl, messagingProfile.WebhookFailoverUrl);
-            Assert.NotNull(messagingProfile.UrlShortnerSettings);
-            Assert.Equal(this.updateOptions.UrlShortenerSettings.Domain, messagingProfile.UrlShortnerSettings.Domain);
-            Assert.Equal(this.updateOptions.UrlShortenerSettings.Prefix, messagingProfile.UrlShortnerSettings.Prefix);
-            Assert.Equal(this.updateOptions.UrlShortenerSettings.ReplaceBlackListOnly, messagingProfile.UrlShortnerSettings.ReplaceBlackListOnly);
-            Assert.Equal(this.updateOptions.UrlShortenerSettings.SendWebhooks, messagingProfile.UrlShortnerSettings.SendWebhooks);
+            Assert.NotNull(messagingProfile.UrlShortenerSetting);
+            Assert.Equal(this.updateOptions.UrlShortenerSettings.Domain, messagingProfile.UrlShortenerSetting.Domain);
+            Assert.Equal(this.updateOptions.UrlShortenerSettings.Prefix, messagingProfile.UrlShortenerSetting.Prefix);
+            Assert.Equal(this.updateOptions.UrlShortenerSettings.ReplaceBlackListOnly, messagingProfile.UrlShortenerSetting.ReplaceBlackListOnly);
+            Assert.Equal(this.updateOptions.UrlShortenerSettings.SendWebhooks, messagingProfile.UrlShortenerSetting.SendWebhooks);
             Assert.Equal(this.updateOptions.WhitelistedDestinations.Count, messagingProfile.WhitelistedDestinations.Count);
         }
 
