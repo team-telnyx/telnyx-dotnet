@@ -32,7 +32,33 @@ namespace TelnyxTests.Services.PhoneNumbers.NumberConfigurations
 
             this.updateOptions = new VoiceSettingUpdateOptions
             {
-                
+                CallForwarding = new CallForwarding()
+                {
+                    CallForwardingEnabled = true,
+                    ForwardingType = "on_failure",
+                    ForwardsTo = "+13035559997",
+                },
+                CallRecording = new CallRecording()
+                {
+                    InboundCallRecordingEnabled = true,
+                    InboundCallRecordingChannels = "single",
+                    InboundCallRecordingFormat = "wav",
+                },
+                CnamListing = new CnamListing()
+                {
+                    CnamListingEnabled = true,
+                    CnamListingDetails = "example",
+                },
+                MediaFeatures = new MediaFeatures()
+                {
+                    AcceptAnyRtpPacketsEnabled = true,
+                    RtpAutoAdjustEnabled = true,
+                    T38FaxGatewayEnabled = true,
+                    MediaHandlingMode = "default",
+                },
+                TechPrefixEnabled = false,
+                TranslatedNumber = "+13035559996",
+                UsagePaymentMethod = PaymentMethod.PayPerMinute,
             };
             this.emergencyOptions = new EmergencyOptions
             {
@@ -41,6 +67,8 @@ namespace TelnyxTests.Services.PhoneNumbers.NumberConfigurations
             };
             this.listOptions = new VoiceSettingsListOptions
             {
+                PageNumber = 1,
+                PageSize = 25,
                 //PhoneNumber = "+13035559999",
                 //Size = 10,
                 //UsagePaymentMethod = PaymentMethod.PayPerMinute

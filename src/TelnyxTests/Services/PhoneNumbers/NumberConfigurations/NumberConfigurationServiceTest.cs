@@ -34,12 +34,13 @@
             };
             this.listOptions = new NumberConfigurationsListOptions
             {
-                //Status = Telnyx.net.Entities.PhoneNumbers.NumberConfigurations.NumberConfigStatus.Active,
+                PageNumber = 1,
+                PageSize = 20,
+                //PhoneNumber = "+19705555098",
+                //Status = NumberConfigStatus.Active,
                 //Size = 10,
                 //Tag = "region_5",
-                //PhoneNumber = "+19705555098"
             };
-
         }
 
         [Fact]
