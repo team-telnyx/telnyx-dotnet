@@ -115,5 +115,21 @@
             Assert.NotNull(response);
             Assert.IsType<NumberConfiguration>(response);
         }
+
+        [Fact]
+        public void Delete()
+        {
+            var response = this.service.DeletePhoneNumber(NumberOrderId);
+            Assert.NotNull(response);
+            Assert.IsType<NumberConfiguration>(response);
+        }
+
+        [Fact]
+        public async Task DeleteAsync()
+        {
+            var response = await this.service.DeletePhoneNumberAsync(NumberOrderId);
+            Assert.NotNull(response);
+            Assert.IsType<NumberConfiguration>(response);
+        }
     }
 }

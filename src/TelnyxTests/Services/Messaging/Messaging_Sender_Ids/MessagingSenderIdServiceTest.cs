@@ -21,7 +21,6 @@ namespace TelnyxTests.Services.Messages.MessagingSenderId
         private readonly MessagingSenderIdService service;
         private readonly NewMessagingSenderId sendMessageOptions;
         private readonly NewMessagingSenderId sendMessageUsingNumberPoolOptions;
-        private readonly MessagingSenderIdListOptions listOptions;
         private readonly RequestOptions requestOptions;
         private readonly CancellationToken cancellationToken;
 

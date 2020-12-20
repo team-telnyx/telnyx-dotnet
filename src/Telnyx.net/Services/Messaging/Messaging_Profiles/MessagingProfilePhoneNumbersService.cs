@@ -33,29 +33,18 @@
         /// <inheritdoc/>
         public override string BasePath => "/messaging_profiles/{PARENT_ID}/phone_numbers";
 
-        // Not needed as this API is not listed in telnyx doc
-        ///// <inheritdoc/>
-        //public MessagingPhoneNumber Get(string id, RequestOptions requestOptions = null)
-        //{
-        //    return this.GetNestedEntity(id, null, null, requestOptions);
-        //}
-
-        ///// <inheritdoc/>
-        //public async Task<MessagingPhoneNumber> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
-        //{
-        //    return await this.GetNestedEntityAsync(id, null, null, requestOptions, cancellationToken);
-        //}
-
         /// <inheritdoc/>
         public TelnyxList<MessagingPhoneNumber> List(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null)
         {
             return this.ListNestedEntities(id, listOptions, requestOptions);
         }
+
         /// <inheritdoc/>
         public async Task<TelnyxList<MessagingPhoneNumber>> ListAsync(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await this.ListNestedEntitiesAsync(id, listOptions, requestOptions, cancellationToken);
         }
+
         /// <inheritdoc/>
         public IEnumerable<MessagingPhoneNumber> ListPaged(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null)
         {
@@ -67,6 +56,5 @@
         {
             return await this.ListNestedEntitiesAutoPagingAsync(id, listOptions, requestOptions, cancellationToken);
         }
-        
     }
 }
