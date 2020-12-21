@@ -66,5 +66,11 @@ namespace Telnyx
         /// <value>If the profile this number is associated with has webhooks, use them for delivery notifications. If webhooks are also specified on the message itself, they will be attempted first, then those on the profile.</value>
         [JsonProperty("use_profile_webhooks")]
         public bool? UseProfileWebhooks { get; set; }
+
+        /// <summary>
+        /// Automatically detect if an SMS message is unusually long and exceeds a recommended limit of message parts.
+        /// </summary>
+        [JsonProperty("auto_detect")]
+        public bool AutoDetect { get; set; }
     }
 }

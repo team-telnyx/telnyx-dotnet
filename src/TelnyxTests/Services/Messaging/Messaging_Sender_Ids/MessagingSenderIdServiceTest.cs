@@ -21,6 +21,7 @@ namespace TelnyxTests.Services.Messages.MessagingSenderId
         private readonly MessagingSenderIdService service;
         private readonly NewMessagingSenderId sendMessageOptions;
         private readonly NewMessagingSenderId sendMessageUsingNumberPoolOptions;
+        private readonly MessagingSenderIdListOptions listOptions;
         private readonly RequestOptions requestOptions;
         private readonly CancellationToken cancellationToken;
 
@@ -39,7 +40,8 @@ namespace TelnyxTests.Services.Messages.MessagingSenderId
                 MediaUrls = new List<string> { "url1", "url2" },
                 WebhookUrl = "webhookUrl",
                 WebhookFailoverUrl = "failureUrl",
-                UseProfileWebhooks = true
+                UseProfileWebhooks = true,
+                AutoDetect = true,
             };
 
             this.sendMessageUsingNumberPoolOptions = new NewMessagingSenderId

@@ -225,6 +225,8 @@ namespace Telnyx
         [JsonProperty("completed_at")]
         public DateTime? CompletedAt { get; set; }
 
+        [JsonProperty("organization_id")]
+        public Guid? OrganizationId { get; set; }
         /// <inheritdoc/>
         string IHasId.Id
         {

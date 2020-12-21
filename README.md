@@ -1,5 +1,5 @@
 # Telnyx.net
-[![Build Status](https://travis-ci.org/team-telnyx/telnyx-dotnet.svg?branch=master)](https://travis-ci.org/team-telnyx/telnyx-dotnet)
+[![Build Status](https://github.com/team-telnyx/telnyx-dotnet/workflows/.NET/badge.svg)](https://github.com/team-telnyx/telnyx-dotnet/actions)
 [![NuGet](https://img.shields.io/nuget/v/Telnyx.net.svg)](https://www.nuget.org/packages/Telnyx.net/)
 [![Coverage Status](https://coveralls.io/repos/github/team-telnyx/telnyx-dotnet/badge.svg?branch=master)](https://coveralls.io/github/team-telnyx/telnyx-dotnet?branch=master)
 [![Join Slack](https://img.shields.io/badge/join-slack-infomational)](https://joinslack.telnyx.com/)
@@ -63,24 +63,24 @@ If you are using Xamarin/Mono, you may want to provide your own `HttpMessageHand
 
 ### Run Test Project via Docker CLI
 
-In order to run the tests you need to have the telnyx-mock running on your local port. This mock is used to mimic the Telnyx API in order to ensure responses will be correct. 
+In order to run the tests you need to have the telnyx-mock running on your local port. This mock is used to mimic the Telnyx API in order to ensure responses will be correct.
 
 Steps to install and run the telynx-mock can be found here: [readme](https://github.com/team-telnyx/telnyx-mock/blob/master/README.md)
 
 Explicit steps are as follows:
 
- * Make sure you have docker installed. This can be either windows/mac/linux. 
- * Run the docker pull cmd: `docker pull telnyx/telnyx-mock:latest` 
+ * Make sure you have docker installed. This can be either windows/mac/linux.
+ * Run the docker pull cmd: `docker pull telnyx/telnyx-mock:latest`
  * Verify the image is pulled correctly: `docker images`
  * If you see the image listed, now we can run the image: `docker run -p 12111-12112:12111-12112 telnyx/telnyx-mock`
  * Keep this powershell or cmdline window open and run the TelynxTests project via test runner or dotnet-cli
- * Add your API key to the appsettings file. For NET45+ use `App.config` for `netstandard/netcore use appsettings.json` found in the test project 
+ * Add your API key to the appsettings file. For NET45+ use `App.config` for `netstandard/netcore use appsettings.json` found in the test project
 
 ### Run Telnyx.Example Project with your API Key
- In oder to get the Example project to run properly, you can add your API Key to the `appsettings.json` file similar to above. 
+ In oder to get the Example project to run properly, you can add your API Key to the `appsettings.json` file similar to above.
  Here you can play around with the console app without requiring the telnyx-mock to run.
- 
- NOTE: This will hit the API directly so be aware of the different operations you are trying as rate limiting applies. 
+
+ NOTE: This will hit the API directly so be aware of the different operations you are trying as rate limiting applies.
 
 ### Request Options
 
@@ -170,7 +170,7 @@ PageInfo pages = reservationList.PageInfo;
         /// Gets or sets pageinformation from the API Response
         /// </summary>
         public PageInfo PageInfo { get; set; }
-        
+
     }
 ```
 **Pagination with ListOptions**
@@ -189,19 +189,19 @@ PageInfo pages = reservationList.PageInfo;
 
         /// <summary>
         /// Set number of pages to get and return as list of entities. Default: null (all pages)
-        /// Can page a set amount by specifying the amount of pages to fetch. 
-        /// If greater than actual pages will just return the total amount of results. 
+        /// Can page a set amount by specifying the amount of pages to fetch.
+        /// If greater than actual pages will just return the total amount of results.
         /// </summary>
         public int? NumberOfPagesToFetch { get; set; }
     }
 ```
 
-In order to paginate automatically through a list method be sure to setup the corresponding ListOption object. 
+In order to paginate automatically through a list method be sure to setup the corresponding ListOption object.
 The NumberOfPagesToFetch is optional but allows the call to gather data from multiple pages. Enter the amount of pages you want
-to page through and all the results will be returned in the `TelynxList.Data` property. 
+to page through and all the results will be returned in the `TelynxList.Data` property.
 
 *NOTE*: Use any number greater than 1 for the `NumberOfPagesToFetch`.
-1 page is just like setting the pagenumber. E.g. NumberOfPagesToFetch = 2 will give you the first page and next page. 
+1 page is just like setting the pagenumber. E.g. NumberOfPagesToFetch = 2 will give you the first page and next page.
 
 **Example:**
 ```csharp
@@ -213,10 +213,10 @@ to page through and all the results will be returned in the `TelynxList.Data` pr
                           PageSize = 3
 
                       };
-    
+
     var res = await numConfigService.ListPhoneNumbersAsync(listOptions); //if you dont specify a pagenumber, pagination will begin at the first page.
     var phoneNumberConfigurationsList = res.Data;
-    
+
     //you can access if the endpoint has more data and how many pages are left via the PageInfo object thats returned
     if(res.HasMore){
         var nextPage = res.PageInfo.NextPage;
@@ -229,7 +229,7 @@ to page through and all the results will be returned in the `TelynxList.Data` pr
                           PageSize = 3
 
                       };
-        res = await numConfigService.ListPhoneNumbersAsync(listOptions); 
+        res = await numConfigService.ListPhoneNumbersAsync(listOptions);
 	}
 ```
 
