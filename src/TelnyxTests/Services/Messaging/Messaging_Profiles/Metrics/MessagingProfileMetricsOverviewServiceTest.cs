@@ -14,12 +14,13 @@ namespace TelnyxTests.Services.Messaging.Messaging_Profiles.Metrics
         public MessagingProfileMetricsOverviewServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
-            this.listMetricsOptions = new ListMetricsOptions()
-            {
-                PageNumber = 1,
-                PageSize = 20,
-                //TimeFrame = "1h",
-            };
+            this.listMetricsOptions = null;
+            //this.listMetricsOptions = new ListMetricsOptions()
+            //{
+            //    PageNumber = 1,
+            //    PageSize = 20,
+            //    //TimeFrame = "1h",
+            //};
             this.service = new MessagingProfileMetricsOverviewService();
         }
 
