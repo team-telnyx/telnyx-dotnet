@@ -59,14 +59,14 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             Assert.Equal(typeof(TelnyxList<MessagingPhoneNumber>), messagingPhoneNumber.GetType());
         }
 
-        //[Fact]
-        //public void Get()
-        //{
-        //    var messagingProfilePhoneNumber = this.service.Get(MessagingProfilePhoneNumberId, requestOptions);
-        //    Assert.NotNull(messagingProfilePhoneNumber);
-        //    Assert.Equal(typeof(MessagingPhoneNumber), messagingProfilePhoneNumber.GetType());
-        //    Assert.NotNull(messagingProfilePhoneNumber.PhoneNumber);
-        //}
+        [Fact(Skip = "Invalid request error. Corresponding service should be deprecated")]
+        public void Get()
+        {
+            var messagingProfilePhoneNumber = this.service.Get(MessagingProfilePhoneNumberId);
+            Assert.NotNull(messagingProfilePhoneNumber);
+            Assert.Equal(typeof(MessagingPhoneNumber), messagingProfilePhoneNumber.GetType());
+            Assert.NotNull(messagingProfilePhoneNumber.PhoneNumber);
+        }
     }
 }
 
