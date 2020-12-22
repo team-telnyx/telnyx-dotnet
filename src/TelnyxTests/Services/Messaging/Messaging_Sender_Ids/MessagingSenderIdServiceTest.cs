@@ -21,6 +21,7 @@ namespace TelnyxTests.Services.Messages.MessagingSenderId
         private readonly MessagingSenderIdService service;
         private readonly NewMessagingSenderId sendMessageOptions;
         private readonly NewMessagingSenderId sendMessageUsingNumberPoolOptions;
+        private readonly MessagingSenderIdListOptions listOptions;
         private readonly RequestOptions requestOptions;
         private readonly CancellationToken cancellationToken;
 
@@ -107,13 +108,13 @@ namespace TelnyxTests.Services.Messages.MessagingSenderId
             Assert.Equal("Telnyx.MessagingSenderId", messagingSender.GetType().ToString());
         }
 
-        //[Fact(Skip ="Invalid request error. Corresponding service should be deprected")]
-        //public void List()
-        //{
-        //    var messagingList = this.service.List(this.listOptions, this.requestOptions);
-        //    Assert.NotNull(messagingList);
-        //    Assert.Single(messagingList.Data);
-        //    Assert.Equal("Telnyx.MessagingSenderId", messagingList.Data[0].GetType().ToString());
-        //}
+        [Fact(Skip = "Invalid request error. Corresponding service should be deprected")]
+        public void List()
+        {
+            var messagingList = this.service.List(this.listOptions, this.requestOptions);
+            Assert.NotNull(messagingList);
+            Assert.Single(messagingList.Data);
+            Assert.Equal("Telnyx.MessagingSenderId", messagingList.Data[0].GetType().ToString());
+        }
     }
 }

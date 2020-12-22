@@ -18,7 +18,7 @@ namespace TelnyxTests.Services.Messaging.Messaging_Profiles.Metrics
             {
                 PageNumber = 1,
                 PageSize = 20,
-                TimeFrame = "30d",
+                TimeFrame = "1h",
             };
             this.service = new MessagingProfileMetricsOverviewService();
         }
