@@ -35,6 +35,7 @@
         /// <inheritdoc/>
         public override string BasePath => "/messages";
 
+        // API not available in telnyx doc
         /// <inheritdoc/>
         public MessagingSenderId Delete(string id, RequestOptions requestOptions = null)
         {
@@ -59,6 +60,7 @@
             return await this.GetEntityAsync(id, null, requestOptions, cancellationToken);
         }
 
+        // API not available in telnyx doc
         /// <inheritdoc/>
         public TelnyxList<MessagingSenderId> List(MessagingSenderIdListOptions listOptions = null, RequestOptions requestOptions = null)
         {

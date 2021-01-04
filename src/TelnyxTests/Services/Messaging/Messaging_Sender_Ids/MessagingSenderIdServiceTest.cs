@@ -107,5 +107,14 @@ namespace TelnyxTests.Services.Messages.MessagingSenderId
             Assert.NotNull(messagingSender);
             Assert.Equal("Telnyx.MessagingSenderId", messagingSender.GetType().ToString());
         }
+
+        [Fact(Skip = "Invalid request error. Corresponding service should be deprecated")]
+        public void List()
+        {
+            var messagingList = this.service.List(this.listOptions, this.requestOptions);
+            Assert.NotNull(messagingList);
+            Assert.Single(messagingList.Data);
+            Assert.Equal("Telnyx.MessagingSenderId", messagingList.Data[0].GetType().ToString());
+        }
     }
 }

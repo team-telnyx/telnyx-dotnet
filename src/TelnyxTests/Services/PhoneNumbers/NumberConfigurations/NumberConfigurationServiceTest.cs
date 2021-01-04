@@ -34,12 +34,13 @@
             };
             this.listOptions = new NumberConfigurationsListOptions
             {
-                //Status = Telnyx.net.Entities.PhoneNumbers.NumberConfigurations.NumberConfigStatus.Active,
+                PageNumber = 1,
+                PageSize = 20,
+                //PhoneNumber = "+19705555098",
+                //Status = NumberConfigStatus.Active,
                 //Size = 10,
                 //Tag = "region_5",
-                //PhoneNumber = "+19705555098"
             };
-
         }
 
         [Fact]
@@ -112,6 +113,22 @@
         {
             var response = await this.service.UpdatePhoneNumberSettingsAsync(NumberOrderId, this.updateOptions);
             //this.AssertRequest(new HttpMethod("PATCH"), "/v2/number_orders/" + NumberOrderId);
+            Assert.NotNull(response);
+            Assert.IsType<NumberConfiguration>(response);
+        }
+
+        [Fact]
+        public void Delete()
+        {
+            var response = this.service.DeletePhoneNumber(NumberOrderId);
+            Assert.NotNull(response);
+            Assert.IsType<NumberConfiguration>(response);
+        }
+
+        [Fact]
+        public async Task DeleteAsync()
+        {
+            var response = await this.service.DeletePhoneNumberAsync(NumberOrderId);
             Assert.NotNull(response);
             Assert.IsType<NumberConfiguration>(response);
         }

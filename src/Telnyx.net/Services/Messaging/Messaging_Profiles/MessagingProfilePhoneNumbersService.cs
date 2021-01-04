@@ -50,11 +50,13 @@
         {
             return this.ListNestedEntities(id, listOptions, requestOptions);
         }
+
         /// <inheritdoc/>
         public async Task<TelnyxList<MessagingPhoneNumber>> ListAsync(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await this.ListNestedEntitiesAsync(id, listOptions, requestOptions, cancellationToken);
         }
+
         /// <inheritdoc/>
         public IEnumerable<MessagingPhoneNumber> ListPaged(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null)
         {
@@ -66,6 +68,5 @@
         {
             return await this.ListNestedEntitiesAutoPagingAsync(id, listOptions, requestOptions, cancellationToken);
         }
-        
     }
 }

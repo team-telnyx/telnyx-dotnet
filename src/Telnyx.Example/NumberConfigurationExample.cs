@@ -36,7 +36,7 @@ namespace Telnyx.Example
                 PageSize = 2
 
             };
-            var res = await numConfigService.ListPhoneNumbersPagedAsync(listOptions);
+            var res = await numConfigService.ListPhoneNumbersAsync(listOptions);
             Console.WriteLine(JsonConvert.SerializeObject(res));
         }
         public async Task ListMessagingOptionsAsync()
