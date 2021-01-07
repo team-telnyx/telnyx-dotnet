@@ -29,7 +29,7 @@
         /// Identifies the type of the resource.
         /// </summary>
         [JsonProperty("record_type")]
-        public RecordType RecordType { get; set; }
+        public RecordType RecordType { get; set; } = RecordType.Fax;
 
         /// <summary>
         /// Should fax media be stored on temporary URL.

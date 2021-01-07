@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-using Telnyx.net.Entities.Faxes;
-
-namespace Telnyx.net.Services.Faxes
+﻿namespace Telnyx.net.Services.Faxes
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.Faxes;
+
     public class FaxService : Service<Fax>
     {
         public FaxService()
