@@ -1,13 +1,14 @@
-﻿using Newtonsoft.Json;
-using System.Runtime.Serialization;
-using Telnyx.net.Infrastructure.JsonConverters;
-
-namespace Telnyx.net.Entities.Enum.Webhooks
+﻿namespace Telnyx.net.Entities.Enum.Webhooks
 {
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
+    using Telnyx.net.Infrastructure.JsonConverters;
+
     [JsonConverter(typeof(SafeStringEnumConverter), Unknown)]
     public enum EventType
     {
         Unknown = -1,
+
         [EnumMember(Value = "message.received")]
         MessageReceived = 0,
 
@@ -75,5 +76,14 @@ namespace Telnyx.net.Entities.Enum.Webhooks
 
         [EnumMember(Value = "message.sent")]
         MessageSent = 22,
+
+        [EnumMember(Value = "fax.delivered")]
+        FaxDelivered = 23,
+
+        [EnumMember(Value = "fax.media.processed")]
+        FaxMediaProcessed = 24,
+
+        [EnumMember(Value = "fax.sending.started")]
+        FaxSendingStarted = 25,
     }
 }
