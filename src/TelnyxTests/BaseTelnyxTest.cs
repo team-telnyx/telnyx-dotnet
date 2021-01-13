@@ -4,7 +4,9 @@
 
 namespace TelnyxTests
 {
+    using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Net.Http;
     using System.Reflection;
     using System.Text;
@@ -98,6 +100,21 @@ namespace TelnyxTests
             }
 
             return this.TelnyxMockFixture.GetFixture(path, expansions);
+        }
+
+        protected bool PropertiesAreNotNull(object myObject, List<string> nameOfProperties = null)
+        {
+            var properties = nameOfProperties == null ? myObject.GetType().GetProperties() : myObject.GetType().GetProperties().Where(p => nameOfProperties.Contains(p.Name));
+            foreach (PropertyInfo pi in properties)
+            {
+                var value = pi.GetValue(myObject);
+                if (value == null)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

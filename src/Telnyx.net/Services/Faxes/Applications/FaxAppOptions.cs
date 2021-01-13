@@ -5,7 +5,7 @@ using Telnyx.net.Entities.Enum;
 
 namespace Telnyx.net.Services.Faxes.Applications
 {
-    public class FaxApplicationOptions : BaseOptions
+    public class FaxAppOptions : BaseOptions
     {
         /// <summary>
         /// Specifies whether the connection can be used.

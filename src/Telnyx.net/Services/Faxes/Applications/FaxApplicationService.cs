@@ -28,22 +28,22 @@
             return await this.ListEntitiesAsync(listOptions, requestOptions, ct).ConfigureAwait(false);
         }
 
-        public FaxApplication CreateFaxApplications(FaxApplicationOptions sendOptions, RequestOptions requestOptions = null)
+        public FaxApplication CreateFaxApplication(FaxAppOptions sendOptions, RequestOptions requestOptions = null)
         {
             return this.CreateEntity(sendOptions, requestOptions);
         }
 
-        public async Task<FaxApplication> CreateFaxApplicationsAsync(FaxApplicationOptions sendOptions, RequestOptions requestOptions = null, CancellationToken ct = default)
+        public async Task<FaxApplication> CreateFaxApplicationAsync(FaxAppOptions sendOptions, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
             return await this.CreateEntityAsync(sendOptions, requestOptions, ct).ConfigureAwait(false);
         }
 
-        public FaxApplication UpdateFaxApplications(string id, FaxApplicationOptions sendOptions, RequestOptions requestOptions = null)
+        public FaxApplication UpdateFaxApplication(string id, FaxAppOptions sendOptions, RequestOptions requestOptions = null)
         {
             return this.UpdateEntity(id, sendOptions, requestOptions);
         }
 
-        public async Task<FaxApplication> UpdateFaxApplicationsAsync(string id, FaxApplicationOptions sendOptions, RequestOptions requestOptions = null, CancellationToken ct = default)
+        public async Task<FaxApplication> UpdateFaxApplicationAsync(string id, FaxAppOptions sendOptions, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
             return await this.UpdateEntityAsync(id, sendOptions, requestOptions, ct).ConfigureAwait(false);
         }
@@ -58,12 +58,12 @@
             return await this.GetEntityAsync(id, requestOptions, ct).ConfigureAwait(false);
         }
 
-        public FaxApplication DeleteFax(string id, RequestOptions requestOptions = null)
+        public FaxApplication DeleteFaxApplication(string id, RequestOptions requestOptions = null)
         {
             return this.DeleteEntity(id, requestOptions);
         }
 
-        public async Task<FaxApplication> DeleteFaxAsync(string id, RequestOptions requestOptions = null, CancellationToken ct = default)
+        public async Task<FaxApplication> DeleteFaxApplicationAsync(string id, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
             return await this.DeleteEntityAsync(id, requestOptions, ct).ConfigureAwait(false);
         }

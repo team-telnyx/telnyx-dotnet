@@ -1,10 +1,12 @@
 ﻿using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Telnyx.net.Entities.Faxes.Applications.Options
 {
     /// <summary>
     /// Specifies the sort order for results. By default sorting direction is ascending.
     /// </summary>
+    [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum SortOptions
     {
         /// <summary>
