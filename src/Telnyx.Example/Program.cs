@@ -202,6 +202,9 @@ namespace Telnyx.Example
             var verificationExample = new VerificationExample();
             await verificationExample.RunVerification();
 
+            Console.WriteLine("Fax Example...");
+            var faxExample = new FaxExample();
+            faxExample.ReceiveWebhook();
             /*Only call with your credentials*/
             //GetWebhook();
 
@@ -239,12 +242,12 @@ namespace Telnyx.Example
                 {
                     var messageFinalWebhook = JsonConvert.DeserializeObject<TelnyxWebhook<OutboundMessage>>(body);
                     var myRepository = new SaveResponseRepository<OutboundMessage>();
-                    
+
                     Console.WriteLine("Save properties from webhook or do stuff...");
-                    
+
                     if (messageFinalWebhook != null && messageFinalWebhook.Data.Payload.CreatedAt != null)
                         await myRepository.Save(messageFinalWebhook.Data.Payload);
-                    
+
                     Console.WriteLine("Return 200 OK");
                     return HttpStatusCode.OK;
                 }
@@ -265,7 +268,7 @@ namespace Telnyx.Example
 
         public static Type GetTypeLookup(EventType enumType)
         {
-            var typeLookup = new Dictionary<EventType, Type> { 
+            var typeLookup = new Dictionary<EventType, Type> {
                 { EventType.MessageFinalized, typeof(OutboundMessage) },
                 { EventType.MessageReceived, typeof(OutboundMessage) },
                 { EventType.MessageSent, typeof(OutboundMessage) },
@@ -301,7 +304,7 @@ namespace Telnyx.Example
 
 
     }
-  
+
     public class SaveResponseRepository<T>
     {
         public async Task Save(T objectToSave)

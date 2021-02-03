@@ -93,7 +93,7 @@
             Assert.True(response.CnamListingEnabled);
             Assert.Equal(this.updateOptions.ConnectionId, response.ConnectionId);
             Assert.NotNull(response.ConnectionName);
-            Assert.True(response.CreatedAt <= response.UpdatedAt);
+            Assert.NotNull(response.CreatedAt); //changed. Mock is not returning updatedAt field..
             Assert.NotNull(response.EmergencyAddressId);
             Assert.True(response.EmergencyEnabled);
             Assert.Equal(this.updateOptions.ExternalPin, response.ExternalPin);

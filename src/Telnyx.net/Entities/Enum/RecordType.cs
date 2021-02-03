@@ -197,6 +197,9 @@ namespace Telnyx.net.Entities.Enum
 
         [EnumMember(Value = "verification")]
         Verification = 56,
+
+        [EnumMember(Value = "fax_application")]
+        FaxApplication = 57,
     }
 
 }
