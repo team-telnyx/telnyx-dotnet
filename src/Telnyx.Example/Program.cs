@@ -207,7 +207,7 @@ namespace Telnyx.Example
             faxExample.ReceiveWebhook();
             Console.WriteLine("HostedNumber Orders Example...");
             var hostedExample = new HostedNumbersExample();
-            await hostedExample.CreatedHostedNumberAsync(new List<string> { "+17735556766" })
+            await hostedExample.CreatedHostedNumberAsync(new List<string> { "+17735556766" });
             /*Only call with your credentials*/
             //GetWebhook();
 
