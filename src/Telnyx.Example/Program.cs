@@ -205,6 +205,9 @@ namespace Telnyx.Example
             Console.WriteLine("Fax Example...");
             var faxExample = new FaxExample();
             faxExample.ReceiveWebhook();
+            Console.WriteLine("HostedNumber Orders Example...");
+            var hostedExample = new HostedNumbersExample();
+            await hostedExample.CreatedHostedNumberAsync(new List<string> { "+17735556766" })
             /*Only call with your credentials*/
             //GetWebhook();
 
