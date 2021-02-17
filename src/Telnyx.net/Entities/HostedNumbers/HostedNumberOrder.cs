@@ -20,8 +20,8 @@ namespace Telnyx.net.Entities.HostedNumbers
         /// <summary>
         /// Automatically associate the number with this messaging profile ID when the order is complete.
         /// </summary>
-        [JsonProperty("profile_id")]
-        public string ProfileId { get; set; }
+        [JsonProperty("messaging_profile_id")]
+        public string MessagingProfileId { get; set; }
 
         /// <summary>
         /// Identifies the type of the resource.
