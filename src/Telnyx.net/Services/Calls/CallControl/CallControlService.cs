@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Telnyx.net.Entities;
+using Telnyx.net.Services.Calls.CallControl.GatherStop;
+using Telnyx.net.Services.Calls.CallControl.RecordActions;
 
 namespace Telnyx.net.Services.Calls.CallCommands
 {
@@ -22,6 +25,8 @@ namespace Telnyx.net.Services.Calls.CallCommands
         private readonly CallControlRejectService callControlRejectService;
         private readonly CallControlSendDTMFService callControlSendDTMFService;
         private readonly CallControlTransferService callControlTransferService;
+        private readonly GatherStopService gatherStopService;
+        private readonly RecordActionService recordActionService;
 
         public CallControlService()
         {
@@ -41,11 +46,13 @@ namespace Telnyx.net.Services.Calls.CallCommands
             this.callControlRejectService = new CallControlRejectService();
             this.callControlSendDTMFService = new CallControlSendDTMFService();
             this.callControlTransferService = new CallControlTransferService();
+            this.gatherStopService = new GatherStopService();
+            this.recordActionService = new RecordActionService();
         }
 
         public string CallControlId { get; set; }
 
-        public virtual CallAnswerResponse Answer(CallControlAnswerOptions options, string postFix = "actions/speak", RequestOptions requestOptions = null)
+        public virtual CallAnswerResponse Answer(CallControlAnswerOptions options, string postFix = "actions/answer", RequestOptions requestOptions = null)
         {
             return this.callControlAnswerService.Create(this.CallControlId, options, postFix, requestOptions);
         }
@@ -65,24 +72,29 @@ namespace Telnyx.net.Services.Calls.CallCommands
             return this.callControlBridgeService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
-        public virtual CallForkStartResponse ForkStart(CallControlForkStartOptions options, string postFix = "actions/forkstart", RequestOptions requestOptions = null)
+        public virtual CallForkStartResponse ForkStart(CallControlForkStartOptions options, string postFix = "actions/fork_start", RequestOptions requestOptions = null)
         {
             return this.callControlForkStartService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
-        public virtual CallForkStopResponse ForkStop(CallControlForkStopOptions options, string postFix = "actions/forkstop", RequestOptions requestOptions = null)
+        public virtual CallForkStopResponse ForkStop(CallControlForkStopOptions options, string postFix = "actions/fork_stop", RequestOptions requestOptions = null)
         {
             return this.callControlForkStopService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
-        public virtual CallGatherUsingAudioResponse GatherUsingAudio(CallControlGatherUsingAudioOptions options, string postFix = "actions/gatherusingaudio", RequestOptions requestOptions = null)
+        public virtual CallGatherUsingAudioResponse GatherUsingAudio(CallControlGatherUsingAudioOptions options, string postFix = "actions/gather_using_audio", RequestOptions requestOptions = null)
         {
             return this.callControlGatherUsingAudioService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
-        public virtual CallGatherUsingSpeakResponse GatherUsingSpeak(CallControlGatherUsingSpeakOptions options, string postFix = "actions/gatherusingstop", RequestOptions requestOptions = null)
+        public virtual CallGatherUsingSpeakResponse GatherUsingSpeak(CallControlGatherUsingSpeakOptions options, string postFix = "actions/gather_using_speak", RequestOptions requestOptions = null)
         {
             return this.callControlGatherUsingSpeakService.Create(this.CallControlId, options, postFix, requestOptions);
+        }
+
+        public virtual TelnyxApiResponse GatherStop(GatherStopOptions options, RequestOptions requestOptions = null)
+        {
+            return this.gatherStopService.Stop(this.CallControlId, options, requestOptions);
         }
 
         public virtual CallHangUpResponse HangUp(CallControlHangupOptions options, string postFix = "actions/hangup", RequestOptions requestOptions = null)
@@ -90,24 +102,34 @@ namespace Telnyx.net.Services.Calls.CallCommands
             return this.callControlHangupService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
-        public virtual CallPlaybackStartResponse PlaybackStart(CallControlPlaybackStartOptions options, string postFix = "actions/playbackstart", RequestOptions requestOptions = null)
+        public virtual CallPlaybackStartResponse PlaybackStart(CallControlPlaybackStartOptions options, string postFix = "actions/playback_start", RequestOptions requestOptions = null)
         {
             return this.callControlPlaybackStartService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
-        public virtual CallPlaybackStopResponse PlaybackStop(CallControlPlaybackStopOptions options, string postFix = "actions/playbackstop", RequestOptions requestOptions = null)
+        public virtual CallPlaybackStopResponse PlaybackStop(CallControlPlaybackStopOptions options, string postFix = "actions/playback_stop", RequestOptions requestOptions = null)
         {
             return this.callControlPlaybackStopService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
-        public virtual CallRecordStartResponse RecordStart(CallControlRecordStartOptions options, string postFix = "actions/recordstart", RequestOptions requestOptions = null)
+        public virtual CallRecordStartResponse RecordStart(CallControlRecordStartOptions options, string postFix = "actions/record_start", RequestOptions requestOptions = null)
         {
             return this.callControlRecordStartService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
-        public virtual CallRecordStopResponse RecordStop(CallControlRecordStopOptions options, string postFix = "actions/recordstop", RequestOptions requestOptions = null)
+        public virtual CallRecordStopResponse RecordStop(CallControlRecordStopOptions options, string postFix = "actions/record_stop", RequestOptions requestOptions = null)
         {
             return this.callControlRecordStopService.Create(this.CallControlId, options, postFix, requestOptions);
+        }
+
+        public virtual TelnyxApiResponse RecordPause(RecordActionOptions options, RequestOptions requestOptions = null)
+        {
+            return this.recordActionService.Pause(this.CallControlId, options, requestOptions);
+        }
+
+        public virtual TelnyxApiResponse RecordResume(RecordActionOptions options, RequestOptions requestOptions = null)
+        {
+            return this.recordActionService.Resume(this.CallControlId, options, requestOptions);
         }
 
         public virtual CallRejectResponse Reject(CallControlRejectOptions options, string postFix = "actions/reject", RequestOptions requestOptions = null)
@@ -115,7 +137,7 @@ namespace Telnyx.net.Services.Calls.CallCommands
             return this.callControlRejectService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
-        public virtual CallSendDTMFResponse SendDTMF(CallControlSendDTMFOptions options, string postFix = "actions/senddtmf", RequestOptions requestOptions = null)
+        public virtual CallSendDTMFResponse SendDTMF(CallControlSendDTMFOptions options, string postFix = "actions/send_dtmf", RequestOptions requestOptions = null)
         {
             return this.callControlSendDTMFService.Create(this.CallControlId, options, postFix, requestOptions);
         }
