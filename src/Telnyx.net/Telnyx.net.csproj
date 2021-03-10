@@ -35,8 +35,14 @@
        Reference: https://github.com/dotnet/corefx/issues/683
   -->
   <ItemGroup>
+    <Compile Remove="Entities\Calls\CallInformations\**" />
+    <Compile Remove="Entities\Calls\CallWebhooks\**" />
     <Compile Remove="Entities\Messages\**" />
+    <EmbeddedResource Remove="Entities\Calls\CallInformations\**" />
+    <EmbeddedResource Remove="Entities\Calls\CallWebhooks\**" />
     <EmbeddedResource Remove="Entities\Messages\**" />
+    <None Remove="Entities\Calls\CallInformations\**" />
+    <None Remove="Entities\Calls\CallWebhooks\**" />
     <None Remove="Entities\Messages\**" />
   </ItemGroup>
 
@@ -109,8 +115,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Entities\Calls\CallWebhooks\" />
-    <Folder Include="Entities\Calls\CallInformations\" />
     <Folder Include="Entities\Calls\ConferenceCommands\HoldConferenceParticipant\" />
     <Folder Include="Entities\Calls\ConferenceCommands\JoinConference\" />
     <Folder Include="Entities\Calls\ConferenceCommands\MuteConferenceParticipant\" />
