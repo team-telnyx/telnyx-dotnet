@@ -1,12 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using Telnyx.net.Entities;
 
 namespace Telnyx.net.Services.Calls.ConferenceCommands.Participants
 {
-    class ConferenceDialParticipantService
+    public class ConferenceDialParticipantService : Service<TelnyxApiResponse>
     {
+        public ConferenceDialParticipantService()
+        : base(null)
+        {
+        }
+
+        public ConferenceDialParticipantService(string apiKey)
+            : base(apiKey)
+        {
+        }
+
+        public override string BasePath => "/conferences";
+
+        public override string PostPath => "/actions/dial_participant";
+
+        public TelnyxApiResponse DialParticipants(string conferenceId, DialParticipantOptions options = null, RequestOptions requestOptions = null)
+        {
+            return this.CreateEntity(conferenceId, this.PostPath, options, requestOptions);
+        }
+
+        public async Task<TelnyxApiResponse> DialParticipantsAsync(string conferenceId, DialParticipantOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return await this.CreateEntityAsync(conferenceId, this.PostPath, options, requestOptions, cancellationToken);
+        }
+
     }
 }
