@@ -37,12 +37,27 @@
   <ItemGroup>
     <Compile Remove="Entities\Calls\CallInformations\**" />
     <Compile Remove="Entities\Calls\CallWebhooks\**" />
+    <Compile Remove="Entities\Calls\ConferenceCommands\HoldConferenceParticipant\**" />
+    <Compile Remove="Entities\Calls\ConferenceCommands\JoinConference\**" />
+    <Compile Remove="Entities\Calls\ConferenceCommands\MuteConferenceParticipant\**" />
+    <Compile Remove="Entities\Calls\ConferenceCommands\UnHoldConferenceParticipant\**" />
+    <Compile Remove="Entities\Calls\ConferenceCommands\UnMuteConferenceParticipant\**" />
     <Compile Remove="Entities\Messages\**" />
     <EmbeddedResource Remove="Entities\Calls\CallInformations\**" />
     <EmbeddedResource Remove="Entities\Calls\CallWebhooks\**" />
+    <EmbeddedResource Remove="Entities\Calls\ConferenceCommands\HoldConferenceParticipant\**" />
+    <EmbeddedResource Remove="Entities\Calls\ConferenceCommands\JoinConference\**" />
+    <EmbeddedResource Remove="Entities\Calls\ConferenceCommands\MuteConferenceParticipant\**" />
+    <EmbeddedResource Remove="Entities\Calls\ConferenceCommands\UnHoldConferenceParticipant\**" />
+    <EmbeddedResource Remove="Entities\Calls\ConferenceCommands\UnMuteConferenceParticipant\**" />
     <EmbeddedResource Remove="Entities\Messages\**" />
     <None Remove="Entities\Calls\CallInformations\**" />
     <None Remove="Entities\Calls\CallWebhooks\**" />
+    <None Remove="Entities\Calls\ConferenceCommands\HoldConferenceParticipant\**" />
+    <None Remove="Entities\Calls\ConferenceCommands\JoinConference\**" />
+    <None Remove="Entities\Calls\ConferenceCommands\MuteConferenceParticipant\**" />
+    <None Remove="Entities\Calls\ConferenceCommands\UnHoldConferenceParticipant\**" />
+    <None Remove="Entities\Calls\ConferenceCommands\UnMuteConferenceParticipant\**" />
     <None Remove="Entities\Messages\**" />
   </ItemGroup>
 
@@ -112,15 +127,6 @@
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.1' ">
     <DefineConstants>$(DefineConstants);NETCORE3;NETSTANDARD21</DefineConstants>
   </PropertyGroup>
-
-
-  <ItemGroup>
-    <Folder Include="Entities\Calls\ConferenceCommands\HoldConferenceParticipant\" />
-    <Folder Include="Entities\Calls\ConferenceCommands\JoinConference\" />
-    <Folder Include="Entities\Calls\ConferenceCommands\MuteConferenceParticipant\" />
-    <Folder Include="Entities\Calls\ConferenceCommands\UnHoldConferenceParticipant\" />
-    <Folder Include="Entities\Calls\ConferenceCommands\UnMuteConferenceParticipant\" />
-  </ItemGroup>
 
 
 </Project>
