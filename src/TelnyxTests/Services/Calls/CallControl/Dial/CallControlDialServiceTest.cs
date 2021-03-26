@@ -36,7 +36,9 @@ namespace TelnyxTests.Services.Calls.CallCommands
                 TimeoutSecs = 100,
                 To = "+18005550100",
                 ClientState = "aGF2ZSBhIG5pY2UgZGF5ID1d",
-                CommandId = new System.Guid("891510ac-f3e4-11e8-af5b-de00688a4901")
+                CommandId = new System.Guid("891510ac-f3e4-11e8-af5b-de00688a4901"),
+                WebhookUrl = "https://test.com/api/v1/testApi",
+                WebhookUrlMethod = WebhookUrlMethods.POST
             };
         }
 
