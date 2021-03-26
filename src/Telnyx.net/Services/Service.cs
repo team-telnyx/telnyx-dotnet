@@ -618,7 +618,6 @@ namespace Telnyx
                     page = await this.GetRequestAsync<TelnyxList<T>>(url, options, requestOptions, true, ct);
                     if (page != null && page.Data != null && page.Data.Any())
                     {
-                        //page.PageInfo.NextPageUrl = page.Url.Replace($"page[number]={options.PageNumber}", $"page[number]={page.PageInfo.NextPage}");
                         listOfEntities.AddRange(page.Data);
                     }
                 }
@@ -652,8 +651,6 @@ namespace Telnyx
             {
                 options = new ListOptions();
             }
-            // page.PageInfo.NextPageUrl = page.Url.Replace($"page[number]={options.PageNumber}", $"page[number]={page.PageInfo.NextPage}");
-
             if (page.HasMore && options.NumberOfPagesToFetch.HasValue
                 && options.NumberOfPagesToFetch > 1)
             {
@@ -666,7 +663,6 @@ namespace Telnyx
                     page = await this.GetRequestAsync<TelnyxList<T>>(url, options, requestOptions, true, ct);
                     if (page != null && page.Data != null && page.Data.Any())
                     {
-                        // page.PageInfo.NextPageUrl = page.Url.Replace($"page[number]={options.PageNumber}", $"page[number]={page.PageInfo.NextPage}");
                         listOfEntities.AddRange(page.Data);
                     }
                     count++;
