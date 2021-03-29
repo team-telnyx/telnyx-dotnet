@@ -29,7 +29,6 @@
 
         /// <summary>HTTP request type used for `webhook_url`.</summary>
         [JsonProperty("webhook_url_method")]
-        [JsonConverter(typeof(StringEnumConverter))]
         public WebhookUrlMethods WebhookUrlMethod { get; set; } = WebhookUrlMethods.POST;
 
     }

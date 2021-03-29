@@ -3,6 +3,7 @@
     using System;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
     using Telnyx.net.Services.Calls.Models;
 
     /// <summary>
@@ -98,6 +99,19 @@
         /// </summary>
         [JsonProperty("sip_auth_password")]
         public string SipAuthPassword { get; set; }
+
+        /// <summary>
+        /// Use this field to override the URL for which Telnyx will send subsequent webhooks to for this call.
+        /// </summary>
+        [JsonProperty("webhook_url")]
+        public string WebhookUrl { get; set; }
+
+        /// <summary>
+        /// HTTP request type used for `webhook_url`.
+        /// <para>Default: POST</para>
+        /// </summary>
+        [JsonProperty("webhook_url_method")]
+        public WebhookUrlMethods WebhookUrlMethod { get; set; } = WebhookUrlMethods.POST;
     }
 
 }
