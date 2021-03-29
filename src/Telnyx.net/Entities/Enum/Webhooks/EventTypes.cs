@@ -85,5 +85,17 @@
 
         [EnumMember(Value = "fax.sending.started")]
         FaxSendingStarted = 25,
+
+        [EnumMember(Value = "call.transcription")]
+        CallTranscription = 25,
+
+        [EnumMember(Value = "call.refer.completed")]
+        CallReferCompleted = 26,
+
+        [EnumMember(Value = "call.refer.started")]
+        CallReferStarted = 27,
+
+        [EnumMember(Value = "call.refer.failed")]
+        CallReferFailed = 28,
     }
 }
