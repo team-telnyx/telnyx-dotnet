@@ -24,8 +24,6 @@ namespace Telnyx.net.Services.Calls.CallCommands
         private readonly CallControlHangupService callControlHangupService;
         private readonly CallControlPlaybackStartService callControlPlaybackStartService;
         private readonly CallControlPlaybackStopService callControlPlaybackStopService;
-        private readonly CallControlRecordStartService callControlRecordStartService;
-        private readonly CallControlRecordStopService callControlRecordStopService;
         private readonly CallControlRejectService callControlRejectService;
         private readonly CallControlSendDTMFService callControlSendDTMFService;
         private readonly CallControlTransferService callControlTransferService;
@@ -47,8 +45,6 @@ namespace Telnyx.net.Services.Calls.CallCommands
             this.callControlHangupService = new CallControlHangupService();
             this.callControlPlaybackStartService = new CallControlPlaybackStartService();
             this.callControlPlaybackStopService = new CallControlPlaybackStopService();
-            this.callControlRecordStartService = new CallControlRecordStartService();
-            this.callControlRecordStopService = new CallControlRecordStopService();
             this.callControlRejectService = new CallControlRejectService();
             this.callControlSendDTMFService = new CallControlSendDTMFService();
             this.callControlTransferService = new CallControlTransferService();
@@ -119,22 +115,12 @@ namespace Telnyx.net.Services.Calls.CallCommands
             return this.callControlPlaybackStopService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
-        public virtual CallRecordStartResponse RecordStart(CallControlRecordStartOptions options, string postFix = "actions/record_start", RequestOptions requestOptions = null)
-        {
-            return this.callControlRecordStartService.Create(this.CallControlId, options, postFix, requestOptions);
-        }
-
-        public virtual CallRecordStopResponse RecordStop(CallControlRecordStopOptions options, string postFix = "actions/record_stop", RequestOptions requestOptions = null)
-        {
-            return this.callControlRecordStopService.Create(this.CallControlId, options, postFix, requestOptions);
-        }
-
         public virtual TelnyxApiResponse RecordStart(RecordStartOptions options, RequestOptions requestOptions = null)
         {
             return this.recordActionService.Start(this.CallControlId, options, requestOptions);
         }
 
-        public virtual TelnyxApiResponse RecordStopped(RecordActionOptions options, RequestOptions requestOptions = null)
+        public virtual TelnyxApiResponse RecordStop(RecordActionOptions options, RequestOptions requestOptions = null)
         {
             return this.recordActionService.Stop(this.CallControlId, options, requestOptions);
         }
