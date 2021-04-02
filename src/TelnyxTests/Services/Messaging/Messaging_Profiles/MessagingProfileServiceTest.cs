@@ -26,7 +26,7 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
         private readonly NewMessagingProfile createOptions;
         private readonly MessagingProfileUpdate updateOptions;
         private readonly MockMessagingProfilePhoneNumbersService _mockServiceForListMethod;
-        private readonly ListMessagingProfilesPhoneNumbersOptions listOptions;
+        private readonly ListOptions listOptions;
         private readonly RequestOptions requestOptions;
         private readonly CancellationToken cancellationToken;
 
@@ -241,7 +241,7 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
 
     }
     internal class MockMessagingProfilePhoneNumbersService : ServiceNested<MockMessagingPhoneNumber>,
-    INestedListable<MockMessagingPhoneNumber, ListMessagingProfilesPhoneNumbersOptions>
+    INestedListable<MockMessagingPhoneNumber, ListOptions>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MessagingProfilePhoneNumbersService"/> class.
@@ -264,23 +264,23 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
         public override string BasePath => "/messaging_profiles/{PARENT_ID}/phone_numbers";
 
         /// <inheritdoc/>
-        public TelnyxList<MockMessagingPhoneNumber> List(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null)
+        public TelnyxList<MockMessagingPhoneNumber> List(string id, ListOptions listOptions = null, RequestOptions requestOptions = null)
         {
             return this.ListNestedEntities(id, listOptions, requestOptions);
         }
         /// <inheritdoc/>
-        public async Task<TelnyxList<MockMessagingPhoneNumber>> ListAsync(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TelnyxList<MockMessagingPhoneNumber>> ListAsync(string id, ListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await this.ListNestedEntitiesAsync(id, listOptions, requestOptions, cancellationToken);
         }
         /// <inheritdoc/>
-        public IEnumerable<MockMessagingPhoneNumber> ListPaged(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null)
+        public IEnumerable<MockMessagingPhoneNumber> ListPaged(string id, ListOptions listOptions = null, RequestOptions requestOptions = null)
         {
             return this.ListEntitiesAutoPaging(id, listOptions, requestOptions);
         }
 
         /// <inheritdoc/>
-        public async Task<IEnumerable<MockMessagingPhoneNumber>> ListPagedAsync(string id, ListMessagingProfilesPhoneNumbersOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<IEnumerable<MockMessagingPhoneNumber>> ListPagedAsync(string id, ListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await this.ListNestedEntitiesAutoPagingAsync(id, listOptions, requestOptions, cancellationToken);
         }
