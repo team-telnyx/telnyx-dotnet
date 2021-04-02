@@ -1,13 +1,9 @@
-﻿namespace Telnyx
-{
-    using System;
-    using System.Runtime.Serialization;
-    using Newtonsoft.Json;
+﻿using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
-    /// <summary>
-    /// Class for call control record start create options.
-    /// </summary>
-    public class CallControlRecordStartOptions : BaseOptions
+namespace Telnyx.net.Services.Calls.CallControl.RecordActions
+{
+    public class RecordStartOptions : RecordActionOptions
     {
         /// <summary>
         /// The audio file format used when storing the call recording.
@@ -48,47 +44,27 @@
             [EnumMember(Value = "dual")]
             DualEnum = 1,
         }
+        /// <summary>
+        /// When `dual`, final audio file will be stereo recorded with the first leg on channel A, and the rest on channel B.
+        /// <para>Example: "dual"</para>
+        /// <para>Options: ["single", "dual"]</para>
+        /// </summary>
+        [JsonProperty("channels")]
+        public ChannelEnum? Channels { get; set; }
 
         /// <summary>
         /// The audio file format used when storing the call recording. Can be either `mp3` or `wav`.
+        /// <para>Example: "mp3"</para>
+        /// <para>Options: ["mp3", "wav"]</para>
         /// </summary>
         [JsonProperty("format")]
         public FormatEnum? Format { get; set; }
-
-        /// <summary>
-        /// Gets or sets field to add state to every subsequent webhook. It must be a valid Base-64 encoded string.
-        /// </summary>
-        [JsonProperty("client_state")]
-        public string ClientState { get; set; }
-
-        /// <summary>
-        /// When `dual`, final audio file will be stereo recorded with the first leg on channel A, and the rest on channel B.
-        /// Example: "single".
-        /// </summary>
-        [JsonProperty("channels")]
-        public ChannelEnum? Channel { get; set; }
-
-        /// <summary>
-        /// Use this field to avoid duplicate commands. Telnyx will ignore commands with the same `command_id`.
-        /// </summary>
-        [JsonProperty("command_id")]
-        public Guid CommandId { get; set; }
 
         /// <summary>
         /// If enabled, a beep sound will be played at the start of a recording.
         /// </summary>
         [JsonProperty("play_beep")]
         public bool PlayBeep { get; set; }
-        /// <summary>
-        /// URL where to make its GET or POST request when the recording is available.
-        /// </summary>
-        [JsonProperty("status_callback")]
-        public string StatusCallback { get; set; }
 
-        /// <summary>
-        /// HTTP request type used for status_callback. Defaults to POST.
-        /// </summary>
-        [JsonProperty("status_callback_method")]
-        public string StatusCallbackMethod { get; set; } = "POST";
     }
 }

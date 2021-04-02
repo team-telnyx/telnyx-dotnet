@@ -8,7 +8,7 @@ namespace Telnyx.net.Services.Calls.CallControl.GatherStop
     {
         public override string BasePath => "/calls";
 
-        public override string PostPath => "/actions/gather_stop";
+        public override string PostPath => "actions/gather_stop";
 
         public GatherStopService()
             :base(null)
@@ -22,7 +22,7 @@ namespace Telnyx.net.Services.Calls.CallControl.GatherStop
 
         }
 
-        public TelnyxApiResponse Stop(string id, GatherStopOptions options, RequestOptions requestOptions)
+        public TelnyxApiResponse Stop(string id, GatherStopOptions options, RequestOptions requestOptions = null)
         {
             return this.CreateEntity(id, this.PostPath, options, requestOptions);
         }

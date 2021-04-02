@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using Telnyx.net.Entities;
 using Telnyx.net.Services.Calls.CallControl.GatherStop;
 using Telnyx.net.Services.Calls.CallControl.RecordActions;
+using Telnyx.net.Services.Calls.CallControl.Refer;
+using Telnyx.net.Services.Calls.CallControl.Transcriptions;
 
 namespace Telnyx.net.Services.Calls.CallCommands
 {
@@ -20,13 +24,13 @@ namespace Telnyx.net.Services.Calls.CallCommands
         private readonly CallControlHangupService callControlHangupService;
         private readonly CallControlPlaybackStartService callControlPlaybackStartService;
         private readonly CallControlPlaybackStopService callControlPlaybackStopService;
-        private readonly CallControlRecordStartService callControlRecordStartService;
-        private readonly CallControlRecordStopService callControlRecordStopService;
         private readonly CallControlRejectService callControlRejectService;
         private readonly CallControlSendDTMFService callControlSendDTMFService;
         private readonly CallControlTransferService callControlTransferService;
         private readonly GatherStopService gatherStopService;
         private readonly RecordActionService recordActionService;
+        private readonly CallTranscriptionService transcriptionService;
+        private readonly CallControlReferService referService;
 
         public CallControlService()
         {
@@ -41,13 +45,12 @@ namespace Telnyx.net.Services.Calls.CallCommands
             this.callControlHangupService = new CallControlHangupService();
             this.callControlPlaybackStartService = new CallControlPlaybackStartService();
             this.callControlPlaybackStopService = new CallControlPlaybackStopService();
-            this.callControlRecordStartService = new CallControlRecordStartService();
-            this.callControlRecordStopService = new CallControlRecordStopService();
             this.callControlRejectService = new CallControlRejectService();
             this.callControlSendDTMFService = new CallControlSendDTMFService();
             this.callControlTransferService = new CallControlTransferService();
             this.gatherStopService = new GatherStopService();
             this.recordActionService = new RecordActionService();
+            this.transcriptionService = new CallTranscriptionService();
         }
 
         public string CallControlId { get; set; }
@@ -112,14 +115,14 @@ namespace Telnyx.net.Services.Calls.CallCommands
             return this.callControlPlaybackStopService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
-        public virtual CallRecordStartResponse RecordStart(CallControlRecordStartOptions options, string postFix = "actions/record_start", RequestOptions requestOptions = null)
+        public virtual TelnyxApiResponse RecordStart(RecordStartOptions options, RequestOptions requestOptions = null)
         {
-            return this.callControlRecordStartService.Create(this.CallControlId, options, postFix, requestOptions);
+            return this.recordActionService.Start(this.CallControlId, options, requestOptions);
         }
 
-        public virtual CallRecordStopResponse RecordStop(CallControlRecordStopOptions options, string postFix = "actions/record_stop", RequestOptions requestOptions = null)
+        public virtual TelnyxApiResponse RecordStop(RecordActionOptions options, RequestOptions requestOptions = null)
         {
-            return this.callControlRecordStopService.Create(this.CallControlId, options, postFix, requestOptions);
+            return this.recordActionService.Stop(this.CallControlId, options, requestOptions);
         }
 
         public virtual TelnyxApiResponse RecordPause(RecordActionOptions options, RequestOptions requestOptions = null)
@@ -145,6 +148,36 @@ namespace Telnyx.net.Services.Calls.CallCommands
         public virtual CallTransferResponse Transfer(CallControlTransferOptions options, string postFix = "actions/transfer", RequestOptions requestOptions = null)
         {
             return this.callControlTransferService.Create(this.CallControlId, options, postFix, requestOptions);
+        }
+
+        public virtual TelnyxApiResponse StartTranscription(string id, TranscriptionStartOptions options, RequestOptions requestOptions = null)
+        {
+            return this.transcriptionService.Start(id, options, requestOptions);
+        }
+
+        public virtual TelnyxApiResponse StopTranscription(string id, TranscriptionOptions options, RequestOptions requestOptions = null)
+        {
+            return this.transcriptionService.Stop(id, options, requestOptions);
+        }
+
+        public virtual async Task<TelnyxApiResponse> StartTranscriptionAsync(string id, TranscriptionStartOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.transcriptionService.StartAsync(id, options, requestOptions, ct);
+        }
+
+        public virtual async Task<TelnyxApiResponse> StopTranscriptionAsync(string id, TranscriptionOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.transcriptionService.StopAsync(id, options, requestOptions, ct);
+        }
+
+        public virtual async Task<TelnyxApiResponse> ReferCallAsync(string id, ReferOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.referService.ReferAsync(id, options, requestOptions, ct);
+        }
+
+        public virtual TelnyxApiResponse ReferCall(string id, ReferOptions options, RequestOptions requestOptions = null)
+        {
+            return this.referService.Refer(id, options, requestOptions);
         }
     }
 }

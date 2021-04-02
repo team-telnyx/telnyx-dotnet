@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Telnyx.net.Entities;
 using Telnyx.net.Services.Calls.CallCommands;
+using Telnyx.net.Services.Calls.CallControl.RecordActions;
 
 namespace Telnyx.Example
 {
@@ -248,10 +250,10 @@ namespace Telnyx.Example
             return response;
         }
 
-        public CallRecordStartResponse RecordStart()
+        public TelnyxApiResponse RecordStart()
         {
-            CallRecordStartResponse response = new CallRecordStartResponse();
-            CallControlRecordStartOptions options = new CallControlRecordStartOptions
+            TelnyxApiResponse response = new TelnyxApiResponse();
+            RecordStartOptions options = new RecordStartOptions
             {
 
             };
@@ -270,10 +272,10 @@ namespace Telnyx.Example
             return response;
         }
 
-        public CallRecordStopResponse RecordStop()
+        public TelnyxApiResponse RecordStop()
         {
-            CallRecordStopResponse response = new CallRecordStopResponse();
-            CallControlRecordStopOptions options = new CallControlRecordStopOptions
+            TelnyxApiResponse response = new TelnyxApiResponse();
+            RecordActionOptions options = new RecordActionOptions
             {
 
             };
