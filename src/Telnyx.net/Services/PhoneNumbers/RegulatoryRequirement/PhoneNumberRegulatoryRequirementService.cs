@@ -11,7 +11,7 @@ namespace Telnyx.net.Services.PhoneNumbers.RegulatoryRequirement
 {
     public class PhoneNumberRegulatoryRequirementService : Service<RegulatoryRequirementPerPhone>
     {
-        public override string BasePath => "/phone_number_regulatory_requirements";
+        public override string BasePath => "/phone_numbers_regulatory_requirements";
         public PhoneNumberRegulatoryRequirementService():base(null)
         {
 
