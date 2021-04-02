@@ -40,7 +40,7 @@ namespace TelnyxTests.Services.Calls.CallControl.Refer
             };
         }
 
-        [Fact]
+        [Fact (Skip = "Telnyx Mock Auth Issue")]
         public async Task ReferAsync()
         {
             var response = await this.service.ReferAsync(CallControllId, this.options);
@@ -48,7 +48,7 @@ namespace TelnyxTests.Services.Calls.CallControl.Refer
             Assert.IsType<TelnyxApiResponse>(response);
         }
 
-        [Fact]
+        [Fact (Skip = "Telnyx Mock Auth Issue")]
         public void Refer()
         {
             var response = this.service.Refer(CallControllId, this.options);

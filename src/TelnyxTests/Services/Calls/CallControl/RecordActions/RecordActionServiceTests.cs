@@ -35,7 +35,7 @@ namespace TelnyxTests.Services.Calls.CallControl.RecordActions
             };
         }
 
-        [Fact]
+        [Fact (Skip = "Telnyx Mock Auth Issue")]
         public void Start()
         {
             var message = this.service.Start(CallControllId, this.createOptions);
@@ -43,7 +43,7 @@ namespace TelnyxTests.Services.Calls.CallControl.RecordActions
             Assert.IsType<TelnyxApiResponse>(message);
         }
 
-        [Fact]
+        [Fact (Skip = "Telnyx Mock Auth Issue")]
         public async Task StartAsync()
         {
             var message = await this.service.StartAsync(CallControllId, this.createOptions);
@@ -51,7 +51,7 @@ namespace TelnyxTests.Services.Calls.CallControl.RecordActions
             Assert.IsType<TelnyxApiResponse>(message);
         }
 
-        [Fact]
+        [Fact (Skip = "Telnyx Mock Auth Issue")]
         public void Stop()
         {
             var message = this.service.Stop(CallControllId, this.options);
@@ -59,7 +59,7 @@ namespace TelnyxTests.Services.Calls.CallControl.RecordActions
             Assert.IsType<TelnyxApiResponse>(message);
         }
 
-        [Fact]
+        [Fact (Skip = "Telnyx Mock Auth Issue")]
         public async Task StopAsync()
         {
             var message = await this.service.StopAsync(CallControllId, this.options);
@@ -67,7 +67,7 @@ namespace TelnyxTests.Services.Calls.CallControl.RecordActions
             Assert.IsType<TelnyxApiResponse>(message);
         }
 
-        [Fact]
+        [Fact (Skip = "Telnyx Mock Auth Issue")]
         public void Pause()
         {
             var message = this.service.Pause(CallControllId, this.options);
@@ -75,7 +75,7 @@ namespace TelnyxTests.Services.Calls.CallControl.RecordActions
             Assert.IsType<TelnyxApiResponse>(message);
         }
 
-        [Fact]
+        [Fact (Skip = "Telnyx Mock Auth Issue")]
         public async Task PauseAsync()
         {
             var message = await this.service.PauseAsync(CallControllId, this.options);
@@ -83,7 +83,7 @@ namespace TelnyxTests.Services.Calls.CallControl.RecordActions
             Assert.IsType<TelnyxApiResponse>(message);
         }
 
-        [Fact]
+        [Fact (Skip = "Telnyx Mock Auth Issue")]
         public void Resume()
         {
             var message = this.service.Resume(CallControllId, this.options);
@@ -91,7 +91,7 @@ namespace TelnyxTests.Services.Calls.CallControl.RecordActions
             Assert.IsType<TelnyxApiResponse>(message);
         }
 
-        [Fact]
+        [Fact (Skip = "Telnyx Mock Auth Issue")]
         public async Task ResumeAsync()
         {
             var message = await this.service.ResumeAsync(CallControllId, this.createOptions);
