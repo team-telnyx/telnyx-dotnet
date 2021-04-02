@@ -8,7 +8,7 @@ namespace Telnyx.net.Services.Calls.CallControl.GatherStop
     {
         public override string BasePath => "/calls";
 
-        public override string PostPath => "/actions/gather_stop";
+        public override string PostPath => "actions/gather_stop";
 
         public GatherStopService()
             :base(null)

@@ -35,7 +35,7 @@ namespace TelnyxTests.Services.Calls.CallControl.Transcriptions
             };
         }
 
-        [Fact (Skip = "Telnyx Mock Auth Issue")]
+        [Fact]
         public async Task StartAsync()
         {
             var response = await this.service.StartAsync(CallControllId, this.startOptions);
@@ -43,7 +43,7 @@ namespace TelnyxTests.Services.Calls.CallControl.Transcriptions
             Assert.IsType<TelnyxApiResponse>(response);
         }
 
-        [Fact (Skip = "Telnyx Mock Auth Issue")]
+        [Fact]
         public void Start()
         {
             var response = this.service.Start(CallControllId, this.startOptions);
@@ -51,7 +51,7 @@ namespace TelnyxTests.Services.Calls.CallControl.Transcriptions
             Assert.IsType<TelnyxApiResponse>(response);
         }
 
-        [Fact (Skip = "Telnyx Mock Auth Issue")]
+        [Fact]
         public async Task StopAsync()
         {
             var response = await this.service.StopAsync(CallControllId, this.stopOptions);
@@ -59,7 +59,7 @@ namespace TelnyxTests.Services.Calls.CallControl.Transcriptions
             Assert.IsType<TelnyxApiResponse>(response);
         }
 
-        [Fact (Skip = "Telnyx Mock Auth Issue")]
+        [Fact]
         public void Stop()
         {
             var response = this.service.Stop(CallControllId, this.stopOptions);

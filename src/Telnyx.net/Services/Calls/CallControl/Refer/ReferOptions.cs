@@ -37,11 +37,13 @@ namespace Telnyx.net.Services.Calls.CallControl.Refer
         /// <summary>
         /// SIP Authentication password used for SIP challenges.
         /// </summary>
+        [JsonProperty("sip_auth_password")]
         public string SIPAuthPassword { get; set; }
 
         /// <summary>
         /// SIP Authentication username used for SIP challenges.
         /// </summary>
+        [JsonProperty("sip_auth_username")]
         public string SIPAuthUserName { get; set; }
     }
 
@@ -50,11 +52,13 @@ namespace Telnyx.net.Services.Calls.CallControl.Refer
         /// <summary>
         /// The name of the header value to add.
         /// </summary>
+        [JsonProperty("name")]
         public string Name { get; set; }
 
         /// <summary>
         /// The value of the header.
         /// </summary>
+        [JsonProperty("value")]
         public string Value { get; set; }
     }
 

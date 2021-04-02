@@ -20,13 +20,13 @@ namespace Telnyx.net.Services.Calls.CallControl.RecordActions
 
         public override string BasePath => "/calls";
 
-        private string recordPausePath => "/actions/record_pause";
+        private string recordPausePath => "actions/record_pause";
 
-        private string recordResumePath => "/actions/record_resume";
+        private string recordResumePath => "actions/record_resume";
 
-        private string recordStartPath => "/actions/record_start";
+        private string recordStartPath => "actions/record_start";
 
-        private string recordStopPath => "/actions/record_stop";
+        private string recordStopPath => "actions/record_stop";
 
         public TelnyxApiResponse Pause(string id, RecordActionOptions options, RequestOptions requestOptions = null)
         {

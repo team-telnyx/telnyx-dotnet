@@ -20,7 +20,7 @@ namespace Telnyx.net.Services.Calls.CallControl.Refer
 
         public override string BasePath => "/calls";
 
-        public override string PostPath => "/actions/refer";
+        public override string PostPath => "actions/refer";
 
         public TelnyxApiResponse Refer(string id, ReferOptions options, RequestOptions requestOptions = null)
         {

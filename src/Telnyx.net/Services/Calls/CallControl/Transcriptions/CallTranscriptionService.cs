@@ -24,9 +24,9 @@ namespace Telnyx.net.Services.Calls.CallControl.Transcriptions
 
         public override string BasePath => "/calls";
 
-        private string transcriptionStartPath => "/actions/transcription_start";
+        private string transcriptionStartPath => "actions/transcription_start";
 
-        private string transcriptionStopPath => "/actions/transcription_stop";
+        private string transcriptionStopPath => "actions/transcription_stop";
 
         public async Task<TelnyxApiResponse> StartAsync(string id, TranscriptionStartOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
