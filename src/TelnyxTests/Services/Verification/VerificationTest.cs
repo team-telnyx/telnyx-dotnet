@@ -130,7 +130,7 @@ namespace TelnyxTests.Services.Verification
             Assert.Equal(typeof(TelnyxList<Verify>), result.GetType());
             Assert.Equal(typeof(TelnyxList<Verify>), resultAsync.GetType());
         }
-        [Fact(Skip = "Mock not working, not recognizing auth header")]
+        [Fact]
         public async Task Submit2FACode()
         {
             var result = this._verificationService.SubmitVerificationCode("+13100000010", this.codeOptions);
