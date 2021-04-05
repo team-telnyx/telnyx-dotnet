@@ -11,6 +11,7 @@ namespace Telnyx
     using System.Web;
     using Telnyx.Infrastructure;
     using Telnyx.net.Entities;
+    using Telnyx.net.Services;
 
     /// <summary>
     /// Service.
@@ -836,9 +837,9 @@ namespace Telnyx
         {
             var postPath = postFix ?? this.PostPath;
             if (string.IsNullOrEmpty(id))
-                return $"{this.ClassUrl(baseUrl)}/{postPath}";
+                return this.ClassUrl(baseUrl).UrlCombine(postPath);
             else
-                return $"{this.ClassUrl(baseUrl)}/{WebUtility.UrlEncode(id)}/{postPath}";
+                return this.ClassUrl(baseUrl).UrlCombine(WebUtility.UrlEncode(id), postPath);
         }
         /// <summary>
         /// ClassUrl.
@@ -849,7 +850,7 @@ namespace Telnyx
         {
 
             baseUrl = baseUrl ?? TelnyxConfiguration.GetApiBase();
-            return $"{baseUrl}{this.BasePath}";
+            return baseUrl.UrlCombine(this.BasePath);
         }
 
         /// <summary>
@@ -860,7 +861,7 @@ namespace Telnyx
         /// <returns>url.</returns>
         protected virtual string InstanceUrl(string id, string baseUrl = null)
         {
-            return $"{this.ClassUrl(baseUrl)}/{WebUtility.UrlEncode(id)}";
+            return this.ClassUrl(baseUrl).UrlCombine(WebUtility.UrlEncode(id));
         }
     }
 }

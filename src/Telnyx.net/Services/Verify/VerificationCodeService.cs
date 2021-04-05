@@ -15,7 +15,7 @@ namespace Telnyx.net.Services.VerifyAPI
         {
         }
         public override string BasePath => "/verifications/by_phone_number";
-        public override string PostPath => "/actions/verify";
+        public override string PostPath => "actions/verify";
 
         public async Task<VerifyCode> PostAsync(string phone, VerifyCodeOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
