@@ -31,7 +31,8 @@ namespace Telnyx.Example
                 CommandId = new Guid("891510ac-f3e4-11e8-af5b-de00688a4901"),
                 LinkTo =  "ilditnZK_eVysupV21KzmzN_sM29ygfauQojpm4BgFtfX5hXAcjotg==",
                 SipAuthUsername = "string",
-                SipAuthPassword = "string"
+                SipAuthPassword = "string",
+                FromDisplayName = "string"
             };
             Console.WriteLine(JsonConvert.SerializeObject(callControlDialOptions));
 
