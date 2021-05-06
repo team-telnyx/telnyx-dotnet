@@ -5,7 +5,7 @@
     <Description>Telnyx.net is a sync/async .NET Framework 4.5+ and .NETStandard 2.0 client, and a portable class library for the Telnyx API. (Official Library)</Description>
     <AssemblyTitle>Telnyx.net</AssemblyTitle>
     <VersionPrefix>25.13.0</VersionPrefix>
-    <Version>2.6.0</Version>
+    <Version>2.6.1</Version>
     <Authors>Telnyx</Authors>
     <TargetFrameworks>net45;netstandard2.0;net452;netstandard2.1</TargetFrameworks>
     <AssemblyName>Telnyx.net</AssemblyName>
