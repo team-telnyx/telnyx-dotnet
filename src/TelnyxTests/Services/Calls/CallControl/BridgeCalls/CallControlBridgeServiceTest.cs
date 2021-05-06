@@ -24,7 +24,7 @@ namespace TelnyxTests.Services.Calls.CallCommands
 
             this.createOptions = new CallControlBridgeOptions()
             {
-                CallControlId = new System.Guid("c8ac9611-25c3-494a-b8b4-2f036a18a6b2"),
+                CallControlId = "c8ac9611-25c3-494a-b8b4-2f036a18a6b2",
                 ClientState = "aGF2ZSBhIG5pY2UgZGF5ID1d",
                 CommandId = new System.Guid("891510ac-f3e4-11e8-af5b-de00688a4901"),
                 ParkAfterUnbridge = "self"

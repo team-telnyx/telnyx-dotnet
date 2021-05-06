@@ -12,7 +12,7 @@
         /// Gets or sets the call control id of the call you want to bridge with.
         /// </summary>
         [JsonProperty("call_control_id")]
-        public Guid CallControlId { get; set; }
+        public string CallControlId { get; set; }
 
         /// <summary>
         /// Gets or sets use this field to add state to every subsequent webhook. It must be a valid Base-64 encoded string.
