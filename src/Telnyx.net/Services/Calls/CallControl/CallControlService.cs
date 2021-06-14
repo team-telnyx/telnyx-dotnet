@@ -60,9 +60,19 @@ namespace Telnyx.net.Services.Calls.CallCommands
             return this.callControlAnswerService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
+        public virtual async Task<CallAnswerResponse> AnswerAsync(CallControlAnswerOptions options, string postFix = "actions/answer", RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.callControlAnswerService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
+        }
+
         public virtual CallDialResponse Dial(CallControlDialOptions options, RequestOptions requestOptions = null)
         {
             return this.callControlDialService.Create(options, requestOptions);
+        }
+
+        public virtual async Task<CallDialResponse> DialAsync(CallControlDialOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.callControlDialService.CreateAsync(options, requestOptions, ct);
         }
 
         public virtual CallSpeakResponse Speak(CallControlSpeakOptions options, string postFix = "actions/speak", RequestOptions requestOptions = null)
@@ -70,9 +80,20 @@ namespace Telnyx.net.Services.Calls.CallCommands
             return this.callControlSpeakService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
+        public virtual async Task<CallSpeakResponse> SpeakAsync(CallControlSpeakOptions options, string postFix = "actions/speak", RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.callControlSpeakService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
+        }
+
         public virtual CallBridgeResponse Bridge(CallControlBridgeOptions options, string postFix = "actions/bridge", RequestOptions requestOptions = null)
         {
             return this.callControlBridgeService.Create(this.CallControlId, options, postFix, requestOptions);
+        }
+
+
+        public virtual async Task<CallBridgeResponse> BridgeAsync(CallControlBridgeOptions options, string postFix = "actions/bridge", RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.callControlBridgeService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
         }
 
         public virtual CallForkStartResponse ForkStart(CallControlForkStartOptions options, string postFix = "actions/fork_start", RequestOptions requestOptions = null)
@@ -80,9 +101,20 @@ namespace Telnyx.net.Services.Calls.CallCommands
             return this.callControlForkStartService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
+
+        public virtual async Task<CallForkStartResponse> ForkStartAsync(CallControlForkStartOptions options, string postFix = "actions/fork_start", RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.callControlForkStartService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
+        }
+
         public virtual CallForkStopResponse ForkStop(CallControlForkStopOptions options, string postFix = "actions/fork_stop", RequestOptions requestOptions = null)
         {
             return this.callControlForkStopService.Create(this.CallControlId, options, postFix, requestOptions);
+        }
+
+        public virtual async Task<CallForkStopResponse> ForkStopAsync(CallControlForkStopOptions options, string postFix = "actions/fork_stop", RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.callControlForkStopService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
         }
 
         public virtual CallGatherUsingAudioResponse GatherUsingAudio(CallControlGatherUsingAudioOptions options, string postFix = "actions/gather_using_audio", RequestOptions requestOptions = null)
@@ -90,9 +122,19 @@ namespace Telnyx.net.Services.Calls.CallCommands
             return this.callControlGatherUsingAudioService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
+        public virtual async Task<CallGatherUsingAudioResponse> GatherUsingAudioAsync(CallControlGatherUsingAudioOptions options, string postFix = "actions/gather_using_audio", RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.callControlGatherUsingAudioService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
+        }
+
         public virtual CallGatherUsingSpeakResponse GatherUsingSpeak(CallControlGatherUsingSpeakOptions options, string postFix = "actions/gather_using_speak", RequestOptions requestOptions = null)
         {
             return this.callControlGatherUsingSpeakService.Create(this.CallControlId, options, postFix, requestOptions);
+        }
+
+        public virtual async Task<CallGatherUsingSpeakResponse> GatherUsingSpeakAsync(CallControlGatherUsingSpeakOptions options, string postFix = "actions/gather_using_speak", RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.callControlGatherUsingSpeakService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
         }
 
         public virtual TelnyxApiResponse GatherStop(GatherStopOptions options, RequestOptions requestOptions = null)
@@ -100,9 +142,19 @@ namespace Telnyx.net.Services.Calls.CallCommands
             return this.gatherStopService.Stop(this.CallControlId, options, requestOptions);
         }
 
+        public virtual async Task<TelnyxApiResponse> GatherStopAsync(GatherStopOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.gatherStopService.StopAsync(this.CallControlId, options, requestOptions, ct);
+        }
+
         public virtual CallHangUpResponse HangUp(CallControlHangupOptions options, string postFix = "actions/hangup", RequestOptions requestOptions = null)
         {
             return this.callControlHangupService.Create(this.CallControlId, options, postFix, requestOptions);
+        }
+
+        public virtual async Task<CallHangUpResponse> HangUpAsync(CallControlHangupOptions options, string postFix = "actions/hangup", RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.callControlHangupService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
         }
 
         public virtual CallPlaybackStartResponse PlaybackStart(CallControlPlaybackStartOptions options, string postFix = "actions/playback_start", RequestOptions requestOptions = null)
@@ -110,9 +162,17 @@ namespace Telnyx.net.Services.Calls.CallCommands
             return this.callControlPlaybackStartService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
+        public virtual async Task<CallPlaybackStartResponse> PlaybackStartAsync(CallControlPlaybackStartOptions options, string postFix = "actions/playback_start", RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.callControlPlaybackStartService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
+        }
         public virtual CallPlaybackStopResponse PlaybackStop(CallControlPlaybackStopOptions options, string postFix = "actions/playback_stop", RequestOptions requestOptions = null)
         {
             return this.callControlPlaybackStopService.Create(this.CallControlId, options, postFix, requestOptions);
+        }
+        public virtual async Task<CallPlaybackStopResponse> PlaybackStopAsync(CallControlPlaybackStopOptions options, string postFix = "actions/playback_stop", RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.callControlPlaybackStopService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
         }
 
         public virtual TelnyxApiResponse RecordStart(RecordStartOptions options, RequestOptions requestOptions = null)
@@ -120,9 +180,19 @@ namespace Telnyx.net.Services.Calls.CallCommands
             return this.recordActionService.Start(this.CallControlId, options, requestOptions);
         }
 
+        public virtual async Task<TelnyxApiResponse> RecordStartAsync(RecordStartOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.recordActionService.StartAsync(this.CallControlId, options, requestOptions, ct);
+        }
+
         public virtual TelnyxApiResponse RecordStop(RecordActionOptions options, RequestOptions requestOptions = null)
         {
             return this.recordActionService.Stop(this.CallControlId, options, requestOptions);
+        }
+
+        public virtual async Task<TelnyxApiResponse> RecordStopAsync(RecordActionOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.recordActionService.StopAsync(this.CallControlId, options, requestOptions, ct);
         }
 
         public virtual TelnyxApiResponse RecordPause(RecordActionOptions options, RequestOptions requestOptions = null)
@@ -130,9 +200,19 @@ namespace Telnyx.net.Services.Calls.CallCommands
             return this.recordActionService.Pause(this.CallControlId, options, requestOptions);
         }
 
+        public virtual async Task<TelnyxApiResponse> RecordPauseAsync(RecordActionOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.recordActionService.PauseAsync(this.CallControlId, options, requestOptions, ct);
+        }
+
         public virtual TelnyxApiResponse RecordResume(RecordActionOptions options, RequestOptions requestOptions = null)
         {
             return this.recordActionService.Resume(this.CallControlId, options, requestOptions);
+        }
+
+        public virtual async Task<TelnyxApiResponse> RecordResumeAsync(RecordActionOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.recordActionService.ResumeAsync(this.CallControlId, options, requestOptions, ct);
         }
 
         public virtual CallRejectResponse Reject(CallControlRejectOptions options, string postFix = "actions/reject", RequestOptions requestOptions = null)
@@ -140,14 +220,29 @@ namespace Telnyx.net.Services.Calls.CallCommands
             return this.callControlRejectService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
+        public virtual async Task<CallRejectResponse> RejectAsync(CallControlRejectOptions options, string postFix = "actions/reject", RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.callControlRejectService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
+        }
+
         public virtual CallSendDTMFResponse SendDTMF(CallControlSendDTMFOptions options, string postFix = "actions/send_dtmf", RequestOptions requestOptions = null)
         {
             return this.callControlSendDTMFService.Create(this.CallControlId, options, postFix, requestOptions);
         }
 
+        public virtual async Task<CallSendDTMFResponse> SendDTMFAsync(CallControlSendDTMFOptions options, string postFix = "actions/send_dtmf", RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.callControlSendDTMFService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
+        }
+
         public virtual CallTransferResponse Transfer(CallControlTransferOptions options, string postFix = "actions/transfer", RequestOptions requestOptions = null)
         {
             return this.callControlTransferService.Create(this.CallControlId, options, postFix, requestOptions);
+        }
+
+        public virtual async Task<CallTransferResponse> TransferAsync(CallControlTransferOptions options, string postFix = "actions/transfer", RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+            return await this.callControlTransferService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
         }
 
         public virtual TelnyxApiResponse StartTranscription(string id, TranscriptionStartOptions options, RequestOptions requestOptions = null)
