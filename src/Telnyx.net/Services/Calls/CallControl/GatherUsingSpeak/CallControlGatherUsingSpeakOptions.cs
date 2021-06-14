@@ -98,7 +98,7 @@
         public string ValidDigits { get; set; }
 
         /// <summary>
-        /// Gets or sets the number of milliseconds to wait for input between digits. 
+        /// Gets or sets the number of milliseconds to wait for input between digits.
         /// Default: 5000.
         /// </summary>
         [JsonProperty("inter_digit_timeout_millis")]
