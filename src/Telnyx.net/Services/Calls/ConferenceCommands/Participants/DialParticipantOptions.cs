@@ -25,7 +25,7 @@ namespace Telnyx.net.Services.Calls.ConferenceCommands.Participants
         /// Use this field to avoid execution of duplicate commands. Telnyx will ignore subsequent commands with the same `command_id` as one that has already been executed.
         /// </summary>
         [JsonProperty("command_id")]
-        public Guid CommandId { get; set; }
+        public Guid? CommandId { get; set; }
 
         /// <summary>
         /// Whether the participant should be put on hold immediately after joining the conference.

@@ -24,7 +24,7 @@
         /// Gets or sets the call control id of the call you want to bridge with.
         /// </summary>
         [JsonProperty("command_id")]
-        public Guid CommandId { get; set; }
+        public Guid? CommandId { get; set; }
 
         /// <summary>
         /// Gets or sets dTMF digits to send. Valid digits are 0-9, A-D, *, and #. Pauses can be added using w (0.5s) and W (1s).
