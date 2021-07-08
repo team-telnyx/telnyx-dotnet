@@ -114,6 +114,6 @@
         /// Gets or sets use this field to avoid duplicate commands. Telnyx will ignore commands with the same.
         /// </summary>
         [JsonProperty("command_id")]
-        public Guid CommandId { get; set; }
+        public Guid? CommandId { get; set; }
     }
 }

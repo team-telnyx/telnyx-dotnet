@@ -49,6 +49,6 @@
         /// </summary>
         /// <value>Example: "891510ac-f3e4-11e8-af5b-de00688a4901".</value>
         [JsonProperty("command_id")]
-        public Guid CommandId { get; set; }
+        public Guid? CommandId { get; set; }
     }
 }

@@ -25,7 +25,7 @@
         /// </summary>
         /// <value>Example: "891510ac-f3e4-11e8-af5b-de00688a4901".</value>
         [JsonProperty("command_id")]
-        public Guid CommandId { get; set; }
+        public Guid? CommandId { get; set; }
 
         /// <summary>
         /// Gets or sets specifies behavior after the bridge ends (i.e. the opposite leg either hangs up or is transferred). If supplied with the value 'self', the current leg will be parked after unbridge. If not set, the default behavior is to hang up the leg.
