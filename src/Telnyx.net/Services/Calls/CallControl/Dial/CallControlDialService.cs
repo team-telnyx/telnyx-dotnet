@@ -40,5 +40,15 @@
         {
             return await this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
         }
+
+        public async Task<CallDialResponse> RetrieveAsync(string callControlId, RequestOptions reqOpts = null, CancellationToken ct = default)
+        {
+            return await this.GetEntityAsync(callControlId, reqOpts, ct);
+        }
+
+        public CallDialResponse Retrieve(string callControlId, RequestOptions reqOpts = null)
+        {
+            return this.GetEntity(callControlId, reqOpts);
+        }
     }
 }

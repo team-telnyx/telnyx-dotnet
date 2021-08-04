@@ -63,5 +63,29 @@ namespace TelnyxTests.Services.Calls.CallCommands
             Assert.NotNull(message);
             Assert.Equal(typeof(CallDialResponse), message.GetType());
         }
+
+        [Fact]
+        public void Retrieve()
+        {
+            var message = this.service.Retrieve(CallControllId);
+            Assert.NotNull(message);
+            Assert.Equal(typeof(CallDialResponse), message.GetType());
+            Assert.NotNull(message.CallControlId);
+            Assert.NotNull(message.CallLegId);
+            Assert.NotNull(message.CallSessionId);
+            Assert.Equal(RecordType.Call, message.RecordType);
+        }
+
+        [Fact]
+        public async Task RetrieveAsync()
+        {
+            var message = await this.service.RetrieveAsync(CallControllId);
+            Assert.NotNull(message);
+            Assert.Equal(typeof(CallDialResponse), message.GetType());
+            Assert.NotNull(message.CallControlId);
+            Assert.NotNull(message.CallLegId);
+            Assert.NotNull(message.CallSessionId);
+            Assert.Equal(RecordType.Call, message.RecordType);
+        }
     }
 }
