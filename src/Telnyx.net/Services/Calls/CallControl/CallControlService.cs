@@ -64,6 +64,17 @@ namespace Telnyx.net.Services.Calls.CallCommands
         {
             return await this.callControlAnswerService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
         }
+        public virtual async Task<CallDialResponse> RetrieveCallStatusAsyc(string callControlId = null, RequestOptions opts = null, CancellationToken ct = default)
+        {
+            string controlId = callControlId ?? this.CallControlId;
+            return await this.callControlDialService.RetrieveAsync(controlId, opts, ct);
+        }
+
+        public virtual CallDialResponse RetrieveCallStatus(string callControlId = null, RequestOptions opts = null)
+        {
+            string controlId = callControlId ?? this.CallControlId;
+            return this.callControlDialService.Retrieve(controlId, opts);
+        }
 
         public virtual CallDialResponse Dial(CallControlDialOptions options, RequestOptions requestOptions = null)
         {
