@@ -200,6 +200,13 @@ namespace Telnyx.net.Entities.Enum
 
         [EnumMember(Value = "fax_application")]
         FaxApplication = 57,
+
+        [EnumMember(Value = "porting_order")]
+        PortingOrder = 58,
+
+        [EnumMember(Value = "porting_phone_number")]
+        PortingPhoneNumber = 59,
+
     }
 
 }

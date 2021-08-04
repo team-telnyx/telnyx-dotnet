@@ -122,6 +122,28 @@ namespace Telnyx
         {
             return await this.PostRequestAsync<EntityReturned>(this.ClassUrl(), options, requestOptions, cancellationToken);
         }
+        /// <summary>
+        /// CreateEntity. For requests that return lists of data after creation.
+        /// </summary>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <returns>{EntityReturned}.</returns>
+        protected TelnyxList<EntityReturned> CreateEntityAsList(BaseOptions options, RequestOptions requestOptions)
+        {
+            return this.PostRequest<TelnyxList<EntityReturned>>(this.ClassUrl(), options, requestOptions);
+        }
+
+        /// <summary>
+        /// CreateEntityAsync. For requests that return lists of data after creation.
+        /// </summary>
+        /// <param name="options">options.</param>
+        /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>{EntityReturned}.</returns>
+        protected async Task<TelnyxList<EntityReturned>> CreateEntityAsListAsync(BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        {
+            return await this.PostRequestAsync<TelnyxList<EntityReturned>>(this.ClassUrl(), options, requestOptions, cancellationToken);
+        }
 
         /// <summary>
         /// DeleteEntity.
