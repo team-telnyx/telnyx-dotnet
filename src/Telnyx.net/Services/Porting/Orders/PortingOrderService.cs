@@ -19,6 +19,8 @@ namespace Telnyx.net.Services.Porting.Orders
 
         public override string BasePath => "/porting_orders";
 
+        private const string _include_phone_numbers_header = "include_phone_numbers";
+
         public async Task<TelnyxList<PortOrder>> ListAsync(PortingOrderListOptions listOptions, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
             return await this.ListEntitiesAsync(listOptions, requestOptions, ct);
@@ -52,14 +54,14 @@ namespace Telnyx.net.Services.Porting.Orders
         public async Task<PortOrder> RetrieveAsync(string id, bool includePhoneNumbers = true, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
             var baseOptions = new BaseOptions();
-            baseOptions.AddExtraParam("include_phone_numbers", includePhoneNumbers.ToString());
+            baseOptions.AddExtraParam(_include_phone_numbers_header, includePhoneNumbers.ToString());
             return await this.GetEntityAsync(id, baseOptions, requestOptions, ct);
         }
 
         public PortOrder Retrieve(string id, bool includePhoneNumbers = true, RequestOptions requestOptions = null)
         {
             var baseOptions = new BaseOptions();
-            baseOptions.AddExtraParam("include_phone_numbers", includePhoneNumbers.ToString());
+            baseOptions.AddExtraParam(_include_phone_numbers_header, includePhoneNumbers.ToString());
             return this.GetEntity(id, baseOptions, requestOptions);
         }
 
