@@ -210,7 +210,8 @@ namespace Telnyx.Example
             await hostedExample.CreatedHostedNumberAsync(new List<string> { "+17735556766" });
             /*Only call with your credentials*/
             //GetWebhook();
-
+            var portingOrdersExample = new PortingOrdersExample();
+            await portingOrdersExample.GetListPortingOrdersAsync();
         }
 
         public async static Task<HttpStatusCode> ReceiveAndHandleWebhook()
