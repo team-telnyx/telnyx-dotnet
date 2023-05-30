@@ -105,10 +105,11 @@ namespace Telnyx
         /// </summary>
         /// <param name="options">options.</param>
         /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="postBasePath"></param>
         /// <returns>{EntityReturned}.</returns>
-        protected EntityReturned CreateEntity(BaseOptions options, RequestOptions requestOptions)
+        protected EntityReturned CreateEntity(BaseOptions options, RequestOptions requestOptions, string postBasePath = "")
         {
-            return this.PostRequest<EntityReturned>(this.ClassUrl(), options, requestOptions);
+            return this.PostRequest<EntityReturned>(this.ClassUrl(postBasePath: postBasePath), options, requestOptions);
         }
 
         /// <summary>
@@ -117,8 +118,9 @@ namespace Telnyx
         /// <param name="options">options.</param>
         /// <param name="requestOptions">requestOptions.</param>
         /// <param name="cancellationToken">cancellationToken.</param>
+        /// <param name="postBasePath"></param>
         /// <returns>{EntityReturned}.</returns>
-        protected async Task<EntityReturned> CreateEntityAsync(BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        protected async Task<EntityReturned> CreateEntityAsync(BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken, string postBasePath = "")
         {
             return await this.PostRequestAsync<EntityReturned>(this.ClassUrl(), options, requestOptions, cancellationToken);
         }
@@ -275,6 +277,32 @@ namespace Telnyx
         {
             return await this.GetRequestAsync<EntityReturned>(this.CallUrl(id, postPath), options, requestOptions, false, cancellationToken);
         }
+        /// <summary>
+        /// CreateEntity
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="options">options</param>
+        /// <param name="requestOptions">requestOptions</param>
+        /// <param name="postPath">postPath</param>
+        /// <returns>{EntityReturned}</returns>
+        protected EntityReturned CreateEntity(string id, BaseOptions options, RequestOptions requestOptions, string postPath = null)
+        {
+            return this.PostRequest<EntityReturned>(this.CallUrl(id, postPath), options, requestOptions, false);
+        }
+
+        /// <summary>
+        /// CreateEntityAsync
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="options">options</param>
+        /// <param name="requestOptions">requestOptions</param>
+        /// <param name="cancellationToken">cancellationToken</param>
+        /// <param name="postPath">postPath</param>
+        /// <returns>{EntityReturned}</returns>
+        protected async Task<EntityReturned> CreateEntityAsync(string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken, string postPath = null)
+        {
+            return await this.PostRequestAsync<EntityReturned>(this.CallUrl(id, postPath), options, requestOptions, cancellationToken, true);
+        }
 
 
 
@@ -289,7 +317,7 @@ namespace Telnyx
         {
             return await this.GetRequestAsync<TelnyxList<EntityReturned>>(this.ClassUrl(), options, requestOptions, true, cancellationToken);
         }
-        /// <summary>
+        /// <summary>ny6j 
         /// ListEntities.
         /// </summary>
         /// <param name="options">options.</param>
@@ -692,7 +720,7 @@ namespace Telnyx
                     Requestor.PostString(
                         this.ApplyAllParameters(options, url),
                         this.SetupRequestOptions(requestOptions)), "data");
-            }  
+            }
             else
             {
                 return Mapper<T>.MapFromPlainText(Requestor.PostString(
@@ -719,15 +747,15 @@ namespace Telnyx
                     this.ApplyAllParameters(options, url),
                     this.SetupRequestOptions(requestOptions),
                     cancellationToken).ConfigureAwait(false), "data");
-        }  
+            }
             else
             {
                 var response = await Requestor.PostStringAsync(
                         this.ApplyAllParameters(options, url),
                         this.SetupRequestOptions(requestOptions));
                 return Mapper<T>.MapFromPlainText(response.ResponseJson);
+            }
         }
-    }
 
         /// <summary>
         /// PatchRequest.
@@ -845,12 +873,14 @@ namespace Telnyx
         /// ClassUrl.
         /// </summary>
         /// <param name="baseUrl">baseUrl.</param>
+        /// <param name="postBasePath"></param>
         /// <returns>url.</returns>
-        protected virtual string ClassUrl(string baseUrl = null)
+        protected virtual string ClassUrl(string baseUrl = null, string postBasePath = "")
         {
 
             baseUrl = baseUrl ?? TelnyxConfiguration.GetApiBase();
-            return baseUrl.UrlCombine(this.BasePath);
+            var basePath = this.BasePath + postBasePath;
+            return baseUrl.UrlCombine(basePath);
         }
 
         /// <summary>

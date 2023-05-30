@@ -20,8 +20,6 @@ namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferencePlay
 
         public override string PostPath => "/actions/play";
 
-        private string stopURI => "/actions/stop";
-
         public TelnyxApiResponse Play(string id, ConferencePlayOptions stopOptions, RequestOptions requestOptions = null)
         {
             return this.CreateEntity(id, this.PostPath, stopOptions, requestOptions);
@@ -31,16 +29,5 @@ namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferencePlay
         {
             return await this.CreateEntityAsync(id, this.PostPath, stopOptions, requestOptions, ct);
         }
-
-        public TelnyxApiResponse Stop(string id, StopAudioOptions stopOptions, RequestOptions requestOptions = null)
-        {
-            return this.CreateEntity(id, stopURI, stopOptions, requestOptions);
-        }
-
-        public async Task<TelnyxApiResponse> StopAsync(string id, StopAudioOptions stopOptions, RequestOptions requestOptions = null, CancellationToken ct = default)
-        {
-            return await this.CreateEntityAsync(id, stopURI, stopOptions, requestOptions, ct);
-        }
-
     }
 }

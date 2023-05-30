@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferencePlay
+namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferenceStop
 {
     public class StopAudioOptions : BaseOptions
     {

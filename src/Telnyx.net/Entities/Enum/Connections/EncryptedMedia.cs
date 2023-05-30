@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Telnyx.net.Entities.Enum.Connections
 {
-    [JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum EncryptedMedia
     {
         SRTP = 0,

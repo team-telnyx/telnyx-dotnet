@@ -15,9 +15,9 @@ namespace Telnyx.net.Services.Messaging.Messaging_Profiles.Metrics
             return await this.GetEntityAsync(id, options, requestOptions, ct, postPath: PostPath);
         }
 
-        public MessagingProfileMetricsDetail GetById(string id, MetricsOptions options, RequestOptions requestOptions)
+        public MessagingProfileMetricsDetail GetById(string id, RequestOptions requestOptions)
         {
-            return this.GetEntity(id, options, requestOptions, postPath: PostPath);
+            return this.GetEntity(id, null, requestOptions, postPath: PostPath);
         }
     }
 }
