@@ -74,5 +74,15 @@
         {
             return this.ListAutoPaging(listOptions, requestOptions);
         }
+
+        public virtual NumberReservation ExtendANumberReservationRequest(string id, RequestOptions requestOptions = null)
+        {
+            return this.CreateEntity(id, "/actions/extend", null, requestOptions);
+        }
+
+        public async Task<NumberReservation> ExtendANumberReservationRequestAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return await this.CreateEntityAsync(id, "/actions/extend", null, requestOptions, cancellationToken);
+        }
     }
 }
