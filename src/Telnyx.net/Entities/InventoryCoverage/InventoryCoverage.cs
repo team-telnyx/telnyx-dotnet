@@ -20,8 +20,8 @@ namespace Telnyx.net.Entities.InventoryCoverage
         /// The coverage type.
         /// Enum: "number" "block"
         /// </summary>
-        [JsonProperty("coverage_type")]
-        public CoverageType? CoverageType { get; set; }
+        //[JsonProperty("coverage_type")]
+        //public CoverageType? CoverageType { get; set; }
 
         /// <summary>
         /// The group.

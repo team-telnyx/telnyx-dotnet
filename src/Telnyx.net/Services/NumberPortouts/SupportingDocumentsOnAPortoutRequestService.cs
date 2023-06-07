@@ -39,14 +39,20 @@ namespace Telnyx.net.Services.NumberPortouts
         {
             return await this.CreateEntityAsync(id, createOptions, requestOptions, cancellationToken, this.PostPath);
         }
-        public virtual PortOutSupportingDocument UpdateAListOfSupportingDocumentsOnAPortoutRequest(string id, UpdateAListOfSupportingDocumentsOnAPortoutRequestOptions options, RequestOptions requestOptions = null)
+
+        internal object ListAllCommentsForAPortoutRequest(string id, RequestOptions requestOptions)
         {
-            return this.UpdateEntity(id, options, requestOptions, this.PostPath);
+            throw new NotImplementedException();
         }
 
-        public async Task<PortOutSupportingDocument> UpdateAListOfSupportingDocumentsOnAPortoutRequestAsync(string id, UpdateAListOfSupportingDocumentsOnAPortoutRequestOptions UpdateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        internal Task ListAllCommentsForAPortoutRequestAsync(string id, RequestOptions requestOptions, CancellationToken token)
         {
-            return await this.UpdateEntityAsync(id, UpdateOptions, requestOptions, cancellationToken, this.PostPath);
+            throw new NotImplementedException();
+        }
+
+        internal object CreateCommentsForAPortoutRequest(string id, CreateCommentsForAPortoutRequestOptions createCommentsForAPortoutRequestOptions, RequestOptions requestOptions)
+        {
+            throw new NotImplementedException();
         }
     }
 }

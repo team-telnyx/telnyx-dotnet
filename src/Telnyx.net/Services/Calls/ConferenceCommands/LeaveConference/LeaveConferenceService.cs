@@ -24,14 +24,14 @@ namespace Telnyx.net.Services.Calls.ConferenceCommands.LeaveConference
 
         public override string PostPath => "/actions/leave";
 
-        public TelnyxApiResponse Stop(string id, LeaveConferenceOptions stopOptions, RequestOptions requestOptions = null)
+        public TelnyxApiResponse Leave(string id, LeaveConferenceOptions leaveOptions, RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(id, this.PostPath, stopOptions, requestOptions);
+            return this.CreateEntity(id, this.PostPath, leaveOptions, requestOptions);
         }
 
-        public async Task<TelnyxApiResponse> StopAsync(string id, LeaveConferenceOptions stopOptions, RequestOptions requestOptions = null, CancellationToken ct = default)
+        public async Task<TelnyxApiResponse> LeaveAsync(string id, LeaveConferenceOptions leaveOptions, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this.CreateEntityAsync(id, this.PostPath, stopOptions, requestOptions, ct);
+            return await this.CreateEntityAsync(id, this.PostPath, leaveOptions, requestOptions, ct);
         }
 
     }

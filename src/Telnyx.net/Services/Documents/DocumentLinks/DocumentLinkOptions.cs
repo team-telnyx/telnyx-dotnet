@@ -11,47 +11,24 @@ namespace Telnyx.net.Services.Documents.DocumentLinks
     public class DocumentLinkOptions : ListOptions
     {
         /// <summary>
-        /// Filter by string matching part of filename.
-        /// Example: filter[filename][contains]=invoice
+        /// Identifies the associated document to filter on.
+        /// filter[document_id]=6a09cdc3-8948-47f0-aa62-74ac943d6c58
         /// </summary>
-        [JsonProperty("filter[filename][contains]")]
-        public string FilenameContains { get; set; }
+        [JsonProperty("filter[document_id]")]
+        public Guid DocumentId { get; set; }
 
         /// <summary>
-        /// Filter documents by a customer references.
-        /// Example: filter[customer_reference][eq]=MY REF 001
+        /// The linked_record_type of the document to filter on.
+        /// Example: filter[linked_record_type]=porting_order
         /// </summary>
-        [JsonProperty("filter[customer_reference][eq]")]
-        public string CustomerReferenceEq { get; set; }
+        [JsonProperty("filter[linked_record_type]")]
+        public string LinkedRecordType { get; set; }
 
         /// <summary>
         /// Filter documents by a list of customer references.
         /// Example: filter[customer_reference][in][]=MY REF 001
         /// </summary>
-        [JsonProperty("filter[customer_reference][in][]")]
-        public List<string> CustomerReferenceIn { get; set; }
-
-        /// <summary>
-        /// Filter by created at greater than provided value.
-        /// Example: filter[created_at][gt]=2021-04-09T22:25:27.521Z
-        /// </summary>
-        [JsonProperty("filter[created_at][gt]")]
-        public string CreatedAtGreaterThan { get; set; }
-
-        /// <summary>
-        /// Filter by created at less than provided value.
-        /// Example: filter[created_at][lt]=2021-04-09T22:25:27.521Z
-        /// </summary>
-        [JsonProperty("filter[created_at][lt]")]
-        public string CreatedAtLessThan { get; set; }
-
-        /// <summary>
-        /// Specifies the sort order for results. If you want to sort by a field in ascending order, include it as a sort parameter. 
-        /// If you want to sort in descending order, prepend a - in front of the field name.
-        /// Enum: "filename" "created_at" "updated_at"
-        /// Example: sort[]=filename
-        /// </summary>
-        [JsonProperty("sort[]")]
-        public SortOption Sort { get; set; }
+        [JsonProperty("filter[linked_resource_id]")]
+        public Guid LinkedResourceId { get; set; }
     }
 }

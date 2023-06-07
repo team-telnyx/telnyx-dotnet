@@ -16,7 +16,7 @@ namespace Telnyx.net.Services.MediaStorages
 
         public MediaStorageService(string apiKey)
             : base(apiKey) { }
-        public override string BasePath => "managed_accounts";
+        public override string BasePath => "/media";
         public async Task<TelnyxList<MediaStorage>> ListMediaStoragesAsync(MediaStorageListOptions options, RequestOptions reqOpts = null, CancellationToken ct = default)
         {
             return await this.ListEntitiesAsync(options, reqOpts, ct);

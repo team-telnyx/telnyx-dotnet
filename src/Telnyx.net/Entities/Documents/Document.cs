@@ -17,7 +17,7 @@ namespace Telnyx.net.Entities.Documents
         public string CreatedAt { get; set; }
 
         /// <summary>
-        /// Identifies the resource.
+        /// Identifies the resourceDocumentLink
         /// </summary>
         [JsonProperty("id")]
         public Guid Id { get; set; }
@@ -70,5 +70,6 @@ namespace Telnyx.net.Entities.Documents
         /// </summary>
         [JsonProperty("status")]
         public DocumentStatus Status { get; set; }
+        public object url { get; internal set; }
     }
 }

@@ -68,5 +68,6 @@ namespace Telnyx.net.Services.Messaging.Messaging_Profiles.Metrics
         {
             return _detailService.GetById(messagingProfileId, options, requestOptions);
         }
+
     }
 }

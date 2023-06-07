@@ -145,7 +145,7 @@
             Assert.Equal(typeof(WebRtcCredential), response.GetType());
         }
 
-        [Fact(Skip = "Mock not working")]
+        [Fact]
         public void GetToken()
         {
             var response = this.service.GetToken(Id, this.requestOptions);
@@ -153,7 +153,7 @@
             Assert.Equal(typeof(string), response.GetType());
         }
 
-        [Fact(Skip = "Mock not working")]
+        [Fact]
         public async Task GetTokenAsync()
         {
             var response = await this.service.GetTokenAsync(Id, this.requestOptions);

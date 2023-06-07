@@ -10,6 +10,7 @@ namespace TelnyxTests
     using System.Linq;
     using System.Net;
     using System.Net.Http;
+    using System.Net.Http.Headers;
     using System.Reflection;
     using Telnyx;
 
@@ -51,7 +52,7 @@ namespace TelnyxTests
                 Environment.SetEnvironmentVariable("TelnyxApiKey", this.telnyx_api_key);
             }
 
-            this.EnsureTelnyxMockMinimumVersion();
+            //this.EnsureTelnyxMockMinimumVersion();
 
             this.origApiBase = TelnyxConfiguration.GetApiBase();
             this.origApiKey = TelnyxConfiguration.GetApiKey();

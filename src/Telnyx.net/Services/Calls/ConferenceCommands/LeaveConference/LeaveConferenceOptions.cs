@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Telnyx.CreateConferenceOptions;
 
 namespace Telnyx.net.Services.Calls.ConferenceCommands.LeaveConference
 {
@@ -27,6 +28,6 @@ namespace Telnyx.net.Services.Calls.ConferenceCommands.LeaveConference
         //Enum: "always" "never" "on_enter" "on_exit"
         /// </summary>
         [JsonProperty("beep_enabled")]
-        public string BeepEnabled { get; set; }
+        public BeepEnum BeepEnabled { get; set; }
     }
 }
