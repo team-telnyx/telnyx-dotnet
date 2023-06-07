@@ -18,6 +18,7 @@ namespace Telnyx.net.Services.NumberPortouts
             : base(apiKey) { }
 
         public override string BasePath => "/portouts";
+
         public override string PostPath => "/supporting_documents";
 
         public TelnyxList<PortOutSupportingDocument> ListSupportingDocumentsOnAPortoutRequest(string id, RequestOptions reqOpts = null)
@@ -40,19 +41,14 @@ namespace Telnyx.net.Services.NumberPortouts
             return await this.CreateEntityAsync(id, createOptions, requestOptions, cancellationToken, this.PostPath);
         }
 
-        internal object ListAllCommentsForAPortoutRequest(string id, RequestOptions requestOptions)
+        public virtual PortOutSupportingDocument UpdateAListOfSupportingDocumentsOnAPortoutRequest(string id, string status, UpdateAListOfSupportingDocumentsOnAPortoutRequestOptions options, RequestOptions requestOptions = null)
         {
-            throw new NotImplementedException();
+            return this.UpdateEntity(id, options, requestOptions, status);
         }
 
-        internal Task ListAllCommentsForAPortoutRequestAsync(string id, RequestOptions requestOptions, CancellationToken token)
+        public async Task<PortOutSupportingDocument> UpdateAListOfSupportingDocumentsOnAPortoutRequestAsync(string id, string status, UpdateAListOfSupportingDocumentsOnAPortoutRequestOptions UpdateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            throw new NotImplementedException();
-        }
-
-        internal object CreateCommentsForAPortoutRequest(string id, CreateCommentsForAPortoutRequestOptions createCommentsForAPortoutRequestOptions, RequestOptions requestOptions)
-        {
-            throw new NotImplementedException();
+            return await this.UpdateEntityAsync(id, UpdateOptions, requestOptions, cancellationToken, status);
         }
     }
 }
