@@ -38,7 +38,7 @@ namespace TelnyxTests.Services.Calls.ConferenceCommands.NotificationProfile
         {
             var result = this.service.ListNotificationProfiles(this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(), result.GetType());
+            Assert.Equal(typeof(NotificationProfileOptions), result.GetType());
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace TelnyxTests.Services.Calls.ConferenceCommands.NotificationProfile
             var cts = new CancellationTokenSource();    
             var result = await this.service.ListNotificationProfilesAsync(this.requestOptions, cts.Token);
             Assert.NotNull(result);
-            Assert.Equal(typeof(NotificationProfile), result.GetType());
+            Assert.Equal(typeof(NotificationProfileOptions), result.GetType());
         }
     }
 }

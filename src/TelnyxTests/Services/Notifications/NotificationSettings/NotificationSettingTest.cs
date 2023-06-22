@@ -35,8 +35,7 @@ namespace TelnyxTests.Services.Notifications.Notifications.NotificationSettings
                 NotificationChannelId = "12455643-3cf1-4683-ad23-1cd32f7d5e0a",
                 NotificationEventConditionId = "70c7c5cb-dce2-4124-accb-870d39dbe852",
                 NotificationProfileId = "12455643-3cf1-4683-ad23-1cd32f7d5e0a",
-                AssociatedRecordType = Telnyx.net.Entities.Enum.Notification.NotificationSettings.AssociatedRecordType.Account,
-                NotificationStatus = Telnyx.net.Entities.Enum.Notification.NotificationSettings.NotificationStatus.DeletePending,
+                Parameters = {}
             };
         }
 

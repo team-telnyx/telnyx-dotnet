@@ -4,9 +4,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Telnyx.net.Entities;
+using Telnyx.net.Entities.Calls.CallControl.ClientState;
 using Telnyx.net.Services.Calls.CallControl.GatherStop;
 using Telnyx.net.Services.Calls.CallControl.RecordActions;
 using Telnyx.net.Services.Calls.CallControl.Refer;
+using Telnyx.net.Services.Calls.CallControl.ClientState;
 using Telnyx.net.Services.Calls.CallControl.Transcriptions;
 
 namespace Telnyx.net.Services.Calls.CallCommands
@@ -31,6 +33,7 @@ namespace Telnyx.net.Services.Calls.CallCommands
         private readonly RecordActionService recordActionService;
         private readonly CallTranscriptionService transcriptionService;
         private readonly CallControlReferService referService;
+        private readonly ClientStateService updateClientStateService;
 
         public CallControlService()
         {
@@ -284,6 +287,15 @@ namespace Telnyx.net.Services.Calls.CallCommands
         public virtual TelnyxApiResponse ReferCall(string id, ReferOptions options, RequestOptions requestOptions = null)
         {
             return this.referService.Refer(id, options, requestOptions);
+        }
+        public TelnyxApiResponse UpdateClientState(string id, ClientStateOption clientState, RequestOptions requestOptions = null)
+        {
+            return this.updateClientStateService.UpdateEntity(id, clientState, requestOptions);
+        }
+
+        public async Task<TelnyxApiResponse> UpdateClientStateAsync(string id, ClientStateOption clientState, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        {
+            return await this.updateClientStateService.UpdateEntityAsync(id,  clientState, requestOptions, cancellationToken);
         }
     }
 }

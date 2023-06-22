@@ -185,7 +185,7 @@ namespace Telnyx.Infrastructure
         /// <param name="requestOptions">requestOptions.</param>
         /// <param name="cancellationToken">cancellationToken.</param>
         /// <returns>telnyxResponse.</returns>
-        public static async Task<TelnyxResponse> GetStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
+        public static async Task<TelnyxResponse> GetStringAsync(string url, RequestOptions requestOptions,CancellationToken cancellationToken = default(CancellationToken))
         {
             var wr = GetRequestMessage(url, HttpMethod.Get, requestOptions);
 

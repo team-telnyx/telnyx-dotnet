@@ -129,9 +129,9 @@ namespace Telnyx
         /// <param name="requestOptions">requestOptions.</param>
         /// <param name="cancellationToken">cancellationToken.</param>
         /// <returns>TelnyxList {EntityReturned}.</returns>
-        protected async Task<TelnyxList<EntityReturned>> ListNestedEntitiesAsync(string parentId, ListOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        protected async Task<TelnyxList<EntityReturned>> ListNestedEntitiesAsync(string parentId, ListOptions options, RequestOptions requestOptions, string parentToken = "")
         {
-            return await this.ListRequestPagingAsync<EntityReturned>(this.ClassUrl(parentId), options, requestOptions, cancellationToken);
+            return await this.ListRequestPagingAsync<EntityReturned>(this.ClassUrl(parentId), options, requestOptions, parentToken);
         }
 
         /// <summary>
@@ -152,9 +152,9 @@ namespace Telnyx
         /// <param name="options">options.</param>
         /// <param name="requestOptions">requestOptions.</param>
         /// <returns>Ienumerable {EntityReturned}.</returns>
-        protected async Task <IEnumerable<EntityReturned>> ListNestedEntitiesAutoPagingAsync(string parentId, ListOptions options, RequestOptions requestOptions, CancellationToken ct = default)
+        protected async Task <IEnumerable<EntityReturned>> ListNestedEntitiesAutoPagingAsync(string parentId, ListOptions options, RequestOptions requestOptions, string parentToken = "")
         {
-            return await this.ListRequestAutoPagingAsync<EntityReturned>(this.ClassUrl(parentId), options, requestOptions, ct);
+            return await this.ListRequestAutoPagingAsync<EntityReturned>(this.ClassUrl(parentId), options, requestOptions, parentToken);
         }
 
         /// <summary>

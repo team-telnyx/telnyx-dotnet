@@ -19,9 +19,9 @@ namespace Telnyx.net.Services.Wireless.WDRReports
             return this.ListEntities(listOptions, requestOptions);
         }
 
-        public Task<TelnyxList<WDRReportsRecord>> ListAsync(ListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public Task<TelnyxList<WDRReportsRecord>> ListAsync(ListOptions listOptions = null, RequestOptions requestOptions = null, string parentToken = "")
         {
-            return this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return this.ListEntitiesAsync(listOptions, requestOptions, parentToken);
         }
 
         public WDRReportsRecord Create(CreateWDRReportsOptions createOptions, RequestOptions requestOptions = null)
@@ -39,9 +39,9 @@ namespace Telnyx.net.Services.Wireless.WDRReports
             return this.GetEntity(id, requestOptions);
         }
 
-        public async Task<WDRReportsRecord> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public async Task<WDRReportsRecord> GetAsync(string id, RequestOptions requestOptions = null, string parentToken = "", CancellationToken cancellationToken = default)
         {
-            return await this.GetEntityAsync(id, null, requestOptions, CancellationToken.None);
+            return await this.GetEntityAsync(id, null, requestOptions, parentToken, CancellationToken.None);
         }
 
         public WDRReportsRecord Delete(string id, RequestOptions requestOptions = null)

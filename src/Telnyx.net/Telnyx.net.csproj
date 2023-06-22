@@ -107,6 +107,7 @@
 
   <ItemGroup>
     <Folder Include="Entities\PhoneNumbersJobs\" />
+    <Folder Include="Services\Calls\CallControl\EnqueueCall\" />
   </ItemGroup>
 
   <PropertyGroup>

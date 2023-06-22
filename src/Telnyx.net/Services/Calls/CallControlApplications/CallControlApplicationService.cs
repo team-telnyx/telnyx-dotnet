@@ -1,5 +1,6 @@
 ﻿namespace Telnyx.net.Services.Calls.CallControlApplications
 {
+    using Newtonsoft.Json;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
@@ -40,9 +41,9 @@
             return this.GetEntity(id, null, requestOptions);
         }
 
-        public async Task<CallControlApplication> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public async Task<CallControlApplication> GetAsync(string id, RequestOptions requestOptions = null, string parentToken = "", CancellationToken cancellationToken = default)
         {
-            return await this.GetEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.GetEntityAsync(id, null, requestOptions, parentToken, cancellationToken);
         }
 
         public TelnyxList<CallControlApplication> List(ListCallControlApplicationOptions listOptions = null, RequestOptions requestOptions = null)
@@ -52,7 +53,7 @@
 
         public async Task<TelnyxList<CallControlApplication>> ListAsync(ListCallControlApplicationOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, "", cancellationToken);
         }
 
         public CallControlApplication Update(string id, CreateCallControlApplicationOptions updateOptions, RequestOptions requestOptions = null)
