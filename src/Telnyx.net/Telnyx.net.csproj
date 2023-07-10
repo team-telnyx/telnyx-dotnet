@@ -6,7 +6,7 @@
     <AssemblyTitle>Telnyx.net</AssemblyTitle>
     <VersionPrefix>25.13.0</VersionPrefix>
     <Version>2.7.0</Version>
-    <Authors>Telnyx</Authors>
+    <Authors>Telnyx;wildCursor</Authors>
     <TargetFrameworks>net45;netstandard2.0;net452;netstandard2.1</TargetFrameworks>
     <AssemblyName>Telnyx.net</AssemblyName>
     <PackageId>Telnyx.net</PackageId>
@@ -64,7 +64,7 @@
   <ItemGroup>
     <!--<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="All" />-->
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Rebex.Elliptic.Ed25519" Version="1.2.1" />
     <PackageReference Include="Stylecop.Analyzers" Version="1.1.118">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
