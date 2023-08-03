@@ -7,7 +7,7 @@
     <VersionPrefix>25.13.0</VersionPrefix>
     <Version>2.7.0</Version>
     <Authors>Telnyx</Authors>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>net45;netstandard2.0;net452;netstandard2.1</TargetFrameworks>
     <AssemblyName>Telnyx.net</AssemblyName>
     <PackageId>Telnyx.net</PackageId>
     <PackageTags>Telnyx;voice;sms;messaging;telecoms;twilio</PackageTags>
