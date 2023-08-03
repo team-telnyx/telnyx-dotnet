@@ -30,12 +30,12 @@
 
         public TelnyxCollection<MobileOperatorNetworksPreferencesRecord> Update(SimCardBulkNetworkPreferenceUpdateOptions updateOptions, RequestOptions requestOptions = null)
         {
-            return this.BulkUpdateEntity(updateOptions, requestOptions, postPath: null);
+            return this.BulkUpdateEntity(updateOptions, requestOptions, postPath: null, parentToken: "data");
         }
 
         public async Task<TelnyxCollection<MobileOperatorNetworksPreferencesRecord>> UpdateAsync(SimCardBulkNetworkPreferenceUpdateOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.BulkUpdateEntityAsync(updateOptions, requestOptions, cancellationToken);
+            return await this.BulkUpdateEntityAsync(updateOptions, requestOptions, parentToken: "data", cancellationToken: cancellationToken);
         }
     }
 }

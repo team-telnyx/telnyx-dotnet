@@ -1,13 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.Enum.Notification.NotificationsEventsConditions;
-
-namespace Telnyx.net.Entities.Notifications.NotificationsEventsConditions
+﻿namespace Telnyx.net.Entities.Notifications.NotificationsEventsConditions
 {
+    using System;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum.Notification.NotificationsEventsConditions;
+
     public class NotificationsEventsCondition : TelnyxEntity
     {
         /// <summary>
@@ -17,7 +14,7 @@ namespace Telnyx.net.Entities.Notifications.NotificationsEventsConditions
         public bool AllowMultipleChannels { get; set; }
 
         /// <summary>
-        /// Enum: "account" "phone_number"
+        /// Enum: "account" "phone_number".
         /// </summary>
         [JsonProperty("associated_record_type")]
         public AssociatedRecordType AssociatedRecordType { get; set; }

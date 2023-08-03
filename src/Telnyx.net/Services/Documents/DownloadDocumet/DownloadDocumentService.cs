@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Services.Documents.DownloadDocumet
+﻿namespace Telnyx.net.Services.Documents.DownloadDocumet
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+
     class DownloadDocumentService : FileService
     {
         public DownloadDocumentService()
-           : base(null) { }
+           : base(null)
+        {
+        }
 
         public DownloadDocumentService(string apiKey)
-            : base(apiKey) { }
+            : base(apiKey)
+        {
+        }
+
         public override string BasePath => "/documents";
+
         public override string PostPath => "/download";
 
         public async Task<byte[]> GetFileAsync(string id, RequestOptions options, RequestOptions requestOptions, CancellationToken ct = default)

@@ -1,11 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Telnyx.net.Entities.Enum.AccessIPAddresses;
-
-namespace Telnyx.net.Entities.AccessIPAddresses
+﻿namespace Telnyx.net.Entities.AccessIPAddresses
 {
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum.AccessIPAddresses;
+
     public class AccessIPAddressListOptions : ListOptions
     {
         /// <summary>
@@ -37,6 +34,5 @@ namespace Telnyx.net.Entities.AccessIPAddresses
         /// </summary>
         [JsonProperty("filter[created_at][lt]")]
         public string CreatedAtLessThan { get; set; }
-
     }
 }

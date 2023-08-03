@@ -1,12 +1,11 @@
-﻿namespace Telnyx.Example
-{
-    using System;
-    using System.Threading.Tasks;
-    using Newtonsoft.Json;
-    using Telnyx.net.Entities.Messaging.Messaging_Profiles;
-    using Telnyx.net.Entities.Messaging.Messaging_Profiles.Metrics;
-    using Telnyx.net.Services.Messaging.Messaging_Profiles.Metrics;
+﻿using System;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Telnyx.net.Entities.Messaging.Messaging_Profiles;
+using Telnyx.net.Services.Messaging.Messaging_Profiles.Metrics;
 
+namespace Telnyx.Example
+{
     /// <summary>
     /// Messaging Profiles Example
     /// </summary>
@@ -172,7 +171,7 @@
             try
             {
                 var messagingPhoneNumber = this.phoneNumbersService.List(MessagingProfileId, listOptions);
-                
+
                 Console.WriteLine(JsonConvert.SerializeObject(messagingPhoneNumber));
             }
             catch (TelnyxException ex)
@@ -193,7 +192,7 @@
                 TimeFrame = "16h"
             };
             var response = await metricsService.GetDetailedMetricsAsync(messagingProfileId, getOptions);
-            Console.WriteLine(JsonConvert.SerializeObject(response,Formatting.Indented));
+            Console.WriteLine(JsonConvert.SerializeObject(response, Formatting.Indented));
         }
 
         public async Task ListOverviewAsync()

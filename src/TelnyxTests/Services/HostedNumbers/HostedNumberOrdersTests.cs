@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-using Telnyx.net.Entities.HostedNumbers;
-using Telnyx.net.Services.HostedNumbers;
-using Xunit;
-
-namespace TelnyxTests.Services.HostedNumbers
+﻿namespace TelnyxTests.Services.HostedNumbers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.HostedNumbers;
+    using Telnyx.net.Services.HostedNumbers;
+    using Xunit;
+
     public class HostedNumberOrdersTests : BaseTelnyxTest
     {
         private readonly HostedNumberOrderService service;
@@ -43,7 +42,7 @@ namespace TelnyxTests.Services.HostedNumbers
         [Fact]
         public void List()
         {
-            var result = this.service.ListHostedNumberOrders(new Telnyx.ListOptions(1,25));
+            var result = this.service.ListHostedNumberOrders(new Telnyx.ListOptions(1, 25));
             Assert.NotNull(result);
             Assert.Equal(typeof(TelnyxList<HostedNumberOrder>), result.GetType());
         }

@@ -1,15 +1,12 @@
 ﻿namespace TelnyxTests.Services.Calls.ConferenceCommands.UpdateConference
 {
-    using System.ComponentModel.Design;
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx;
     using Telnyx.net.Entities;
     using Telnyx.net.Services.Calls.ConferenceCommands.UpdateConference;
     using Telnyx.net.Services.Documents;
-    using Telnyx.net.Services.WebRTC.Credentials;
     using Xunit;
-    using static Telnyx.CreateConferenceOptions;
 
     /// <summary>
     /// Test class for UpdateConference.
@@ -39,7 +36,6 @@
                 SupervisorRole = "barge",
                 WhisperCallControlIds = new string[] { "string1", "string2", "string3" },
             };
-
         }
 
         [Fact]
@@ -50,6 +46,7 @@
             Assert.Equal(typeof(TelnyxApiResponse), result.GetType());
             Assert.Equal("ok", result.Result);
         }
+
         [Fact]
         public async Task CreateAsync()
         {

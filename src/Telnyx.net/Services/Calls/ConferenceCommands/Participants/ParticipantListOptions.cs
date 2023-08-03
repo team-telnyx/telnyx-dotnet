@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-
-namespace Telnyx.net.Services.Calls.ConferenceCommands.Participants
+﻿namespace Telnyx.net.Services.Calls.ConferenceCommands.Participants
 {
+    using Newtonsoft.Json;
+
     public class ParticipantListOptions : ListOptions
     {
         /// <summary>
@@ -27,6 +27,5 @@ namespace Telnyx.net.Services.Calls.ConferenceCommands.Participants
         /// </summary>
         [JsonProperty("filter[whisper]")]
         public bool Whisper { get; set; }
-
     }
 }

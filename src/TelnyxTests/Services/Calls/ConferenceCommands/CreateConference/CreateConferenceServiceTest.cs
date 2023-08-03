@@ -5,8 +5,6 @@
 namespace TelnyxTests.Services.Calls.ConfrenceCommands
 {
     using System;
-    using System.Net.Http;
-    using System.Threading;
     using System.Threading.Tasks;
     using Telnyx;
     using Telnyx.net.Entities.Enum;
@@ -41,20 +39,25 @@ namespace TelnyxTests.Services.Calls.ConfrenceCommands
         public void Create()
         {
             var message = this.service.Create(this.createOptions);
-            Assert.NotNull(message);
-            Assert.Equal(typeof(CreateConferenceResponse), message.GetType());
-            Assert.NotNull(message.Name);
-            Assert.True(message.CreatedAt <= message.ExpiresAt);
-            Assert.NotEqual(Guid.Empty, message.Id);
-            Assert.Equal(RecordType.Conference, message.RecordType);
+            AssertResponse(message);
         }
 
         [Fact]
         public async Task CreateAsync()
         {
             var message = await this.service.CreateAsync(this.createOptions);
+            AssertResponse(message);
+        }
+
+        private static void AssertResponse(CreateConferenceResponse message)
+        {
             Assert.NotNull(message);
             Assert.Equal(typeof(CreateConferenceResponse), message.GetType());
+            Assert.Equal("All hands meeting", message.Name);
+            Assert.Equal("1/23/2019 6:10:02 PM +00:00", message.CreatedAt.ToString());
+            Assert.Equal("1/23/2019 6:10:02 PM +00:00", message.ExpiresAt.ToString());
+            Assert.Equal(RecordType.Conference, message.RecordType);
+            Assert.Equal("3fa85f64-5717-4562-b3fc-2c963f66afa6", message.Id.ToString());
         }
     }
 }

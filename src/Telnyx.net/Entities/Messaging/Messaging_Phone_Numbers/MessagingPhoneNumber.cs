@@ -14,6 +14,7 @@ namespace Telnyx
     public enum PhoneNumberTypeEnum
     {
         Unknown = -1,
+
         /// <summary>
         /// long-code
         /// </summary>

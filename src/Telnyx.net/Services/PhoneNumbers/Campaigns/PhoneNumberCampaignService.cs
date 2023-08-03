@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.PhoneNumbers.Campaigns;
-
-namespace Telnyx.net.Services.PhoneNumbers.Campaigns
+﻿namespace Telnyx.net.Services.PhoneNumbers.Campaigns
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities.PhoneNumbers.Campaigns;
+
     public class PhoneNumberCampaignService : Service<PhoneNumberCampaign>
     {
         public PhoneNumberCampaignService()
@@ -24,12 +20,12 @@ namespace Telnyx.net.Services.PhoneNumbers.Campaigns
 
         public async Task<PhoneNumberCampaign> CreatePhoneNumberCampaignAsync(CreatePhoneNumberCampaignOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this.CreateEntityAsync(options, requestOptions, ct);
+            return await this.CreateEntityAsync(options, requestOptions, cancellationToken: ct);
         }
 
         public PhoneNumberCampaign CreatePhoneNumberCampaign(CreatePhoneNumberCampaignOptions options, RequestOptions requestOptions = null)
         {
             return this.CreateEntity(options, requestOptions);
-        }   
+        }
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace Telnyx
 {
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx.net.Entities;
@@ -36,13 +35,13 @@
         /// <inheritdoc/>
         public MessagingShortCode Get(string id, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(id, null, requestOptions);
+            return this.GetEntity(id, null, requestOptions, parentToken: "data");
         }
 
         /// <inheritdoc/>
         public Task<MessagingShortCode> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.GetEntityAsync(id, null, requestOptions, cancellationToken);
+            return this.GetEntityAsync(id, null, requestOptions, parentToken: "data", cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -54,19 +53,19 @@
         /// <inheritdoc/>
         public Task<TelnyxList<MessagingShortCode>> ListAsync(MessagingShortCodeListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return this.ListEntitiesAsync(listOptions, requestOptions, string.Empty, cancellationToken);
         }
 
         /// <inheritdoc/>
         public MessagingShortCode Update(string id, MessagingShortCodeUpdate updateOptions, RequestOptions requestOptions = null)
         {
-            return this.UpdateEntity(id, updateOptions, requestOptions);
+            return this.UpdateEntity(id, updateOptions, requestOptions, parentToken: "data");
         }
 
         /// <inheritdoc/>
         public async Task<MessagingShortCode> UpdateAsync(string id, MessagingShortCodeUpdate updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
+            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, parentToken: "data", cancellationToken);
         }
     }
 }

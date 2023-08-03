@@ -1,16 +1,12 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Telnyx.net.Entities.Enum.AccessIPAddresses;
-
-namespace Telnyx.net.Entities.AccessIPAddresses
+﻿namespace Telnyx.net.Entities.AccessIPAddresses
 {
+    using Newtonsoft.Json;
+
     public class AccessIPAddressCreateOptions : BaseOptions
-    {    
+    {
         /// <summary>
-         /// The description.
-         /// </summary>
+        /// The description.
+        /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; }
 

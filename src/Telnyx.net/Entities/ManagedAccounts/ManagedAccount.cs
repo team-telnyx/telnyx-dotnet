@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Entities.ManagedAccounts
+﻿namespace Telnyx.net.Entities.ManagedAccounts
 {
+    using Newtonsoft.Json;
+
     public class ManagedAccount : TelnyxEntity
     {
         /// <summary>
@@ -82,7 +77,7 @@ namespace Telnyx.net.Entities.ManagedAccounts
         public string UpdatedAt { get; set; }
 
         /// <summary>
-        /// object (ManagedAccountBalance)
+        /// object (ManagedAccountBalance).
         /// </summary>
         [JsonProperty("balance")]
         public Balance Balance { get; set; }

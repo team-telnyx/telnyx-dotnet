@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Entities.Notifications.NotificationSettings
+﻿namespace Telnyx.net.Entities.Notifications.NotificationSettings
 {
+    using Newtonsoft.Json;
+
     public class Parameter
     {
         /// <summary>

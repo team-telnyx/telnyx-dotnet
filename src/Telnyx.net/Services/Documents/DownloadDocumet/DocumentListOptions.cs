@@ -1,12 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Services.Documents.DownloadDocumet
+﻿namespace Telnyx.net.Services.Documents.DownloadDocumet
 {
+    using System;
+    using Newtonsoft.Json;
+
     public class DocumentListOptions : TelnyxEntity
     {
         /// <summary>
@@ -50,6 +46,5 @@ namespace Telnyx.net.Services.Documents.DownloadDocumet
         /// </summary>
         [JsonProperty("linked_resource_id")]
         public Guid LinkedResourceId { get; set; }
-
     }
 }

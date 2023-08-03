@@ -1,14 +1,12 @@
 ﻿namespace TelnyxTests.Services.Calls.ConferenceCommands.DynamicEmergencyAddresses
 {
+    using System.Threading;
     using System.Threading.Tasks;
     using Telnyx;
     using Telnyx.net.Entities;
+    using Telnyx.net.Entities.DynamicEmergencyAddresses;
     using Telnyx.net.Services.DynamicEmergencyAddresses;
-    using Telnyx.net.Services.Documents;
-    using Telnyx.net.Services.WebRTC.Credentials;
     using Xunit;
-    using static Telnyx.net.Services.DynamicEmergencyAddresses.DynamicEmergencyAddressesService;
-    using System.Threading;
 
     // <summary>
     // Test class for DynamicEmergencyAddresses.
@@ -34,18 +32,17 @@
             {
                 AdministrativeArea = "",
                 CountryCode = Telnyx.net.Entities.Enum.DynamicEmergencyAddresses.CountryCode.US,
+                CountryCoude = "USA",
                 ExtendedAddress = "",
                 HouseNumber = "",
-                HouseSuffix= "",
+                HouseSuffix = "",
                 Locality = "",
                 PostalCode = "",
                 StreetName = "",
                 StreetPostDirectional = "",
                 StreetPreDirectional = "",
                 StreetSuffix = "",
-
             };
-
         }
 
         [Fact]
@@ -53,28 +50,37 @@
         {
             var result = this.service.CreateDynamicEmergencyAddress(this.createOptions, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(TelnyxApiResponse), result.GetType());
+            Assert.Equal(typeof(DynamicEmergencyAddress), result.GetType());
+            Assert.Equal(Telnyx.net.Entities.Enum.DynamicEmergencyAddresses.CountryCode.US, result.CountryCode);
         }
+
+        [Fact]
         public async Task CreateAsync()
         {
             var cts = new CancellationTokenSource();
-            var result = this.service.CreateDynamicEmergencyAddressAsync(this.createOptions, this.requestOptions, cts.Token);
+            var result = await this.service.CreateDynamicEmergencyAddressAsync(this.createOptions, this.requestOptions, cts.Token);
             Assert.NotNull(result);
-            Assert.Equal(typeof(TelnyxApiResponse), result.GetType());
+            Assert.Equal(typeof(DynamicEmergencyAddress), result.GetType());
+            Assert.Equal(Telnyx.net.Entities.Enum.DynamicEmergencyAddresses.CountryCode.US, result.CountryCode);
         }
+
         [Fact]
         public void Delete()
         {
             var result = this.service.DeleteDynamicEmergencyAddress(Id, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(TelnyxApiResponse), result.GetType());
+            Assert.Equal(typeof(DynamicEmergencyAddress), result.GetType());
+            Assert.Equal(Telnyx.net.Entities.Enum.DynamicEmergencyAddresses.CountryCode.US, result.CountryCode);
         }
-        public void DeleteAsync()
+
+        [Fact]
+        public async Task DeleteAsync()
         {
             var cts = new CancellationTokenSource();
-            var result = this.service.DeleteDynamicEmergencyAddressAsync(Id, this.requestOptions, cts.Token);
+            var result = await this.service.DeleteDynamicEmergencyAddressAsync(Id, this.requestOptions, cts.Token);
             Assert.NotNull(result);
-            Assert.Equal(typeof(TelnyxApiResponse), result.GetType());
+            Assert.Equal(typeof(DynamicEmergencyAddress), result.GetType());
+            Assert.Equal(Telnyx.net.Entities.Enum.DynamicEmergencyAddresses.CountryCode.US, result.CountryCode);
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
-
-namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferenceRecording
+﻿namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferenceRecording
 {
+    using Newtonsoft.Json;
+
     public class RecordStopOptions : BaseOptions
     {
         /// <summary>
-        /// Use this field to avoid duplicate commands. Telnyx will ignore commands with the same `command_id`
+        /// Use this field to avoid duplicate commands. Telnyx will ignore commands with the same `command_id`.
         /// </summary>
         [JsonProperty("command_id")]
         public string CommandId { get; set; }

@@ -1,8 +1,6 @@
 ﻿namespace Telnyx.net.Entities.WebRTC.Credentials
 {
     using Newtonsoft.Json;
-    using System;
-    using System.Collections.Generic;
 
     /// <summary>
     /// WebRTC Credential Entity.
@@ -22,7 +20,7 @@
         public string Name { get; private set; }
 
         /// <summary>
-        /// Gets or Sets RecordType
+        /// Gets or Sets RecordType.
         /// </summary>
         [JsonProperty("record_type")]
         public string RecordType { get; private set; }

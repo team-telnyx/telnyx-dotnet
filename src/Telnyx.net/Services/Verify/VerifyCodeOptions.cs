@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-
-namespace Telnyx.net.Services.VerifyAPI
+﻿namespace Telnyx.net.Services.VerifyAPI
 {
+    using Newtonsoft.Json;
+
     public class VerifyCodeOptions : BaseOptions
     {
         [JsonProperty("code")]

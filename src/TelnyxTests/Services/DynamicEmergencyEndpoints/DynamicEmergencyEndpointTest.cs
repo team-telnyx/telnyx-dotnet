@@ -1,14 +1,13 @@
 ﻿namespace TelnyxTests.Services.Calls.ConferenceCommands.DynamicEmergencyEndpoint
 {
+    using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using Telnyx;
-    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.Enum.DynamicEmergencyEndpoints;
     using Telnyx.net.Services.DynamicEmergencyEndpoints;
-    using Telnyx.net.Services.Documents;
-    using Telnyx.net.Services.WebRTC.Credentials;
     using Xunit;
-    using static Telnyx.net.Services.DynamicEmergencyEndpoints.DynamicEmergencyEndpointOptions;
-    using System.Threading;
+    using DynamicEmergencyEndpointModel = Telnyx.net.Entities.DynamicEmergencyEndpoints.DynamicEmergencyEndpoint;
 
     // <summary>
     // Test class for DynamicEmergencyEndpoint.
@@ -35,40 +34,52 @@
                 CallbackNumber = "",
                 CallerName = "",
                 DynamicEmergencyAddressId = "",
-
             };
-
         }
 
         [Fact]
         public void Create()
         {
             var result = this.service.CreateDynamicEmergencyEndpoint(this.DynamicEmergencyEndpointOptions, this.requestOptions);
-            Assert.NotNull(result);
-            Assert.Equal(typeof(TelnyxApiResponse), result.GetType());
+            AssertResponse(result);
         }
+
         [Fact]
         public async Task CreateAsync()
         {
             var cts = new CancellationTokenSource();
-            var result = this.service.CreateDynamicEmergencyEndpointAsync(this.DynamicEmergencyEndpointOptions, this.requestOptions, cts.Token);
-            Assert.NotNull(result);
-            Assert.Equal(typeof(TelnyxApiResponse), result.GetType());
+            var result = await this.service.CreateDynamicEmergencyEndpointAsync(this.DynamicEmergencyEndpointOptions, this.requestOptions, cts.Token);
+            AssertResponse(result);
         }
+
         [Fact]
         public void Delete()
         {
             var result = this.service.DeleteCredentialConnection(Id, this.requestOptions);
-            Assert.NotNull(result);
-            Assert.Equal(typeof(TelnyxApiResponse), result.GetType());
+            AssertResponse(result);
         }
+
         [Fact]
-        public void DeleteAsync()
+        public async Task DeleteAsync()
         {
             var cts = new CancellationTokenSource();
-            var result = this.service.DeleteCredentialConnectionAsync(Id, this.requestOptions, cts.Token);
+            var result = await this.service.DeleteCredentialConnectionAsync(Id, this.requestOptions, cts.Token);
+            AssertResponse(result);
+        }
+
+        private static void AssertResponse(DynamicEmergencyEndpointModel result)
+        {
             Assert.NotNull(result);
-            Assert.Equal(typeof(TelnyxApiResponse), result.GetType());
+            Assert.Equal(typeof(DynamicEmergencyEndpointModel), result.GetType());
+            Assert.Equal("+13125550000", result.CallbackNumber);
+            Assert.Equal("Jane Doe Desk Phone", result.CallerName);
+            Assert.Equal("2018-02-02T22:25:27.521Z", result.CreatedAt);
+            Assert.Equal("0ccc7b54-4df3-4bca-a65a-3da1ecc777f0", result.DynamicEmergencyAddressId);
+            Assert.Equal("0ccc7b54-4df3-4bca-a65a-3da1ecc777f0", result.Id);
+            Assert.Equal("dynamic_emergency_endpoint", result.RecordType);
+            Assert.Equal("FXDFWEDF", result.SipFromId);
+            Assert.Equal(DynamicEmergencyAddressStatus.Pending, result.Status);
+            Assert.Equal("2018-02-02T22:25:27.521Z", result.UpdatedAt);
         }
     }
 }

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Telnyx.net.Services;
-using Xunit;
-
-namespace TelnyxTests.Services
+﻿namespace TelnyxTests.Services
 {
+    using Telnyx.net.Services;
+    using Xunit;
+
     public class UriParserTests
     {
 
@@ -21,7 +18,6 @@ namespace TelnyxTests.Services
         {
             var url = "https://api.telnyx.com".UrlCombine("calls", "1234", "updateCalls");
             Assert.Equal("https://api.telnyx.com/calls/1234/updateCalls", url);
-
         }
 
         [Fact]
@@ -29,7 +25,6 @@ namespace TelnyxTests.Services
         {
             var url = "https://api.telnyx.com".UrlCombine("calls", "//1234", "/updateCalls/");
             Assert.Equal("https://api.telnyx.com/calls/1234/updateCalls", url);
-
         }
     }
 }

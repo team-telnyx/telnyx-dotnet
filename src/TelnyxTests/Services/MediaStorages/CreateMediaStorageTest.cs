@@ -1,15 +1,12 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.MediaStorages;
-using Telnyx.net.Services.Documents;
-using Telnyx.net.Services.WebRTC.Credentials;
-using Xunit;
-using System.Threading;
-using Telnyx.net.Entities.MediaStorages;
-
-namespace TelnyxTests.Services.Calls.ConferenceCommands.CreateMediaStorage
+﻿namespace TelnyxTests.Services.Calls.ConferenceCommands.CreateMediaStorage
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities.MediaStorages;
+    using Telnyx.net.Services.MediaStorages;
+    using Xunit;
+
     /// <summary>
     /// Test class for CreateMediaStorage.
     /// </summary>
@@ -32,7 +29,6 @@ namespace TelnyxTests.Services.Calls.ConferenceCommands.CreateMediaStorage
                 MediaName = "my-file",
                 MediaUrl = "http://www.example.com/audio.mp3",
                 TtlSeconds = 86400,
-
             };
         }
 

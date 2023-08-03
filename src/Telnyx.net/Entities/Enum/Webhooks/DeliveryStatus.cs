@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-using System.Runtime.Serialization;
-using Telnyx.net.Infrastructure.JsonConverters;
-
-namespace Telnyx.net.Entities.Enum.Webhooks
+﻿namespace Telnyx.net.Entities.Enum.Webhooks
 {
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
+    using Telnyx.net.Infrastructure.JsonConverters;
+
     [JsonConverter(typeof(SafeStringEnumConverter), Unknown)]
     /// <summary>
     /// The Telnyx Messaging Services will attempt to notify you about each status update based on the hierarchy of URLs using the following statuses.
@@ -11,6 +11,7 @@ namespace Telnyx.net.Entities.Enum.Webhooks
     public enum DeliveryStatus
     {
         Unknown = -1,
+
         /// <summary>
         /// The message is queued up on Telnyx's side.
         /// </summary>

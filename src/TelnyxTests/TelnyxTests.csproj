@@ -2,7 +2,7 @@
   <Import Project="..\..\netfx.props" />
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1;netcoreapp3.1;net5.0</TargetFrameworks>
+    <TargetFrameworks>net5.0</TargetFrameworks>
     <AssemblyName>TelnyxTests</AssemblyName>
     <PackageId>TelnyxTests</PackageId>
     <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>

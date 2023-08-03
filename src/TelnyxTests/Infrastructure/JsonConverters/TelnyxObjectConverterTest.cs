@@ -6,15 +6,16 @@
     public class TelnyxObjectConverterTest : BaseTelnyxTest
     {
         private readonly TelnyxObjectConverter telnyxObjectConverter;
+
         public TelnyxObjectConverterTest()
         {
-            telnyxObjectConverter = new TelnyxObjectConverter();
+            this.telnyxObjectConverter = new TelnyxObjectConverter();
         }
 
         [Fact]
         public void ReadJson()
         {
-            var response = telnyxObjectConverter.CanConvert(typeof(TelnyxObjectConverterTest));
+            var response = this.telnyxObjectConverter.CanConvert(typeof(TelnyxObjectConverterTest));
             Assert.False(response);
         }
     }

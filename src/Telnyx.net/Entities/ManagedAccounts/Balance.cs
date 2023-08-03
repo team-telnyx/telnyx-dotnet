@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Entities.ManagedAccounts
+﻿namespace Telnyx.net.Entities.ManagedAccounts
 {
+    using Newtonsoft.Json;
+
     public class Balance
     {
         /// <summary>

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-using Telnyx.net.Entities.VerifyAPI;
-using Telnyx.net.Services.VerifyAPI;
-using Xunit;
-
-namespace TelnyxTests.Services.Verification
+﻿namespace TelnyxTests.Services.Verification
 {
+    using System;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.VerifyAPI;
+    using Telnyx.net.Services.VerifyAPI;
+    using Xunit;
 
     public class VerificationTest : BaseTelnyxTest
     {
@@ -19,14 +16,15 @@ namespace TelnyxTests.Services.Verification
         private VerifyCodeOptions codeOptions;
 
 
-        public VerificationTest(MockHttpClientFixture mockHttpClientFixture) : base(mockHttpClientFixture)
+        public VerificationTest(MockHttpClientFixture mockHttpClientFixture)
+            : base(mockHttpClientFixture)
         {
-            _verificationService = new VerificationService("KEYSUPERSECRET");
-            profileListOptions = new VerifyProfileListOptions
+            this._verificationService = new VerificationService("KEYSUPERSECRET");
+            this.profileListOptions = new VerifyProfileListOptions
             {
                 Filter = "Test"
             };
-            profileOptions = new VerifyProfileOptions
+            this.profileOptions = new VerifyProfileOptions
             {
                 DefaultTimeoutSecs = 300,
                 MessagingEnabled = true,
@@ -34,14 +32,14 @@ namespace TelnyxTests.Services.Verification
                 Name = "Test Profile",
                 RcsEnabled = false
             };
-            verifyOptions = new VerifyOptions
+            this.verifyOptions = new VerifyOptions
             {
                 TimeoutSecs = 300,
                 PhoneNumber = "+13100000010",
                 VerifyProfileId = Guid.NewGuid(),
                 Type = "sms",
             };
-            codeOptions = new VerifyCodeOptions
+            this.codeOptions = new VerifyCodeOptions
             {
                 Code = "2222"
             };
@@ -57,7 +55,6 @@ namespace TelnyxTests.Services.Verification
             Assert.NotNull(result);
             Assert.Equal(typeof(TelnyxList<VerifyProfile>), result.GetType());
             Assert.Equal(typeof(TelnyxList<VerifyProfile>), resultAsync.GetType());
-
         }
 
         [Fact(Skip = "API Spec updated with non-beta, pending update")]
@@ -81,6 +78,7 @@ namespace TelnyxTests.Services.Verification
             Assert.Equal(typeof(VerifyProfile), result.GetType());
             Assert.Equal(typeof(VerifyProfile), resultAsync.GetType());
         }
+
         [Fact(Skip = "API Spec updated with non-beta, pending update")]
         public async Task Update2FaProfiles()
         {
@@ -91,6 +89,7 @@ namespace TelnyxTests.Services.Verification
             Assert.Equal(typeof(VerifyProfile), result.GetType());
             Assert.Equal(typeof(VerifyProfile), resultAsync.GetType());
         }
+
         [Fact(Skip = "API Spec updated with non-beta, pending update")]
         public async Task Delete2FaProfiles()
         {
@@ -101,6 +100,7 @@ namespace TelnyxTests.Services.Verification
             Assert.Equal(typeof(VerifyProfile), result.GetType());
             Assert.Equal(typeof(VerifyProfile), resultAsync.GetType());
         }
+
         [Fact(Skip = "API Spec updated with non-beta, pending update")]
         public async Task CreateVerification()
         {
@@ -111,6 +111,7 @@ namespace TelnyxTests.Services.Verification
             Assert.Equal(typeof(Verify), result.GetType());
             Assert.Equal(typeof(Verify), resultAsync.GetType());
         }
+
         [Fact(Skip = "API Spec updated with non-beta, pending update")]
         public async Task RetrieveVerification()
         {
@@ -121,6 +122,7 @@ namespace TelnyxTests.Services.Verification
             Assert.Equal(typeof(Verify), result.GetType());
             Assert.Equal(typeof(Verify), resultAsync.GetType());
         }
+
         [Fact(Skip = "API Spec updated with non-beta, pending update")]
         public async Task RetrieveVerificationByPhone()
         {
@@ -131,6 +133,7 @@ namespace TelnyxTests.Services.Verification
             Assert.Equal(typeof(TelnyxList<Verify>), result.GetType());
             Assert.Equal(typeof(TelnyxList<Verify>), resultAsync.GetType());
         }
+
         [Fact(Skip = "API Spec updated with non-beta, pending update")]
         public async Task Submit2FACode()
         {

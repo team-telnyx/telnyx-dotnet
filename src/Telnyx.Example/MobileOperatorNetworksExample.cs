@@ -16,7 +16,7 @@ namespace Telnyx.Example
         {
             TelnyxList<MobileOperatorNetworksRecord> result = new TelnyxList<MobileOperatorNetworksRecord>();
             ListMobileOperatorNetworksOptions listOptions = new ListMobileOperatorNetworksOptions
-            { 
+            {
                 PageNumber = 1,
                 PageSize = 20
             };

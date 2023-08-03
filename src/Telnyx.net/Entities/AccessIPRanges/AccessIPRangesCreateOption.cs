@@ -1,10 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Telnyx.net.Entities.AccessIPRanges
+﻿namespace Telnyx.net.Entities.AccessIPRanges
 {
+    using Newtonsoft.Json;
+
     public class AccessIPRangesCreateOption : BaseOptions
     {
         /// <summary>
@@ -18,8 +15,5 @@ namespace Telnyx.net.Entities.AccessIPRanges
         /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; }
-
-
-
     }
 }

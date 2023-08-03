@@ -1,13 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.Enum.NumberPortouts;
-
-namespace Telnyx.net.Entities.NumberPortouts
+﻿namespace Telnyx.net.Entities.NumberPortouts
 {
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+    using Telnyx.net.Entities.Enum.NumberPortouts;
+
     public class SupportingDocument
     {
         /// <summary>
@@ -20,6 +16,7 @@ namespace Telnyx.net.Entities.NumberPortouts
         /// Identifies the type of the document.
         /// </summary>
         [JsonProperty("type")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public DocumentType Type { get; set; }
     }
 }

@@ -10,7 +10,6 @@ namespace Telnyx
     {
         public ListOptions()
         {
-
         }
 
         public ListOptions(int pageSize, int pageNumber)
@@ -20,13 +19,13 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// The size of the page
+        /// The size of the page.
         /// </summary>
         [JsonProperty("page[size]")]
         public int? PageSize { get; set; }
 
         /// <summary>
-        /// The page number to load
+        /// The page number to load.
         /// </summary>
         [JsonProperty("page[number]")]
         public int? PageNumber { get; set; }

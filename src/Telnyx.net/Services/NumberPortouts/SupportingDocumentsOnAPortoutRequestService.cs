@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-using Telnyx.net.Entities.NumberPortouts;
-
-namespace Telnyx.net.Services.NumberPortouts
+﻿namespace Telnyx.net.Services.NumberPortouts
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.NumberPortouts;
+
     public class SupportingDocumentsOnAPortoutRequestService : Service<PortOutSupportingDocument>
     {
         public SupportingDocumentsOnAPortoutRequestService()
-           : base(null) { }
+           : base(null)
+        {
+        }
 
         public SupportingDocumentsOnAPortoutRequestService(string apiKey)
-            : base(apiKey) { }
+            : base(apiKey)
+        {
+        }
 
         public override string BasePath => "/portouts";
 
@@ -23,32 +23,32 @@ namespace Telnyx.net.Services.NumberPortouts
 
         public TelnyxList<PortOutSupportingDocument> ListSupportingDocumentsOnAPortoutRequest(string id, RequestOptions reqOpts = null)
         {
-            return this.ListEntities(this.PostPath, null, reqOpts, id);
+            return this.ListEntities(this.PostPath, null, reqOpts, id: id);
         }
 
         public async Task<TelnyxList<PortOutSupportingDocument>> ListSupportingDocumentsOnAPortoutRequestAsync(string id, RequestOptions reqOpts = null, CancellationToken ct = default)
         {
-            return await this.ListEntitiesAsync(this.PostPath, null, reqOpts, ct, id);
+            return await this.ListEntitiesAsync(this.PostPath, null, reqOpts, string.Empty, id, ct);
         }
 
-        public virtual PortOutSupportingDocument CreateAListOfSupportingDocumentsOnAPortoutRequest(string id, CreateAListOfSupportingDocumentsOnAPortoutRequestOptions options, RequestOptions requestOptions = null)
+        public virtual TelnyxList<PortOutSupportingDocument> CreateAListOfSupportingDocumentsOnAPortoutRequest(string id, CreateAListOfSupportingDocumentsOnAPortoutRequestOptions options, RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(id, options, requestOptions, this.PostPath);
+            return this.CreateListEntity(id, options, requestOptions, this.PostPath, true);
         }
 
-        public async Task<PortOutSupportingDocument> CreateAListOfSupportingDocumentsOnAPortoutRequestAsync(string id, CreateAListOfSupportingDocumentsOnAPortoutRequestOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TelnyxList<PortOutSupportingDocument>> CreateAListOfSupportingDocumentsOnAPortoutRequestAsync(string id, CreateAListOfSupportingDocumentsOnAPortoutRequestOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.CreateEntityAsync(id, createOptions, requestOptions, cancellationToken, this.PostPath);
+            return await this.CreateListEntityAsync(id, createOptions, requestOptions, this.PostPath, true, cancellationToken: cancellationToken);
         }
 
         public virtual PortOutSupportingDocument UpdateAListOfSupportingDocumentsOnAPortoutRequest(string id, string status, UpdateAListOfSupportingDocumentsOnAPortoutRequestOptions options, RequestOptions requestOptions = null)
         {
-            return this.UpdateEntity(id, options, requestOptions, status);
+            return this.UpdateEntity(id, options, requestOptions, status, parentToken: "data");
         }
 
-        public async Task<PortOutSupportingDocument> UpdateAListOfSupportingDocumentsOnAPortoutRequestAsync(string id, string status, UpdateAListOfSupportingDocumentsOnAPortoutRequestOptions UpdateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<PortOutSupportingDocument> UpdateAListOfSupportingDocumentsOnAPortoutRequestAsync(string id, string status, UpdateAListOfSupportingDocumentsOnAPortoutRequestOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.UpdateEntityAsync(id, UpdateOptions, requestOptions, cancellationToken, status);
+            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, status, parentToken: "data", cancellationToken);
         }
     }
 }

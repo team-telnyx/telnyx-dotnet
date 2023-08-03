@@ -1,13 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.Enum;
-
-namespace Telnyx.net.Entities.VerifyAPI
+﻿namespace Telnyx.net.Entities.VerifyAPI
 {
+    using System;
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
+
     public class Verify : VerifyBase
     {
         [JsonProperty("created_at")]
@@ -24,24 +20,28 @@ namespace Telnyx.net.Entities.VerifyAPI
         /// </summary>
         [JsonProperty("record_type")]
         public RecordType? RecordType { get; set; }
+
         /// <summary>
         /// The possible statuses of the verify verification request.
         /// </summary>
         [JsonProperty("status")]
         public VerifyStatus Status { get; set; }
+
         /// <summary>
         /// This is the number of seconds before the code of the request is expired. Once this request has expired, the code will no longer verify the user. 
-        /// <para>Note: this will override the `default_timeout_secs` on the verify profile</para>
+        /// <para>Note: this will override the `default_timeout_secs` on the verify profile.</para>
         /// </summary>
         [JsonProperty("timeout_secs")]
         public long TimeoutSecs { get; set; }
+
         /// <summary>
         /// The identifier of the associated verify profile.
         /// </summary>
         [JsonProperty("verify_profile_id")]
         public Guid VerifyProfileId { get; set; }
+
         /// <summary>
-        /// The verification request type
+        /// The verification request type.
         /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }

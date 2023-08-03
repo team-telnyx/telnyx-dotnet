@@ -4,10 +4,8 @@
 
 namespace Telnyx.Infrastructure
 {
-    using System;
     using System.Collections.Generic;
     using System.Net.Http;
-    using System.Reflection;
     using System.Runtime.InteropServices;
     using Newtonsoft.Json;
 

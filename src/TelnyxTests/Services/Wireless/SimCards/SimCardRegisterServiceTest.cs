@@ -38,33 +38,29 @@
         public void Create()
         {
             var result = this.service.Create(this.simCardRegisterOptions);
-            Assert.NotNull(result);
-            Assert.Equal(typeof(TelnyxCollection<SimCardRecord>), result.GetType());
-            var response = result.Data.FirstOrDefault();
-            Assert.Equal(this.simCardRegisterOptions.SimCardGroupId, response.SimCardGroupId.ToString());
-            Assert.Equal(this.simCardRegisterOptions.Tags.Length, response.Tags.Count());
-            Assert.NotNull(response.Id);
-            Assert.NotNull(response.Imsi);
-            Assert.NotNull(response.Msisdn);
-            Assert.NotNull(response.CreatedAt);
-            Assert.NotNull(response.UpdatedAt);
-            Assert.Equal("enabled", response.Status);
+            AssertResponse(result);
         }
 
         [Fact]
         public async Task CreateAsync()
         {
             var result = await this.service.CreateAsync(this.simCardRegisterOptions);
+            AssertResponse(result);
+        }
+
+        private static void AssertResponse(TelnyxList<SimCardRecord> result)
+        {
             Assert.NotNull(result);
-            Assert.Equal(typeof(TelnyxCollection<SimCardRecord>), result.GetType());
+            Assert.Equal(typeof(TelnyxList<SimCardRecord>), result.GetType());
             var response = result.Data.FirstOrDefault();
-            Assert.Equal(this.simCardRegisterOptions.SimCardGroupId, response.SimCardGroupId.ToString());
-            Assert.Equal(this.simCardRegisterOptions.Tags.Length, response.Tags.Count());
-            Assert.NotNull(response.Id);
-            Assert.NotNull(response.Imsi);
-            Assert.NotNull(response.Msisdn);
-            Assert.Equal("enabled", response.Status);
+            Assert.Equal("6a09cdc3-8948-47f0-aa62-74ac943d6c58", response.SimCardGroupId.ToString());
+            Assert.Equal(3, response.Tags.Count());
+            Assert.Equal("6a09cdc3-8948-47f0-aa62-74ac943d6c58", response.Id);
+            Assert.Equal("081932214823362973", response.Imsi);
+            Assert.Equal("+13109976224", response.Msisdn);
+            Assert.NotNull(response.CreatedAt);
+            Assert.NotNull(response.UpdatedAt);
+            Assert.NotNull(response.Status);
         }
     }
 }
-

@@ -1,16 +1,13 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.PhoneNumbers.SubNumberOrders;
-using Xunit;
-using System.Threading;
-using Telnyx.net.Entities.PhoneNumbers.SubNumberOrders;
-using System;
-using System.Collections.Generic;
-
-namespace TelnyxTests.Services.PhoneNumbers.SubNumberOrders
+﻿namespace TelnyxTests.Services.PhoneNumbers.SubNumberOrders
 
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities.PhoneNumbers.SubNumberOrders;
+    using Telnyx.net.Services.PhoneNumbers.SubNumberOrders;
+    using Xunit;
+
     /// <summary>
     /// Test class for RetrieveSubNumberOrdersTest.
     /// </summary>
@@ -30,7 +27,7 @@ namespace TelnyxTests.Services.PhoneNumbers.SubNumberOrders
             this.requestOptions = new RequestOptions();
             this.RetrieveSubNumberOrderOption = new RetrieveSubNumberOrderOption()
             {
-               IncludePhoneNumbers = false,
+                IncludePhoneNumbers = false,
             };
         }
 
@@ -39,7 +36,7 @@ namespace TelnyxTests.Services.PhoneNumbers.SubNumberOrders
         {
             var result = this.service.RetrieveSubNumberOrders(Id, this.RetrieveSubNumberOrderOption, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(PhoneNumber), result.GetType());
+            Assert.Equal(typeof(SubNumberOrder), result.GetType());
         }
 
         [Fact]
@@ -48,7 +45,7 @@ namespace TelnyxTests.Services.PhoneNumbers.SubNumberOrders
             var cts = new CancellationTokenSource();
             var result = await this.service.RetrieveSubNumberOrdersAsync(Id, this.RetrieveSubNumberOrderOption, this.requestOptions, cts.Token);
             Assert.NotNull(result);
-            Assert.Equal(typeof(PhoneNumber), result.GetType());
+            Assert.Equal(typeof(SubNumberOrder), result.GetType());
         }
     }
 }

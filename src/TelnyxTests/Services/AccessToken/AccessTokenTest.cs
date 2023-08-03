@@ -20,7 +20,7 @@
 //        private readonly RequestOptions requestOptions;
 //        private readonly BaseOptions baseOptions;
 //        private const string Id = "6a09cdc3-8948-47f0-aa62-74ac943d6c58";
-            
+
 //        public AccessTokenTest(MockHttpClientFixture mockHttpClientFixture)
 //            : base(mockHttpClientFixture)
 //        {
@@ -43,7 +43,7 @@
 //            var result = await this.service.CreateAccessTokenAsync(Id, this.requestOptions, cts.Token);
 //            Assert.NotNull(result);
 //            Assert.Equal(typeof(AccessTokensService), result.GetType());
-  
+
 
 //        }
 //    }

@@ -1,19 +1,14 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.PhoneNumbers;
-using Xunit;
-using System.Threading;
-using Telnyx.net.Entities.Notifications;
-using System.Net.Mime;
-using Telnyx.net.Entities.NumberPortouts;
-using System;
-using System.Collections.Generic;
-using Telnyx.net.Services.PhoneNumbers.NumberBackgroundJobs;
-
-namespace TelnyxTests.Services.Notifications.Notifications.DeleteABatchOfNumberss
+﻿namespace TelnyxTests.Services.Notifications.Notifications.DeleteABatchOfNumberss
 
 {
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities.PhoneNumbers.NumberBackgroundJobs;
+    using Telnyx.net.Services.PhoneNumbers.NumberBackgroundJobs;
+    using Xunit;
+
     /// <summary>
     /// Test class for DeleteABatchOfNumbersTest.
     /// </summary>
@@ -33,7 +28,12 @@ namespace TelnyxTests.Services.Notifications.Notifications.DeleteABatchOfNumbers
             this.requestOptions = new RequestOptions();
             this.DeleteABatchOfNumbersOptions = new DeleteABatchOfNumbersOptions()
             {
-                PhoneNumber = {}
+                PhoneNumber = new List<string>
+                {
+                    "+19705555098",
+                    "+19715555098",
+                    "32873127836",
+                },
             };
         }
 
@@ -42,7 +42,7 @@ namespace TelnyxTests.Services.Notifications.Notifications.DeleteABatchOfNumbers
         {
             var result = this.service.DeleteABatchOfNumbers(this.DeleteABatchOfNumbersOptions, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(PhoneNumber), result.GetType());
+            Assert.Equal(typeof(NumberBackgroundJob), result.GetType());
         }
 
         [Fact]
@@ -51,7 +51,7 @@ namespace TelnyxTests.Services.Notifications.Notifications.DeleteABatchOfNumbers
             var cts = new CancellationTokenSource();
             var result = await this.service.DeleteABatchOfNumbersAsync(this.DeleteABatchOfNumbersOptions, this.requestOptions, cts.Token);
             Assert.NotNull(result);
-            Assert.Equal(typeof(PhoneNumber), result.GetType());
+            Assert.Equal(typeof(NumberBackgroundJob), result.GetType());
         }
     }
 }

@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Telnyx.net.Entities.Enum.AuthenticationProviders;
-using Telnyx.net.Services.PhoneNumbers.Orders.Comments;
-
-namespace Telnyx.net.Entities.AuthenticationProviders
+﻿namespace Telnyx.net.Entities.AuthenticationProviders
 {
+    using Newtonsoft.Json;
+
     public class SettingsObject
     {
         [JsonProperty("assertion_consumer_service_url")]
@@ -29,6 +24,5 @@ namespace Telnyx.net.Entities.AuthenticationProviders
 
         [JsonProperty("service_provider_entity_id")]
         public string ServiceProviderEntityId { get; set; }
-       
     }
 }

@@ -48,6 +48,7 @@
             Assert.Equal(typeof(TelnyxApiResponse), result.GetType());
             Assert.Equal("ok", result.Result);
         }
+
         [Fact]
         public async Task CreateAsync()
         {

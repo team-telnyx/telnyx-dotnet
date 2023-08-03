@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-
-namespace Telnyx.net.Services.Calls.ConferenceCommands.UpdateConference
+﻿namespace Telnyx.net.Services.Calls.ConferenceCommands.UpdateConference
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+
     public class UpdateConferenceService : Service<TelnyxApiResponse>
     {
         public UpdateConferenceService()
@@ -26,13 +22,12 @@ namespace Telnyx.net.Services.Calls.ConferenceCommands.UpdateConference
 
         public TelnyxApiResponse Leave(string id, UpdateConferenceOptions updateOptions, RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(id, this.PostPath, updateOptions, requestOptions);
+            return this.CreateEntity(id, this.PostPath, updateOptions, requestOptions, "data");
         }
 
         public async Task<TelnyxApiResponse> LeaveAsync(string id, UpdateConferenceOptions updateOptions, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this.CreateEntityAsync(id, this.PostPath, updateOptions, requestOptions, ct);
+            return await this.CreateEntityAsync(id, this.PostPath, updateOptions, requestOptions, "data", ct);
         }
-
     }
 }

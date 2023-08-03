@@ -1,13 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.Enum.NumberOrderDocuments;
-
-namespace Telnyx.net.Entities.NumberOrderDocuments
+﻿namespace Telnyx.net.Entities.NumberOrderDocuments
 {
+    using System;
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum.NumberOrderDocuments;
+
     public class NumberOrderDocument : TelnyxEntity
     {
         /// <summary>

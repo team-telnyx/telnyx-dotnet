@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-using Telnyx.net.Entities.Enum.Transcriptions;
-using Telnyx.net.Services.Calls.CallControl.Transcriptions;
-using Xunit;
-
-namespace TelnyxTests.Services.Calls.CallControl.Transcriptions
+﻿namespace TelnyxTests.Services.Calls.CallControl.Transcriptions
 {
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.Enum.Transcriptions;
+    using Telnyx.net.Services.Calls.CallControl.Transcriptions;
+    using Xunit;
+
     public class TranscriptionServiceTests : BaseTelnyxTest
     {
         private const string CallControllId = "call_123";
@@ -66,8 +63,5 @@ namespace TelnyxTests.Services.Calls.CallControl.Transcriptions
             Assert.NotNull(response);
             Assert.IsType<TelnyxApiResponse>(response);
         }
-
-
-
     }
 }

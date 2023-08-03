@@ -1,11 +1,8 @@
 ﻿namespace TelnyxTests.Services.WebRTC.Credentials
 {
-    using System.Net.Mail;
-    using System.Reflection.Metadata;
     using System.Threading.Tasks;
     using Telnyx;
     using Telnyx.net.Entities.Documents;
-    using Telnyx.net.Services.Documents;
     using Telnyx.net.Services.Documents.DocumentLinks;
     using Xunit;
 
@@ -31,7 +28,6 @@
                 DocumentId = new System.Guid("6a09cdc3-8948-47f0-aa62-74ac943d6c58"),
                 LinkedRecordType = "porting_order",
                 LinkedResourceId = new System.Guid("6a09cdc3-8948-47f0-aa62-74ac943d6c58"),
-
             };
 
             this.baseOptions = new BaseOptions();

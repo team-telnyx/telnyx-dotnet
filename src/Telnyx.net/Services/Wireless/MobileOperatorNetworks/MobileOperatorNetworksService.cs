@@ -17,7 +17,7 @@
 
         public async Task<TelnyxList<MobileOperatorNetworksRecord>> ListAsync(ListMobileOperatorNetworksOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, string.Empty, cancellationToken);
         }
     }
 }

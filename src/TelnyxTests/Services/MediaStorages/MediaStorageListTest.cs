@@ -1,16 +1,13 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.MediaStorages;
-using Telnyx.net.Services.Documents;
-using Telnyx.net.Services.WebRTC.Credentials;
-using Xunit;
-using System.Threading;
-using Telnyx.net.Entities.MediaStorages;
-using System.Net.Mime;
-
-namespace TelnyxTests.Services.Calls.ConferenceCommands.MediaStorageList
+﻿namespace TelnyxTests.Services.Calls.ConferenceCommands.MediaStorageList
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.MediaStorages;
+    using Telnyx.net.Services.MediaStorages;
+    using Xunit;
+
     /// <summary>
     /// Test class for MediaStorageList.
     /// </summary>
@@ -31,7 +28,6 @@ namespace TelnyxTests.Services.Calls.ConferenceCommands.MediaStorageList
             this.MediaStorageListOptions = new MediaStorageListOptions()
             {
                 ContentType = "application_xml",
-
             };
         }
 
@@ -39,16 +35,7 @@ namespace TelnyxTests.Services.Calls.ConferenceCommands.MediaStorageList
         public void List()
         {
             var result = this.service.ListMediaStorages(this.MediaStorageListOptions, this.requestOptions);
-            Assert.NotNull(result);
-            Assert.Equal(typeof(MediaStorage), result.GetType());
-            foreach (var item in result.Data)
-            {
-                Assert.Equal("application/xml", item.ContentType);
-                Assert.Equal("2019-01-23T18:10:02.574Z", item.CreatedAt);
-                Assert.Equal("2020-01-23T18:10:02.574Z", item.ExpiresAt);
-                Assert.Equal("f5586561-8ff0-4291-a0ac-84fe544797bd", item.MediaName);
-                Assert.Equal("2019-01-23T18:10:02.574Z", item.UpdatedAt);
-            }
+            AssertResponse(result);
         }
 
         [Fact]
@@ -56,15 +43,20 @@ namespace TelnyxTests.Services.Calls.ConferenceCommands.MediaStorageList
         {
             var cts = new CancellationTokenSource();
             var result = await this.service.ListMediaStoragesAsync(this.MediaStorageListOptions, this.requestOptions, cts.Token);
+            AssertResponse(result);
+        }
+
+        private static void AssertResponse(TelnyxList<MediaStorage> result)
+        {
             Assert.NotNull(result);
-            Assert.Equal(typeof(MediaStorage), result.GetType());
+            Assert.Equal(typeof(TelnyxList<MediaStorage>), result.GetType());
             foreach (var item in result.Data)
             {
                 Assert.Equal("application/xml", item.ContentType);
-                Assert.Equal("2019-01-23T18:10:02.574Z", item.CreatedAt);
-                Assert.Equal("2020-01-23T18:10:02.574Z", item.ExpiresAt);
+                Assert.Equal("01/23/2019 18:10:02", item.CreatedAt);
+                Assert.Equal("01/23/2020 18:10:02", item.ExpiresAt);
                 Assert.Equal("f5586561-8ff0-4291-a0ac-84fe544797bd", item.MediaName);
-                Assert.Equal("2019-01-23T18:10:02.574Z", item.UpdatedAt);
+                Assert.Equal("01/23/2019 18:10:02", item.UpdatedAt);
             }
         }
     }

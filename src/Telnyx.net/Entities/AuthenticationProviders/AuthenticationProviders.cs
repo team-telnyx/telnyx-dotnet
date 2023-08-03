@@ -1,12 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Runtime;
-using System.Text;
-using System.Xml.Linq;
-
-namespace Telnyx.net.Entities.AuthenticationProviders
+﻿namespace Telnyx.net.Entities.AuthenticationProviders
 {
+    using System;
+    using Newtonsoft.Json;
+
     public class AuthenticationProviders : TelnyxEntity
     {
         /// <summary>
@@ -47,6 +43,5 @@ namespace Telnyx.net.Entities.AuthenticationProviders
 
         [JsonProperty("updated_at")]
         public DateTime UpdatedAt { get; set; }
-
     }
 }

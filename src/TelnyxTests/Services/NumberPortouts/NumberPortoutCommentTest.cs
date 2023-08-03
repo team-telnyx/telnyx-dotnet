@@ -1,19 +1,14 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.NumberPortouts;
-using Xunit;
-using System.Threading;
-using Telnyx.net.Entities.Notifications;
-using System.Net.Mime;
-using Telnyx.net.Entities.NumberPortouts;
-using System;
-using System.Collections.Generic;
-using Telnyx.net.Services.PhoneNumbers.NumberBackgroundJobs;
-
-namespace TelnyxTests.Services.Notifications.Notifications.NumberPortoutComments
+﻿namespace TelnyxTests.Services.Notifications.Notifications.NumberPortoutComments
 
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.NumberPortouts;
+    using Telnyx.net.Services.NumberPortouts;
+    using Xunit;
+
     /// <summary>
     /// Test class for NumberPortoutCommentTest.
     /// </summary>
@@ -42,7 +37,7 @@ namespace TelnyxTests.Services.Notifications.Notifications.NumberPortoutComments
         {
             var result = this.service.ListAllCommentsForAPortoutRequest(Id, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(NumberPortoutService), result.GetType());
+            Assert.Equal(typeof(TelnyxList<PortoutComment>), result.GetType());
         }
 
         [Fact]
@@ -51,24 +46,24 @@ namespace TelnyxTests.Services.Notifications.Notifications.NumberPortoutComments
             var cts = new CancellationTokenSource();
             var result = await this.service.ListAllCommentsForAPortoutRequestAsync(Id, this.requestOptions, cts.Token);
             Assert.NotNull(result);
-            Assert.Equal(typeof(NumberPortoutService), result.GetType());
+            Assert.Equal(typeof(TelnyxList<PortoutComment>), result.GetType());
         }
 
         [Fact]
         public void Create()
         {
-            var result = this.service.CreateCommentsForAPortoutRequest(Id, this.CreateCommentsForAPortoutRequestOptions,this.requestOptions);
+            var result = this.service.CreateCommentsForAPortoutRequest(Id, this.CreateCommentsForAPortoutRequestOptions, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(NumberPortoutService), result.GetType());
+            Assert.Equal(typeof(PortoutComment), result.GetType());
         }
 
         [Fact]
         public async Task CreateSync()
         {
             var cts = new CancellationTokenSource();
-            var result = await this.service.CreateCommentsForAPortoutRequestAsync(Id, this.CreateCommentsForAPortoutRequestOptions,this.requestOptions, cts.Token);
+            var result = await this.service.CreateCommentsForAPortoutRequestAsync(Id, this.CreateCommentsForAPortoutRequestOptions, this.requestOptions, cts.Token);
             Assert.NotNull(result);
-            Assert.Equal(typeof(NumberPortoutService), result.GetType());
+            Assert.Equal(typeof(PortoutComment), result.GetType());
         }
     }
 }

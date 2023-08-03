@@ -1,26 +1,21 @@
-﻿using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Entities.PhoneNumbers.InboundChannels;
-using Telnyx.net.Services.PhoneNumbers.InboundChannels;
-using Xunit;
-
-namespace TelnyxTests.Services.PhoneNumbers.InboundChannelService
+﻿namespace TelnyxTests.Services.PhoneNumbers.InboundChannelService
 {
-    public class InboundChannelServiceTest: BaseTelnyxTest
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities.PhoneNumbers.InboundChannels;
+    using Telnyx.net.Services.PhoneNumbers.InboundChannels;
+    using Xunit;
+
+    public class InboundChannelServiceTest : BaseTelnyxTest
     {
         private const string NumberOrderId = "12ade33a-21c0-473b-b055-b3c836e1c292";
-        private readonly Telnyx.net.Services.PhoneNumbers.InboundChannels.InboundChannelService service;
+        private readonly InboundChannelService service;
         private readonly InboundChannelUpdateOptions updateOptions;
 
         public InboundChannelServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
-            this.service = new Telnyx.net.Services.PhoneNumbers.InboundChannels.InboundChannelService();
+            this.service = new InboundChannelService();
 
             this.updateOptions = new InboundChannelUpdateOptions
             {

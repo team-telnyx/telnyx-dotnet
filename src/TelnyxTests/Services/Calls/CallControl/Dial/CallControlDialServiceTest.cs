@@ -4,7 +4,6 @@
 
 namespace TelnyxTests.Services.Calls.CallCommands
 {
-    using System.Net.Http;
     using System.Threading.Tasks;
     using Telnyx;
     using Telnyx.net.Entities.Enum;
@@ -62,6 +61,10 @@ namespace TelnyxTests.Services.Calls.CallCommands
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls");
             Assert.NotNull(message);
             Assert.Equal(typeof(CallDialResponse), message.GetType());
+            Assert.NotNull(message.CallControlId);
+            Assert.NotNull(message.CallLegId);
+            Assert.NotNull(message.CallSessionId);
+            Assert.Equal(RecordType.Call, message.RecordType);
         }
 
         [Fact]

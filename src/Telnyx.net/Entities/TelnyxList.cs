@@ -2,7 +2,6 @@ namespace Telnyx.net.Entities
 {
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
     using Newtonsoft.Json;
     using Telnyx.Infrastructure;
 
@@ -30,7 +29,7 @@ namespace Telnyx.net.Entities
         /// this set comprises the end of the list.
         /// </summary>
         [JsonProperty("has_more")]
-        public bool HasMore => PageInfo?.HasMore ?? false;
+        public bool HasMore => this.PageInfo?.HasMore ?? false;
 
         /// <summary>
         /// Gets or sets the URL for accessing this list.
@@ -39,10 +38,11 @@ namespace Telnyx.net.Entities
         public string Url => this?.TelnyxResponse?.Url ?? string.Empty;
 
         /// <summary>
-        /// Gets or sets metadata for list
+        /// Gets or sets metadata for list.
         /// </summary>
         [JsonProperty("meta")]
         public PageInfo PageInfo { get; set; }
+
         /// <inheritdoc/>
         public IEnumerator<T> GetEnumerator()
         {

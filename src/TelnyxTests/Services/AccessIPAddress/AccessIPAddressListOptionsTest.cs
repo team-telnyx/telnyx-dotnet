@@ -1,18 +1,15 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.AccessIPAddresses;
-
-using Xunit;
-using System.Threading;
-using Telnyx.net.Entities.AccessIPAddresses;
-using Telnyx.net.Entities.Enum.AccessIPAddresses;
-using Castle.Core.Resource;
-using System;
-using Telnyx.net.Entities.AuthenticationProviders;
-
-namespace TelnyxTests.Services.AccessIPAddressList
+﻿namespace TelnyxTests.Services.AccessIPAddressList
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.AccessIPAddresses;
+    using Telnyx.net.Entities.Enum.AccessIPAddresses;
+    using Telnyx.net.Services.AccessIPAddresses;
+    using Xunit;
+
     /// <summary>
     /// Test class for AccessIPAddressList.
     /// </summary>
@@ -82,6 +79,7 @@ namespace TelnyxTests.Services.AccessIPAddressList
                 Assert.Equal("string", item.UserId);
             }
         }
+
         [Fact]
         public void Retrieve()
         {
@@ -98,7 +96,6 @@ namespace TelnyxTests.Services.AccessIPAddressList
             Assert.Equal(new CloudflareSyncStatus(), item.Status);
             Assert.Equal(expectedDateTime.ToString("s") + "Z", item.UpdatedAt.ToString("s") + "Z");
             Assert.Equal("string", item.UserId);
-
         }
 
         [Fact]
@@ -118,7 +115,6 @@ namespace TelnyxTests.Services.AccessIPAddressList
             Assert.Equal(new CloudflareSyncStatus(), item.Status);
             Assert.Equal(expectedDateTime.ToString("s") + "Z", item.UpdatedAt.ToString("s") + "Z");
             Assert.Equal("string", item.UserId);
-
         }
     }
 }

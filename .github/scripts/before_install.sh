@@ -1,4 +1,4 @@
-npm install -g @stoplight/prism-cli
+npm i -g @stoplight/prism-cli@4.10.5
 
 echo "Starting up Prism Mock Server with spec file at ${TELNYX_MOCK_OPEN_API_URI}"
 prism mock ${TELNYX_MOCK_OPEN_API_URI} > /dev/null &

@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Services.PhoneNumbers.Orders.Comments
+﻿namespace Telnyx.net.Services.PhoneNumbers.Orders.Comments
 {
+    using Newtonsoft.Json;
+
     public class CommentListOptions : ListOptions
     {
         [JsonProperty("filter[comment_record_type]")]

@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-using Telnyx.net.Entities.Connections.IPConnections;
-using Telnyx.net.Services.Connections;
-using Telnyx.net.Services.Connections.IPConnections;
-using Xunit;
-
-namespace TelnyxTests.Services.Connections.IPConnectionsTest
+﻿namespace TelnyxTests.Services.Connections.IPConnectionsTest
 {
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.Connections.IPConnections;
+    using Telnyx.net.Services.Connections;
+    using Telnyx.net.Services.Connections.IPConnections;
+    using Xunit;
+
     public class IPConnectionServiceTest : BaseTelnyxTest
     {
         private readonly string credConnId = "1234";
@@ -46,6 +43,7 @@ namespace TelnyxTests.Services.Connections.IPConnectionsTest
             Assert.NotNull(message);
             Assert.Equal(typeof(TelnyxList<IPConnection>), message.GetType());
         }
+
         [Fact]
         public void Create()
         {
@@ -63,10 +61,11 @@ namespace TelnyxTests.Services.Connections.IPConnectionsTest
             Assert.NotNull(message);
             Assert.Equal(typeof(IPConnection), message.GetType());
         }
+
         [Fact]
         public void Delete()
         {
-            var message = this.service.DeleteIPConnection(credConnId);
+            var message = this.service.DeleteIPConnection(this.credConnId);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
             Assert.NotNull(message);
             Assert.Equal(typeof(IPConnection), message.GetType());
@@ -75,15 +74,16 @@ namespace TelnyxTests.Services.Connections.IPConnectionsTest
         [Fact]
         public async Task DeleteAsync()
         {
-            var message = await this.service.DeleteIPConnectionAsync(credConnId);
+            var message = await this.service.DeleteIPConnectionAsync(this.credConnId);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
             Assert.NotNull(message);
             Assert.Equal(typeof(IPConnection), message.GetType());
         }
+
         [Fact]
         public void Update()
         {
-            var message = this.service.UpdateIPConnection(credConnId, createOptions);
+            var message = this.service.UpdateIPConnection(this.credConnId, this.createOptions);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
             Assert.NotNull(message);
             Assert.Equal(typeof(IPConnection), message.GetType());
@@ -92,15 +92,16 @@ namespace TelnyxTests.Services.Connections.IPConnectionsTest
         [Fact]
         public async Task UpdateAsync()
         {
-            var message = await this.service.UpdateIPConnectionAsync(credConnId, createOptions);
+            var message = await this.service.UpdateIPConnectionAsync(this.credConnId, this.createOptions);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
             Assert.NotNull(message);
             Assert.Equal(typeof(IPConnection), message.GetType());
         }
+
         [Fact]
         public void Retrieve()
         {
-            var message = this.service.RetrieveIPConnection(credConnId);
+            var message = this.service.RetrieveIPConnection(this.credConnId);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
             Assert.NotNull(message);
             Assert.Equal(typeof(IPConnection), message.GetType());
@@ -109,7 +110,7 @@ namespace TelnyxTests.Services.Connections.IPConnectionsTest
         [Fact]
         public async Task RetrieveAsync()
         {
-            var message = await this.service.RetrieveIPConnectionAsync(credConnId);
+            var message = await this.service.RetrieveIPConnectionAsync(this.credConnId);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
             Assert.NotNull(message);
             Assert.Equal(typeof(IPConnection), message.GetType());

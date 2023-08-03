@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-
-namespace Telnyx.net.Entities.Faxes.Webhooks
+﻿namespace Telnyx.net.Entities.Faxes.Webhooks
 {
+    using Newtonsoft.Json;
+
     public class FaxWebhook : FaxBase
     {
         /// <summary>

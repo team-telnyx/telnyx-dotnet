@@ -1,57 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Threading;
-using Telnyx.net.Entities.AccessIPAddresses;
-using Telnyx.net.Entities;
-
-namespace Telnyx.net.Services.AccessIPAddresses
+﻿namespace Telnyx.net.Services.AccessIPAddresses
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.AccessIPAddresses;
+
     public class AccessIPAddressService : Service<AccessIPAddress>
     {
 
         public AccessIPAddressService()
-           : base(null) { }
+           : base(null)
+        {
+        }
 
         public AccessIPAddressService(string apiKey)
-            : base(apiKey) { }
+            : base(apiKey)
+        {
+        }
 
         public override string BasePath => "/access_ip_address";
+
         public TelnyxList<AccessIPAddress> ListAllAccessIPAddresses(AccessIPAddressListOptions listOptions, RequestOptions reqOpts = null)
         {
             return this.ListEntities(listOptions, reqOpts);
         }
 
-        public async Task<TelnyxList<AccessIPAddress>> ListAllAccessIPAddressesAsync(AccessIPAddressListOptions listOptions, RequestOptions reqOpts = null, string parentToken = "")
+        public async Task<TelnyxList<AccessIPAddress>> ListAllAccessIPAddressesAsync(AccessIPAddressListOptions listOptions, RequestOptions reqOpts = null, CancellationToken ct = default)
         {
-            return await this.ListEntitiesAsync(listOptions, reqOpts, parentToken);
+            return await this.ListEntitiesAsync(listOptions, reqOpts, string.Empty, ct);
         }
+
         public AccessIPAddress CreateAllAccessIPAddresses(AccessIPAddressCreateOptions createOptions, RequestOptions reqOpts = null)
         {
             return this.CreateEntity(createOptions, reqOpts);
         }
 
-        public async Task <AccessIPAddress> CreateAllAccessIPAddressesAsync(AccessIPAddressCreateOptions createOptions, RequestOptions reqOpts = null, CancellationToken ct = default)
+        public async Task<AccessIPAddress> CreateAllAccessIPAddressesAsync(AccessIPAddressCreateOptions createOptions, RequestOptions reqOpts = null, CancellationToken ct = default)
         {
-            return await this.CreateEntityAsync(createOptions, reqOpts, ct, parentToken: null);
+            return await this.CreateEntityAsync(createOptions, reqOpts, parentToken: null, cancellationToken: ct);
         }
+
         public AccessIPAddress DeleteAllAccessIPAddresses(string id, RequestOptions requestOptions = null)
         {
-            var a= this.DeleteEntity(id, requestOptions);
+            var a = this.DeleteEntity(id, requestOptions);
             return a;
         }
 
-        public async Task <AccessIPAddress> DeleteAllAccessIPAddressesAsync(string id, RequestOptions requestOptions = null, CancellationToken ct = default)
+        public async Task<AccessIPAddress> DeleteAllAccessIPAddressesAsync(string id, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this.DeleteEntityAsync(id, requestOptions, ct).ConfigureAwait(false);
+            return await this.DeleteEntityAsync(id, requestOptions, string.Empty, ct).ConfigureAwait(false);
         }
-        public async Task <AccessIPAddress> RetrieveAllAccessIPAddressesAsync(string id, BaseOptions options = null, RequestOptions reqOpts = null, string parentToken = "",CancellationToken ct = default)
+
+        public async Task<AccessIPAddress> RetrieveAllAccessIPAddressesAsync(string id, BaseOptions options = null, RequestOptions reqOpts = null, CancellationToken ct = default)
         {
-            return await this.GetEntityAsync(id, options, reqOpts, parentToken,ct);
+            return await this.GetEntityAsync(id, options, reqOpts, string.Empty, ct);
         }
+
         public AccessIPAddress RetrieveAllAccessIPAddresses(string id, BaseOptions options = null, RequestOptions reqOpts = null)
         {
-            return this.GetEntity(id, options, reqOpts);
+            return this.GetEntity(id, options, reqOpts, string.Empty);
         }
     }
 }

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Entities.Enum.PhoneNumbers.Orders.Comments
+﻿namespace Telnyx.net.Entities.Enum.PhoneNumbers.Orders.Comments
 {
+    using System.Runtime.Serialization;
+
     public enum CommentRecordType
     {
         [EnumMember(Value = "number_order")]

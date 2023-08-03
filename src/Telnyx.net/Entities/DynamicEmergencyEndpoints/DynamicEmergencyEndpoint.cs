@@ -1,13 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.Enum.DynamicEmergencyEndpoints;
-
-namespace Telnyx.net.Entities.DynamicEmergencyEndpoints
+﻿namespace Telnyx.net.Entities.DynamicEmergencyEndpoints
 {
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum.DynamicEmergencyEndpoints;
+
     public class DynamicEmergencyEndpoint : TelnyxEntity
     {
         /// <summary>
@@ -54,7 +49,7 @@ namespace Telnyx.net.Entities.DynamicEmergencyEndpoints
 
         /// <summary>
         /// The status of dynamic emergency address.
-        /// Enum: "pending" "activated" "rejected"
+        /// Enum: "pending" "activated" "rejected".
         /// </summary>
         [JsonProperty("status")]
         public DynamicEmergencyAddressStatus Status { get; set; }

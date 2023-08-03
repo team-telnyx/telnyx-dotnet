@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Services.ManagedAccounts
+﻿namespace Telnyx.net.Services.ManagedAccounts
 {
+    using Newtonsoft.Json;
+
     public class CreateManagedAccountOptions : BaseOptions
     {
         /// <summary>
@@ -38,6 +33,5 @@ namespace Telnyx.net.Services.ManagedAccounts
         /// </summary>
         [JsonProperty("rollup_billing")]
         public bool RollupBilling { get; set; }
-
     }
 }

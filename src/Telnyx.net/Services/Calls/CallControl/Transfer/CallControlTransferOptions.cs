@@ -24,7 +24,7 @@
 
         /// <summary>
         /// The `from_display_name` string to be used as the caller id name (SIP From Display Name) presented to the destination (`to` number). The string should have a maximum of 128 characters, containing only letters, numbers, spaces, and -_~!.+ special characters. If ommited, the display name will be the same as the number in the `from` field.
-        /// Example: "Company Name"
+        /// Example: "Company Name".
         /// </summary>
         [JsonProperty("from_display_name")]
         public string FromDisplayName { get; set; }

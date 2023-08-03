@@ -1,19 +1,16 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Telnyx.net.Entities.Enum.AuthenticationProviders;
-using Telnyx.net.Services.PhoneNumbers.Orders.Comments;
-
-namespace Telnyx.net.Entities.AuthenticationProviders
+﻿namespace Telnyx.net.Entities.AuthenticationProviders
 {
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+    using Telnyx.net.Entities.Enum.AuthenticationProviders;
+
     public class SettingsRequestObject
     {
         [JsonProperty("idp_cert_fingerprint")]
         public string IdPCertFingerprint { get; set; }
 
         [JsonProperty("idp_cert_fingerprint_algorithm")]
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public FingerprintAlgorithm IdPCertFingerprintAlgorithm { get; set; } = FingerprintAlgorithm.Sha1;
 
         [JsonProperty("idp_entity_id")]

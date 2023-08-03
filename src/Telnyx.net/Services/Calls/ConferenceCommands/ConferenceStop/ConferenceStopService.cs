@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-
-namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferenceStop
+﻿namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferenceStop
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+
     class ConferenceStopService : Service<TelnyxApiResponse>
     {
         public ConferenceStopService()
@@ -26,12 +22,12 @@ namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferenceStop
 
         public TelnyxApiResponse Stop(string id, StopAudioOptions stopOptions, RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(id, this.PostPath, stopOptions, requestOptions);
+            return this.CreateEntity(id, this.PostPath, stopOptions, requestOptions, "data");
         }
 
         public async Task<TelnyxApiResponse> StopAsync(string id, StopAudioOptions stopOptions, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this.CreateEntityAsync(id, this.PostPath, stopOptions, requestOptions, ct);
+            return await this.CreateEntityAsync(id, this.PostPath, stopOptions, requestOptions, "data", ct);
         }
     }
 }

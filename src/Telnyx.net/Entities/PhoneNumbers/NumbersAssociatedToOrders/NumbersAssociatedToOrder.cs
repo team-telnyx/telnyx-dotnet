@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System.Collections.Generic;
-using Telnyx.net.Entities.Enum.PhoneNumbers.NumbersAssociatedToOrders;
-
-namespace Telnyx.net.Entities.PhoneNumbers.NumbersAssociatedToOrders
+﻿namespace Telnyx.net.Entities.PhoneNumbers.NumbersAssociatedToOrders
 {
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+    using Telnyx.net.Entities.Enum.PhoneNumbers.NumbersAssociatedToOrders;
+
     public class NumbersAssociatedToOrder : TelnyxEntity
     {
         [JsonProperty("country_code")]

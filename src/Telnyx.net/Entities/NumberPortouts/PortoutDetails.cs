@@ -1,14 +1,12 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.Enum.NumberPortouts;
-using Telnyx.net.Services.PhoneNumbers.Orders.Comments;
-
-namespace Telnyx.net.Entities.NumberPortouts
+﻿namespace Telnyx.net.Entities.NumberPortouts
 {
+    using System;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+    using Telnyx.net.Entities.Enum.NumberPortouts;
+    using Telnyx.net.Services.PhoneNumbers.Orders.Comments;
+
     public class PortoutDetails : TelnyxEntity
     {
         /// <summary>
@@ -129,7 +127,7 @@ namespace Telnyx.net.Entities.NumberPortouts
         /// Gets or sets the status of the portout request.
         /// </summary>
         [JsonProperty("status")]
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public PortoutStatus Status { get; set; }
 
         /// <summary>

@@ -1,18 +1,14 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.AccessIPAddresses;
-
-using Xunit;
-using System.Threading;
-using Telnyx.net.Entities.AccessIPAddresses;
-using Telnyx.net.Entities.Enum.AccessIPAddresses;
-using Castle.Core.Resource;
-using System;
-using Newtonsoft.Json;
-
-namespace TelnyxTests.Services.AccessIPAddressCreate
+﻿namespace TelnyxTests.Services.AccessIPAddressCreate
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities.AccessIPAddresses;
+    using Telnyx.net.Entities.Enum.AccessIPAddresses;
+    using Telnyx.net.Services.AccessIPAddresses;
+    using Xunit;
+
     /// <summary>
     /// Test class for AccessIPAddressCreate.
     /// </summary>
@@ -24,6 +20,7 @@ namespace TelnyxTests.Services.AccessIPAddressCreate
         private readonly BaseOptions baseOptions;
         private readonly string json;
         private const string Id = "6a09cdc3-8948-47f0-aa62-74ac943d6c58";
+
         public AccessIPAddressCreateTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
@@ -36,6 +33,7 @@ namespace TelnyxTests.Services.AccessIPAddressCreate
                 IpAddress = "string",
             };
         }
+
         [Fact]
         public void Create()
         {
@@ -51,7 +49,6 @@ namespace TelnyxTests.Services.AccessIPAddressCreate
             Assert.Equal(new CloudflareSyncStatus(), result.Status);
             Assert.Equal(expectedDateTime.ToString("s") + "Z", result.CreatedAt.ToString("s") + "Z");
             Assert.Equal("string", result.UserId);
-
         }
 
         [Fact]
@@ -71,6 +68,7 @@ namespace TelnyxTests.Services.AccessIPAddressCreate
             Assert.Equal(expectedDateTime.ToString("s") + "Z", result.CreatedAt.ToString("s") + "Z");
             Assert.Equal("string", result.UserId);
         }
+
         [Fact]
         public void Delete()
         {
@@ -87,7 +85,6 @@ namespace TelnyxTests.Services.AccessIPAddressCreate
             Assert.Equal(new CloudflareSyncStatus(), item.Status);
             Assert.Equal(expectedDateTime.ToString("s") + "Z", item.UpdatedAt.ToString("s") + "Z");
             Assert.Equal("string", item.UserId);
-
         }
 
         [Fact]
@@ -107,7 +104,6 @@ namespace TelnyxTests.Services.AccessIPAddressCreate
             Assert.Equal(new CloudflareSyncStatus(), item.Status);
             Assert.Equal(expectedDateTime.ToString("s") + "Z", item.UpdatedAt.ToString("s") + "Z");
             Assert.Equal("string", item.UserId);
-
         }
     }
 }

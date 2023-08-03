@@ -1,11 +1,11 @@
-﻿using System.Threading.Tasks;
-using Telnyx.net.Entities;
-using Telnyx.net.Entities.Messaging.Messaging_Profiles.Metrics;
-using Telnyx.net.Services.Messaging.Messaging_Profiles.Metrics;
-using Xunit;
-
-namespace TelnyxTests.Services.Messaging.Messaging_Profiles.Metrics
+﻿namespace TelnyxTests.Services.Messaging.Messaging_Profiles.Metrics
 {
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.Messaging.Messaging_Profiles.Metrics;
+    using Telnyx.net.Services.Messaging.Messaging_Profiles.Metrics;
+    using Xunit;
+
     public class MessagingProfileMetricsOverviewServiceTest : BaseTelnyxTest
     {
         private readonly MessagingProfileMetricsOverviewService service;

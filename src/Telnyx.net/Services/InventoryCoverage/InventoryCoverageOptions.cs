@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Services.InventoryCoverage
+﻿namespace Telnyx.net.Services.InventoryCoverage
 {
     public class InventoryCoverageOptions : BaseOptions
     {
-
     }
 }

@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Entities.Documents
+﻿namespace Telnyx.net.Entities.Documents
 {
+    using System;
+    using Newtonsoft.Json;
 
     public class Document : TelnyxEntity
     {
@@ -17,7 +12,7 @@ namespace Telnyx.net.Entities.Documents
         public string CreatedAt { get; set; }
 
         /// <summary>
-        /// Identifies the resourceDocumentLink
+        /// Identifies the resourceDocumentLink.
         /// </summary>
         [JsonProperty("id")]
         public Guid Id { get; set; }
@@ -66,10 +61,11 @@ namespace Telnyx.net.Entities.Documents
 
         /// <summary>
         /// Indicates the current document reviewing status.
-        /// Enum: "pending" "verified" "denied"
+        /// Enum: "pending" "verified" "denied".
         /// </summary>
         [JsonProperty("status")]
         public DocumentStatus Status { get; set; }
+
         public object url { get; internal set; }
     }
 }

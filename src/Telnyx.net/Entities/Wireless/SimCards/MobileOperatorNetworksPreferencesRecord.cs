@@ -1,6 +1,5 @@
 ﻿namespace Telnyx.net.Entities.Wireless.SimCards
 {
-    using System;
     using System.Collections.Generic;
     using Newtonsoft.Json;
     using Telnyx.net.Entities.Enum;
@@ -9,7 +8,7 @@
     public class MobileOperatorNetworksPreferencesRecord : TelnyxEntity, IHasId
     {
         /// <summary>
-        /// Gets or Sets MobileOperatorNetworksPreferences
+        /// Gets or Sets MobileOperatorNetworksPreferences.
         /// </summary>
         [JsonProperty("mobile_operator_networks_preferences")]
         public IList<MobileOperatorNetworksPreferences> MobileOperatorNetworksPreferences { get; set; }

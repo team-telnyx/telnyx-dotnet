@@ -192,7 +192,7 @@
         {
             var result = this.service.Register(this.simCardRegisterOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(TelnyxCollection<SimCardRecord>), result.GetType());
+            Assert.Equal(typeof(TelnyxList<SimCardRecord>), result.GetType());
         }
 
         [Fact]
@@ -200,7 +200,7 @@
         {
             var result = await this.service.RegisterAsync(this.simCardRegisterOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(TelnyxCollection<SimCardRecord>), result.GetType());
+            Assert.Equal(typeof(TelnyxList<SimCardRecord>), result.GetType());
         }
 
         [Fact]

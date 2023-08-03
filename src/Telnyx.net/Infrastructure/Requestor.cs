@@ -51,6 +51,7 @@ namespace Telnyx.Infrastructure
 
             return ExecuteRequest(wr);
         }
+
         public static byte[] GetFile(string url, RequestOptions requestOptions)
         {
             var wr = GetRequestMessage(url, HttpMethod.Get, requestOptions);
@@ -168,16 +169,19 @@ namespace Telnyx.Infrastructure
 
             throw BuildTelnyxException(result, response.StatusCode, requestMessage.RequestUri.AbsoluteUri, responseText);
         }
+
         public static byte[] ExecuteFileRequest(HttpRequestMessage requestMessage)
         {
             var response = HttpClient.SendAsync(requestMessage).ConfigureAwait(false).GetAwaiter().GetResult();
             return response.Content.ReadAsByteArrayAsync().ConfigureAwait(false).GetAwaiter().GetResult();
         }
+
         public static async Task<byte[]> ExecuteFileRequestAsync(HttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
         {
             var response = await HttpClient.SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
             return await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
         }
+
         /// <summary>
         /// GetStringAsync.
         /// </summary>
@@ -185,7 +189,7 @@ namespace Telnyx.Infrastructure
         /// <param name="requestOptions">requestOptions.</param>
         /// <param name="cancellationToken">cancellationToken.</param>
         /// <returns>telnyxResponse.</returns>
-        public static async Task<TelnyxResponse> GetStringAsync(string url, RequestOptions requestOptions,CancellationToken cancellationToken = default(CancellationToken))
+        public static async Task<TelnyxResponse> GetStringAsync(string url, RequestOptions requestOptions, CancellationToken cancellationToken = default(CancellationToken))
         {
             var wr = GetRequestMessage(url, HttpMethod.Get, requestOptions);
 

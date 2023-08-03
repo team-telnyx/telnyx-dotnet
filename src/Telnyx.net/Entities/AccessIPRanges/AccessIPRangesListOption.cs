@@ -1,11 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Telnyx.net.Entities.Enum.AccessIPRanges;
-
-namespace Telnyx.net.Entities.AccessIPRanges
+﻿namespace Telnyx.net.Entities.AccessIPRanges
 {
+    using System;
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum.AccessIPRanges;
+
     public class AccessIPRangesListOption : ListOptions
     {
         /// <summary>

@@ -1,14 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.Enum;
-
-namespace Telnyx.net.Entities.PhoneNumbers.NumberConfigurations
+﻿namespace Telnyx.net.Entities.PhoneNumbers.NumberConfigurations
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
+
     [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum NumberConfigStatus
     {
@@ -37,8 +34,8 @@ namespace Telnyx.net.Entities.PhoneNumbers.NumberConfigurations
         PortedOut = 7,
         [EnumMember(Value = "port-out-pending")]
         PortOutPending = 8,
-
     }
+
     [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum PaymentMethod
     {
@@ -48,6 +45,7 @@ namespace Telnyx.net.Entities.PhoneNumbers.NumberConfigurations
         [EnumMember(Value = "channel")]
         Channel = 1,
     }
+
     [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum Sort
     {

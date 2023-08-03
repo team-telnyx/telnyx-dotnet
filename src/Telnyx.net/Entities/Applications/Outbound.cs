@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-
-namespace Telnyx.net.Entities.Applications
+﻿namespace Telnyx.net.Entities.Applications
 {
+    using Newtonsoft.Json;
+
     public class Outbound
     {
         /// <summary>

@@ -32,13 +32,13 @@
         /// <inheritdoc/>
         public virtual CallRejectResponse Create(string id, CallControlRejectOptions options, string postFix = "actions/reject", RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(id, postFix, options, requestOptions);
+            return this.CreateEntity(id, postFix, options, requestOptions, string.Empty);
         }
 
         /// <inheritdoc/>
         public async Task<CallRejectResponse> CreateAsync(string parentId, CallControlRejectOptions createOptions, string postFix = "actions/reject", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, string.Empty, cancellationToken);
         }
     }
 }

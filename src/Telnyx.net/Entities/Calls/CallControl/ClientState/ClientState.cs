@@ -1,10 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Telnyx.net.Entities.Calls.CallControl.ClientState
+﻿namespace Telnyx.net.Entities.Calls.CallControl.ClientState
 {
+    using Newtonsoft.Json;
+
     public class ClientStateOption : BaseOptions
     {
         /// <summary>
@@ -12,6 +9,5 @@ namespace Telnyx.net.Entities.Calls.CallControl.ClientState
         /// </summary>
         [JsonProperty("client_state")]
         public string ClientStates { get; set; }
-
     }
 }

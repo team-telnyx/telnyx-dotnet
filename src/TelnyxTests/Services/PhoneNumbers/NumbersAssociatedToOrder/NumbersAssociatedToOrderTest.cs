@@ -1,18 +1,14 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.PhoneNumbers.NumbersAssociatedToOrders;
-using Xunit;
-using System.Threading;
-using Telnyx.net.Entities.PhoneNumbers.NumbersAssociatedToOrders;
-using System.Net.Mime;
-using System;
-using System.Collections.Generic;
-using Telnyx.net.Services.PhoneNumbers.NumberBackgroundJobs;
-
-namespace TelnyxTests.Services.PhoneNumbers.NumbersAssociatedToOrder
+﻿namespace TelnyxTests.Services.PhoneNumbers.NumbersAssociatedToOrder
 
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Services.PhoneNumbers.NumbersAssociatedToOrders;
+    using Xunit;
+    using NumbersAssociatedToOrderModel = Telnyx.net.Entities.PhoneNumbers.NumbersAssociatedToOrders.NumbersAssociatedToOrder;
+
     /// <summary>
     /// Test class for NumbersAssociatedToOrderTest.
     /// </summary>
@@ -27,62 +23,71 @@ namespace TelnyxTests.Services.PhoneNumbers.NumbersAssociatedToOrder
         public NumbersAssociatedToOrderTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
-            service = new NumbersAssociatedToOrderService();
-            baseOptions = new BaseOptions();
-            requestOptions = new RequestOptions();
-            UpdateNumbersAssociatedToOrderOptions = new UpdateNumbersAssociatedToOrderOptions()
+            this.service = new NumbersAssociatedToOrderService();
+            this.baseOptions = new BaseOptions();
+            this.requestOptions = new RequestOptions();
+            this.UpdateNumbersAssociatedToOrderOptions = new UpdateNumbersAssociatedToOrderOptions()
             {
-                RegulatoryRequirements = { },
+                RegulatoryRequirements = new System.Collections.Generic.List<Telnyx.net.Entities.PhoneNumbers.NumbersAssociatedToOrders.UpdateRegulatoryRequirement>
+                {
+                    new Telnyx.net.Entities.PhoneNumbers.NumbersAssociatedToOrders.UpdateRegulatoryRequirement
+                    {
+                        FieldValue = "fv",
+                        RequirementId = Id,
+                    },
+                },
             };
         }
 
         [Fact]
         public void Update()
         {
-            var result = service.UpdateNumbersAssociatedToOrder(Id, UpdateNumbersAssociatedToOrderOptions, requestOptions);
+            var result = this.service.UpdateNumbersAssociatedToOrder(Id, this.UpdateNumbersAssociatedToOrderOptions, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(PhoneNumber), result.GetType());
+            Assert.Equal(typeof(NumbersAssociatedToOrderModel), result.GetType());
         }
 
         [Fact]
         public async Task UpdateSync()
         {
             var cts = new CancellationTokenSource();
-            var result = await service.UpdateNumbersAssociatedToOrderAsync(Id, UpdateNumbersAssociatedToOrderOptions, requestOptions, cts.Token);
+            var result = await this.service.UpdateNumbersAssociatedToOrderAsync(Id, this.UpdateNumbersAssociatedToOrderOptions, this.requestOptions, cts.Token);
             Assert.NotNull(result);
-            Assert.Equal(typeof(PhoneNumber), result.GetType());
+            Assert.Equal(typeof(NumbersAssociatedToOrderModel), result.GetType());
         }
+
         [Fact]
         public void List()
         {
-            var result = service.ListNumbersAssociatedToOrders(requestOptions);
+            var result = this.service.ListNumbersAssociatedToOrders(this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(PhoneNumber), result.GetType());
+            Assert.Equal(typeof(TelnyxList<NumbersAssociatedToOrderModel>), result.GetType());
         }
 
         [Fact]
         public async Task ListSync()
         {
             var cts = new CancellationTokenSource();
-            var result = await service.ListNumbersAssociatedToOrdersAsync(requestOptions, cts.Token);
+            var result = await this.service.ListNumbersAssociatedToOrdersAsync(this.requestOptions, cts.Token);
             Assert.NotNull(result);
-            Assert.Equal(typeof(PhoneNumber), result.GetType());
+            Assert.Equal(typeof(TelnyxList<NumbersAssociatedToOrderModel>), result.GetType());
         }
+
         [Fact]
         public void Retrieve()
         {
-            var result = service.RetrieveNumbersAssociatedToOrders(Id, requestOptions);
+            var result = this.service.RetrieveNumbersAssociatedToOrders(Id, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(PhoneNumber), result.GetType());
+            Assert.Equal(typeof(NumbersAssociatedToOrderModel), result.GetType());
         }
 
         [Fact]
         public async Task RetrieveSync()
         {
             var cts = new CancellationTokenSource();
-            var result = await service.RetrieveNumbersAssociatedToOrdersAsync(Id, requestOptions, cts.Token);
+            var result = await this.service.RetrieveNumbersAssociatedToOrdersAsync(Id, this.requestOptions, cts.Token);
             Assert.NotNull(result);
-            Assert.Equal(typeof(PhoneNumber), result.GetType());
+            Assert.Equal(typeof(NumbersAssociatedToOrderModel), result.GetType());
         }
     }
 }

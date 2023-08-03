@@ -1,18 +1,14 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.Notifications.NotificationSettings;
-using Xunit;
-using System.Threading;
-using Telnyx.net.Entities.Notifications;
-using System.Net.Mime;
-using Telnyx.net.Entities.Notifications.NotificationSettings;
-using System;
-using System.Collections.Generic;
-
-namespace TelnyxTests.Services.Notifications.Notifications.NotificationSettings
+﻿namespace TelnyxTests.Services.Notifications.Notifications.NotificationSettings
 
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.Notifications.NotificationSettings;
+    using Telnyx.net.Services.Notifications.NotificationSettings;
+    using Xunit;
+
     /// <summary>
     /// Test class for NotificationSettingListTest.
     /// </summary>
@@ -45,7 +41,7 @@ namespace TelnyxTests.Services.Notifications.Notifications.NotificationSettings
         {
             var result = this.service.ListNotificationSettings(this.NotificationSettingListOptions, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(NotificationSetting), result.GetType());
+            Assert.Equal(typeof(TelnyxList<NotificationSetting>), result.GetType());
         }
 
         [Fact]
@@ -54,7 +50,7 @@ namespace TelnyxTests.Services.Notifications.Notifications.NotificationSettings
             var cts = new CancellationTokenSource();
             var result = await this.service.ListNotificationSettingsAsync(this.NotificationSettingListOptions, this.requestOptions, cts.Token);
             Assert.NotNull(result);
-            Assert.Equal(typeof(NotificationSetting), result.GetType());
+            Assert.Equal(typeof(TelnyxList<NotificationSetting>), result.GetType());
         }
     }
 }

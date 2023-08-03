@@ -1,13 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.NumberPortouts;
-
-namespace Telnyx.net.Services.NumberPortouts
+﻿namespace Telnyx.net.Services.NumberPortouts
 {
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.NumberPortouts;
+
     public class CreateAListOfSupportingDocumentsOnAPortoutRequestOptions : BaseOptions
     {
         /// <summary>

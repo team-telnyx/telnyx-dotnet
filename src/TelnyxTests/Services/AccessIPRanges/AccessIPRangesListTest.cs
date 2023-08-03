@@ -1,17 +1,15 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.AccessIPRange;
-
-using Xunit;
-using System.Threading;
-using Telnyx.net.Entities.AccessIPRanges;
-using Telnyx.net.Entities.Enum.AccessIPRanges;
-using Castle.Core.Resource;
-using System;
-
-namespace TelnyxTests.Services.AccessToken
+﻿namespace TelnyxTests.Services.AccessToken
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.AccessIPRanges;
+    using Telnyx.net.Entities.Enum.AccessIPRanges;
+    using Telnyx.net.Services.AccessIPRange;
+    using Xunit;
+
     /// <summary>
     /// Test class for AccessToken.
     /// </summary>
@@ -31,22 +29,23 @@ namespace TelnyxTests.Services.AccessToken
             this.requestOptions = new RequestOptions();
             this.AccessIPRangesListOption = new AccessIPRangesListOption()
             {
-               CidrBlock = "string",
-               CidrBlockContains = "string",
-               Status = Telnyx.net.Entities.Enum.AccessIPRanges.CloudflareSyncStatus.Pending,
-               CreatedAtGreaterThan = DateTime.UtcNow,
-               CidrBlockEndsWith = "string",
-               CidrBlockStartsWith = "string",
-               CreatedAtLessThan = DateTime.UtcNow,
+                CidrBlock = "string",
+                CidrBlockContains = "string",
+                Status = Telnyx.net.Entities.Enum.AccessIPRanges.CloudflareSyncStatus.Pending,
+                CreatedAtGreaterThan = DateTime.UtcNow,
+                CidrBlockEndsWith = "string",
+                CidrBlockStartsWith = "string",
+                CreatedAtLessThan = DateTime.UtcNow,
             };
         }
+
         [Fact]
         public void List()
         {
             var result = this.service.ListAllAccessIPRanges(this.AccessIPRangesListOption, this.requestOptions);
             Assert.NotNull(result);
             Assert.Equal(typeof(TelnyxList<AccessIPRanges>), result.GetType());
-            foreach(var items in result.Data)
+            foreach (var items in result.Data)
             {
                 var expectedDateTime = new DateTime(2019, 8, 24, 14, 15, 22);
                 Assert.Equal("string", items.CidrBlock);

@@ -1,7 +1,7 @@
 ﻿namespace TelnyxTests
 {
-    using Newtonsoft.Json;
     using System;
+    using Newtonsoft.Json;
     using Telnyx;
     using Xunit;
 
@@ -10,24 +10,28 @@
         private class TestModel
         {
             public string Name { get; set; }
+
             public string Address { get; set; }
-        };
+        }
+
+;
+
         private readonly string _stringValue;
         private readonly TestModel _testModel;
         private readonly TelnyxResponse _telnyxResponse;
 
         public MapperTest()
         {
-            _stringValue = "TestValue";
-            _testModel = new TestModel()
+            this._stringValue = "TestValue";
+            this._testModel = new TestModel()
             {
-                Name = _stringValue,
-                Address = _stringValue
+                Name = this._stringValue,
+                Address = this._stringValue
             };
-            _telnyxResponse = new TelnyxResponse()
+            this._telnyxResponse = new TelnyxResponse()
             {
-                ResponseJson = JsonConvert.SerializeObject(_testModel),
-                ObjectJson = _stringValue,
+                ResponseJson = JsonConvert.SerializeObject(this._testModel),
+                ObjectJson = this._stringValue,
                 RequestId = "Id001",
                 RequestDate = DateTime.Now,
                 Url = "example.com/test"
@@ -37,8 +41,8 @@
         [Fact]
         public void MapCollectionFromJson_Take_JsonString()
         {
-            string jsonString = JsonConvert.SerializeObject(_testModel);
-            var response = Mapper<TestModel>.MapCollectionFromJson(jsonString, "Name", _telnyxResponse);
+            string jsonString = JsonConvert.SerializeObject(this._testModel);
+            var response = Mapper<TestModel>.MapCollectionFromJson(jsonString, "Name", this._telnyxResponse);
             Assert.NotNull(response);
             Assert.Equal(0, response.Count);
         }
@@ -46,8 +50,8 @@
         [Fact]
         public void MapCollectionFromJson_Take_TelnyxResponse()
         {
-            string jsonString = JsonConvert.SerializeObject(_testModel);
-            var response = Mapper<TestModel>.MapCollectionFromJson(_telnyxResponse, "Name");
+            string jsonString = JsonConvert.SerializeObject(this._testModel);
+            var response = Mapper<TestModel>.MapCollectionFromJson(this._telnyxResponse, "Name");
             Assert.NotNull(response);
             Assert.Equal(0, response.Count);
         }
@@ -55,7 +59,7 @@
         [Fact]
         public void MapFromPlainText()
         {
-            string jsonString = JsonConvert.SerializeObject(_testModel);
+            string jsonString = JsonConvert.SerializeObject(this._testModel);
             var response = Mapper<string>.MapFromPlainText(jsonString);
             Assert.NotNull(response);
         }
@@ -90,7 +94,7 @@
         [Fact]
         public void MapFromJson_Take_Telnyx()
         {
-            var response = Mapper<TestModel>.MapFromJson(_telnyxResponse);
+            var response = Mapper<TestModel>.MapFromJson(this._telnyxResponse, string.Empty);
             Assert.NotNull(response);
             Assert.Equal(typeof(TestModel), response.GetType());
         }

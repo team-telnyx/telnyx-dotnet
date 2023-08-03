@@ -1,13 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.Enum.DynamicEmergencyAddresses;
-
-namespace Telnyx.net.Entities.DynamicEmergencyAddresses
+﻿namespace Telnyx.net.Entities.DynamicEmergencyAddresses
 {
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum.DynamicEmergencyAddresses;
+
     public class DynamicEmergencyAddress : TelnyxEntity
     {
         /// <summary>

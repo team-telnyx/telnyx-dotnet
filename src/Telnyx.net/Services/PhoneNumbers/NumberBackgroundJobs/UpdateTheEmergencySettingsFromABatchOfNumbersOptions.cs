@@ -1,12 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Services.PhoneNumbers.NumberBackgroundJobs
+﻿namespace Telnyx.net.Services.PhoneNumbers.NumberBackgroundJobs
 {
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+
     public class UpdateTheEmergencySettingsFromABatchOfNumbersOptions : BaseOptions
     {
 
@@ -21,10 +17,11 @@ namespace Telnyx.net.Services.PhoneNumbers.NumberBackgroundJobs
         /// </summary>
         [JsonProperty("emergency_enabled")]
         public bool EmergencyEnabled { get; set; }
+
         /// <summary>
         /// The array of phone numbers in e164 format.
         /// </summary>
-        [JsonProperty("phone_number")]
+        [JsonProperty("phone_numbers")]
         public List<string> PhoneNumber { get; set; }
     }
 }

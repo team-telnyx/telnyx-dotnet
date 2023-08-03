@@ -1,12 +1,8 @@
-﻿using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
-
-namespace Telnyx.net.Entities.Enum.AuthenticationProviders
+﻿namespace Telnyx.net.Entities.Enum.AuthenticationProviders
 {
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
+
     [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum Sort
     {

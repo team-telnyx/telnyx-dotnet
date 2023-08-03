@@ -2,7 +2,6 @@
 {
     using System;
     using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
     using Telnyx.net.Entities.Enum;
 
     /// <summary>
@@ -30,6 +29,5 @@
         /// <summary>HTTP request type used for `webhook_url`.</summary>
         [JsonProperty("webhook_url_method")]
         public WebhookUrlMethods WebhookUrlMethod { get; set; } = WebhookUrlMethods.POST;
-
     }
 }

@@ -1,19 +1,14 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.PhoneNumbers;
-using Xunit;
-using System.Threading;
-using Telnyx.net.Entities.Notifications;
-using System.Net.Mime;
-using Telnyx.net.Entities.NumberPortouts;
-using System;
-using System.Collections.Generic;
-using Telnyx.net.Services.PhoneNumbers.NumberBackgroundJobs;
-
-namespace TelnyxTests.Services.Notifications.Notifications.UpdateTheEmergencySettingsFromABatchOfNumberss
+﻿namespace TelnyxTests.Services.Notifications.Notifications.UpdateTheEmergencySettingsFromABatchOfNumberss
 
 {
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities.PhoneNumbers.NumberBackgroundJobs;
+    using Telnyx.net.Services.PhoneNumbers.NumberBackgroundJobs;
+    using Xunit;
+
     /// <summary>
     /// Test class for UpdateTheEmergencySettingsFromABatchOfNumbersTest.
     /// </summary>
@@ -33,7 +28,10 @@ namespace TelnyxTests.Services.Notifications.Notifications.UpdateTheEmergencySet
             this.requestOptions = new RequestOptions();
             this.UpdateTheEmergencySettingsFromABatchOfNumbersOptions = new UpdateTheEmergencySettingsFromABatchOfNumbersOptions()
             {
-                PhoneNumber = { },
+                PhoneNumber = new List<string>
+                {
+                    "+18665552368",
+                },
                 EmergencyAddressId = "dc8e4d67-33a0-4cbb-af74-7b58f05bd494",
                 EmergencyEnabled = false,
             };
@@ -44,7 +42,7 @@ namespace TelnyxTests.Services.Notifications.Notifications.UpdateTheEmergencySet
         {
             var result = this.service.UpdateTheEmergencySettingsFromABatchOfNumbers(this.UpdateTheEmergencySettingsFromABatchOfNumbersOptions, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(PhoneNumber), result.GetType());
+            Assert.Equal(typeof(NumberBackgroundJob), result.GetType());
         }
 
         [Fact]
@@ -53,7 +51,7 @@ namespace TelnyxTests.Services.Notifications.Notifications.UpdateTheEmergencySet
             var cts = new CancellationTokenSource();
             var result = await this.service.UpdateTheEmergencySettingsFromABatchOfNumbersAsync(this.UpdateTheEmergencySettingsFromABatchOfNumbersOptions, this.requestOptions, cts.Token);
             Assert.NotNull(result);
-            Assert.Equal(typeof(PhoneNumber), result.GetType());
+            Assert.Equal(typeof(NumberBackgroundJob), result.GetType());
         }
     }
 }

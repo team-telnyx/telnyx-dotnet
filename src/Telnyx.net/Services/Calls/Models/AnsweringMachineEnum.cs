@@ -1,13 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Services.Calls.Models
+﻿namespace Telnyx.net.Services.Calls.Models
 {
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
+
     [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum AnsweringMachineEnum
     {

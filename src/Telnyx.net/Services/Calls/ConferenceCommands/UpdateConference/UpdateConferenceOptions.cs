@@ -1,17 +1,13 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Services.Calls.ConferenceCommands.UpdateConference
+﻿namespace Telnyx.net.Services.Calls.ConferenceCommands.UpdateConference
 {
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+
     public class UpdateConferenceOptions : BaseOptions
     {
 
         /// <summary>
-        /// Unique identifier and token for controlling the call
+        /// Unique identifier and token for controlling the call.
         /// </summary>
         [JsonProperty("call_control_id")]
         public string CallControlId { get; set; }
@@ -26,7 +22,7 @@ namespace Telnyx.net.Services.Calls.ConferenceCommands.UpdateConference
         /// Sets the participant as a supervisor for the conference. A conference can have multiple supervisors. "barge" means the supervisor
         /// enters the conference as a normal participant. This is the same as "none". "monitor" means the supervisor is muted but can hear
         /// all participants. "whisper" means that only the specified "whisper_call_control_ids" can hear the supervisor. Defaults to "none".
-        //Enum: "barge" "monitor" "none" "whisper"
+        /// Enum: "barge" "monitor" "none" "whisper".
         /// </summary>
         [JsonProperty("supervisor_role")]
         public string SupervisorRole { get; set; }

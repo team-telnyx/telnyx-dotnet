@@ -1,12 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Services.PhoneNumbers.SubNumberOrders
+﻿namespace Telnyx.net.Services.PhoneNumbers.SubNumberOrders
 {
+    using System;
+    using Newtonsoft.Json;
+
     public class SubNumberOrderListOptions : ListOptions
     {
         [JsonProperty("user_id")]

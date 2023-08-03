@@ -28,6 +28,5 @@ namespace Telnyx
         public DateTime RequestDate { get; set; }
 
         public string Url { get; set; }
-
     }
 }

@@ -8,7 +8,6 @@
     using Telnyx.net.Services.Documents;
     using Telnyx.net.Services.WebRTC.Credentials;
     using Xunit;
-    using static Telnyx.CreateConferenceOptions;
 
     /// <summary>
     /// Test class for ConferenceStop.
@@ -36,7 +35,6 @@
             {
                 CallControlIds = new string[] { "string1", "string2", "string3" },
             };
-
         }
 
         [Fact]
@@ -47,6 +45,7 @@
             Assert.Equal(typeof(TelnyxApiResponse), result.GetType());
             Assert.Equal("ok", result.Result);
         }
+
         [Fact]
         public async Task CreateAsync()
         {

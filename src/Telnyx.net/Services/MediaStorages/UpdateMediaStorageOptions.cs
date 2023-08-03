@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Services.MediaStorages
+﻿namespace Telnyx.net.Services.MediaStorages
 {
+    using Newtonsoft.Json;
+
     public class UpdateMediaStorageOptions : BaseOptions
     {
         /// <summary>

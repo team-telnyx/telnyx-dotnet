@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-using Telnyx.net.Entities.Applications;
-using Telnyx.net.Entities.Enum;
-using Telnyx.net.Entities.Faxes.Applications;
-using Telnyx.net.Services.Faxes.Applications;
-using Xunit;
-
-namespace TelnyxTests.Services.Faxes
+﻿namespace TelnyxTests.Services.Faxes
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.Applications;
+    using Telnyx.net.Entities.Enum;
+    using Telnyx.net.Entities.Faxes.Applications;
+    using Telnyx.net.Services.Faxes.Applications;
+    using Xunit;
+
     public class FaxApplicationServiceTest : BaseTelnyxTest
     {
         private readonly FaxApplicationService _faxAppService;
@@ -20,15 +19,15 @@ namespace TelnyxTests.Services.Faxes
         public FaxApplicationServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
-            _faxAppService = new FaxApplicationService();
-            faxappListOptions = new FaxAppListOptions
+            this._faxAppService = new FaxApplicationService();
+            this.faxappListOptions = new FaxAppListOptions
             {
-                Sort = Telnyx.net.Entities.Faxes.Applications.Options.SortOptions.ActiveDESC,
+                Sort = Telnyx.net.Entities.Faxes.Applications.Options.SortOptions.Active,
             };
-            faxappOptions = new FaxAppOptions
+            this.faxappOptions = new FaxAppOptions
             {
-                WebhookEventFailoverUrl = "google.com",
-                WebhookEventUrl = "www.apple.com",
+                WebhookEventFailoverUrl = "https://www.google.com",
+                WebhookEventUrl = "https://www.apple.com",
                 WebhookTimeoutSecs = 30,
                 Active = true,
                 AnchorsiteOverride = AnchorsiteOverride.AmsterdamNetherlands,
@@ -47,7 +46,7 @@ namespace TelnyxTests.Services.Faxes
             };
         }
 
-        [Fact(Skip = "Mock not allowing sort in options")]
+        [Fact]
         public async Task ListFaxAppTestAsync()
         {
             var faxListResult = await this._faxAppService.ViewFaxApplicationsAsync(this.faxappListOptions);
@@ -55,7 +54,7 @@ namespace TelnyxTests.Services.Faxes
             Assert.True(faxListResult.GetType().Equals(typeof(TelnyxList<FaxApplication>)));
         }
 
-        [Fact(Skip = "Mock not allowing sort in options")]
+        [Fact]
         public void ListFaxAppTest()
         {
             var faxListResult = this._faxAppService.ViewFaxApplications(this.faxappListOptions);

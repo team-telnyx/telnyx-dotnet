@@ -1,13 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.Enum.InventoryCoverage;
-
-namespace Telnyx.net.Entities.InventoryCoverage
+﻿namespace Telnyx.net.Entities.InventoryCoverage
 {
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum.InventoryCoverage;
+
     public class InventoryCoverage : TelnyxEntity
     {
         /// <summary>
@@ -18,7 +13,7 @@ namespace Telnyx.net.Entities.InventoryCoverage
 
         /// <summary>
         /// The coverage type.
-        /// Enum: "number" "block"
+        /// Enum: "number" "block".
         /// </summary>
         //[JsonProperty("coverage_type")]
         //public CoverageType? CoverageType { get; set; }
@@ -43,14 +38,14 @@ namespace Telnyx.net.Entities.InventoryCoverage
 
         /// <summary>
         /// The number type.
-        /// Enum: "did" "toll-free"
+        /// Enum: "did" "toll-free".
         /// </summary>
         [JsonProperty("number_type")]
         public NumberType? NumberType { get; set; }
 
         /// <summary>
         /// The phone number type.
-        /// Enum: "local" "toll_free" "national" "landline" "shared_cost" "mobile"
+        /// Enum: "local" "toll_free" "national" "landline" "shared_cost" "mobile".
         /// </summary>
         [JsonProperty("phone_number_type")]
         public PhoneNumberType? PhoneNumberType { get; set; }

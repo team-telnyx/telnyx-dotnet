@@ -1,17 +1,14 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.AccessIPRange;
-
-using Xunit;
-using System.Threading;
-using Telnyx.net.Entities.AccessIPRanges;
-using Telnyx.net.Entities.Enum.AccessIPRanges;
-using Castle.Core.Resource;
-using System;
-
-namespace TelnyxTests.Services.AccessToken
+﻿namespace TelnyxTests.Services.AccessToken
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities.AccessIPRanges;
+    using Telnyx.net.Entities.Enum.AccessIPRanges;
+    using Telnyx.net.Services.AccessIPRange;
+    using Xunit;
+
     /// <summary>
     /// Test class for AccessToken.
     /// </summary>
@@ -35,6 +32,7 @@ namespace TelnyxTests.Services.AccessToken
                 CidrBlock = "string",
             };
         }
+
         [Fact]
         public void Create()
         {
@@ -58,7 +56,7 @@ namespace TelnyxTests.Services.AccessToken
             var cts = new CancellationTokenSource();
             var result = await this.service.CreateAllAccessIPRangesAsync(this.AccessIPRangesCreateOption, this.requestOptions, cts.Token);
             Assert.NotNull(result);
-            Assert.Equal(typeof(AccessIPRangesCreateOption), result.GetType());
+            Assert.Equal(typeof(AccessIPRanges), result.GetType());
             var expectedDateTime = new DateTime(2019, 8, 24, 14, 15, 22);
             var items = result;
             Assert.Equal("string", items.CidrBlock);
@@ -69,6 +67,7 @@ namespace TelnyxTests.Services.AccessToken
             Assert.Equal(expectedDateTime.ToString("s") + "Z", items.UpdatedAt.ToString("s") + "Z");
             Assert.Equal("string", items.UserId);
         }
+
         [Fact]
         public void Delete()
         {

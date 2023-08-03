@@ -1,15 +1,13 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.ManagedAccounts;
-using Telnyx.net.Services.Documents;
-using Telnyx.net.Services.WebRTC.Credentials;
-using Xunit;
-using System.Threading;
-using Telnyx.net.Entities.ManagedAccounts;
-
-namespace TelnyxTests.Services.Calls.ConferenceCommands.ManagedAccountList
+﻿namespace TelnyxTests.Services.Calls.ConferenceCommands.ManagedAccountList
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.ManagedAccounts;
+    using Telnyx.net.Services.ManagedAccounts;
+    using Xunit;
+
     /// <summary>
     /// Test class for ManagedAccountList.
     /// </summary>
@@ -33,7 +31,6 @@ namespace TelnyxTests.Services.Calls.ConferenceCommands.ManagedAccountList
                 EmailEquals = null,
                 Sort = "created_at",
                 IncludeCancelledAccounts = false,
-
             };
         }
 
@@ -41,20 +38,7 @@ namespace TelnyxTests.Services.Calls.ConferenceCommands.ManagedAccountList
         public void List()
         {
             var result = this.service.ListManagedAccounts(this.managedAccountListOptions, this.requestOptions);
-            Assert.NotNull(result);
-            Assert.Equal(typeof(ManagedAccount), result.GetType());
-            foreach (var item in result.Data)
-            {
-                Assert.Equal("item", item.ApiKey);
-                Assert.Equal("x6oexQNHTs-fZ7-QsDMOeg", item.ApiToken);
-                Assert.Equal("managed_account@example.com", item.ApiUser);
-                Assert.Equal("2018-02-02T22:25:27.521Z", item.CreatedAt);
-                Assert.Equal("user@example.com", item.Email);
-                Assert.Equal("f65ceda4-6522-4ad6-aede-98de83385123", item.Id);
-                Assert.Equal("f65ceda4-6522-4ad6-aede-98de83385123", item.ManagerAccountId);
-                Assert.Equal("managed_account", item.RecordType);
-                Assert.Equal("2018-02-02T22:25:27.521Z", item.UpdatedAt);
-            }
+            AssertResponse(result);
         }
 
         [Fact]
@@ -62,19 +46,24 @@ namespace TelnyxTests.Services.Calls.ConferenceCommands.ManagedAccountList
         {
             var cts = new CancellationTokenSource();
             var result = await this.service.ListManagedAccountsAsync(this.managedAccountListOptions, this.requestOptions, cts.Token);
+            AssertResponse(result);
+        }
+
+        private static void AssertResponse(TelnyxList<ManagedAccount> result)
+        {
             Assert.NotNull(result);
-            Assert.Equal(typeof(ManagedAccount), result.GetType());
+            Assert.Equal(typeof(TelnyxList<ManagedAccount>), result.GetType());
             foreach (var item in result.Data)
             {
-                Assert.Equal("item", item.ApiKey);
+                Assert.Equal("KEY01236170692E74656C6E79782E636F6D_YmlnIGlyb24gaXMgZGVhZA", item.ApiKey);
                 Assert.Equal("x6oexQNHTs-fZ7-QsDMOeg", item.ApiToken);
                 Assert.Equal("managed_account@example.com", item.ApiUser);
-                Assert.Equal("2018-02-02T22:25:27.521Z", item.CreatedAt);
+                Assert.Equal("02/02/2018 22:25:27", item.CreatedAt);
                 Assert.Equal("user@example.com", item.Email);
                 Assert.Equal("f65ceda4-6522-4ad6-aede-98de83385123", item.Id);
                 Assert.Equal("f65ceda4-6522-4ad6-aede-98de83385123", item.ManagerAccountId);
                 Assert.Equal("managed_account", item.RecordType);
-                Assert.Equal("2018-02-02T22:25:27.521Z", item.UpdatedAt);
+                Assert.Equal("02/02/2018 22:25:27", item.UpdatedAt);
             }
         }
     }

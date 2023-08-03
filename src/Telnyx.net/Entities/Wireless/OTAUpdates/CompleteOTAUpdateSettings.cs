@@ -6,7 +6,7 @@
     public class CompleteOTAUpdateSettings
     {
         /// <summary>
-        /// Gets or Sets MobileOperatorNetworksPreferences
+        /// Gets or Sets MobileOperatorNetworksPreferences.
         /// </summary>
         [JsonProperty("mobile_operator_networks_preferences")]
         public List<MobileOperatorNetworksPreferences> MobileOperatorNetworksPreferences { get; set; }

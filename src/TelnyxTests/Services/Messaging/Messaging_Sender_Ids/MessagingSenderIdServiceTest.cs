@@ -6,8 +6,6 @@ namespace TelnyxTests.Services.Messages.MessagingSenderId
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx;
@@ -37,9 +35,9 @@ namespace TelnyxTests.Services.Messages.MessagingSenderId
                 Text = "Hello, World!",
                 MessagingProfileId = Guid.NewGuid(),
                 Subject = "Subject",
-                MediaUrls = new List<string> { "url1", "url2" },
-                WebhookUrl = "webhookUrl",
-                WebhookFailoverUrl = "failureUrl",
+                MediaUrls = new List<string> { "https://www.url1.com", "https://www.url2.com" },
+                WebhookUrl = "https://www.webhookUrl.com",
+                WebhookFailoverUrl = "https://www.failureUrl.com",
                 UseProfileWebhooks = true,
                 AutoDetect = true,
             };

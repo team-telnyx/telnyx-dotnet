@@ -1,16 +1,12 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.ManagedAccounts;
-using Telnyx.net.Services.Documents;
-using Telnyx.net.Services.WebRTC.Credentials;
-using Xunit;
-using static Telnyx.CreateConferenceOptions;
-using System.Threading;
-using Telnyx.net.Entities.ManagedAccounts;
-
-namespace TelnyxTests.Services.Calls.ConferenceCommands.CreateManagedAccounts
+﻿namespace TelnyxTests.Services.Calls.ConferenceCommands.CreateManagedAccounts
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities.ManagedAccounts;
+    using Telnyx.net.Services.ManagedAccounts;
+    using Xunit;
+
     /// <summary>
     /// Test class for CreateManagedAccounts.
     /// </summary>

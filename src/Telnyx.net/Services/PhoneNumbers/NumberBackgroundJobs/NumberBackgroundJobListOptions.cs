@@ -1,13 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.Enum.PhoneNumbers.NumberBackgroundJobs;
-
-namespace Telnyx.net.Services.PhoneNumbers.NumberBackgroundJobs
+﻿namespace Telnyx.net.Services.PhoneNumbers.NumberBackgroundJobs
 {
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum.PhoneNumbers.NumberBackgroundJobs;
+
     public class NumberBackgroundJobListOptions : ListOptions
     {
         /// <summary>

@@ -4,7 +4,6 @@
 
 namespace TelnyxTests.Services.Calls.CallCommands
 {
-    using System.Net.Http;
     using System.Threading.Tasks;
     using Telnyx;
     using Xunit;
@@ -44,7 +43,6 @@ namespace TelnyxTests.Services.Calls.CallCommands
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/gather_using_audio");
             Assert.NotNull(message);
             Assert.Equal(typeof(CallGatherUsingAudioResponse), message.GetType());
-
         }
 
         [Fact]
@@ -54,7 +52,6 @@ namespace TelnyxTests.Services.Calls.CallCommands
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/gather_using_audio");
             Assert.NotNull(message);
             Assert.Equal(typeof(CallGatherUsingAudioResponse), message.GetType());
-
         }
     }
 }

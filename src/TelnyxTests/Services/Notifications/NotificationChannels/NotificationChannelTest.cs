@@ -1,17 +1,13 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.Notifications.NotificationChannels;
-
-using Xunit;
-using System.Threading;
-using Telnyx.net.Entities.Notifications;
-using System.Net.Mime;
-using Telnyx.net.Entities.Notifications.NotificationChannels;
-
-namespace TelnyxTests.Services.Notifications.Notifications.NotificationChannels
+﻿namespace TelnyxTests.Services.Notifications.Notifications.NotificationChannels
 
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Services.Notifications.NotificationChannels;
+    using Xunit;
+    using NotificationChannelModel = Telnyx.net.Entities.Notifications.NotificationChannels.NotificationChannel;
+
     /// <summary>
     /// Test class for NotificationChannel.
     /// </summary>
@@ -42,7 +38,7 @@ namespace TelnyxTests.Services.Notifications.Notifications.NotificationChannels
         {
             var result = this.service.RetrieveNotificationChannel(Id, this.NotificationChannelOptions, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(NotificationChannel), result.GetType());
+            Assert.Equal(typeof(NotificationChannelModel), result.GetType());
         }
 
         [Fact]
@@ -51,7 +47,7 @@ namespace TelnyxTests.Services.Notifications.Notifications.NotificationChannels
             var cts = new CancellationTokenSource();
             var result = await this.service.RetrieveNotificationChannelAsync(Id, this.NotificationChannelOptions, this.requestOptions, cts.Token);
             Assert.NotNull(result);
-            Assert.Equal(typeof(NotificationChannel), result.GetType());
+            Assert.Equal(typeof(NotificationChannelModel), result.GetType());
         }
     }
 }

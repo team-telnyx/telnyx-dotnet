@@ -108,10 +108,10 @@ namespace Telnyx.Infrastructure
 
             return url;
         }
+
         /// <summary>
         /// ApplyAllParameters.
         /// </summary>
-        /// <typeparam name="T">T.</typeparam>
         /// <param name="service">service.</param>
         /// <param name="obj">obj.</param>
         /// <param name="url">url.</param>
@@ -184,6 +184,5 @@ namespace Telnyx.Infrastructure
 
             return requestString;
         }
-
     }
 }

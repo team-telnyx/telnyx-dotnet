@@ -2,9 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Telnyx.net.Entities.Enum;
 
@@ -70,6 +67,7 @@
         [JsonProperty("international_outbound")]
         public bool InternationalOutbound { get; set; }
     }
+
     public partial class Health
     {
         [JsonProperty("inbound_outbound_ratio")]

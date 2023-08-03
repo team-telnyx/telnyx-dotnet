@@ -1,14 +1,9 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.Enum.DynamicEmergencyAddresses;
-
-namespace Telnyx.net.Services.DynamicEmergencyAddresses
+﻿namespace Telnyx.net.Services.DynamicEmergencyAddresses
 {
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+    using Telnyx.net.Entities.Enum.DynamicEmergencyAddresses;
+
     public class DynamicEmergencyAddressListOptions : ListOptions
     {
         /// <summary>

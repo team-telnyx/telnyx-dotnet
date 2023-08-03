@@ -32,23 +32,23 @@
         /// <inheritdoc/>
         public virtual CallDialResponse Create(CallControlDialOptions options, RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(options, requestOptions);
+            return this.CreateEntity(options, requestOptions, null, "data");
         }
 
         /// <inheritdoc/>
         public async Task<CallDialResponse> CreateAsync(CallControlDialOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(createOptions, requestOptions, null, "data", cancellationToken);
         }
 
-        public async Task<CallDialResponse> RetrieveAsync(string callControlId, RequestOptions reqOpts = null, CancellationToken ct = default)
+        public async Task<CallDialResponse> RetrieveAsync(string callControlId, RequestOptions reqOpts = null, CancellationToken cancellationToken = default)
         {
-            return await this.GetEntityAsync(callControlId, reqOpts, ct);
+            return await this.GetEntityAsync(callControlId, reqOpts, "data", cancellationToken);
         }
 
         public CallDialResponse Retrieve(string callControlId, RequestOptions reqOpts = null)
         {
-            return this.GetEntity(callControlId, reqOpts);
+            return this.GetEntity(callControlId, reqOpts, "data");
         }
     }
 }

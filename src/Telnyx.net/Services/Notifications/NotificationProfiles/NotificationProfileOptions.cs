@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Services.Notifications.NotificationProfiles
+﻿namespace Telnyx.net.Services.Notifications.NotificationProfiles
 {
+    using Newtonsoft.Json;
+
     public class NotificationProfileOptions : BaseOptions
     {
         /// <summary>

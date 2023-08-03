@@ -1,10 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Telnyx.net.Entities.AuthenticationProviders
+﻿namespace Telnyx.net.Entities.AuthenticationProviders
 {
+    using Newtonsoft.Json;
+
     public class AuthenticationProviderCreateOption : BaseOptions
     {
         /// <summary>
@@ -36,6 +33,5 @@ namespace Telnyx.net.Entities.AuthenticationProviders
         /// </summary>
         [JsonProperty("short_name")]
         public string ShortName { get; set; }
-
     }
 }

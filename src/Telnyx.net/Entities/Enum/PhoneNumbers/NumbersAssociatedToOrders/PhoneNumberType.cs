@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Entities.Enum.PhoneNumbers.NumbersAssociatedToOrders
+﻿namespace Telnyx.net.Entities.Enum.PhoneNumbers.NumbersAssociatedToOrders
 {
+    using System.Runtime.Serialization;
+
     public enum PhoneNumberType
     {
         [EnumMember(Value = "local")]

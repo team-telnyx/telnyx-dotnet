@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Services.DynamicEmergencyEndpoints
+﻿namespace Telnyx.net.Services.DynamicEmergencyEndpoints
 {
+    using Newtonsoft.Json;
+
     public class DynamicEmergencyEndpointOptions : BaseOptions
     {
         /// <summary>

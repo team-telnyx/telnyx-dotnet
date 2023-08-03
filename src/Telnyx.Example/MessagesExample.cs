@@ -1,10 +1,10 @@
-﻿namespace Telnyx.Example
-{
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-    using Newtonsoft.Json;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
+namespace Telnyx.Example
+{
     /// <summary>
     /// Messages example
     /// </summary>

@@ -27,18 +27,20 @@
             /// </summary>
             [EnumMember(Value = "never")]
             NEVER = 1,
+
             /// <summary>
             /// 
             /// </summary>
             [EnumMember(Value = "on_enter")]
             ON_ENTER = 2,
+
             /// <summary>
             /// 
             /// </summary>
             [EnumMember(Value = "on_exit")]
             ON_EXIT = 3,
-
         }
+
         /// <summary>
         /// Whether a beep sound should be played when participants join and/or leave the conference.
         /// </summary>
@@ -88,6 +90,5 @@
         /// </summary>
         [JsonProperty("start_conference_on_create")]
         public bool StartConferenceOnCreate { get; set; } = true;
-
     }
 }

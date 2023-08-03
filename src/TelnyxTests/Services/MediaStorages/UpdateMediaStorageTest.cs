@@ -1,16 +1,12 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.MediaStorages;
-using Telnyx.net.Services.Documents;
-using Telnyx.net.Services.WebRTC.Credentials;
-using Xunit;
-using System.Threading;
-using Telnyx.net.Entities.MediaStorages;
-using System.Net.Mime;
-
-namespace TelnyxTests.Services.Calls.ConferenceCommands.UpdateMediaStorage
+﻿namespace TelnyxTests.Services.Calls.ConferenceCommands.UpdateMediaStorage
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities.MediaStorages;
+    using Telnyx.net.Services.MediaStorages;
+    using Xunit;
+
     /// <summary>
     /// Test class for UpdateMediaStorage.
     /// </summary>
@@ -32,7 +28,6 @@ namespace TelnyxTests.Services.Calls.ConferenceCommands.UpdateMediaStorage
             {
                 MediaUrl = "http://www.example.com/audio.mp3",
                 TtlSeconds = 86400,
-
             };
         }
 
@@ -40,8 +35,7 @@ namespace TelnyxTests.Services.Calls.ConferenceCommands.UpdateMediaStorage
         public void Update()
         {
             var result = this.service.Update(Id, this.UpdateMediaStorageOptions, this.requestOptions);
-            Assert.NotNull(result);
-            Assert.Equal(typeof(MediaStorage), result.GetType());
+            AssertResponse(result);
         }
 
         [Fact]
@@ -49,8 +43,18 @@ namespace TelnyxTests.Services.Calls.ConferenceCommands.UpdateMediaStorage
         {
             var cts = new CancellationTokenSource();
             var result = await this.service.UpdateAsync(Id, this.UpdateMediaStorageOptions, this.requestOptions, cts.Token);
+            AssertResponse(result);
+        }
+
+        private static void AssertResponse(MediaStorage result)
+        {
             Assert.NotNull(result);
             Assert.Equal(typeof(MediaStorage), result.GetType());
+            Assert.Equal("application/xml", result.ContentType);
+            Assert.Equal("2019-01-23T18:10:02.574Z", result.CreatedAt);
+            Assert.Equal("2020-01-23T18:10:02.574Z", result.ExpiresAt);
+            Assert.Equal("f5586561-8ff0-4291-a0ac-84fe544797bd", result.MediaName);
+            Assert.Equal("2019-01-23T18:10:02.574Z", result.UpdatedAt);
         }
     }
 }

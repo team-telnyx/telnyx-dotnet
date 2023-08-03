@@ -7,7 +7,7 @@ namespace Telnyx
     using Telnyx.net.Entities.Messaging.Messaging_Profiles;
 
     /// <summary>
-    /// New Messaging Profile
+    /// New Messaging Profile.
     /// </summary>
     [DataContract]
     public class NewMessagingProfile : BaseOptions

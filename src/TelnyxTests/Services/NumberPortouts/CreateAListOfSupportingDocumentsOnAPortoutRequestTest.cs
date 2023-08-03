@@ -1,64 +1,65 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.NumberPortouts;
-using Xunit;
-using System.Threading;
-using Telnyx.net.Entities.Notifications;
-using System.Net.Mime;
-using Telnyx.net.Entities.NumberPortouts;
-using System;
-using System.Collections.Generic;
-using Telnyx.net.Services.PhoneNumbers.NumberBackgroundJobs;
-
-namespace TelnyxTests.Services.Notifications.Notifications.CreateAListOfSupportingDocumentsOnAPortoutRequests
-
+﻿namespace TelnyxTests.Services.Notifications.Notifications.CreateAListOfSupportingDocumentsOnAPortoutRequests
 {
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.NumberPortouts;
+    using Telnyx.net.Services.NumberPortouts;
+    using Xunit;
+
     /// <summary>
     /// Test class for CreateAListOfSupportingDocumentsOnAPortoutRequestTest.
     /// </summary>
     public class CreateAListOfSupportingDocumentsOnAPortoutRequestTest : BaseTelnyxTest
     {
-        private readonly SupportingDocumentsOnAPortoutRequestService service;
-        private readonly CreateAListOfSupportingDocumentsOnAPortoutRequestOptions CreateAListOfSupportingDocumentsOnAPortoutRequestOptions;
-        private readonly RequestOptions requestOptions;
-        private readonly BaseOptions baseOptions;
         private const string Id = "6a09cdc3-8948-47f0-aa62-74ac943d6c58";
+        private readonly SupportingDocumentsOnAPortoutRequestService service;
+        private readonly CreateAListOfSupportingDocumentsOnAPortoutRequestOptions createAListOfSupportingDocumentsOnAPortoutRequestOptions;
+        private readonly RequestOptions requestOptions;
 
         public CreateAListOfSupportingDocumentsOnAPortoutRequestTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
             this.service = new SupportingDocumentsOnAPortoutRequestService();
-            this.baseOptions = new BaseOptions();
             this.requestOptions = new RequestOptions();
-            this.CreateAListOfSupportingDocumentsOnAPortoutRequestOptions = new CreateAListOfSupportingDocumentsOnAPortoutRequestOptions()
+            this.createAListOfSupportingDocumentsOnAPortoutRequestOptions = new CreateAListOfSupportingDocumentsOnAPortoutRequestOptions()
             {
-                Documents = {}
+                Documents = new List<Telnyx.net.Entities.NumberPortouts.SupportingDocument>
+                {
+                    new Telnyx.net.Entities.NumberPortouts.SupportingDocument
+                    {
+                        DocumentId = Id,
+                        Type = Telnyx.net.Entities.Enum.NumberPortouts.DocumentType.Invoice,
+                    },
+                },
             };
         }
 
         [Fact]
         public void Create()
         {
-            var result = this.service.CreateAListOfSupportingDocumentsOnAPortoutRequest(Id, this.CreateAListOfSupportingDocumentsOnAPortoutRequestOptions, this.requestOptions);
+            var result = this.service.CreateAListOfSupportingDocumentsOnAPortoutRequest(Id, this.createAListOfSupportingDocumentsOnAPortoutRequestOptions, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(NumberPortoutService), result.GetType());
+            Assert.Equal(typeof(TelnyxList<PortOutSupportingDocument>), result.GetType());
         }
 
         [Fact]
         public async Task CreateSync()
         {
             var cts = new CancellationTokenSource();
-            var result = await this.service.CreateAListOfSupportingDocumentsOnAPortoutRequestAsync(Id, this.CreateAListOfSupportingDocumentsOnAPortoutRequestOptions, this.requestOptions, cts.Token);
+            var result = await this.service.CreateAListOfSupportingDocumentsOnAPortoutRequestAsync(Id, this.createAListOfSupportingDocumentsOnAPortoutRequestOptions, this.requestOptions, cts.Token);
             Assert.NotNull(result);
-            Assert.Equal(typeof(NumberPortoutService), result.GetType());
+            Assert.Equal(typeof(TelnyxList<PortOutSupportingDocument>), result.GetType());
         }
+
         [Fact]
         public void List()
         {
             var result = this.service.ListSupportingDocumentsOnAPortoutRequest(Id, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(NumberPortoutService), result.GetType());
+            Assert.Equal(typeof(TelnyxList<PortOutSupportingDocument>), result.GetType());
         }
 
         [Fact]
@@ -67,7 +68,7 @@ namespace TelnyxTests.Services.Notifications.Notifications.CreateAListOfSupporti
             var cts = new CancellationTokenSource();
             var result = await this.service.ListSupportingDocumentsOnAPortoutRequestAsync(Id, this.requestOptions, cts.Token);
             Assert.NotNull(result);
-            Assert.Equal(typeof(NumberPortoutService), result.GetType());
+            Assert.Equal(typeof(TelnyxList<PortOutSupportingDocument>), result.GetType());
         }
     }
 }

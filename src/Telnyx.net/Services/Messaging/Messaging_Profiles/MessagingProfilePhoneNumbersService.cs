@@ -1,6 +1,5 @@
 ﻿namespace Telnyx
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -36,37 +35,37 @@
         /// <inheritdoc/>
         public MessagingPhoneNumber Get(string id, RequestOptions requestOptions = null)
         {
-            return this.GetNestedEntity(id, null, null, requestOptions);
+            return this.GetNestedEntity(id, null, null, requestOptions, "data");
         }
 
         /// <inheritdoc/>
         public async Task<MessagingPhoneNumber> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.GetNestedEntityAsync(id, null, null, requestOptions, cancellationToken);
+            return await this.GetNestedEntityAsync(id, null, null, requestOptions, string.Empty, cancellationToken);
         }
 
         /// <inheritdoc/>
         public TelnyxList<MessagingPhoneNumber> List(string id, ListOptions listOptions = null, RequestOptions requestOptions = null)
         {
-            return this.ListNestedEntities(id, listOptions, requestOptions);
+            return this.ListNestedEntities(id, listOptions, requestOptions, string.Empty);
         }
 
         /// <inheritdoc/>
         public async Task<TelnyxList<MessagingPhoneNumber>> ListAsync(string id, ListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.ListNestedEntitiesAsync(id, listOptions, requestOptions, cancellationToken);
+            return await this.ListNestedEntitiesAsync(id, listOptions, requestOptions, string.Empty, cancellationToken);
         }
 
         /// <inheritdoc/>
         public IEnumerable<MessagingPhoneNumber> ListPaged(string id, ListOptions listOptions = null, RequestOptions requestOptions = null)
         {
-            return this.ListEntitiesAutoPaging(id, listOptions, requestOptions);
+            return this.ListEntitiesAutoPaging(id, listOptions, requestOptions, string.Empty);
         }
 
         /// <inheritdoc/>
         public async Task<IEnumerable<MessagingPhoneNumber>> ListPagedAsync(string id, ListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.ListNestedEntitiesAutoPagingAsync(id, listOptions, requestOptions, cancellationToken);
+            return await this.ListNestedEntitiesAutoPagingAsync(id, listOptions, requestOptions, string.Empty, cancellationToken);
         }
     }
 }

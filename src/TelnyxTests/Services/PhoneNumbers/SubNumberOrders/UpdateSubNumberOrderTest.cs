@@ -1,16 +1,13 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.PhoneNumbers.SubNumberOrders;
-using Xunit;
-using System.Threading;
-using Telnyx.net.Entities.PhoneNumbers.SubNumberOrders;
-using System;
-using System.Collections.Generic;
-
-namespace TelnyxTests.Services.PhoneNumbers.UpdateSubNumberOrders
+﻿namespace TelnyxTests.Services.PhoneNumbers.UpdateSubNumberOrders
 
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities.PhoneNumbers.SubNumberOrders;
+    using Telnyx.net.Services.PhoneNumbers.SubNumberOrders;
+    using Xunit;
+
     /// <summary>
     /// Test class for UpdateSubNumberOrderTest.
     /// </summary>
@@ -30,25 +27,32 @@ namespace TelnyxTests.Services.PhoneNumbers.UpdateSubNumberOrders
             this.requestOptions = new RequestOptions();
             this.UpdateSubNumberOrderOptions = new UpdateSubNumberOrderOptions()
             {
-              RegulatoryRequirements = {}
+                RegulatoryRequirements = new System.Collections.Generic.List<UpdateRegulatoryRequirement>
+                {
+                    new UpdateRegulatoryRequirement()
+                    {
+                        FieldValue = "avb",
+                        RequirementId = "6a09cdc3-8948-47f0-aa62-74ac943d6c99",
+                    },
+                },
             };
         }
 
         [Fact]
-        public void List()
+        public void Update()
         {
             var result = this.service.UpdateSubNumberOrder(Id, this.UpdateSubNumberOrderOptions, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(PhoneNumber), result.GetType());
+            Assert.Equal(typeof(SubNumberOrder), result.GetType());
         }
 
         [Fact]
-        public async Task ListSync()
+        public async Task UpdateAsync()
         {
             var cts = new CancellationTokenSource();
             var result = await this.service.UpdateSubNumberOrderAsync(Id, this.UpdateSubNumberOrderOptions, this.requestOptions, cts.Token);
             Assert.NotNull(result);
-            Assert.Equal(typeof(PhoneNumber), result.GetType());
+            Assert.Equal(typeof(SubNumberOrder), result.GetType());
         }
     }
 }

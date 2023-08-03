@@ -1,20 +1,21 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.Enum.DynamicEmergencyAddresses;
-
-namespace Telnyx.net.Services.DynamicEmergencyAddresses
+﻿namespace Telnyx.net.Services.DynamicEmergencyAddresses
 {
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+    using Telnyx.net.Entities.Enum.DynamicEmergencyAddresses;
+    using Telnyx.net.Services.PhoneNumbers.Orders.Comments;
+
     public class CreateDynamicEmergencyAddressOptions : BaseOptions
     {
         [JsonProperty("administrative_area")]
         public string AdministrativeArea { get; set; }
 
         [JsonProperty("country_code")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public CountryCode CountryCode { get; set; }
+
+        [JsonProperty("country_coude")]
+        public string CountryCoude { get; set; }
 
         [JsonProperty("extended_address")]
         public string ExtendedAddress { get; set; }

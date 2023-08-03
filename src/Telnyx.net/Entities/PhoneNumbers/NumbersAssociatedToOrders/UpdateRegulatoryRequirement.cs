@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Entities.PhoneNumbers.NumbersAssociatedToOrders
+﻿namespace Telnyx.net.Entities.PhoneNumbers.NumbersAssociatedToOrders
 {
+    using Newtonsoft.Json;
+
     public class UpdateRegulatoryRequirement
     {
         [JsonProperty("field_value")]
@@ -15,5 +10,4 @@ namespace Telnyx.net.Entities.PhoneNumbers.NumbersAssociatedToOrders
         [JsonProperty("requirement_id")]
         public string RequirementId { get; set; }
     }
-
 }

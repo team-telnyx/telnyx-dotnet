@@ -1,12 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Entities.PhoneNumbers.SubNumberOrders
+﻿namespace Telnyx.net.Entities.PhoneNumbers.SubNumberOrders
 {
+    using System;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+
     public class SubNumberOrder : TelnyxEntity
     {
         [JsonProperty("country_code")]

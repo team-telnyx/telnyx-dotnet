@@ -1,10 +1,10 @@
-﻿using System.Threading.Tasks;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.Calls.CallControl.RecordActions;
-using Xunit;
-
-namespace TelnyxTests.Services.Calls.CallControl.RecordActions
+﻿namespace TelnyxTests.Services.Calls.CallControl.RecordActions
 {
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Services.Calls.CallControl.RecordActions;
+    using Xunit;
+
     public class RecordActionServiceTests : BaseTelnyxTest
     {
         private const string CallControllId = "call_123";
@@ -98,6 +98,5 @@ namespace TelnyxTests.Services.Calls.CallControl.RecordActions
             Assert.NotNull(message);
             Assert.IsType<TelnyxApiResponse>(message);
         }
-
     }
 }

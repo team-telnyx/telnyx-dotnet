@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Telnyx.Infrastructure;
-
-namespace Telnyx.net.Services
+﻿namespace Telnyx.net.Services
 {
+    using System.Net;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx.Infrastructure;
+
     public abstract class FileService
     {
         /// <summary>
@@ -36,21 +32,26 @@ namespace Telnyx.net.Services
         /// Gets BasePath.
         /// </summary>
         public abstract string BasePath { get; }
+
         public virtual string PostPath { get; set; } = string.Empty;
+
         protected byte[] GetEntity(string id, BaseOptions options, RequestOptions requestOptions, string postPath = null)
         {
             return this.GetRequest<byte[]>(this.CallUrl(id, postPath), options, requestOptions, false);
         }
+
         protected async Task<byte[]> GetEntityAsync(string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken, string postPath = null)
         {
             return await this.GetRequestAsync<byte[]>(this.CallUrl(id, postPath), options, requestOptions, false, cancellationToken);
         }
+
         protected byte[] GetRequest<T>(string url, BaseOptions options, RequestOptions requestOptions, bool isListMethod)
         {
             return Requestor.GetFile(
                     this.ApplyAllParameters(options, url, isListMethod),
                     this.SetupRequestOptions(requestOptions));
         }
+
         protected async Task<byte[]> GetRequestAsync<T>(string url, BaseOptions options, RequestOptions requestOptions, bool isListMethod, CancellationToken cancellationToken)
         {
             return await Requestor.GetFileAsync(
@@ -79,6 +80,7 @@ namespace Telnyx.net.Services
 
             return requestOptions;
         }
+
         /// <summary>
         /// CallUrl.
         /// </summary>
@@ -94,6 +96,7 @@ namespace Telnyx.net.Services
             else
                 return this.ClassUrl(baseUrl).UrlCombine(WebUtility.UrlEncode(id), postPath);
         }
+
         /// <summary>
         /// ClassUrl.
         /// </summary>

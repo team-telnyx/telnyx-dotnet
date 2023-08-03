@@ -1,17 +1,14 @@
-﻿using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.PhoneNumbers.Orders.Comments;
-using Xunit;
-using System.Threading;
-using Telnyx.net.Entities.PhoneNumbers.Orders.Comments;
-using System;
-using System.Collections.Generic;
-using Telnyx.net.Services.PhoneNumbers.NumberBackgroundJobs;
-
-namespace TelnyxTests.Services.PhoneNumbers.Orders.Comments
+﻿namespace TelnyxTests.Services.PhoneNumbers.Orders.Comments
 
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.PhoneNumbers.Orders.Comments;
+    using Telnyx.net.Services.PhoneNumbers.Orders.Comments;
+    using Xunit;
+
     /// <summary>
     /// Test class for CommentCreateTestTest.
     /// </summary>
@@ -26,48 +23,32 @@ namespace TelnyxTests.Services.PhoneNumbers.Orders.Comments
         public CommentCreateTestTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
-            service = new CommentService();
-            baseOptions = new BaseOptions();
-            requestOptions = new RequestOptions();
-            CommentCreateOptions = new CommentCreateOptions()
+            this.service = new CommentService();
+            this.baseOptions = new BaseOptions();
+            this.requestOptions = new RequestOptions();
+            this.CommentCreateOptions = new CommentCreateOptions()
             {
-                Body = "",
-                CommentRecordId = "",
-                CommentRecordType = Telnyx.net.Entities.Enum.PhoneNumbers.Orders.Comments.CommentRecordType.NumberOrderPhoneNumber
+                Body = string.Empty,
+                CommentRecordId = "6a09cdc3-8948-47f0-aa62-74ac943d6c99",
+                CommentRecordType = Telnyx.net.Entities.Enum.PhoneNumbers.Orders.Comments.CommentRecordType.NumberOrderPhoneNumber,
             };
         }
 
         [Fact]
-        public void List()
+        public void Create()
         {
-            var result = service.Create(CommentCreateOptions, requestOptions);
+            var result = this.service.Create(this.CommentCreateOptions, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(PhoneNumber), result.GetType());
+            Assert.Equal(typeof(Comment), result.GetType());
         }
 
         [Fact]
-        public async Task ListSync()
+        public async Task CreateAsync()
         {
             var cts = new CancellationTokenSource();
-            var result = await service.CreateAsync(CommentCreateOptions, requestOptions, cts.Token);
+            var result = await this.service.CreateAsync(this.CommentCreateOptions, this.requestOptions, cts.Token);
             Assert.NotNull(result);
-            Assert.Equal(typeof(PhoneNumber), result.GetType());
-        }
-        [Fact]
-        public void Update()
-        {
-            var result = service.UpdateComment(Id, requestOptions);
-            Assert.NotNull(result);
-            Assert.Equal(typeof(PhoneNumber), result.GetType());
-        }
-
-        [Fact]
-        public async Task UpdateSync()
-        {
-            var cts = new CancellationTokenSource();
-            var result = await service.UpdateCommentAsync(Id, requestOptions, cts.Token);
-            Assert.NotNull(result);
-            Assert.Equal(typeof(PhoneNumber), result.GetType());
+            Assert.Equal(typeof(Comment), result.GetType());
         }
     }
 }

@@ -1,13 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.Enum.Notification.NotificationChannels;
-
-namespace Telnyx.net.Services.Notifications.NotificationChannels
+﻿namespace Telnyx.net.Services.Notifications.NotificationChannels
 {
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum.Notification.NotificationChannels;
+
     public class NotificationChannelOptions : BaseOptions
     {
         /// <summary>

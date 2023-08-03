@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.Calls.CallControl.Refer;
-using Xunit;
-
-namespace TelnyxTests.Services.Calls.CallControl.Refer
+﻿namespace TelnyxTests.Services.Calls.CallControl.Refer
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Services.Calls.CallControl.Refer;
+    using Xunit;
+
     public class CallControlReferServiceTests : BaseTelnyxTest
     {
         private const string CallControllId = "call_123";
@@ -36,7 +34,6 @@ namespace TelnyxTests.Services.Calls.CallControl.Refer
                         Name = "Test1",
                     },
                 },
-
             };
         }
 
@@ -55,6 +52,5 @@ namespace TelnyxTests.Services.Calls.CallControl.Refer
             Assert.NotNull(response);
             Assert.IsType<TelnyxApiResponse>(response);
         }
-
     }
 }
