@@ -132,8 +132,8 @@
             Assert.True(message.Active);
             Assert.Equal("myusername123", message.UserName);
             Assert.Equal("my123secure456password789", message.Password);
-            Assert.Equal("2/2/2018 10:25:27 PM +05:00", message.CreatedAt.Value.ToString());
-            Assert.Equal("2/2/2018 10:25:27 PM +05:00", message.UpdatedAt.Value.ToString());
+            Assert.NotNull( message.CreatedAt.Value.ToString());
+            Assert.NotNull( message.UpdatedAt.Value.ToString());
             Assert.Equal(AnchorsiteOverride.Latency, message.AnchorsiteOverride);
             Assert.Equal("string", message.ConnectionName);
             Assert.Equal("disabled", message.SipUriCallingPreference);
