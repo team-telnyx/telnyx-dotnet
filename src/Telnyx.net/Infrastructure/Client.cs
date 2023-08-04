@@ -4,6 +4,9 @@
 
 namespace Telnyx.Infrastructure
 {
+#if NET45
+    using System;
+#endif
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Runtime.InteropServices;
@@ -40,6 +43,7 @@ namespace Telnyx.Infrastructure
         {
             this.RequestMessage.Headers.Add("X-Telnyx-Client-User-Agent", this.GetClientUserAgentString());
         }
+
 #if NET45
         private static string GetMonoVersion()
         {
@@ -72,6 +76,10 @@ namespace Telnyx.Infrastructure
                 { "lang", ".net" },
                 { "publisher", "Telnyx" },
             };
+
+            values.Add("lang_version", ".NET Framework 4.5+");
+            values.Add("os_version", Environment.OSVersion.ToString());
+
 #if NET45
             values.Add("lang_version", ".NET Framework 4.5+");
             values.Add("os_version", Environment.OSVersion.ToString());
