@@ -6,6 +6,7 @@ namespace Telnyx.Infrastructure
 {
 #if NET45
     using System;
+    using System.Reflection;
 #endif
     using System.Collections.Generic;
     using System.Net.Http;
@@ -76,9 +77,6 @@ namespace Telnyx.Infrastructure
                 { "lang", ".net" },
                 { "publisher", "Telnyx" },
             };
-
-            values.Add("lang_version", ".NET Framework 4.5+");
-            values.Add("os_version", Environment.OSVersion.ToString());
 
 #if NET45
             values.Add("lang_version", ".NET Framework 4.5+");
