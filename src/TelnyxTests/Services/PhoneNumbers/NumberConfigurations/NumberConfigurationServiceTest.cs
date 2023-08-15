@@ -1,12 +1,8 @@
 ﻿namespace TelnyxTests.Services.PhoneNumbers.NumberConfigurations
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading;
     using System.Threading.Tasks;
-    using Telnyx;
     using Telnyx.net.Entities;
     using Telnyx.net.Entities.PhoneNumbers.NumberConfigurations;
     using Telnyx.net.Services.PhoneNumbers.NumberConfigurations;
@@ -46,15 +42,16 @@
         [Fact]
         public async Task ListAsync()
         {
-            var numberOrder = await this.service.ListPhoneNumbersAsync(listOptions);
+            var numberOrder = await this.service.ListPhoneNumbersAsync(this.listOptions);
             //this.AssertRequest(HttpMethod.Post, "/v2/number_orders");
             Assert.NotNull(numberOrder);
             Assert.Equal(typeof(TelnyxList<NumberConfiguration>), numberOrder.GetType());
         }
+
         [Fact]
         public void List()
         {
-            var numberOrder = this.service.ListPhoneNumbers(listOptions);
+            var numberOrder = this.service.ListPhoneNumbers(this.listOptions);
             //this.AssertRequest(HttpMethod.Get, "/v2/number_orders");
             Assert.NotNull(numberOrder);
             Assert.Single(numberOrder.Data);
@@ -91,12 +88,12 @@
             Assert.True(response.CallForwardingEnabled);
             Assert.True(response.CallRecordingEnabled);
             Assert.True(response.CnamListingEnabled);
-            Assert.Equal(this.updateOptions.ConnectionId, response.ConnectionId);
+            Assert.Equal("1293384261075731499", response.ConnectionId);
             Assert.NotNull(response.ConnectionName);
             Assert.NotNull(response.CreatedAt); //changed. Mock is not returning updatedAt field..
             Assert.NotNull(response.EmergencyAddressId);
             Assert.True(response.EmergencyEnabled);
-            Assert.Equal(this.updateOptions.ExternalPin, response.ExternalPin);
+            Assert.Equal("1234", response.ExternalPin);
             Assert.NotNull(response.Id);
             Assert.NotNull(response.MessagingProfileId);
             Assert.NotNull(response.MessagingProfileName);
@@ -105,7 +102,7 @@
             Assert.Equal(Telnyx.net.Entities.Enum.RecordType.PhoneNumber, response.RecordType);
             Assert.NotNull(response.Status);
             Assert.True(response.T38FaxGatewayEnabled);
-            Assert.Equal(this.updateOptions.Tags.Count(), response.Tags.Count);
+            Assert.Equal(2, response.Tags.Count);
         }
 
         [Fact]

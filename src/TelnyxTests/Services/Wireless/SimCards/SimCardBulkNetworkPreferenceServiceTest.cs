@@ -14,14 +14,21 @@
         public SimCardBulkNetworkPreferenceServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
-            this.options = new SimCardBulkNetworkPreferenceUpdateOptions { SimCardIds = new string[] { "001", "002" } };
+            this.options = new SimCardBulkNetworkPreferenceUpdateOptions
+            {
+                SimCardIds = new string[]
+                {
+                    "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+                    "6a09cdc3-8948-47f0-aa62-74ac943d6c59",
+                },
+            };
             this.service = new SimCardBulkNetworkPreferenceService();
         }
 
         [Fact]
         public void Get()
         {
-            var result = this.service.Update(options);
+            var result = this.service.Update(this.options);
             Assert.NotNull(result);
             Assert.Equal(typeof(TelnyxCollection<MobileOperatorNetworksPreferencesRecord>), result.GetType());
         }
@@ -29,7 +36,7 @@
         [Fact]
         public async Task GetAsync()
         {
-            var result = await this.service.UpdateAsync(options);
+            var result = await this.service.UpdateAsync(this.options);
             Assert.NotNull(result);
             Assert.Equal(typeof(TelnyxCollection<MobileOperatorNetworksPreferencesRecord>), result.GetType());
         }

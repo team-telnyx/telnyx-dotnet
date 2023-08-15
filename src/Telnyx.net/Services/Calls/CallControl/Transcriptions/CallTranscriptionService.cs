@@ -1,25 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-
-namespace Telnyx.net.Services.Calls.CallControl.Transcriptions
+﻿namespace Telnyx.net.Services.Calls.CallControl.Transcriptions
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+
     internal class CallTranscriptionService : Service<TelnyxApiResponse>
     {
         public CallTranscriptionService()
             : base(null)
         {
-
         }
 
         public CallTranscriptionService(string apiKey)
             : base(apiKey)
         {
-
         }
 
         public override string BasePath => "/calls";
@@ -30,22 +24,22 @@ namespace Telnyx.net.Services.Calls.CallControl.Transcriptions
 
         public async Task<TelnyxApiResponse> StartAsync(string id, TranscriptionStartOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this.CreateEntityAsync(id, transcriptionStartPath, options, requestOptions, ct);
+            return await this.CreateEntityAsync(id, this.transcriptionStartPath, options, requestOptions, string.Empty, ct);
         }
 
         public async Task<TelnyxApiResponse> StopAsync(string id, TranscriptionOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this.CreateEntityAsync(id, transcriptionStopPath, options, requestOptions, ct);
+            return await this.CreateEntityAsync(id, this.transcriptionStopPath, options, requestOptions, string.Empty, ct);
         }
 
         public TelnyxApiResponse Start(string id, TranscriptionStartOptions options, RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(id, transcriptionStartPath, options, requestOptions);
+            return this.CreateEntity(id, this.transcriptionStartPath, options, requestOptions, string.Empty);
         }
 
         public TelnyxApiResponse Stop(string id, TranscriptionOptions options, RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(id, transcriptionStopPath, options, requestOptions);
+            return this.CreateEntity(id, this.transcriptionStopPath, options, requestOptions, string.Empty);
         }
     }
 }

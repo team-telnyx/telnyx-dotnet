@@ -1,10 +1,5 @@
 ﻿namespace Telnyx.net.Services.PhoneNumbers.RegulatoryRequirement
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Newtonsoft.Json;
     using static Telnyx.net.Entities.PhoneNumbers.Searches.RegulatoryRequirement;
 
@@ -27,6 +22,5 @@
         /// </summary>
         [JsonProperty("filter[requirement_type]")]
         public RequirementTypeEnum? RequirementType { get; set; }
-
     }
 }

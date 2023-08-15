@@ -1,8 +1,8 @@
-﻿using System;
-using Newtonsoft.Json;
-
-namespace Telnyx.net.Services.Calls.CallControl.RecordActions
+﻿namespace Telnyx.net.Services.Calls.CallControl.RecordActions
 {
+    using System;
+    using Newtonsoft.Json;
+
     public class RecordActionOptions : BaseOptions
     {
         /// <summary>

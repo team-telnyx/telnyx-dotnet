@@ -23,7 +23,7 @@ namespace Telnyx.Example
                 };
                 return conferenceCommandsService.Create(options);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 return null;
@@ -33,7 +33,7 @@ namespace Telnyx.Example
         {
             ListConferenceOptions options = new ListConferenceOptions
             {
-                
+
             };
             var response = listConferenceService.List(options);
             return response;

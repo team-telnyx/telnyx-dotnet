@@ -1,6 +1,5 @@
 ﻿namespace Telnyx
 {
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx.net.Entities;
@@ -36,13 +35,13 @@
         /// <inheritdoc/>
         public MessagingPhoneNumber Get(string id, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(id, null, requestOptions);
+            return this.GetEntity(id, null, requestOptions, string.Empty);
         }
 
         /// <inheritdoc/>
         public async Task<MessagingPhoneNumber> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.GetEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.GetEntityAsync(id, null, requestOptions, string.Empty, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -54,19 +53,19 @@
         /// <inheritdoc/>
         public async Task<TelnyxList<MessagingPhoneNumber>> ListAsync(MessagingPhoneNumberListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, string.Empty, cancellationToken);
         }
 
         /// <inheritdoc/>
         public MessagingPhoneNumber Update(string id, MessagingPhoneNumberUpdate updateOptions, RequestOptions requestOptions = null)
         {
-            return this.UpdateEntity(id, updateOptions, requestOptions);
+            return this.UpdateEntity(id, updateOptions, requestOptions, string.Empty);
         }
 
         /// <inheritdoc/>
         public async Task<MessagingPhoneNumber> UpdateAsync(string id, MessagingPhoneNumberUpdate updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
+            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, string.Empty, cancellationToken);
         }
     }
 }

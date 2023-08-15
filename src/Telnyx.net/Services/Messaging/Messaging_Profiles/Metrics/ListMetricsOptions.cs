@@ -1,16 +1,12 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Services.Messaging.Messaging_Profiles.Metrics
+﻿namespace Telnyx.net.Services.Messaging.Messaging_Profiles.Metrics
 {
+    using System;
+    using Newtonsoft.Json;
+
     public class ListMetricsOptions : ListOptions
     {
         /// <summary>
-        /// The id of the messaging profile(s) to retrieve
+        /// The id of the messaging profile(s) to retrieve.
         /// </summary>
         [JsonProperty("id")]
         public Guid? Id { get; set; }

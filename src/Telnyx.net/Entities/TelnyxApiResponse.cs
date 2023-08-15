@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-
-namespace Telnyx.net.Entities
+﻿namespace Telnyx.net.Entities
 {
+    using Newtonsoft.Json;
+
     public class TelnyxApiResponse : TelnyxEntity
     {
         /// <summary>

@@ -1,9 +1,9 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-
-namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferenceRecording
+﻿namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferenceRecording
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+
     public class ConferenceRecordingService : Service<TelnyxApiResponse>
     {
         public ConferenceRecordingService()
@@ -24,22 +24,22 @@ namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferenceRecording
 
         public TelnyxApiResponse Start(string id, RecordStartOptions startOptions, RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(id, this.startURI, startOptions, requestOptions);
+            return this.CreateEntity(id, this.startURI, startOptions, requestOptions, string.Empty);
         }
 
         public async Task<TelnyxApiResponse> StartAsync(string id, RecordStartOptions startOptions, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this.CreateEntityAsync(id, this.startURI, startOptions, requestOptions, ct);
+            return await this.CreateEntityAsync(id, this.startURI, startOptions, requestOptions, string.Empty, ct);
         }
 
         public TelnyxApiResponse Stop(string id, RecordStopOptions stopOptions, RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(id, this.stopURI, stopOptions, requestOptions);
+            return this.CreateEntity(id, this.stopURI, stopOptions, requestOptions, string.Empty);
         }
 
         public async Task<TelnyxApiResponse> StopAsync(string id, RecordStopOptions stopOptions, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this.CreateEntityAsync(id, this.stopURI, stopOptions, requestOptions, ct);
+            return await this.CreateEntityAsync(id, this.stopURI, stopOptions, requestOptions, string.Empty, ct);
         }
     }
 }

@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Services.Connections.FQDNs
+﻿namespace Telnyx.net.Services.Connections.FQDNs
 {
+    using Newtonsoft.Json;
+
     public class UpsertFQDNOptions : BaseOptions
     {
         /// <summary>
@@ -14,16 +9,19 @@ namespace Telnyx.net.Services.Connections.FQDNs
         /// </summary>
         [JsonProperty("connection_id")]
         public string ConnectionId { get; set; } = null;
+
         /// <summary>
-        /// FQDN represented by the resource. Example: "example.com"
+        /// FQDN represented by the resource. Example: "example.com".
         /// </summary>
         [JsonProperty("fqdn")]
         public string Fqdn { get; set; }
+
         /// <summary>
         /// Port to use when connecting to this FQDN.
         /// </summary>
         [JsonProperty("port")]
         public int Port { get; set; } = 5060;
+
         /// <summary>
         /// The DNS record type for the FQDN. 
         /// For cases where a port is not set, the DNS record type must be 'srv'. 

@@ -1,6 +1,5 @@
 ﻿namespace Telnyx
 {
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx.net.Entities;
@@ -36,31 +35,33 @@
         public override string BasePath => "/messages";
 
         // API not available in telnyx doc
+
         /// <inheritdoc/>
         public MessagingSenderId Delete(string id, RequestOptions requestOptions = null)
         {
-            return this.DeleteEntity(id, null, requestOptions);
+            return this.DeleteEntity(id, null, requestOptions, parentToken: "data");
         }
 
         /// <inheritdoc/>
         public async Task<MessagingSenderId> DeleteAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.DeleteEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.DeleteEntityAsync(id, null, requestOptions, parentToken: "data", cancellationToken);
         }
 
         /// <inheritdoc/>
         public MessagingSenderId Get(string id, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(id, null, requestOptions);
+            return this.GetEntity(id, null, requestOptions, parentToken: "data");
         }
 
         /// <inheritdoc/>
         public async Task<MessagingSenderId> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.GetEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.GetEntityAsync(id, null, requestOptions, parentToken: "data", cancellationToken);
         }
 
         // API not available in telnyx doc
+
         /// <inheritdoc/>
         public TelnyxList<MessagingSenderId> List(MessagingSenderIdListOptions listOptions = null, RequestOptions requestOptions = null)
         {
@@ -70,31 +71,31 @@
         /// <inheritdoc/>
         public async Task<TelnyxList<MessagingSenderId>> ListAsync(MessagingSenderIdListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, string.Empty, cancellationToken);
         }
 
         /// <inheritdoc/>
         public MessagingSenderId Update(string id, MessagingSenderIdUpdate updateOptions, RequestOptions requestOptions = null)
         {
-            return this.UpdateEntity(id, updateOptions, requestOptions);
+            return this.UpdateEntity(id, updateOptions, requestOptions, parentToken: "data");
         }
 
         /// <inheritdoc/>
         public async Task<MessagingSenderId> UpdateAsync(string id, MessagingSenderIdUpdate updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
+            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, parentToken: "data", cancellationToken);
         }
 
         /// <inheritdoc/>
         public MessagingSenderId Create(NewMessagingSenderId createOptions, RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(createOptions, requestOptions);
+            return this.CreateEntity(createOptions, requestOptions, parentToken: "data");
         }
 
         /// <inheritdoc/>
         public async Task<MessagingSenderId> CreateAsync(NewMessagingSenderId createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(createOptions, requestOptions, parentToken: "data", cancellationToken: cancellationToken);
         }
     }
 }

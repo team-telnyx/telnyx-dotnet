@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Telnyx.net.Services.HostedNumbers;
@@ -31,7 +30,7 @@ namespace Telnyx.Example
         }
         public async Task ListAsync()
         {
-            var result = await orderService.ListHostedNumberOrdersAsync(new ListOptions(1,25));
+            var result = await orderService.ListHostedNumberOrdersAsync(new ListOptions(1, 25));
             Console.WriteLine("Number Orders Listed: ");
             Console.WriteLine(JsonConvert.SerializeObject(result));
         }

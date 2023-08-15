@@ -1,11 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Telnyx.net.Entities;
 using Telnyx.net.Entities.Calls.CallControlApplications;
 using Telnyx.net.Entities.Enum;
-using Telnyx.net.Services.Calls.CallCommands;
 using Telnyx.net.Services.Calls.CallControlApplications;
 
 namespace Telnyx.Example
@@ -17,8 +14,8 @@ namespace Telnyx.Example
         public TelnyxList<CallControlApplication> List()
         {
             TelnyxList<CallControlApplication> callControlApplications = new TelnyxList<CallControlApplication>();
-            ListCallControlApplicationOptions listCallControlApplicationOptions = new ListCallControlApplicationOptions 
-            { 
+            ListCallControlApplicationOptions listCallControlApplicationOptions = new ListCallControlApplicationOptions
+            {
                 PageNumber = 1,
                 PageSize = 20
             };

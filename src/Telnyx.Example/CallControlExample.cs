@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Telnyx.net.Entities;
 using Telnyx.net.Services.Calls.CallCommands;
 using Telnyx.net.Services.Calls.CallControl.RecordActions;
@@ -20,16 +18,17 @@ namespace Telnyx.Example
         public CallDialResponse Dial()
         {
             CallDialResponse callDialResponse = new CallDialResponse();
-            CallControlDialOptions callControlDialOptions = new CallControlDialOptions {
+            CallControlDialOptions callControlDialOptions = new CallControlDialOptions
+            {
                 To = "+18005550100 or SIP:username@sip.telnyx.com",
                 From = "+18005550101",
                 ConnectionId = "string",
                 AudioUrl = "http://example.com/message.wav",
-                TimeoutSecs= 60,
+                TimeoutSecs = 60,
                 TimeLimitSecs = 600,
                 ClientState = "aGF2ZSBhIG5pY2UgZGF5ID1d",
                 CommandId = new Guid("891510ac-f3e4-11e8-af5b-de00688a4901"),
-                LinkTo =  "ilditnZK_eVysupV21KzmzN_sM29ygfauQojpm4BgFtfX5hXAcjotg==",
+                LinkTo = "ilditnZK_eVysupV21KzmzN_sM29ygfauQojpm4BgFtfX5hXAcjotg==",
                 SipAuthUsername = "string",
                 SipAuthPassword = "string",
                 FromDisplayName = "string"
@@ -54,9 +53,9 @@ namespace Telnyx.Example
             CallSpeakResponse callSpeakResponse = new CallSpeakResponse();
             CallControlSpeakOptions callControlSpeakOptions = new CallControlSpeakOptions
             {
-               Payload = "Say this on the call",
-               Language = "en-US",
-               Voice = "female"
+                Payload = "Say this on the call",
+                Language = "en-US",
+                Voice = "female"
             };
             Console.WriteLine(JsonConvert.SerializeObject(callControlSpeakOptions));
 
@@ -78,7 +77,7 @@ namespace Telnyx.Example
             CallBridgeResponse response = new CallBridgeResponse();
             CallControlBridgeOptions options = new CallControlBridgeOptions
             {
-               
+
             };
             Console.WriteLine(JsonConvert.SerializeObject(options));
 
@@ -166,15 +165,15 @@ namespace Telnyx.Example
             CallGatherUsingSpeakResponse response = new CallGatherUsingSpeakResponse();
             CallControlGatherUsingSpeakOptions options = new CallControlGatherUsingSpeakOptions
             {
-                Language = "en-US", 
-                Voice = "female", 
+                Language = "en-US",
+                Voice = "female",
                 Payload = "Telnyx call control test"
             };
             Console.WriteLine(JsonConvert.SerializeObject(options));
 
             try
             {
-                response = callControlService.GatherUsingSpeak( options);
+                response = callControlService.GatherUsingSpeak(options);
                 Console.WriteLine(JsonConvert.SerializeObject(response));
             }
             catch (TelnyxException ex)

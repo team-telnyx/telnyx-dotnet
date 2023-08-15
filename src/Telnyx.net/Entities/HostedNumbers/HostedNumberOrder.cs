@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
-using Telnyx.net.Entities.Enum;
-
-namespace Telnyx.net.Entities.HostedNumbers
+﻿namespace Telnyx.net.Entities.HostedNumbers
 {
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
+
     public partial class HostedNumberOrder : TelnyxEntity
     {
         /// <summary>
@@ -17,6 +17,7 @@ namespace Telnyx.net.Entities.HostedNumbers
         /// </summary>
         [JsonProperty("phone_numbers")]
         public IEnumerable<HostedNumber> PhoneNumbers { get; set; }
+
         /// <summary>
         /// Automatically associate the number with this messaging profile ID when the order is complete.
         /// </summary>
@@ -31,7 +32,7 @@ namespace Telnyx.net.Entities.HostedNumbers
         public RecordType RecordType { get; set; }
 
         /// <summary>
-        /// <see cref="Enum.NumberOrderStatus"/>.
+        /// <see cref="NumberOrderStatus"/>.
         /// </summary>
         [JsonProperty("status")]
         public NumberOrderStatus Status { get; set; }

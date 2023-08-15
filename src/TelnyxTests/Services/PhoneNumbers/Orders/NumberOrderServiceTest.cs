@@ -6,10 +6,10 @@ namespace TelnyxTests.Services.Numbers.Order
 {
     using System;
     using System.Collections.Generic;
-    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx;
+    using Telnyx.net.Entities;
     using Xunit;
 
     public class NumberOrderServiceTest : BaseTelnyxTest
@@ -40,15 +40,15 @@ namespace TelnyxTests.Services.Numbers.Order
                 CustomerReference = "Test",
                 ConnectionId = "Id001",
                 MessagingProfileId = Guid.NewGuid(),
-                WebhookUrl = "TestUrl",
-                WebhookFailoverUrl = "FailureUrl",
+                WebhookUrl = "https://www.example.com/hooks",
+                WebhookFailoverUrl = "https://backup.example.com/hooks",
                 CreatedAt = null,
                 UpdatedAt = null,
                 RequirementsMet = true,
                 PhoneNumbers = new List<PhoneNumber>()
                 {
-                    new PhoneNumber { Phone_Number = "+13127000090" }
-                }
+                    new PhoneNumber { Phone_Number = "+13127000090" },
+                },
             };
 
             this.listOptions = new NumberOrderListOptions()
@@ -58,7 +58,7 @@ namespace TelnyxTests.Services.Numbers.Order
                 CreatedAtLt = null,
                 PhoneNumbersPhoneNumber = "9089983721",
                 CustomerReference = "Test",
-                RequirementsMet = true
+                RequirementsMet = true,
             };
 
             this.updateOptions = new NumberOrderUpdateOptions
@@ -66,8 +66,8 @@ namespace TelnyxTests.Services.Numbers.Order
                 NumberOrderId = NumberOrderId,
                 Body = new NumberOrder
                 {
-                    CustomerReference = "MY REF"
-                }
+                    CustomerReference = "MY REF",
+                },
             };
 
             this.requestOptions = new RequestOptions();
@@ -81,7 +81,7 @@ namespace TelnyxTests.Services.Numbers.Order
             var numberOrder = this.service.Create(this.createOptions);
             //this.AssertRequest(HttpMethod.Post, "/v2/number_orders");
             Assert.NotNull(numberOrder);
-            Assert.Equal("Telnyx.NumberOrder", numberOrder.GetType().ToString());
+            Assert.Equal(typeof(NumberOrder), numberOrder.GetType());
         }
 
         [Fact]
@@ -90,7 +90,7 @@ namespace TelnyxTests.Services.Numbers.Order
             var numberOrder = await this.service.CreateAsync(this.createOptions);
             //this.AssertRequest(HttpMethod.Post, "/v2/number_orders");
             Assert.NotNull(numberOrder);
-            Assert.Equal("Telnyx.NumberOrder", numberOrder.GetType().ToString());
+            Assert.Equal(typeof(NumberOrder), numberOrder.GetType());
         }
 
         [Fact]
@@ -100,7 +100,7 @@ namespace TelnyxTests.Services.Numbers.Order
             //this.AssertRequest(HttpMethod.Get, "/v2/number_orders/12ade33a-21c0-473b-b055-b3c836e1c292");
             Assert.NotNull(numberOrder);
             Assert.IsType<NumberOrder>(numberOrder);
-            Assert.Equal("Telnyx.NumberOrder", numberOrder.GetType().ToString());
+            Assert.Equal(typeof(NumberOrder), numberOrder.GetType());
         }
 
         [Fact]
@@ -109,7 +109,7 @@ namespace TelnyxTests.Services.Numbers.Order
             var numberOrder = await this.service.GetAsync(NumberOrderId);
             //this.AssertRequest(HttpMethod.Get, "/v2/number_orders/12ade33a-21c0-473b-b055-b3c836e1c292");
             Assert.NotNull(numberOrder);
-            Assert.Equal("Telnyx.NumberOrder", numberOrder.GetType().ToString());
+            Assert.Equal(typeof(NumberOrder), numberOrder.GetType());
         }
 
         [Fact]
@@ -119,7 +119,7 @@ namespace TelnyxTests.Services.Numbers.Order
             //this.AssertRequest(HttpMethod.Get, "/v2/number_orders");
             Assert.NotNull(numberOrder);
             Assert.Single(numberOrder.Data);
-            Assert.Equal("Telnyx.NumberOrder", numberOrder.Data[0].GetType().ToString());
+            Assert.Equal(typeof(TelnyxList<NumberOrder>), numberOrder.GetType());
         }
 
         [Fact]
@@ -129,16 +129,16 @@ namespace TelnyxTests.Services.Numbers.Order
             //this.AssertRequest(HttpMethod.Get, "/v2/number_orders");
             Assert.NotNull(numberOrder);
             Assert.Single(numberOrder.Data);
-            Assert.Equal("Telnyx.NumberOrder", numberOrder.Data[0].GetType().ToString());
+            Assert.Equal(typeof(TelnyxList<NumberOrder>), numberOrder.GetType());
         }
 
         [Fact]
         public void Update()
         {
-            NumberOrder response = this.service.Update(NumberOrderId, this.updateOptions);
+            NumberOrder numberOrder = this.service.Update(NumberOrderId, this.updateOptions);
             //this.AssertRequest(new HttpMethod("PATCH"), "/v2/number_orders/" + NumberOrderId);
-            Assert.NotNull(response);
-            Assert.Equal("Telnyx.NumberOrder", response.GetType().ToString());
+            Assert.NotNull(numberOrder);
+            Assert.Equal(typeof(NumberOrder), numberOrder.GetType());
         }
 
         [Fact]
@@ -147,7 +147,7 @@ namespace TelnyxTests.Services.Numbers.Order
             var numberOrder = await this.service.UpdateAsync(NumberOrderId, this.updateOptions);
             //this.AssertRequest(new HttpMethod("PATCH"), "/v2/number_orders/" + NumberOrderId);
             Assert.NotNull(numberOrder);
-            Assert.Equal("Telnyx.NumberOrder", numberOrder.GetType().ToString());
+            Assert.Equal(typeof(NumberOrder), numberOrder.GetType());
         }
     }
 }

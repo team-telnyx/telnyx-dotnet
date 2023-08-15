@@ -1,13 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.Enum;
-
-namespace Telnyx.net.Entities.PhoneNumbers.NumberConfigurations
+﻿namespace Telnyx.net.Entities.PhoneNumbers.NumberConfigurations
 {
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
+
     public class PhoneNumberVoiceSettings : TelnyxEntity
     {
         [JsonProperty("call_forwarding")]

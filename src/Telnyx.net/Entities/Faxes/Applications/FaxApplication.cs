@@ -1,10 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
-using Telnyx.net.Entities.Applications;
-using Telnyx.net.Entities.Enum;
-
-namespace Telnyx.net.Entities.Faxes.Applications
+﻿namespace Telnyx.net.Entities.Faxes.Applications
 {
+    using System;
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Applications;
+    using Telnyx.net.Entities.Enum;
+
     /// <summary>
     ///  Fax Applications are used to configure how you send and receive faxes using the Programmable Fax API with Telnyx.
     /// </summary>

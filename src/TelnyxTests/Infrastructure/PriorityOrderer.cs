@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Xunit.Abstractions;
-using Xunit.Sdk;
-
-namespace TelnyxTests.Infrastructure
+﻿namespace TelnyxTests.Infrastructure
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Xunit.Abstractions;
+    using Xunit.Sdk;
+
     public class PriorityOrderer : ITestCaseOrderer
     {
         public IEnumerable<TTestCase> OrderTestCases<TTestCase>(IEnumerable<TTestCase> testCases) where TTestCase : ITestCase

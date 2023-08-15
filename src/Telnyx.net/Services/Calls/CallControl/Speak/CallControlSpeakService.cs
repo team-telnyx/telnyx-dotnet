@@ -32,13 +32,13 @@
         /// <inheritdoc/>
         public virtual CallSpeakResponse Create(string id, CallControlSpeakOptions options, string postFix = "actions/speak", RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(id, postFix, options, requestOptions);
+            return this.CreateEntity(id, postFix, options, requestOptions, string.Empty);
         }
 
         /// <inheritdoc/>
         public async Task<CallSpeakResponse> CreateAsync(string parentId, CallControlSpeakOptions createOptions, string postFix = "actions/speak", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, string.Empty, cancellationToken);
         }
     }
 }

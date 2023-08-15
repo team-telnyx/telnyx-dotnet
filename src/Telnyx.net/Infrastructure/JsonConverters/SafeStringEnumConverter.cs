@@ -1,20 +1,16 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Infrastructure.JsonConverters
+﻿namespace Telnyx.net.Infrastructure.JsonConverters
 {
+    using System;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+
     public class SafeStringEnumConverter : StringEnumConverter
     {
         public object DefaultValue { get; }
 
         public SafeStringEnumConverter(object defaultValue)
         {
-            DefaultValue = defaultValue;
+            this.DefaultValue = defaultValue;
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
@@ -25,7 +21,7 @@ namespace Telnyx.net.Infrastructure.JsonConverters
             }
             catch
             {
-                return DefaultValue;
+                return this.DefaultValue;
             }
         }
     }

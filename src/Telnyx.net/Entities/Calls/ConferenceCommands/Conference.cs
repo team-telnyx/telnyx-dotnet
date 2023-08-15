@@ -1,9 +1,9 @@
-﻿using System;
-using Newtonsoft.Json;
-using Telnyx.net.Entities.Enum;
-
-namespace Telnyx.net.Entities.Calls.ConferenceCommands
+﻿namespace Telnyx.net.Entities.Calls.ConferenceCommands
 {
+    using System;
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
+
     public class Conference : TelnyxEntity
     {
         [JsonProperty("connection_id")]

@@ -1,8 +1,8 @@
-﻿using System.Runtime.Serialization;
-using Newtonsoft.Json;
-
-namespace Telnyx.net.Entities.Faxes.Applications.Options
+﻿namespace Telnyx.net.Entities.Faxes.Applications.Options
 {
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
+
     /// <summary>
     /// Specifies the sort order for results. By default sorting direction is ascending.
     /// </summary>

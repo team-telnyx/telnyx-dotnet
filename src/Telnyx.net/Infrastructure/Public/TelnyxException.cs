@@ -47,11 +47,12 @@ namespace Telnyx
             this.HttpStatusCode = httpStatusCode;
             this.TelnyxErrors = telnyxErrors;
         }
+
         public TelnyxException(HttpStatusCode httpStatusCode, TelnyxError telnyxError, string message)
             : base(message)
         {
             this.HttpStatusCode = httpStatusCode;
-            this.TelnyxErrors = new List<TelnyxError>  { telnyxError };
+            this.TelnyxErrors = new List<TelnyxError> { telnyxError };
         }
 
         /// <summary>

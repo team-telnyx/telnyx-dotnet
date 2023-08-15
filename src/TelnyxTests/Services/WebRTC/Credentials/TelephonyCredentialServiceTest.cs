@@ -38,7 +38,8 @@
             {
                 ConnectionId = "1234567890",
                 ExpiresAt = "2018-02-02T22:25:27.521Z",
-                Name = "admin",
+                Name = "2020-06-18 21:32:38.917732Z",
+                Tag = "some_tag",
             };
 
             this.updateOptions = new TelephonyCredentialUpdateOptions()
@@ -47,8 +48,6 @@
                 ExpiresAt = "2018-02-02T22:25:27.521Z",
                 Name = "My Creds",
             };
-
-            
         }
 
         [Fact]
@@ -73,20 +72,15 @@
             var result = this.service.Create(this.createOptions, this.requestOptions);
             Assert.NotNull(result);
             Assert.Equal(typeof(WebRtcCredential), result.GetType());
-            Assert.NotNull(result.Id);
-            Assert.NotNull(result.ResourceId);
-            Assert.NotNull(result.RecordType);
-            Assert.NotNull(result.SipUsername);
-            Assert.NotNull(result.SipPassword);
+            Assert.Equal("c215ade3-0d39-418e-94be-c5f780760199", result.Id);
+            Assert.Equal("connection:804252963366242252", result.ResourceId);
+            Assert.Equal("credential", result.RecordType);
+            Assert.Equal("gencrednCvHU5IYpSBPPsXI2iQsDX", result.SipUsername);
+            Assert.Equal("a92dbcfb60184a8cb330b0acb2f7617b", result.SipPassword);
             Assert.NotNull(result.CreatedAt);
             Assert.NotNull(result.UpdatedAt);
-            Assert.Equal("credential", result.RecordType);
-            Assert.Equal(this.createOptions.Name, result.Name);
-            Assert.Equal(this.createOptions.ExpiresAt, result.ExpiredAt);
-            var telnyxResponseStr = result.TelnyxResponse.ToString();
-            var strn = result.ToString();
-            var expectedStr = "<Telnyx.net.Entities.WebRTC.Credentials.WebRtcCredential@18280971 id=c215ade3-0d39-418e-94be-c5f780760199> JSON: {\r\n  \"id\": \"c215ade3-0d39-418e-94be-c5f780760199\",\r\n  \"name\": \"admin\",\r\n  \"record_type\": \"credential\",\r\n  \"resource_id\": \"connection:804252963366242252\",\r\n  \"user_id\": null,\r\n  \"sip_password\": \"a92dbcfb60184a8cb330b0acb2f7617b\",\r\n  \"sip_username\": \"gencrednCvHU5IYpSBPPsXI2iQsDX\",\r\n  \"expires_at\": \"2018-02-02T22:25:27.521Z\",\r\n  \"created_at\": \"2020-06-18T21:32:38\",\r\n  \"updated_at\": \"2020-06-18T21:32:38Z\"\r\n}";
-            Assert.NotNull(expectedStr);
+            Assert.Equal("2020-06-18 21:32:38.917732Z", result.Name);
+            Assert.Equal("2042-06-18T21:32:38", result.ExpiredAt);
         }
 
         [Fact]
@@ -145,7 +139,7 @@
             Assert.Equal(typeof(WebRtcCredential), response.GetType());
         }
 
-        [Fact(Skip = "Mock not working")]
+        [Fact]
         public void GetToken()
         {
             var response = this.service.GetToken(Id, this.requestOptions);
@@ -153,7 +147,7 @@
             Assert.Equal(typeof(string), response.GetType());
         }
 
-        [Fact(Skip = "Mock not working")]
+        [Fact]
         public async Task GetTokenAsync()
         {
             var response = await this.service.GetTokenAsync(Id, this.requestOptions);
@@ -172,7 +166,7 @@
             catch (System.Exception ex)
             {
                 var exceptionType = ex.GetType();
-                Assert.Equal(typeof(Telnyx.TelnyxException), exceptionType);
+                Assert.Equal(typeof(TelnyxException), exceptionType);
             }
         }
     }

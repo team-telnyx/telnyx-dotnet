@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferencePlay
+﻿namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferencePlay
 {
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+
     public class ConferencePlayOptions : BaseOptions
     {
         /// <summary>
         /// The URL of the file to be played back in the conference. The URL can point to either a WAV or MP3 file.
-        /// <para>Example: "http://www.example.com/sounds/greeting.wav"</para>
+        /// <para>Example: "http://www.example.com/sounds/greeting.wav".</para>
         /// </summary>
         [JsonProperty("audio_url")]
         public string AudioURL { get; set; }
@@ -24,8 +20,8 @@ namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferencePlay
 
         /// <summary>
         /// The number of times the audio file should be played. If supplied, the value must be an integer between 1 and 100, or the special string `infinity` for an endless loop.
-        /// <para>Default: 1 </para>
-        /// <para>Example: "infinity"</para>
+        /// <para>Default: 1. </para>
+        /// <para>Example: "infinity".</para>
         /// </summary>
         [JsonProperty("loop")]
         public object Loop { get; set; } = 1;

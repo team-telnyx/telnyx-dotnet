@@ -1,8 +1,8 @@
-﻿namespace Telnyx.Example
-{
-    using System;
-    using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
+namespace Telnyx.Example
+{
     /// <summary>
     /// Phone Numbers Example
     /// </summary>

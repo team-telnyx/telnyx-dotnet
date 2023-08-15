@@ -6,22 +6,22 @@
     using Telnyx.net.Entities.Wireless.SimCards;
 
     /// <summary>
-    /// SimCardRegisterService
+    /// SimCardRegisterService.
     /// </summary>
-    internal class SimCardRegisterService : Service<TelnyxCollection<SimCardRecord>>,
-        ICreatable<TelnyxCollection<SimCardRecord>, SimCardRegisterOptions>
+    internal class SimCardRegisterService : Service<SimCardRecord>,
+        ICreatable<TelnyxList<SimCardRecord>, SimCardRegisterOptions>
     {
 
         public override string BasePath => "/actions/register/sim_cards";
 
-        public TelnyxCollection<SimCardRecord> Create(SimCardRegisterOptions createOptions, RequestOptions requestOptions = null)
+        public TelnyxList<SimCardRecord> Create(SimCardRegisterOptions createOptions, RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(createOptions, requestOptions);
+            return this.CreateListEntity(createOptions, requestOptions, null, string.Empty);
         }
 
-        public Task<TelnyxCollection<SimCardRecord>> CreateAsync(SimCardRegisterOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TelnyxList<SimCardRecord>> CreateAsync(SimCardRegisterOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
+            return await this.CreateListEntityAsync(createOptions, requestOptions, cancellationToken: cancellationToken);
         }
     }
 }

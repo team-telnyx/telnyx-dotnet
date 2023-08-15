@@ -1,6 +1,5 @@
 ﻿namespace Telnyx
 {
-    using System;
     using System.Collections.Generic;
     using Newtonsoft.Json;
     using Telnyx.net.Entities.Enum;
@@ -14,7 +13,7 @@
         /// Gets or sets id.
         /// </summary>
         [JsonProperty("id")]
-        public Guid? Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets or sets recordType.

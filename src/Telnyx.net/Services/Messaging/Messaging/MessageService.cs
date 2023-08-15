@@ -33,25 +33,25 @@
         /// <inheritdoc/>
         public OutboundMessage Create(NewMessage createOptions, RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(createOptions, requestOptions);
+            return this.CreateEntity(createOptions, requestOptions, parentToken: "data");
         }
 
         /// <inheritdoc/>
         public async Task<OutboundMessage> CreateAsync(NewMessage createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(createOptions, requestOptions, parentToken: "data", cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc/>
         public OutboundMessage Get(string id, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(id, null, requestOptions);
+            return this.GetEntity(id, null, requestOptions, parentToken: "data");
         }
 
         /// <inheritdoc/>
-        public async Task<OutboundMessage> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<OutboundMessage> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.GetEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.GetEntityAsync(id, null, requestOptions, parentToken: "data", cancellationToken);
         }
     }
 }

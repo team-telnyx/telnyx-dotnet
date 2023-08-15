@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Text;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Telnyx.net.Entities;
 using Telnyx.net.Entities.Faxes;
-using Telnyx.net.Entities.Faxes.Webhooks;
 using Telnyx.net.Infrastructure.Public;
 using Telnyx.net.Services.Faxes;
 

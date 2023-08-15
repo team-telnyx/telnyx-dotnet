@@ -1,10 +1,10 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-using Telnyx.net.Entities.Participants;
-
-namespace Telnyx.net.Services.Calls.ConferenceCommands.Participants
+﻿namespace Telnyx.net.Services.Calls.ConferenceCommands.Participants
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.Participants;
+
     public class ConferenceParticipantService : Service<Participant>
     {
         public ConferenceParticipantService()
@@ -28,7 +28,7 @@ namespace Telnyx.net.Services.Calls.ConferenceCommands.Participants
 
         public async Task<TelnyxList<Participant>> ListParticipantsAsync(string id, ParticipantListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.ListEntitiesAsync(this.PostPath, listOptions, requestOptions, cancellationToken, id);
+            return await this.ListEntitiesAsync(this.PostPath, listOptions, requestOptions, string.Empty, id, cancellationToken);
         }
     }
 }

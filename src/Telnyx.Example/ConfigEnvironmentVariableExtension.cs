@@ -1,11 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Telnyx.Example
 {
-    public static class  ConfigEnvironmentVariableExtension
+    public static class ConfigEnvironmentVariableExtension
     {
         public static IConfiguration LoadAppSettingsIntoEnvironmentVariables(this IConfiguration config)
         {

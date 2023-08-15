@@ -1,6 +1,5 @@
 ﻿namespace Telnyx
 {
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx.net.Entities;
@@ -39,7 +38,7 @@
         /// <inheritdoc/>
         public async Task<TelnyxList<ListConferenceResponse>> ListAsync(ListConferenceOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, string.Empty, cancellationToken);
         }
     }
 }

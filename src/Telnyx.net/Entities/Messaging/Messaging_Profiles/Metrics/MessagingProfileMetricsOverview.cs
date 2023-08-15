@@ -1,13 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.Enum;
-
-namespace Telnyx.net.Entities.Messaging.Messaging_Profiles.Metrics
+﻿namespace Telnyx.net.Entities.Messaging.Messaging_Profiles.Metrics
 {
+    using System;
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
+
     public class MessagingProfileMetricsOverview : TelnyxEntity
     {
         [JsonProperty("inbound")]

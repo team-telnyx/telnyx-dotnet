@@ -32,13 +32,13 @@
         /// <inheritdoc/>
         public virtual CallForkStopResponse Create(string id, CallControlForkStopOptions options, string postFix = "actions/fork_stop", RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(id, postFix, options, requestOptions);
+            return this.CreateEntity(id, postFix, options, requestOptions, string.Empty);
         }
 
         /// <inheritdoc/>
         public async Task<CallForkStopResponse> CreateAsync(string parentId, CallControlForkStopOptions createOptions, string postFix = "actions/fork_stop", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, string.Empty, cancellationToken);
         }
     }
 }

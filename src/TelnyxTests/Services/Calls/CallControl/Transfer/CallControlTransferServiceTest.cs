@@ -4,7 +4,6 @@
 
 namespace TelnyxTests.Services.Calls.CallCommands
 {
-    using System.Net.Http;
     using System.Threading.Tasks;
     using Telnyx;
     using Telnyx.net.Services.Calls.Models;
@@ -44,7 +43,6 @@ namespace TelnyxTests.Services.Calls.CallCommands
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/transfer");
             Assert.NotNull(message);
             Assert.Equal(typeof(CallTransferResponse), message.GetType());
-
         }
 
         [Fact]
@@ -54,7 +52,6 @@ namespace TelnyxTests.Services.Calls.CallCommands
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/transfer");
             Assert.NotNull(message);
             Assert.Equal(typeof(CallTransferResponse), message.GetType());
-
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Telnyx.Example
         {
             TelnyxList<OutboundVoiceProfile> outboundVoiceProfiles = new TelnyxList<OutboundVoiceProfile>();
             ListOutboundVoiceProfileOptions listOutboundVoiceProfileOptions = new ListOutboundVoiceProfileOptions
-            { 
+            {
                 PageNumber = 1,
                 PageSize = 20
             };

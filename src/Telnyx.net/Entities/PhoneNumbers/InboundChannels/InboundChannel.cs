@@ -1,23 +1,18 @@
 ﻿namespace Telnyx.net.Entities.PhoneNumbers.InboundChannels
 {
     using Newtonsoft.Json;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Telnyx.net.Entities.Enum;
 
     public class InboundChannel : TelnyxEntity, IHasId
     {
         /// <summary>
-        /// The current number of concurrent channels set for the account
+        /// The current number of concurrent channels set for the account.
         /// </summary>
         [JsonProperty("channels")]
         public int Channels { get; set; }
 
         /// <summary>
-        /// Identifies the type of the response
+        /// Identifies the type of the response.
         /// </summary>
         [JsonProperty("record_type")]
         public RecordType? RecordType { get; set; }

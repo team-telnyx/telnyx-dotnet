@@ -1,8 +1,8 @@
-﻿using System.Runtime.Serialization;
-using Newtonsoft.Json;
-
-namespace Telnyx.net.Entities.Enum
+﻿namespace Telnyx.net.Entities.Enum
 {
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
+
     /// <summary>
     /// This option can be enabled to receive calls from: \"Anyone\" (any SIP endpoint in the public Internet) or \"Only my connections\" (any connection assigned to the same Telnyx user).
     /// </summary>

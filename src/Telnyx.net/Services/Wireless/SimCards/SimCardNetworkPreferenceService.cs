@@ -34,32 +34,32 @@
 
         public MobileOperatorNetworksPreferencesRecord Get(string id, BaseOptions baseOptions, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(id, baseOptions, requestOptions, this.PostPath);
+            return this.GetEntity(id, baseOptions, requestOptions, this.PostPath, parentToken: "data");
         }
 
         public async Task<MobileOperatorNetworksPreferencesRecord> GetAsync(string id, BaseOptions baseOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.GetEntityAsync(id, baseOptions, requestOptions, cancellationToken, this.PostPath);
+            return await this.GetEntityAsync(id, baseOptions, requestOptions, this.PostPath, parentToken: "data", cancellationToken: cancellationToken);
         }
 
         public MobileOperatorNetworksPreferencesRecord Update(string id, BaseOptions updateOptions, RequestOptions requestOptions = null)
         {
-            return this.UpgradeEntity(id, updateOptions, requestOptions, this.PostPath);
+            return this.UpgradeEntity(id, updateOptions, requestOptions, this.PostPath, parentToken: "data");
         }
 
         public async Task<MobileOperatorNetworksPreferencesRecord> UpdateAsync(string id, BaseOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.UpgradeEntityAsync(id, updateOptions, requestOptions, cancellationToken, this.PostPath);
+            return await this.UpgradeEntityAsync(id, updateOptions, requestOptions, this.PostPath, parentToken: "data", cancellationToken);
         }
 
         public MobileOperatorNetworksPreferencesRecord Delete(string id, RequestOptions requestOptions)
         {
-            return this.DeleteEntity(id, this.PostPath, null, requestOptions);
+            return this.DeleteEntity(id, this.PostPath, null, requestOptions, parentToken: "data");
         }
 
         public async Task<MobileOperatorNetworksPreferencesRecord> DeleteAsync(string id, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
-            return await this.DeleteEntityAsync(id, this.PostPath, null, requestOptions, cancellationToken);
+            return await this.DeleteEntityAsync(id, this.PostPath, null, requestOptions, parentToken: "data", cancellationToken);
         }
     }
 }

@@ -4,7 +4,6 @@
 
 namespace TelnyxTests.Services.Calls.CallCommands
 {
-    using System.Net.Http;
     using System.Threading.Tasks;
     using Telnyx;
     using TelnyxTests.Infrastructure;
@@ -46,8 +45,7 @@ namespace TelnyxTests.Services.Calls.CallCommands
             var message = await this.service.CreateAsync(CallControllId, this.createOptions);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/bridge");
             Assert.NotNull(message);
-            Assert.Equal(typeof(CallBridgeResponse), message.GetType());    
-
+            Assert.Equal(typeof(CallBridgeResponse), message.GetType());
         }
     }
 }

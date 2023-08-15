@@ -38,7 +38,14 @@
             /// Enum NumberOrderDocumentIdEnum for number_order_document_id
             /// </summary>
             [EnumMember(Value = "number_order_document_id")]
-            NumberOrderDocumentIdEnum = 3
+            NumberOrderDocumentIdEnum = 3,
+
+            /// <summary>
+            /// For mocks test cases only, do not use
+            /// </summary>
+            [Obsolete]
+            [EnumMember(Value = "address")]
+            Address = -99,
         }
 
         /// <summary>

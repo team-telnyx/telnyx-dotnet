@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Services.Messaging.Messaging_Profiles.Metrics
+﻿namespace Telnyx.net.Services.Messaging.Messaging_Profiles.Metrics
 {
+    using Newtonsoft.Json;
+
     public class MetricsOptions : BaseOptions
     {
         /// <summary>

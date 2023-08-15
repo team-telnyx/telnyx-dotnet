@@ -1,11 +1,5 @@
-﻿
-
-namespace Telnyx.net.Services.PhoneNumbers.InboundChannels
+﻿namespace Telnyx.net.Services.PhoneNumbers.InboundChannels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx.net.Entities.PhoneNumbers.InboundChannels;
@@ -18,11 +12,13 @@ namespace Telnyx.net.Services.PhoneNumbers.InboundChannels
         IRetrievable<InboundChannel>,
         IUpdatable<InboundChannel, InboundChannelUpdateOptions>
     {
-        public InboundChannelService():base(null)
+        public InboundChannelService()
+            : base(null)
         {
         }
 
-        public InboundChannelService(string apiKey) : base(apiKey)
+        public InboundChannelService(string apiKey)
+            : base(apiKey)
         {
         }
 
@@ -30,22 +26,22 @@ namespace Telnyx.net.Services.PhoneNumbers.InboundChannels
 
         public InboundChannel Get(string id, RequestOptions requestOptions = null)
         {
-            return this.GetEntity("inbound_channels", null, requestOptions);
+            return this.GetEntity("inbound_channels", null, requestOptions, parentToken: "data");
         }
 
         public async Task<InboundChannel> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.GetEntityAsync("inbound_channels", null, requestOptions, cancellationToken);
+            return await this.GetEntityAsync("inbound_channels", null, requestOptions, parentToken: "data", cancellationToken);
         }
 
         public InboundChannel Update(string id, InboundChannelUpdateOptions updateOptions, RequestOptions requestOptions = null)
         {
-            return this.UpdateEntity("inbound_channels", updateOptions, requestOptions);
+            return this.UpdateEntity("inbound_channels", updateOptions, requestOptions, parentToken: "data");
         }
 
         public async Task<InboundChannel> UpdateAsync(string id, InboundChannelUpdateOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.UpdateEntityAsync("inbound_channels", updateOptions, requestOptions, cancellationToken);
+            return await this.UpdateEntityAsync("inbound_channels", updateOptions, requestOptions, parentToken: "data", cancellationToken);
         }
     }
 }

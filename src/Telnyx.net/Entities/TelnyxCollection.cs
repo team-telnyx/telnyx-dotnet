@@ -15,7 +15,7 @@ namespace Telnyx.net.Entities
     {
         public TelnyxCollection()
         {
-            Data = new List<T>();
+            this.Data = new List<T>();
         }
 
         public T this[int index] { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
@@ -33,18 +33,18 @@ namespace Telnyx.net.Entities
         public List<T> Data { get; set; }
 
         /// <summary>
-        /// Gets or sets metadata for list
+        /// Gets or sets metadata for list.
         /// </summary>
         [JsonProperty("meta")]
         public PageInfo PageInfo { get; set; }
 
-        public int Count => Data.Count;
+        public int Count => this.Data.Count;
 
         public bool IsReadOnly => false;
 
         public void Add(T item)
         {
-            Data.Add(item);
+            this.Data.Add(item);
         }
 
         public void Clear()

@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Services.Connections.IPs
+﻿namespace Telnyx.net.Services.Connections.IPs
 {
+    using Newtonsoft.Json;
+
     public class IPListOptions : ListOptions
     {
         /// <summary>
@@ -14,13 +9,15 @@ namespace Telnyx.net.Services.Connections.IPs
         /// </summary>
         [JsonProperty("filter[connection_id]")]
         public string ConnectionId { get; set; } = null;
+
         /// <summary>
         /// IP adddress represented by this resource.
         /// </summary>
         [JsonProperty("filter[ip_address]")]
         public string IPAddress { get; set; }
+
         /// <summary>
-        /// Port to use when connecting to this IP. Example: 5060
+        /// Port to use when connecting to this IP. Example: 5060.
         /// </summary>
         [JsonProperty("filter[port]")]
         public int? Port { get; set; }

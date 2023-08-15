@@ -44,7 +44,7 @@
         /// <returns>Number Order.</returns>
         public virtual NumberOrder Create(NumberOrderCreateOptions options, RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(options, requestOptions);
+            return this.CreateEntity(options, requestOptions, parentToken: "data");
         }
 
         /// <summary>
@@ -56,7 +56,7 @@
         /// <returns>Task of Number Order.</returns>
         public async Task<NumberOrder> CreateAsync(NumberOrderCreateOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(createOptions, requestOptions, parentToken: "data", cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@
         /// <returns>Number Order.</returns>
         public NumberOrder Get(string id, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(id, null, requestOptions);
+            return this.GetEntity(id, null, requestOptions, parentToken: "data");
         }
 
         /// <summary>
@@ -79,7 +79,7 @@
         /// <returns>Task of OrderNumber.</returns>
         public async Task<NumberOrder> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.GetEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.GetEntityAsync(id, null, requestOptions, parentToken: "data", cancellationToken);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@
         /// <returns>Number Order.</returns>
         public virtual NumberOrder Update(string id, NumberOrderUpdateOptions updateOptions, RequestOptions requestOptions = null)
         {
-            return this.UpdateEntity(id, updateOptions, requestOptions);
+            return this.UpdateEntity(id, updateOptions, requestOptions, parentToken: "data");
         }
 
         /// <summary>
@@ -104,7 +104,7 @@
         /// <returns>Number Order.</returns>
         public async virtual Task<NumberOrder> UpdateAsync(string id, NumberOrderUpdateOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
+            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, parentToken: "data", cancellationToken);
         }
 
         /// <summary>
@@ -127,7 +127,7 @@
         /// <returns>Task of Telnyx List of Number Order.</returns>
         public async virtual Task<TelnyxList<NumberOrder>> ListAsync(NumberOrderListOptions listOptions, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
-            return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, string.Empty, cancellationToken);
         }
 
         /// <summary>

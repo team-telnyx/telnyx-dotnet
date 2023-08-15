@@ -1,8 +1,7 @@
 ﻿namespace TelnyxTests
 {
-    using Newtonsoft.Json.Linq;
     using System.Collections.Generic;
-    using System.Security;
+    using Newtonsoft.Json.Linq;
     using Telnyx.Infrastructure.Middleware;
     using Xunit;
 

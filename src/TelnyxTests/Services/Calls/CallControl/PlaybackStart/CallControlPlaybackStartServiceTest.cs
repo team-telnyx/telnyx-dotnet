@@ -4,7 +4,6 @@
 
 namespace TelnyxTests.Services.Calls.CallCommands
 {
-    using System.Net.Http;
     using System.Threading.Tasks;
     using Telnyx;
     using Xunit;
@@ -49,7 +48,6 @@ namespace TelnyxTests.Services.Calls.CallCommands
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/playback_start");
             Assert.NotNull(message);
             Assert.Equal(typeof(CallPlaybackStartResponse), message.GetType());
-
         }
     }
 }

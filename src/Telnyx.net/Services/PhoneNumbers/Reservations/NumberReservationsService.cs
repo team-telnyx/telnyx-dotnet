@@ -42,19 +42,19 @@
         /// <inheritdoc/>
         public async Task<NumberReservation> CreateAsync(NumberReservation createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(createOptions, requestOptions, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc/>
         public NumberReservation Get(string id, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(id, null, requestOptions);
+            return this.GetEntity(id, null, requestOptions, string.Empty);
         }
 
         /// <inheritdoc/>
         public async Task<NumberReservation> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.GetEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.GetEntityAsync(id, null, requestOptions, string.Empty, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -66,13 +66,23 @@
         /// <inheritdoc/>
         public async Task<TelnyxList<NumberReservation>> ListAsync(NumberReservationsListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, string.Empty, cancellationToken);
         }
 
         /// <inheritdoc/>
         public IEnumerable<NumberReservation> ListAutoPaging(NumberReservationsListOptions listOptions = null, RequestOptions requestOptions = null)
         {
             return this.ListAutoPaging(listOptions, requestOptions);
+        }
+
+        public virtual NumberReservation ExtendANumberReservationRequest(string id, RequestOptions requestOptions = null)
+        {
+            return this.CreateEntity(id, "/actions/extend", null, requestOptions, string.Empty);
+        }
+
+        public async Task<NumberReservation> ExtendANumberReservationRequestAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return await this.CreateEntityAsync(id, "/actions/extend", null, requestOptions, string.Empty, cancellationToken);
         }
     }
 }

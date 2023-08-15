@@ -32,13 +32,13 @@
         /// <inheritdoc/>
         public virtual CallHangUpResponse Create(string id, CallControlHangupOptions options, string postFix = "actions/hangup", RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(id, postFix, options, requestOptions);
+            return this.CreateEntity(id, postFix, options, requestOptions, string.Empty);
         }
 
         /// <inheritdoc/>
         public async Task<CallHangUpResponse> CreateAsync(string parentId, CallControlHangupOptions createOptions, string postFix = "actions/hangup", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, string.Empty, cancellationToken);
         }
     }
 }

@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Services.Calls.Models
+﻿namespace Telnyx.net.Services.Calls.Models
 {
+    using Newtonsoft.Json;
+
     public class AnsweringMachineDetectionConfig
     {
         /// <summary>
@@ -74,6 +69,5 @@ namespace Telnyx.net.Services.Calls.Models
         /// </summary>
         [JsonProperty("total_analysis_time_millis")]
         public int TotalAnalysisTimeMillis { get; set; } = 3500;
-
     }
 }

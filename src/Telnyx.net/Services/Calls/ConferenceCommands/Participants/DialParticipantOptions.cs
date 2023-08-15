@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-namespace Telnyx.net.Services.Calls.ConferenceCommands.Participants
+﻿namespace Telnyx.net.Services.Calls.ConferenceCommands.Participants
 {
+    using System;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+
     public class DialParticipantOptions : BaseOptions
     {
         /// <summary>
-        /// Unique identifier and token for controlling the call
+        /// Unique identifier and token for controlling the call.
         /// </summary>
         [JsonProperty("call_control_id")]
         public string CallControlId { get; set; }

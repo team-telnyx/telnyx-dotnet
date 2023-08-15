@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-
-namespace Telnyx.net.Services.HostedNumbers
+﻿namespace Telnyx.net.Services.HostedNumbers
 {
+    using Newtonsoft.Json;
+
     public class FileUploadOptions : BaseOptions
     {
         /// <summary>

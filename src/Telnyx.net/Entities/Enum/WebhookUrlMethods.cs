@@ -1,9 +1,9 @@
-﻿using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-
-namespace Telnyx.net.Entities.Enum
+﻿namespace Telnyx.net.Entities.Enum
 {
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+
     [JsonConverter(typeof(StringEnumConverter))]
     public enum WebhookUrlMethods
     {

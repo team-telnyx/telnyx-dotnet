@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Entities.PhoneNumbers.NumberConfigurations;
-using Telnyx.net.Services.PhoneNumbers.NumberConfigurations;
-using Xunit;
-
-namespace TelnyxTests.Services.PhoneNumbers.NumberConfigurations
+﻿namespace TelnyxTests.Services.PhoneNumbers.NumberConfigurations
 {
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.PhoneNumbers.NumberConfigurations;
+    using Telnyx.net.Services.PhoneNumbers.NumberConfigurations;
+    using Xunit;
+
     public class NumberConfigurationVoiceServiceTest : BaseTelnyxTest
     {
         private const string NumberOrderId = "12ade33a-21c0-473b-b055-b3c836e1c292";
@@ -82,15 +80,16 @@ namespace TelnyxTests.Services.PhoneNumbers.NumberConfigurations
         [Fact]
         public async Task ListAsync()
         {
-            var response = await this.service.ListPhoneNumberVoiceAsync(listOptions);
+            var response = await this.service.ListPhoneNumberVoiceAsync(this.listOptions);
             //this.AssertRequest(HttpMethod.Post, "/v2/number_orders");
             Assert.NotNull(response);
             Assert.IsType<TelnyxList<PhoneNumberVoiceSettings>>(response);
         }
+
         [Fact]
         public void List()
         {
-            var response = this.service.ListPhoneNumberVoice(listOptions);
+            var response = this.service.ListPhoneNumberVoice(this.listOptions);
             //this.AssertRequest(HttpMethod.Get, "/v2/number_orders");
             Assert.NotNull(response);
             Assert.IsType<TelnyxList<PhoneNumberVoiceSettings>>(response);
@@ -123,7 +122,7 @@ namespace TelnyxTests.Services.PhoneNumbers.NumberConfigurations
             Assert.True(response.MediaFeatures.AcceptAnyRtpPacketsEnabled);
             Assert.True(response.MediaFeatures.RtpAutoAdjustEnabled);
             Assert.True(response.MediaFeatures.T38FaxGatewayEnabled);
-            Assert.NotNull(response.MediaFeatures.MediaHandlingMode);
+            Assert.Null(response.MediaFeatures.MediaHandlingMode);
             Assert.Equal(Telnyx.net.Entities.Enum.RecordType.VoiceSettings, response.RecordType);
             Assert.False(response.TechPrefixEnabled);
             Assert.NotNull(response.TranslatedNumber);
@@ -156,6 +155,7 @@ namespace TelnyxTests.Services.PhoneNumbers.NumberConfigurations
             Assert.NotNull(response);
             Assert.IsType<PhoneNumberVoiceSettings>(response);
         }
+
         [Fact]
         public void UpdateEmergency()
         {

@@ -1,15 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.Enum;
-using Telnyx.net.Entities.Enum.Webhooks;
-
-namespace Telnyx.net.Entities
+﻿namespace Telnyx.net.Entities
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
+    using Telnyx.net.Entities.Enum.Webhooks;
+
     /// <summary>
     /// POCO Representing an incoming webhook.
     /// </summary>
@@ -23,6 +19,7 @@ namespace Telnyx.net.Entities
         [JsonProperty("meta")]
         public WebhookMeta Meta { get; set; }
     }
+
     /// <summary>
     /// POCO Representing an incoming webhook's payload.
     /// </summary>

@@ -1,12 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Entities.Messaging.Messaging_Profiles.Metrics
+﻿namespace Telnyx.net.Entities.Messaging.Messaging_Profiles.Metrics
 {
+    using System;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+
     public class MessagingProfileMetricsDetailed : TelnyxEntity
     {
         [JsonProperty("timestamp")]
