@@ -103,13 +103,11 @@ namespace TelnyxTests
             [JsonProperty("nested")]
             internal object InternalNested
             {
-                get
-                {
+                get {
                     return this.Nested ?? (object)this.NestedId;
                 }
 
-                set
-                {
+                set {
                     StringOrObject<TestNestedObject>.Map(value, s => this.NestedId = s, o => this.Nested = o);
                 }
             }

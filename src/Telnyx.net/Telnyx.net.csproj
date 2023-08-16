@@ -105,6 +105,11 @@
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\PhoneNumbersJobs\" />
+    <Folder Include="Services\Calls\CallControl\EnqueueCall\" />
+  </ItemGroup>
+
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\_stylecop\StyleCopRules.ruleset</CodeAnalysisRuleSet>
     <RootNamespace>Telnyx.net</RootNamespace>

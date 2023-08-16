@@ -1,9 +1,9 @@
-﻿using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using Telnyx.net.Infrastructure.JsonConverters;
-
-namespace Telnyx.net.Entities.Enum
+﻿namespace Telnyx.net.Entities.Enum
 {
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
+    using Telnyx.net.Infrastructure.JsonConverters;
+
     [JsonConverter(typeof(SafeStringEnumConverter), Unknown)]
     public enum NumberOrderStatus
     {

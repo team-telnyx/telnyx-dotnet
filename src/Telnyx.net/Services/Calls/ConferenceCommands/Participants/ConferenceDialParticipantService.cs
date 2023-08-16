@@ -1,9 +1,9 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-
-namespace Telnyx.net.Services.Calls.ConferenceCommands.Participants
+﻿namespace Telnyx.net.Services.Calls.ConferenceCommands.Participants
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+
     public class ConferenceDialParticipantService : Service<TelnyxApiResponse>
     {
         public ConferenceDialParticipantService()
@@ -22,13 +22,12 @@ namespace Telnyx.net.Services.Calls.ConferenceCommands.Participants
 
         public TelnyxApiResponse DialParticipants(string conferenceId, DialParticipantOptions options = null, RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(conferenceId, this.PostPath, options, requestOptions);
+            return this.CreateEntity(conferenceId, this.PostPath, options, requestOptions, string.Empty);
         }
 
         public async Task<TelnyxApiResponse> DialParticipantsAsync(string conferenceId, DialParticipantOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.CreateEntityAsync(conferenceId, this.PostPath, options, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(conferenceId, this.PostPath, options, requestOptions, string.Empty, cancellationToken);
         }
-
     }
 }

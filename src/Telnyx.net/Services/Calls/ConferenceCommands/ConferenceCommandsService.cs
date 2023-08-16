@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-
-namespace Telnyx
+﻿namespace Telnyx
 {
+    using System.Threading.Tasks;
+
     /// <summary>
     /// CreateConferenceService.
     /// </summary>

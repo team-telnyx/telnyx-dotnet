@@ -20,7 +20,7 @@
 
         /// <summary>
         /// The quality of the fax.
-        /// <para>Options: normal, high, very_high</para>
+        /// <para>Options: normal, high, very_high.</para>
         /// </summary>
         [JsonProperty("quality")]
         public string Quality { get; set; }

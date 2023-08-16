@@ -5,8 +5,6 @@
 namespace TelnyxTests.Services.Numbers.Reservation
 {
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Net.Http;
     using System.Threading.Tasks;
     using Telnyx;
     using Xunit;
@@ -99,6 +97,5 @@ namespace TelnyxTests.Services.Numbers.Reservation
             Assert.Single(numberReserve.Data);
             Assert.Equal("Telnyx.NumberReservation", numberReserve.Data[0].GetType().ToString());
         }
-
     }
 }

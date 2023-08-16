@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-using Telnyx.net.Entities.Enum;
-
-namespace Telnyx.net.Entities.Participants
+﻿namespace Telnyx.net.Entities.Participants
 {
+    using System;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
+
     public class Participant : TelnyxEntity
     {
         [JsonProperty("record_type")]
@@ -35,8 +35,8 @@ namespace Telnyx.net.Entities.Participants
         public bool SoftEndConferenceOnExit { get; set; }
 
         /// <summary>
-        /// The status of the participant with respect to the lifecycle within the conference
-        /// <para>Types are: ["joining","joined","left"] </para>
+        /// The status of the participant with respect to the lifecycle within the conference.
+        /// <para>Types are: ["joining","joined","left"]. </para>
         /// </summary>
         [JsonProperty("status")]
         public string Status { get; set; }
@@ -72,7 +72,7 @@ namespace Telnyx.net.Entities.Participants
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Uniquely identifies the call leg associated with the participant
+        /// Uniquely identifies the call leg associated with the participant.
         /// </summary>
         [JsonProperty("call_leg_id")]
         public Guid CallLegId { get; set; }

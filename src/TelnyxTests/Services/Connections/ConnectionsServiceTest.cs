@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-using Telnyx.net.Entities.Connections;
-using Telnyx.net.Entities.Enum;
-using Telnyx.net.Entities.Enum.Connections;
-using Telnyx.net.Services.Connections;
-using Xunit;
-
-namespace TelnyxTests.Services.Connections
+﻿namespace TelnyxTests.Services.Connections
 {
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.Connections;
+    using Telnyx.net.Entities.Enum;
+    using Telnyx.net.Services.Connections;
+    using Xunit;
+
     public class ConnectionsServiceTest : BaseTelnyxTest
     {
         private readonly ConnectionService service;
@@ -58,8 +54,6 @@ namespace TelnyxTests.Services.Connections
             Assert.NotNull(message.OutboundVoiceProfileId);
             Assert.NotNull(message.WebhookEventFailoverUrl);
             Assert.NotNull(message.WebhookEventUrl);
-
-
         }
 
         [Fact]
@@ -68,6 +62,15 @@ namespace TelnyxTests.Services.Connections
             var message = await this.service.RetrieveConnectionAsync(this.connectionServiceId);
             Assert.NotNull(message);
             Assert.Equal(typeof(Connection), message.GetType());
+            Assert.Equal(RecordType.IPConnection, message.RecordType);
+            Assert.NotNull(message.ConnectionName);
+            Assert.NotNull(message.Id);
+            Assert.NotNull(message.Active);
+            Assert.NotNull(message.CreatedAt);
+            Assert.NotNull(message.UpdatedAt);
+            Assert.NotNull(message.OutboundVoiceProfileId);
+            Assert.NotNull(message.WebhookEventFailoverUrl);
+            Assert.NotNull(message.WebhookEventUrl);
         }
     }
 }

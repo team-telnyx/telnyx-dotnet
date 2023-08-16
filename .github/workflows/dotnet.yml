@@ -10,6 +10,7 @@ jobs:
   build:
     env:
       TELNYX_MOCK_VERSION: 0.8.13
+      TELNYX_MOCK_OPEN_API_URI: https://raw.githubusercontent.com/team-telnyx/openapi/master/openapi/spec3.json
     runs-on: ubuntu-latest
 
     steps:

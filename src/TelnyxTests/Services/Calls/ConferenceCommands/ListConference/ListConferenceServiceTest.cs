@@ -5,7 +5,6 @@
 namespace TelnyxTests.Services.Messages.MessagingPhoneNumbers
 {
     using System.Linq;
-    using System.Net.Http;
     using System.Threading.Tasks;
     using Telnyx;
     using Telnyx.net.Entities.Enum;
@@ -32,7 +31,7 @@ namespace TelnyxTests.Services.Messages.MessagingPhoneNumbers
             //this.AssertRequest(HttpMethod.Get, "/v2/conferences");
             Assert.NotNull(conferenceList);
             Assert.Single(conferenceList.Data);
-            Assert.Equal(typeof(Telnyx.ListConferenceResponse), conferenceList.Data[0].GetType());
+            Assert.Equal(typeof(ListConferenceResponse), conferenceList.Data[0].GetType());
             var message = conferenceList.Data.FirstOrDefault();
             Assert.NotNull(message.Name);
             Assert.True(message.CreatedAt <= message.ExpiresAt);
@@ -47,7 +46,7 @@ namespace TelnyxTests.Services.Messages.MessagingPhoneNumbers
             //this.AssertRequest(HttpMethod.Get, "/v2/conferences");
             Assert.NotNull(conferenceList);
             Assert.Single(conferenceList.Data);
-            Assert.Equal(typeof(Telnyx.ListConferenceResponse), conferenceList.Data[0].GetType());
+            Assert.Equal(typeof(ListConferenceResponse), conferenceList.Data[0].GetType());
         }
     }
 }

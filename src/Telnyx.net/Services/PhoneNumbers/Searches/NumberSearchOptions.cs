@@ -1,7 +1,7 @@
 ﻿namespace Telnyx
 {
-    using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// NumberSearchListOptions.
@@ -91,6 +91,7 @@
         /// </summary>
         [JsonProperty("filter[exclude_regulatory_requirements]")]
         public bool? ExcludeRegulatoryRequirements { get; set; }
+
         /// <summary>
         /// Gets or sets Filter to limit the amount of results to be returned.
         /// </summary>

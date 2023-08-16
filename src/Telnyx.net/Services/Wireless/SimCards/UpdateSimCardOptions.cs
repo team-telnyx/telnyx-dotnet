@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using Newtonsoft.Json;
-    using Telnyx.net.Entities.Enum;
 
     public class UpdateSimCardOptions : BaseOptions
     {
@@ -26,7 +25,7 @@
         public Guid? SimCardGroupId { get; set; }
 
         /// <summary>
-        /// Searchable tags associated with the SIM card
+        /// Searchable tags associated with the SIM card.
         /// </summary>
         [JsonProperty("tags")]
         public List<string> Tags { get; set; }

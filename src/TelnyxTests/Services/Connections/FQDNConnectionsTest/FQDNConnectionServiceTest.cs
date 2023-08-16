@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-using Telnyx.net.Entities.Connections.FQDNConnections;
-using Telnyx.net.Entities.Enum;
-using Telnyx.net.Services.Connections;
-using Telnyx.net.Services.Connections.FQDNConnections;
-using Xunit;
-
-namespace TelnyxTests.Services.Connections.FQDNConnectionsTest
+﻿namespace TelnyxTests.Services.Connections.FQDNConnectionsTest
 {
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.Connections.FQDNConnections;
+    using Telnyx.net.Entities.Enum;
+    using Telnyx.net.Services.Connections;
+    using Telnyx.net.Services.Connections.FQDNConnections;
+    using Xunit;
+
     public class FQDNConnectionServiceTest : BaseTelnyxTest
     {
         private readonly string credConnId = "1234";
@@ -34,27 +31,29 @@ namespace TelnyxTests.Services.Connections.FQDNConnectionsTest
         [Fact]
         public void List()
         {
-            var message = this.service.ListFQDNConnection(this.listOptions);
+            var list = this.service.ListFQDNConnection(this.listOptions);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
-            Assert.NotNull(message);
-            Assert.Equal(typeof(TelnyxList<FQDNConnection>), message.GetType());
+            Assert.NotNull(list);
+            Assert.Equal(typeof(TelnyxList<FQDNConnection>), list.GetType());
+            Assert.Collection(list, message => AssertResponse(message));
         }
 
         [Fact]
         public async Task ListAsync()
         {
-            var message = await this.service.ListFQDNConnectionAsync(this.listOptions);
+            var list = await this.service.ListFQDNConnectionAsync(this.listOptions);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
-            Assert.NotNull(message);
-            Assert.Equal(typeof(TelnyxList<FQDNConnection>), message.GetType());
+            Assert.NotNull(list);
+            Assert.Equal(typeof(TelnyxList<FQDNConnection>), list.GetType());
+            Assert.Collection(list, message => AssertResponse(message));
         }
+
         [Fact]
         public void Create()
         {
             var message = this.service.CreateFQDNConnection(this.createOptions);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
-            Assert.NotNull(message);
-            Assert.Equal(typeof(FQDNConnection), message.GetType());
+            AssertResponse(message);
         }
 
         [Fact]
@@ -62,9 +61,62 @@ namespace TelnyxTests.Services.Connections.FQDNConnectionsTest
         {
             var message = await this.service.CreateFQDNConnectionAsync(this.createOptions);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
+            AssertResponse(message);
+        }
+
+        [Fact]
+        public void Delete()
+        {
+            var message = this.service.DeleteFQDNConnection(this.credConnId);
+            //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
+            AssertResponse(message);
+        }
+
+        [Fact]
+        public async Task DeleteAsync()
+        {
+            var message = await this.service.DeleteFQDNConnectionAsync(this.credConnId);
+            //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
+            AssertResponse(message);
+        }
+
+        [Fact]
+        public void Update()
+        {
+            var message = this.service.UpdateFQDNConnection(this.credConnId, this.createOptions);
+            //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
+            AssertResponse(message);
+        }
+
+        [Fact]
+        public async Task UpdateAsync()
+        {
+            var message = await this.service.UpdateFQDNConnectionAsync(this.credConnId, this.createOptions);
+            //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
+            AssertResponse(message);
+        }
+
+        [Fact]
+        public void Retrieve()
+        {
+            var message = this.service.RetrieveFQDNConnection(this.credConnId);
+            //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
+            AssertResponse(message);
+        }
+
+        [Fact]
+        public async Task RetrieveAsync()
+        {
+            var message = await this.service.RetrieveFQDNConnectionAsync(this.credConnId);
+            //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
+            AssertResponse(message);
+        }
+
+        private static void AssertResponse(FQDNConnection message)
+        {
             Assert.NotNull(message);
             Assert.Equal(typeof(FQDNConnection), message.GetType());
-            Assert.Equal(this.createOptions.OnnetT38PassthroughEnabled, message.OnnetT38PassthroughEnabled);
+            Assert.True(message.OnnetT38PassthroughEnabled);
             Assert.Equal(RecordType.FQDNConnection, message.RecordType);
             Assert.NotNull(message.Id);
             Assert.NotNull(message.RtcpSettings);
@@ -75,59 +127,6 @@ namespace TelnyxTests.Services.Connections.FQDNConnectionsTest
             Assert.NotNull(message.ConnectionName);
             Assert.NotNull(message.EncryptedMedia);
             Assert.NotNull(message.DtmfType);
-
-        }
-
-        [Fact]
-        public void Delete()
-        {
-            var message = this.service.DeleteFQDNConnection(credConnId);
-            //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
-            Assert.NotNull(message);
-            Assert.Equal(typeof(FQDNConnection), message.GetType());
-        }
-
-        [Fact]
-        public async Task DeleteAsync()
-        {
-            var message = await this.service.DeleteFQDNConnectionAsync(credConnId);
-            //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
-            Assert.NotNull(message);
-            Assert.Equal(typeof(FQDNConnection), message.GetType());
-        }
-        [Fact]
-        public void Update()
-        {
-            var message = this.service.UpdateFQDNConnection(credConnId, createOptions);
-            //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
-            Assert.NotNull(message);
-            Assert.Equal(typeof(FQDNConnection), message.GetType());
-        }
-
-        [Fact]
-        public async Task UpdateAsync()
-        {
-            var message = await this.service.UpdateFQDNConnectionAsync(credConnId, createOptions);
-            //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
-            Assert.NotNull(message);
-            Assert.Equal(typeof(FQDNConnection), message.GetType());
-        }
-        [Fact]
-        public void Retrieve()
-        {
-            var message = this.service.RetrieveFQDNConnection(credConnId);
-            //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
-            Assert.NotNull(message);
-            Assert.Equal(typeof(FQDNConnection), message.GetType());
-        }
-
-        [Fact]
-        public async Task RetrieveAsync()
-        {
-            var message = await this.service.RetrieveFQDNConnectionAsync(credConnId);
-            //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
-            Assert.NotNull(message);
-            Assert.Equal(typeof(FQDNConnection), message.GetType());
         }
     }
 }

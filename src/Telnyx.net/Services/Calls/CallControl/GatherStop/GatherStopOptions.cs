@@ -1,8 +1,8 @@
-﻿using System;
-using Newtonsoft.Json;
-
-namespace Telnyx.net.Services.Calls.CallControl.GatherStop
+﻿namespace Telnyx.net.Services.Calls.CallControl.GatherStop
 {
+    using System;
+    using Newtonsoft.Json;
+
     public class GatherStopOptions : BaseOptions
     {
         /// <summary>

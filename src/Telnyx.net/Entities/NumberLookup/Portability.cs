@@ -5,8 +5,8 @@
     public class Portability
     {
         /// <summary>
-         /// Local Routing Number, if assigned to the requested phone number.
-         /// </summary>
+        /// Local Routing Number, if assigned to the requested phone number.
+        /// </summary>
         [JsonProperty("lrn")]
         public string Lrn { get; set; }
 
@@ -81,6 +81,5 @@
         /// </summary>
         [JsonProperty("state")]
         public string State { get; set; }
-
     }
 }

@@ -2,7 +2,6 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Telnyx.net.Entities;
 using Telnyx.net.Entities.NumberLookup;
 using Telnyx.net.Services;
 
@@ -23,7 +22,7 @@ namespace Telnyx.Example
 
             try
             {
-                record = service.Get(phoneNumber,options);
+                record = service.Get(phoneNumber, options);
                 Console.WriteLine(JsonConvert.SerializeObject(record));
             }
             catch (TelnyxException ex)

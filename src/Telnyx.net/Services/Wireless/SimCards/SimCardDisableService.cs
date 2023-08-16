@@ -6,7 +6,7 @@
     using Telnyx.net.Entities.Wireless.SimCards;
 
     /// <summary>
-    /// SimCardsDisableService
+    /// SimCardsDisableService.
     /// </summary>
     [ExcludeFromCodeCoverage] // API doesn't work, API Message: Couldn't parse query/body: unexpected end of JSON input.
     internal class SimCardDisableService : Service<SimCardRecord>,
@@ -36,12 +36,12 @@
 
         public SimCardRecord Create(string parentId, BaseOptions createOptions, RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(parentId, this.PostPath, createOptions, requestOptions);
+            return this.CreateEntity(parentId, this.PostPath, createOptions, requestOptions, parentToken: "data");
         }
 
         public async Task<SimCardRecord> CreateAsync(string parentId, BaseOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.CreateEntityAsync(parentId, this.PostPath, createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(parentId, this.PostPath, createOptions, requestOptions, parentToken: "data", cancellationToken);
         }
     }
 }

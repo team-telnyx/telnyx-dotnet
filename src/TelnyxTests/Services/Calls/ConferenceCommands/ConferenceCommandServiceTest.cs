@@ -5,8 +5,6 @@
 namespace TelnyxTests.Services.Calls.ConfrenceCommands
 {
     using System;
-    using System.Collections.Generic;
-    using System.Net.Http;
     using System.Threading.Tasks;
     using Telnyx;
     using Xunit;

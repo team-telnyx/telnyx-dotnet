@@ -13,12 +13,12 @@
 
         public OTAUpdatesRecord Get(string id, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(id, null, requestOptions);
+            return this.GetEntity(id, null, requestOptions, parentToken: "data");
         }
 
         public async Task<OTAUpdatesRecord> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.GetEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.GetEntityAsync(id, null, requestOptions, parentToken: "data", cancellationToken);
         }
 
         public TelnyxList<OTAUpdatesRecord> List(ListOTAUpdatesOptions listOptions = null, RequestOptions requestOptions = null)
@@ -28,7 +28,7 @@
 
         public async Task<TelnyxList<OTAUpdatesRecord>> ListAsync(ListOTAUpdatesOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, string.Empty, cancellationToken);
         }
     }
 }

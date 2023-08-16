@@ -1,9 +1,9 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.HostedNumbers;
-
-namespace Telnyx.net.Services.HostedNumbers
+﻿namespace Telnyx.net.Services.HostedNumbers
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities.HostedNumbers;
+
     public class HostedNumberService : Service<HostedNumber>
     {
         public HostedNumberService()
@@ -26,7 +26,7 @@ namespace Telnyx.net.Services.HostedNumbers
         /// <returns>Successful response with details about a messaging hosted number.</returns>
         public async Task<HostedNumber> DeleteHostedNumberAsync(string id, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this.DeleteEntityAsync(id, requestOptions, ct).ConfigureAwait(false);
+            return await this.DeleteEntityAsync(id, requestOptions, string.Empty, ct).ConfigureAwait(false);
         }
 
         /// <summary>

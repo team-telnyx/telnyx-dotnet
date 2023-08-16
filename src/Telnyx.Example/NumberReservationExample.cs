@@ -1,9 +1,9 @@
-﻿namespace Telnyx.Example
-{
-    using System;
-    using System.Collections.Generic;
-    using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
+namespace Telnyx.Example
+{
     /// <summary>
     /// Number Reservation Example
     /// </summary>

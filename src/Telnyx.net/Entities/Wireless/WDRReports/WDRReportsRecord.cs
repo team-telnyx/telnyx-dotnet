@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-using Telnyx.net.Entities.Enum;
-
-namespace Telnyx.net.Entities.Wireless.WDRReports
+﻿namespace Telnyx.net.Entities.Wireless.WDRReports
 {
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
+
     public class WDRReportsRecord : TelnyxEntity, IHasId
     {
         /// <summary>

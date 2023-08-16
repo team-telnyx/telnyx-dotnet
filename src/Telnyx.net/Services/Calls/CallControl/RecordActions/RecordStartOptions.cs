@@ -1,8 +1,8 @@
-﻿using System.Runtime.Serialization;
-using Newtonsoft.Json;
-
-namespace Telnyx.net.Services.Calls.CallControl.RecordActions
+﻿namespace Telnyx.net.Services.Calls.CallControl.RecordActions
 {
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
+
     public class RecordStartOptions : RecordActionOptions
     {
         /// <summary>
@@ -44,18 +44,19 @@ namespace Telnyx.net.Services.Calls.CallControl.RecordActions
             [EnumMember(Value = "dual")]
             DualEnum = 1,
         }
+
         /// <summary>
         /// When `dual`, final audio file will be stereo recorded with the first leg on channel A, and the rest on channel B.
-        /// <para>Example: "dual"</para>
-        /// <para>Options: ["single", "dual"]</para>
+        /// <para>Example: "dual".</para>
+        /// <para>Options: ["single", "dual"].</para>
         /// </summary>
         [JsonProperty("channels")]
         public ChannelEnum? Channels { get; set; }
 
         /// <summary>
         /// The audio file format used when storing the call recording. Can be either `mp3` or `wav`.
-        /// <para>Example: "mp3"</para>
-        /// <para>Options: ["mp3", "wav"]</para>
+        /// <para>Example: "mp3".</para>
+        /// <para>Options: ["mp3", "wav"].</para>
         /// </summary>
         [JsonProperty("format")]
         public FormatEnum? Format { get; set; }
@@ -65,6 +66,5 @@ namespace Telnyx.net.Services.Calls.CallControl.RecordActions
         /// </summary>
         [JsonProperty("play_beep")]
         public bool PlayBeep { get; set; }
-
     }
 }

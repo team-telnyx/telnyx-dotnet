@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-using Telnyx.net.Entities.Enum;
-
-namespace Telnyx.net.Entities.Applications
+﻿namespace Telnyx.net.Entities.Applications
 {
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
+
     public class Inbound
     {
         /// <summary>

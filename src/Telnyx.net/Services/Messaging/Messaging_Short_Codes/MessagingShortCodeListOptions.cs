@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-
-namespace Telnyx
+﻿namespace Telnyx
 {
+    using Newtonsoft.Json;
+
     /// <summary>
     /// MessagingShortCodeListOptions.
     /// </summary>

@@ -1,12 +1,12 @@
-﻿using System.Threading.Tasks;
-using System.Linq;
-using Telnyx;
-using Telnyx.net.Entities.Messaging.Messaging_Profiles.Metrics;
-using Telnyx.net.Services.Messaging.Messaging_Profiles.Metrics;
-using Xunit;
-
-namespace TelnyxTests.Services.Messaging.Messaging_Profiles.Metrics
+﻿namespace TelnyxTests.Services.Messaging.Messaging_Profiles.Metrics
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities.Messaging.Messaging_Profiles.Metrics;
+    using Telnyx.net.Services.Messaging.Messaging_Profiles.Metrics;
+    using Xunit;
+
     public class MessagingProfileMetricsDetailServiceTest : BaseTelnyxTest
     {
         private const string MessagingProfileMetricsDetailId = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
@@ -17,15 +17,15 @@ namespace TelnyxTests.Services.Messaging.Messaging_Profiles.Metrics
         public MessagingProfileMetricsDetailServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
-            metricsOptions = null;
-            requestOptions = null;
-            service = new MessagingProfileMetricsDetailService();
+            this.metricsOptions = null;
+            this.requestOptions = null;
+            this.service = new MessagingProfileMetricsDetailService();
         }
 
         [Fact]
         public void Get()
         {
-            var messagingProfileMetrics = this.service.GetById(MessagingProfileMetricsDetailId, metricsOptions, requestOptions);
+            var messagingProfileMetrics = this.service.GetById(MessagingProfileMetricsDetailId, this.metricsOptions, this.requestOptions);
             Assert.NotNull(messagingProfileMetrics);
             Assert.Equal(typeof(MessagingProfileMetricsDetail), messagingProfileMetrics.GetType());
             Assert.NotNull(messagingProfileMetrics.Overview);
@@ -56,7 +56,7 @@ namespace TelnyxTests.Services.Messaging.Messaging_Profiles.Metrics
         [Fact]
         public async Task GetAsync()
         {
-            var messagingProfileMetrics = await this.service.GetByIdAsync(MessagingProfileMetricsDetailId, metricsOptions, requestOptions);
+            var messagingProfileMetrics = await this.service.GetByIdAsync(MessagingProfileMetricsDetailId, this.metricsOptions, this.requestOptions);
             Assert.NotNull(messagingProfileMetrics);
             Assert.Equal(typeof(MessagingProfileMetricsDetail), messagingProfileMetrics.GetType());
         }

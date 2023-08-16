@@ -32,13 +32,13 @@
         /// <inheritdoc/>
         public virtual CallGatherUsingSpeakResponse Create(string id, CallControlGatherUsingSpeakOptions options, string postFix = "actions/gather_using_speak", RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(id, postFix, options, requestOptions);
+            return this.CreateEntity(id, postFix, options, requestOptions, string.Empty);
         }
 
         /// <inheritdoc/>
         public async Task<CallGatherUsingSpeakResponse> CreateAsync(string parentId, CallControlGatherUsingSpeakOptions createOptions, string postFix = "actions/gather_using_speak", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, string.Empty, cancellationToken);
         }
     }
 }

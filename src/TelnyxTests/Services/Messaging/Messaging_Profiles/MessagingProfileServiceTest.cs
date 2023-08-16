@@ -4,14 +4,12 @@
 
 namespace TelnyxTests.Services.Messages.MessagingProfiles
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Net.Http;
     using System.Runtime.Serialization;
     using System.Threading;
     using System.Threading.Tasks;
+    using Newtonsoft.Json;
     using Telnyx;
     using Telnyx.net.Entities;
     using Telnyx.net.Entities.Messaging.Messaging_Profiles;
@@ -38,27 +36,27 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
 
             this.createOptions = new NewMessagingProfile
             {
-                Name = "Summer Campaign",
+                Name = "Profile for Messages",
                 Enabled = true,
                 NumberPoolSettings = new NumberPoolSettings()
                 {
                     Geomatch = false,
-                    LongCodeWeight = new decimal(0.62),
+                    LongCodeWeight = new decimal(2),
                     SkipUnhealthy = true,
                     StickySender = false,
-                    TollFreeWeight = new decimal(25),
+                    TollFreeWeight = new decimal(10),
                 },
                 UrlShortenerSettings = new UrlShortenerSettings()
                 {
                     Domain = "example.ex",
-                    Prefix = "abc",
+                    Prefix = "cmpny",
                     ReplaceBlackListOnly = true,
                     SendWebhooks = false,
                 },
                 ResourceGroupId = Guid.NewGuid(),
                 WebhookApiVersion = Telnyx.net.Entities.Enum.WebhookAPIVersion.V2,
-                WebhookUrl = "webhookurl.com",
-                WebhookFailoverUrl = "failureurl.com",
+                WebhookUrl = "https://www.example.com/hooks",
+                WebhookFailoverUrl = "https://www.example.com/hooks",
             };
             this.updateOptions = new MessagingProfileUpdate
             {
@@ -67,9 +65,9 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
                 NumberPoolSettings = new NumberPoolSettings()
                 {
                     Geomatch = false,
-                    LongCodeWeight = new decimal(0.63),
-                    SkipUnhealthy = true,
-                    StickySender = false,
+                    LongCodeWeight = new decimal(2),
+                    SkipUnhealthy = false,
+                    StickySender = true,
                     TollFreeWeight = new decimal(26),
                 },
                 UrlShortenerSettings = new UrlShortenerSettings()
@@ -81,8 +79,8 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
                 },
                 WhitelistedDestinations = new List<string>() { "US", "CA" },
                 WebhookApiVersion = Telnyx.net.Entities.Enum.WebhookAPIVersion.V2,
-                WebhookUrl = "webhookurlupdate.com",
-                WebhookFailoverUrl = "failureurlupdate.com",
+                WebhookUrl = "https://webhookurlupdate.com",
+                WebhookFailoverUrl = "https://backup.example.com/hooks",
             };
             this.cancellationToken = default(CancellationToken);
             this._mockServiceForListMethod = new MockMessagingProfilePhoneNumbersService();
@@ -96,21 +94,21 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             Assert.NotNull(messagingProfile);
             Assert.Equal(typeof(MessagingProfile), messagingProfile.GetType());
             Assert.NotNull(messagingProfile.Id);
-            Assert.Equal(this.createOptions.Name, messagingProfile.Name);
+            Assert.Equal("Profile for Messages", messagingProfile.Name);
             Assert.Equal(this.createOptions.Enabled, messagingProfile.Enabled);
             Assert.NotNull(messagingProfile.NumberPoolSettings);
             Assert.Equal(this.createOptions.NumberPoolSettings.Geomatch, messagingProfile.NumberPoolSettings.Geomatch);
-            Assert.Equal(this.createOptions.NumberPoolSettings.LongCodeWeight, messagingProfile.NumberPoolSettings.LongCodeWeight);
-            Assert.Equal(this.createOptions.NumberPoolSettings.SkipUnhealthy, messagingProfile.NumberPoolSettings.SkipUnhealthy);
-            Assert.Equal(this.createOptions.NumberPoolSettings.StickySender, messagingProfile.NumberPoolSettings.StickySender);
-            Assert.Equal(this.createOptions.NumberPoolSettings.TollFreeWeight, messagingProfile.NumberPoolSettings.TollFreeWeight);
+            Assert.Equal(2, messagingProfile.NumberPoolSettings.LongCodeWeight);
+            Assert.False(messagingProfile.NumberPoolSettings.SkipUnhealthy);
+            Assert.True(messagingProfile.NumberPoolSettings.StickySender);
+            Assert.Equal(10, messagingProfile.NumberPoolSettings.TollFreeWeight);
             Assert.Equal(this.createOptions.WebhookApiVersion, messagingProfile.WebhookApiVersion);
             Assert.Equal(Telnyx.net.Entities.Enum.RecordType.ProfileEnum, messagingProfile.RecordType);
             Assert.Equal(this.createOptions.WebhookUrl, messagingProfile.WebhookUrl);
-            Assert.Equal(this.createOptions.WebhookFailoverUrl, messagingProfile.WebhookFailoverUrl);
+            Assert.Equal("https://backup.example.com/hooks", messagingProfile.WebhookFailoverUrl);
             Assert.NotNull(messagingProfile.UrlShortenerSetting);
-            Assert.Equal(this.createOptions.UrlShortenerSettings.Domain, messagingProfile.UrlShortenerSetting.Domain);
-            Assert.Equal(this.createOptions.UrlShortenerSettings.Prefix, messagingProfile.UrlShortenerSetting.Prefix);
+            Assert.Equal("example.ex", messagingProfile.UrlShortenerSetting.Domain);
+            Assert.Equal("cmpny", messagingProfile.UrlShortenerSetting.Prefix);
             Assert.Equal(this.createOptions.UrlShortenerSettings.ReplaceBlackListOnly, messagingProfile.UrlShortenerSetting.ReplaceBlackListOnly);
             Assert.Equal(this.createOptions.UrlShortenerSettings.SendWebhooks, messagingProfile.UrlShortenerSetting.SendWebhooks);
         }
@@ -131,7 +129,6 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             //this.AssertRequest(HttpMethod.Delete, "/v2/messaging_profiles/3fa85f64-5717-4562-b3fc-2c963f66afa6");
             Assert.NotNull(deleted);
             Assert.Equal(typeof(MessagingProfile), deleted.GetType());
-
         }
 
         [Fact]
@@ -189,24 +186,23 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             Assert.NotNull(messagingProfile);
             Assert.Equal(typeof(MessagingProfile), messagingProfile.GetType());
             Assert.NotNull(messagingProfile.Id);
-            Assert.Equal(this.updateOptions.Name, messagingProfile.Name);
-            Assert.Equal(this.updateOptions.Enabled, messagingProfile.Enabled);
+            Assert.Equal("Profile for Messages", messagingProfile.Name);
+            Assert.Equal(this.createOptions.Enabled, messagingProfile.Enabled);
             Assert.NotNull(messagingProfile.NumberPoolSettings);
-            Assert.Equal(this.updateOptions.NumberPoolSettings.Geomatch, messagingProfile.NumberPoolSettings.Geomatch);
-            Assert.Equal(this.updateOptions.NumberPoolSettings.LongCodeWeight, messagingProfile.NumberPoolSettings.LongCodeWeight);
-            Assert.Equal(this.updateOptions.NumberPoolSettings.SkipUnhealthy, messagingProfile.NumberPoolSettings.SkipUnhealthy);
-            Assert.Equal(this.updateOptions.NumberPoolSettings.StickySender, messagingProfile.NumberPoolSettings.StickySender);
-            Assert.Equal(this.updateOptions.NumberPoolSettings.TollFreeWeight, messagingProfile.NumberPoolSettings.TollFreeWeight);
-            Assert.Equal(this.updateOptions.WebhookApiVersion, messagingProfile.WebhookApiVersion);
+            Assert.Equal(this.createOptions.NumberPoolSettings.Geomatch, messagingProfile.NumberPoolSettings.Geomatch);
+            Assert.Equal(2, messagingProfile.NumberPoolSettings.LongCodeWeight);
+            Assert.False(messagingProfile.NumberPoolSettings.SkipUnhealthy);
+            Assert.True(messagingProfile.NumberPoolSettings.StickySender);
+            Assert.Equal(10, messagingProfile.NumberPoolSettings.TollFreeWeight);
+            Assert.Equal(this.createOptions.WebhookApiVersion, messagingProfile.WebhookApiVersion);
             Assert.Equal(Telnyx.net.Entities.Enum.RecordType.ProfileEnum, messagingProfile.RecordType);
-            Assert.Equal(this.updateOptions.WebhookUrl, messagingProfile.WebhookUrl);
-            Assert.Equal(this.updateOptions.WebhookFailoverUrl, messagingProfile.WebhookFailoverUrl);
+            Assert.Equal(this.createOptions.WebhookUrl, messagingProfile.WebhookUrl);
+            Assert.Equal("https://backup.example.com/hooks", messagingProfile.WebhookFailoverUrl);
             Assert.NotNull(messagingProfile.UrlShortenerSetting);
-            Assert.Equal(this.updateOptions.UrlShortenerSettings.Domain, messagingProfile.UrlShortenerSetting.Domain);
-            Assert.Equal(this.updateOptions.UrlShortenerSettings.Prefix, messagingProfile.UrlShortenerSetting.Prefix);
-            Assert.Equal(this.updateOptions.UrlShortenerSettings.ReplaceBlackListOnly, messagingProfile.UrlShortenerSetting.ReplaceBlackListOnly);
-            Assert.Equal(this.updateOptions.UrlShortenerSettings.SendWebhooks, messagingProfile.UrlShortenerSetting.SendWebhooks);
-            Assert.Equal(this.updateOptions.WhitelistedDestinations.Count, messagingProfile.WhitelistedDestinations.Count);
+            Assert.Equal("example.ex", messagingProfile.UrlShortenerSetting.Domain);
+            Assert.Equal("cmpny", messagingProfile.UrlShortenerSetting.Prefix);
+            Assert.Equal(this.createOptions.UrlShortenerSettings.ReplaceBlackListOnly, messagingProfile.UrlShortenerSetting.ReplaceBlackListOnly);
+            Assert.Equal(this.createOptions.UrlShortenerSettings.SendWebhooks, messagingProfile.UrlShortenerSetting.SendWebhooks);
         }
 
         [Fact]
@@ -238,8 +234,8 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             Assert.NotNull(messagingPhoneNumber.Data[0]);
             Assert.Equal(typeof(MockMessagingPhoneNumber), messagingPhoneNumber.Data[0].GetType());
         }
-
     }
+
     internal class MockMessagingProfilePhoneNumbersService : ServiceNested<MockMessagingPhoneNumber>,
     INestedListable<MockMessagingPhoneNumber, ListOptions>
     {
@@ -266,32 +262,34 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
         /// <inheritdoc/>
         public TelnyxList<MockMessagingPhoneNumber> List(string id, ListOptions listOptions = null, RequestOptions requestOptions = null)
         {
-            return this.ListNestedEntities(id, listOptions, requestOptions);
+            return this.ListNestedEntities(id, listOptions, requestOptions, string.Empty);
         }
+
         /// <inheritdoc/>
         public async Task<TelnyxList<MockMessagingPhoneNumber>> ListAsync(string id, ListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.ListNestedEntitiesAsync(id, listOptions, requestOptions, cancellationToken);
+            return await this.ListNestedEntitiesAsync(id, listOptions, requestOptions, string.Empty, cancellationToken);
         }
+
         /// <inheritdoc/>
         public IEnumerable<MockMessagingPhoneNumber> ListPaged(string id, ListOptions listOptions = null, RequestOptions requestOptions = null)
         {
-            return this.ListEntitiesAutoPaging(id, listOptions, requestOptions);
+            return this.ListEntitiesAutoPaging(id, listOptions, requestOptions, string.Empty);
         }
 
         /// <inheritdoc/>
         public async Task<IEnumerable<MockMessagingPhoneNumber>> ListPagedAsync(string id, ListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.ListNestedEntitiesAutoPagingAsync(id, listOptions, requestOptions, cancellationToken);
+            return await this.ListNestedEntitiesAutoPagingAsync(id, listOptions, requestOptions, string.Empty, cancellationToken);
         }
-
     }
+
     public class MockMessagingPhoneNumber : MessagingPhoneNumber
     {
         [JsonProperty("type")]
         public new MockPhoneNumberTypeEnum? Type { get; set; }
-
     }
+
     [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum MockPhoneNumberTypeEnum
     {

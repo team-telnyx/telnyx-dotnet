@@ -4,13 +4,9 @@
 
 namespace Telnyx.Infrastructure.Middleware
 {
-    using System;
-    using System.Collections;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
     using System.Net;
-    using System.Reflection;
     using System.Text;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
@@ -49,9 +45,11 @@ namespace Telnyx.Infrastructure.Middleware
             {
                 jsonString = BuildRequestStringFromJObject(jobj);
             }
+
             jsonString = jsonString == "{}" ? string.Empty : "?" + jsonString;
             requestString = requestString + jsonString;
         }
+
         public static string BuildRequestStringFromJObject(JObject jobj)
         {
             var stringBuilder = new StringBuilder();
@@ -68,13 +66,14 @@ namespace Telnyx.Infrastructure.Middleware
                         stringBuilder.Append($"{property.Key}={item.Replace(@"""", "")}");
                         stringBuilder.Append("&");
                     }
-                    continue; //dont need to add to query string below move to the next property
 
+                    continue; //dont need to add to query string below move to the next property
                 }
 
                 stringBuilder.Append($"{property.Key}={value}");
                 stringBuilder.Append("&");
             }
+
             return stringBuilder.ToString();
         }
 

@@ -1,6 +1,5 @@
 ﻿namespace Telnyx
 {
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx.net.Entities;
@@ -50,7 +49,7 @@
         /// <returns>TelnyxList of AvailablePhoneNumber.</returns>
         public virtual async Task<TelnyxList<AvailablePhoneNumber>> ListAsync(NumberSearchOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.ListEntitiesAsync(options, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(options, requestOptions, string.Empty, cancellationToken);
         }
     }
 }

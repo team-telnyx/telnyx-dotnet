@@ -38,37 +38,37 @@
         /// <inheritdoc/>
         public MessagingProfile Create(NewMessagingProfile createOptions, RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(createOptions, requestOptions);
+            return this.CreateEntity(createOptions, requestOptions, parentToken: "data");
         }
 
         /// <inheritdoc/>
         public Task<MessagingProfile> CreateAsync(NewMessagingProfile createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.CreateEntityAsync(createOptions, requestOptions, cancellationToken);
+            return this.CreateEntityAsync(createOptions, requestOptions, parentToken: "data", cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc/>
         public MessagingProfile Delete(string id, RequestOptions requestOptions = null)
         {
-            return this.DeleteEntity(id, null, requestOptions);
+            return this.DeleteEntity(id, null, requestOptions, parentToken: "data");
         }
 
         /// <inheritdoc/>
         public async Task<MessagingProfile> DeleteAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.DeleteEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.DeleteEntityAsync(id, null, requestOptions, string.Empty, cancellationToken);
         }
 
         /// <inheritdoc/>
         public MessagingProfile Get(string id, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(id, null, requestOptions);
+            return this.GetEntity(id, null, requestOptions, parentToken: "data");
         }
 
         /// <inheritdoc/>
         public async Task<MessagingProfile> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.GetEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.GetEntityAsync(id, null, requestOptions, parentToken: "data", cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -80,31 +80,31 @@
         /// <inheritdoc/>
         public async Task<TelnyxList<MessagingProfile>> ListAsync(ListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, string.Empty, cancellationToken);
         }
 
         /// <inheritdoc/>
         public IEnumerable<MessagingProfile> ListPaged(ListOptions listOptions = null, RequestOptions requestOptions = null)
         {
-            return this.ListEntitiesAutoPaging(listOptions, requestOptions);
+            return this.ListEntitiesAutoPaging(listOptions, requestOptions, string.Empty);
         }
 
         /// <inheritdoc/>
         public async Task<IEnumerable<MessagingProfile>> ListPagedAsync(ListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.ListEntitiesAutoPagingAsync(listOptions, requestOptions, cancellationToken);
+            return await this.ListEntitiesAutoPagingAsync(listOptions, requestOptions, string.Empty, cancellationToken);
         }
 
         /// <inheritdoc/>
         public MessagingProfile Update(string id, MessagingProfileUpdate updateOptions, RequestOptions requestOptions = null)
         {
-            return this.UpdateEntity(id, updateOptions, requestOptions);
+            return this.UpdateEntity(id, updateOptions, requestOptions, parentToken: "data");
         }
 
         /// <inheritdoc/>
         public async Task<MessagingProfile> UpdateAsync(string id, MessagingProfileUpdate updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
+            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, parentToken: "data", cancellationToken);
         }
     }
 }

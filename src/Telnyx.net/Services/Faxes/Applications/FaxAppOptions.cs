@@ -1,10 +1,9 @@
-﻿using System;
-using Newtonsoft.Json;
-using Telnyx.net.Entities.Applications;
-using Telnyx.net.Entities.Enum;
-
-namespace Telnyx.net.Services.Faxes.Applications
+﻿namespace Telnyx.net.Services.Faxes.Applications
 {
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Applications;
+    using Telnyx.net.Entities.Enum;
+
     public class FaxAppOptions : BaseOptions
     {
         /// <summary>

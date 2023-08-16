@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-
-namespace Telnyx.net.Entities.Calls.CallControl.Transcriptions.Webhooks
+﻿namespace Telnyx.net.Entities.Calls.CallControl.Transcriptions.Webhooks
 {
+    using Newtonsoft.Json;
+
     public class Transcription
     {
         [JsonProperty("call_control_id")]

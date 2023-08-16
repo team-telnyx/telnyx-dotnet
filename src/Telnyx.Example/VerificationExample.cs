@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Text;
 using System.Threading.Tasks;
 using Telnyx.net.Services.VerifyAPI;
 
@@ -39,7 +37,7 @@ namespace Telnyx.Example
             Console.WriteLine($"Checking verification status current status: {verification.Status}");
             var getStatus = await verifyService.GetVerificationAsync(verification.Id.ToString());
             Console.WriteLine($"Verification retrieved previous status: {verification.Status}, current status: {getStatus.Status}");
-            
+
 
 
         }

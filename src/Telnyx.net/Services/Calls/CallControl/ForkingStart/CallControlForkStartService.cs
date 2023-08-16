@@ -32,13 +32,13 @@
         /// <inheritdoc/>
         public virtual CallForkStartResponse Create(string id, CallControlForkStartOptions options, string postFix = "actions/fork_start", RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(id, postFix, options, requestOptions);
+            return this.CreateEntity(id, postFix, options, requestOptions, string.Empty);
         }
 
         /// <inheritdoc/>
         public async Task<CallForkStartResponse> CreateAsync(string parentId, CallControlForkStartOptions createOptions, string postFix = "actions/fork_start", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, string.Empty, cancellationToken);
         }
     }
 }

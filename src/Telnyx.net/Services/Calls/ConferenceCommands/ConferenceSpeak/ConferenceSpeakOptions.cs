@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
-
-namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferenceSpeak
+﻿namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferenceSpeak
 {
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+
     public class ConferenceSpeakOptions : BaseOptions
     {
         /// <summary>
         /// The language used to speak the text.
-        /// <para>Example: "en-US"</para>
+        /// <para>Example: "en-US".</para>
         /// <para>
         /// Options: [
         ///  "arb",
@@ -39,14 +39,14 @@ namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferenceSpeak
         ///  "ru-RU",
         ///  "sv-SE",
         ///  "tr-TR"
-        /// ] </para>
+        /// ]. </para>
         /// </summary>
         [JsonProperty("language")]
         public string Language { get; set; }
 
         /// <summary>
         /// The text or SSML to be converted into speech. There is a 5,000 character limit.
-        /// <para>Example: "Say this to participants"</para>
+        /// <para>Example: "Say this to participants".</para>
         /// </summary>
         [JsonProperty("payload")]
         public string Payload { get; set; }
@@ -56,7 +56,7 @@ namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferenceSpeak
         /// <para>Options: [
         ///  "male",
         ///  "female"
-        ///] </para>
+        ///]. </para>
         /// </summary>
         [JsonProperty("voice")]
         public string Voice { get; set; }
@@ -78,7 +78,7 @@ namespace Telnyx.net.Services.Calls.ConferenceCommands.ConferenceSpeak
         /// <para>[
         ///   "text",
         ///   "ssml"
-        /// ] </para>
+        /// ]. </para>
         /// </summary>
         [JsonProperty("payload_type")]
         public string PayloadType { get; set; }

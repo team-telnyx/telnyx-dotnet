@@ -15,7 +15,7 @@ namespace TelnyxTests
         {
             this.MockHandler = new Mock<HttpClientHandler>
             {
-                CallBase = true
+                CallBase = true,
             };
 
             this.origHandler = TelnyxConfiguration.HttpMessageHandler;

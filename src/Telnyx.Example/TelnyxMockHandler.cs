@@ -2,15 +2,15 @@
 // Copyright (c) Telnyx. All rights reserved.
 // </copyright>
 
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading;
+
 namespace TelnyxTests
 {
-    using System;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Net;
-    using System.Net.Sockets;
-    using System.Threading;
-
     public static class TelnyxMockHandler
     {
         private static Process process;

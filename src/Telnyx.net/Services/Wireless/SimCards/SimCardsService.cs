@@ -32,16 +32,16 @@
             this.simCardNetworkPreferenceService = new SimCardNetworkPreferenceService();
         }
 
-        [ExcludeFromCodeCoverageAttribute] // API Mock not working for this endpoint
+        [ExcludeFromCodeCoverage] // API Mock not working for this endpoint
         public SimCardRecord Get(string id, BaseOptions baseOptions, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(id, baseOptions, requestOptions);
+            return this.GetEntity(id, baseOptions, requestOptions, parentToken: "data");
         }
 
-        [ExcludeFromCodeCoverageAttribute] // API Mock not working for this endpoint
+        [ExcludeFromCodeCoverage] // API Mock not working for this endpoint
         public async Task<SimCardRecord> GetAsync(string id, BaseOptions baseOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.GetEntityAsync(id, baseOptions, requestOptions, cancellationToken);
+            return await this.GetEntityAsync(id, baseOptions, requestOptions, parentToken: "data", cancellationToken);
         }
 
         public TelnyxList<SimCardRecord> List(ListOptions listOptions = null, RequestOptions requestOptions = null)
@@ -51,59 +51,59 @@
 
         public async Task<TelnyxList<SimCardRecord>> ListAsync(ListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.ListEntitiesAsync(listOptions, requestOptions, cancellationToken);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, string.Empty, cancellationToken);
         }
 
         public SimCardRecord Delete(string id, RequestOptions requestOptions = null)
         {
-            return this.DeleteEntity(id, null, requestOptions);
+            return this.DeleteEntity(id, null, requestOptions, parentToken: "data");
         }
 
         public async Task<SimCardRecord> DeleteAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.DeleteEntityAsync(id, null, requestOptions, cancellationToken);
+            return await this.DeleteEntityAsync(id, null, requestOptions, parentToken: "data", cancellationToken);
         }
 
         public SimCardRecord Update(string id, UpdateSimCardOptions updateOptions, RequestOptions requestOptions = null)
         {
-            return this.UpdateEntity(id, updateOptions, requestOptions);
+            return this.UpdateEntity(id, updateOptions, requestOptions, parentToken: "data");
         }
 
         public async Task<SimCardRecord> UpdateAsync(string id, UpdateSimCardOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, cancellationToken);
+            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, parentToken: "data", cancellationToken);
         }
 
-        [ExcludeFromCodeCoverageAttribute] // API Mock not working for this endpoint
+        [ExcludeFromCodeCoverage] // API Mock not working for this endpoint
         public SimCardRecord Enable(string parentId)
         {
             return this.simCardEnableService.Create(parentId, new BaseOptions());
         }
 
-        [ExcludeFromCodeCoverageAttribute] // API Mock not working for this endpoint
+        [ExcludeFromCodeCoverage] // API Mock not working for this endpoint
         public async Task<SimCardRecord> EnableAsync(string parentId)
         {
             return await this.simCardEnableService.CreateAsync(parentId, new BaseOptions());
         }
 
-        [ExcludeFromCodeCoverageAttribute] // API Mock not working for this endpoint
+        [ExcludeFromCodeCoverage] // API Mock not working for this endpoint
         public SimCardRecord Disable(string parentId)
         {
             return this.simCardDisableService.Create(parentId, new BaseOptions());
         }
 
-        [ExcludeFromCodeCoverageAttribute] // API Mock not working for this endpoint
+        [ExcludeFromCodeCoverage] // API Mock not working for this endpoint
         public async Task<SimCardRecord> DisableAsync(string parentId)
         {
             return await this.simCardDisableService.CreateAsync(parentId, new BaseOptions());
         }
 
-        public TelnyxCollection<SimCardRecord> Register(SimCardRegisterOptions createOptions, RequestOptions requestOptions = null)
+        public TelnyxList<SimCardRecord> Register(SimCardRegisterOptions createOptions, RequestOptions requestOptions = null)
         {
             return this.simCardRegisterService.Create(createOptions, requestOptions);
         }
 
-        public async Task<TelnyxCollection<SimCardRecord>> RegisterAsync(SimCardRegisterOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TelnyxList<SimCardRecord>> RegisterAsync(SimCardRegisterOptions createOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await this.simCardRegisterService.CreateAsync(createOptions, requestOptions, cancellationToken);
         }

@@ -26,7 +26,7 @@
 
         public async Task<TelnyxList<Fax>> ViewFaxesAsync(FaxListOptions listOptions, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this.ListEntitiesAsync(listOptions, requestOptions, ct).ConfigureAwait(false);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, string.Empty, ct).ConfigureAwait(false);
         }
 
         public Fax SendFax(FaxSendOptions sendOptions, RequestOptions requestOptions = null)
@@ -36,7 +36,7 @@
 
         public async Task<Fax> SendFaxAsync(FaxSendOptions sendOptions, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this.CreateEntityAsync(sendOptions, requestOptions, ct).ConfigureAwait(false);
+            return await this.CreateEntityAsync(sendOptions, requestOptions, cancellationToken: ct).ConfigureAwait(false);
         }
 
         public Fax GetFax(string id, RequestOptions requestOptions = null)
@@ -46,7 +46,7 @@
 
         public async Task<Fax> GetFaxAsync(string id, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this.GetEntityAsync(id, requestOptions, ct).ConfigureAwait(false);
+            return await this.GetEntityAsync(id, requestOptions, string.Empty, ct).ConfigureAwait(false);
         }
 
         public Fax DeleteFax(string id, RequestOptions requestOptions = null)
@@ -56,7 +56,7 @@
 
         public async Task<Fax> DeleteFaxAsync(string id, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this.DeleteEntityAsync(id, requestOptions, ct).ConfigureAwait(false);
+            return await this.DeleteEntityAsync(id, requestOptions, string.Empty, ct).ConfigureAwait(false);
         }
     }
 }

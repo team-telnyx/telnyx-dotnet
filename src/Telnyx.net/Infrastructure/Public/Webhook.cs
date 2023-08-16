@@ -1,13 +1,13 @@
-﻿using Newtonsoft.Json;
-using Rebex.Security.Cryptography;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Text;
-using Telnyx.Infrastructure;
-using Telnyx.net.Entities;
-
-namespace Telnyx.net.Infrastructure.Public
+﻿namespace Telnyx.net.Infrastructure.Public
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Text;
+    using Newtonsoft.Json;
+    using Rebex.Security.Cryptography;
+    using Telnyx.Infrastructure;
+    using Telnyx.net.Entities;
+
     [ExcludeFromCodeCoverage] // Only used by Telnyx.Example project which is out of scope of test coverage.
     public static class Webhook
     {
@@ -20,14 +20,14 @@ namespace Telnyx.net.Infrastructure.Public
         }
 
         /// <summary>
-        /// Construct the event with signature verification. More info here: https://developers.telnyx.com/docs/api/v2/overview#webhooks
+        /// Construct the event with signature verification. More info here: https://developers.telnyx.com/docs/api/v2/overview#webhooks.
         /// </summary>
-        /// <param name="json">Request Body</param>
-        /// <param name="telynxSignatureHeader">Request Header: "telnyx-signature-ed25519"</param>
-        /// <param name="telnyxtimestamp">Request Header: "telnyx-timestamp"</param>
-        /// <param name="secret">Public Key on https://portal.telnyx.com/#/app/account/public-key </param>
-        /// <param name="tolerance">Timestamp tolerance</param>
-        /// <returns>WebhookData</returns>
+        /// <param name="json">Request Body.</param>
+        /// <param name="telynxSignatureHeader">Request Header: "telnyx-signature-ed25519".</param>
+        /// <param name="telnyxtimestamp">Request Header: "telnyx-timestamp".</param>
+        /// <param name="secret">Public Key on https://portal.telnyx.com/#/app/account/public-key. </param>
+        /// <param name="tolerance">Timestamp tolerance.</param>
+        /// <returns>WebhookData.</returns>
         public static TelnyxWebhook<object> ConstructEvent(
             string json,
             string telynxSignatureHeader,

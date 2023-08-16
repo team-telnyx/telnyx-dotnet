@@ -1,12 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Telnyx.net.Services.PhoneNumbers.NumberConfigurations
+﻿namespace Telnyx.net.Services.PhoneNumbers.NumberConfigurations
 {
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+
     public class NumberConfigurationOptions : BaseOptions
     {
         /// <summary>

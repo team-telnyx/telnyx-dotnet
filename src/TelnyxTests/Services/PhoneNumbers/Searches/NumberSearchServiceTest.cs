@@ -5,7 +5,6 @@
 namespace TelnyxTests.Services.Numbers.Search
 {
     using System.Collections.Generic;
-    using System.Net.Http;
     using System.Threading.Tasks;
     using Telnyx;
     using Xunit;
@@ -53,6 +52,7 @@ namespace TelnyxTests.Services.Numbers.Search
             Assert.Equal("Telnyx.AvailablePhoneNumber", numberSearch.Data[0].GetType().ToString());
             Assert.Single(numberSearch.Data);
         }
+
         [Fact]
         public async Task ListWithOptionsAsync()
         {

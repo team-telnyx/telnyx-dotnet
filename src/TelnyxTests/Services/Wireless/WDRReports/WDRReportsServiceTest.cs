@@ -1,12 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities.Wireless.WDRReports;
-using Telnyx.net.Services.Wireless.WDRReports;
-using Xunit;
-
-namespace TelnyxTests.Services.Wireless.MobileOperatorNetworks
+﻿namespace TelnyxTests.Services.Wireless.MobileOperatorNetworks
 {
+    using System;
+    using System.Threading.Tasks;
+    using Telnyx;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.Wireless.WDRReports;
+    using Telnyx.net.Services.Wireless.WDRReports;
+    using Xunit;
+
     public class WDRReportsServiceTest : BaseTelnyxTest
     {
         private readonly WDRReportsService service;
@@ -53,7 +54,7 @@ namespace TelnyxTests.Services.Wireless.MobileOperatorNetworks
         {
             var result = this.service.List(this.listOptions, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(WDRReportsRecord), result.Data[0].GetType());
+            Assert.Equal(typeof(TelnyxList<WDRReportsRecord>), result.GetType());
         }
 
         [Fact]
@@ -61,7 +62,7 @@ namespace TelnyxTests.Services.Wireless.MobileOperatorNetworks
         {
             var result = await this.service.ListAsync(this.listOptions, this.requestOptions);
             Assert.NotNull(result);
-            Assert.Equal(typeof(WDRReportsRecord), result.Data[0].GetType());
+            Assert.Equal(typeof(TelnyxList<WDRReportsRecord>), result.GetType());
         }
 
         [Fact]

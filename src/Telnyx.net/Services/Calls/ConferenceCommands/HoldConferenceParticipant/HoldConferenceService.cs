@@ -32,13 +32,13 @@
         /// <inheritdoc/>
         public virtual CallAnswerResponse Create(string id, HoldConferenceOptions options, string postFix = "actions/hold", RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(id, postFix, options, requestOptions);
+            return this.CreateEntity(id, postFix, options, requestOptions, string.Empty);
         }
 
         /// <inheritdoc/>
         public async Task<CallAnswerResponse> CreateAsync(string parentId, HoldConferenceOptions createOptions, string postFix = "actions/hold", RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, cancellationToken);
+            return await this.CreateEntityAsync(parentId, postFix, createOptions, requestOptions, string.Empty, cancellationToken);
         }
     }
 }

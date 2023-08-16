@@ -1,14 +1,15 @@
-﻿using System;
-using System.Threading.Tasks;
-using Telnyx.net.Entities.HostedNumbers;
-using Telnyx.net.Services.HostedNumbers;
-using Xunit;
-
-namespace TelnyxTests.Services.HostedNumbers
+﻿namespace TelnyxTests.Services.HostedNumbers
 {
+    using System;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities.HostedNumbers;
+    using Telnyx.net.Services.HostedNumbers;
+    using Xunit;
+
     public class HostedNumberServiceTests : BaseTelnyxTest
     {
         private readonly HostedNumberService service;
+
         public HostedNumberServiceTests(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
@@ -31,5 +32,4 @@ namespace TelnyxTests.Services.HostedNumbers
             Assert.Equal(typeof(HostedNumber), result.GetType());
         }
     }
-
 }

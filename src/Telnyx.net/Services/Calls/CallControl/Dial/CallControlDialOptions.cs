@@ -1,7 +1,6 @@
 ﻿namespace Telnyx
 {
     using System;
-    using System.Runtime.Serialization;
     using Newtonsoft.Json;
     using Telnyx.net.Entities.Enum;
     using Telnyx.net.Services.Calls.Models;
@@ -22,10 +21,10 @@
         /// </summary>
         [JsonProperty("from")]
         public string From { get; set; }
-        
+
         /// <summary>
         /// The `from_display_name` string to be used as the caller id name (SIP From Display Name) presented to the destination (`to` number). The string should have a maximum of 128 characters, containing only letters, numbers, spaces, and -_~!.+ special characters. If ommited, the display name will be the same as the number in the `from` field.
-        /// Example: "Company Name"
+        /// Example: "Company Name".
         /// </summary>
         [JsonProperty("from_display_name")]
         public string FromDisplayName { get; set; }
@@ -115,10 +114,9 @@
 
         /// <summary>
         /// HTTP request type used for `webhook_url`.
-        /// <para>Default: POST</para>
+        /// <para>Default: POST.</para>
         /// </summary>
         [JsonProperty("webhook_url_method")]
         public WebhookUrlMethods WebhookUrlMethod { get; set; } = WebhookUrlMethods.POST;
     }
-
 }

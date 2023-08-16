@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Telnyx;
-using Telnyx.net.Entities;
-using Telnyx.net.Entities.PhoneNumbers.NumberConfigurations;
-using Telnyx.net.Services.PhoneNumbers.NumberConfigurations;
-using Xunit;
-
-namespace TelnyxTests.Services.PhoneNumbers.NumberConfiguration
+﻿namespace TelnyxTests.Services.PhoneNumbers.NumberConfiguration
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.PhoneNumbers.NumberConfigurations;
+    using Telnyx.net.Services.PhoneNumbers.NumberConfigurations;
+    using Xunit;
+
     public class NumberConfigurationMessagingTest : BaseTelnyxTest
     {
         private const string NumberOrderId = "12ade33a-21c0-473b-b055-b3c836e1c292";
@@ -28,7 +24,6 @@ namespace TelnyxTests.Services.PhoneNumbers.NumberConfiguration
                 MessagingProduct = "A2P",
                 MessagingProfileId = Guid.Parse("3fa85f64-5717-4562-b3fc-2c963f66afa6")
             };
-
         }
 
         [Fact]
@@ -39,6 +34,7 @@ namespace TelnyxTests.Services.PhoneNumbers.NumberConfiguration
             Assert.NotNull(response);
             Assert.IsType<TelnyxList<PhoneNumberMessaging>>(response);
         }
+
         [Fact]
         public void List()
         {

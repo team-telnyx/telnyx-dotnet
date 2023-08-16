@@ -1,8 +1,8 @@
 namespace Telnyx
 {
-    using Newtonsoft.Json;
     using System;
     using System.Runtime.Serialization;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Messaging Short Code Update.

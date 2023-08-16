@@ -1,14 +1,14 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using Telnyx.net.Entities.Enum;
-
-namespace Telnyx.net.Entities.Wireless.SimCards
+﻿namespace Telnyx.net.Entities.Wireless.SimCards
 {
+    using System;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
+
     /// <summary>
-    /// Sim Card record
+    /// Sim Card record.
     /// </summary>
-    public class SimCardRecord: TelnyxEntity, IHasId
+    public class SimCardRecord : TelnyxEntity, IHasId
     {
         /// <summary>
         /// Gets or sets id.
@@ -17,7 +17,7 @@ namespace Telnyx.net.Entities.Wireless.SimCards
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets RecordType
+        /// Gets or Sets RecordType.
         /// </summary>
         [JsonProperty("record_type")]
         public RecordType? RecordType { get; private set; }
@@ -26,7 +26,7 @@ namespace Telnyx.net.Entities.Wireless.SimCards
         /// The current status of the SIM card. It will be one of the following: &lt;br/&gt; &lt;ul&gt;   &lt;li&gt;&lt;code&gt;activating&lt;/code&gt; - the card is being activated&lt;/li&gt;   &lt;li&gt;&lt;code&gt;active&lt;/code&gt; - the card is active and ready for use&lt;/li&gt;   &lt;li&gt;&lt;code&gt;inactivating&lt;/code&gt; - the card is being inactivated&lt;/li&gt;   &lt;li&gt;&lt;code&gt;inactive&lt;/code&gt; - the card has been inactivated and cannot be used&lt;/li&gt;   &lt;li&gt;&lt;code&gt;data_limit_exceeded&lt;/code&gt; - the card has exceeded its data consumption limit&lt;/li&gt; &lt;/ul&gt; Transitioning between the active and inactive states may take a period of time. 
         /// </summary>
         [JsonProperty("status")]
-        public string Status { get; set; }
+        public object Status { get; set; }
 
         /// <summary>
         /// The ICCID is the identifier of the specific SIM card/chip. Each SIM is internationally identified by its integrated circuit card identifier (ICCID). ICCIDs are stored in the SIM card&#x27;s memory and are also engraved or printed on the SIM card body during a process called personalization. 
@@ -53,7 +53,7 @@ namespace Telnyx.net.Entities.Wireless.SimCards
         public Guid? SimCardGroupId { get; set; }
 
         /// <summary>
-        /// Searchable tags associated with the SIM card
+        /// Searchable tags associated with the SIM card.
         /// </summary>
         [JsonProperty("tags")]
         public List<string> Tags { get; set; }

@@ -4,15 +4,15 @@
 
 namespace TelnyxTests.Services.Messages.MessagingProfiles
 {
-    using System.Threading.Tasks;
     using System.Linq;
+    using System.Threading.Tasks;
     using Telnyx;
     using Telnyx.net.Entities;
     using Xunit;
 
     public class MessagingProfilePhoneNumbersServiceTest : BaseTelnyxTest
     {
-        private const string MessagingProfilePhoneNumberId = "1";
+        private const string MessagingProfilePhoneNumberId = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
         private readonly MessagingProfilePhoneNumbersService service;
 
         public MessagingProfilePhoneNumbersServiceTest(MockHttpClientFixture mockHttpClientFixture)
@@ -26,6 +26,27 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
         public void List()
         {
             var messagingPhoneNumber = this.service.List(MessagingProfilePhoneNumberId);
+            AssertListResponse(messagingPhoneNumber);
+        }
+
+        [Fact]
+        public async Task ListAsync()
+        {
+            var messagingPhoneNumber = await this.service.ListAsync(MessagingProfilePhoneNumberId);
+            AssertListResponse(messagingPhoneNumber);
+        }
+
+        [Fact(Skip = "Invalid request error. Corresponding service should be deprecated")]
+        public void Get()
+        {
+            var messagingProfilePhoneNumber = this.service.Get(MessagingProfilePhoneNumberId);
+            Assert.NotNull(messagingProfilePhoneNumber);
+            Assert.Equal(typeof(MessagingPhoneNumber), messagingProfilePhoneNumber.GetType());
+            Assert.NotNull(messagingProfilePhoneNumber.PhoneNumber);
+        }
+
+        private static void AssertListResponse(TelnyxList<MessagingPhoneNumber> messagingPhoneNumber)
+        {
             Assert.NotNull(messagingPhoneNumber);
             Assert.Equal(typeof(TelnyxList<MessagingPhoneNumber>), messagingPhoneNumber.GetType());
             Assert.True(messagingPhoneNumber.Data.Count > 0);
@@ -49,23 +70,6 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             Assert.False(messagingProfile.EligibleMessagingProducts.Where(x => x == null).Any());
             Assert.NotNull(messagingProfile.Features);
             Assert.NotNull(messagingProfile.Features.Sms);
-        }
-
-        [Fact]
-        public async Task ListAsync()
-        {
-            var messagingPhoneNumber = await this.service.ListAsync(MessagingProfilePhoneNumberId);
-            Assert.NotNull(messagingPhoneNumber);
-            Assert.Equal(typeof(TelnyxList<MessagingPhoneNumber>), messagingPhoneNumber.GetType());
-        }
-
-        [Fact(Skip = "Invalid request error. Corresponding service should be deprecated")]
-        public void Get()
-        {
-            var messagingProfilePhoneNumber = this.service.Get(MessagingProfilePhoneNumberId);
-            Assert.NotNull(messagingProfilePhoneNumber);
-            Assert.Equal(typeof(MessagingPhoneNumber), messagingProfilePhoneNumber.GetType());
-            Assert.NotNull(messagingProfilePhoneNumber.PhoneNumber);
         }
     }
 }

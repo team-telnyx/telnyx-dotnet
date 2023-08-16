@@ -1,10 +1,10 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-using Telnyx.net.Entities.HostedNumbers;
-
-namespace Telnyx.net.Services.HostedNumbers
+﻿namespace Telnyx.net.Services.HostedNumbers
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.HostedNumbers;
+
     public class HostedNumberOrderService : Service<HostedNumberOrder>
     {
         public HostedNumberOrderService()
@@ -30,7 +30,7 @@ namespace Telnyx.net.Services.HostedNumbers
         public async Task<TelnyxList<HostedNumberOrder>> ListHostedNumberOrdersAsync(ListOptions listOptions = null, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
             listOptions = listOptions == null ? new ListOptions(1, 25) : listOptions;
-            return await this.ListEntitiesAsync(listOptions, requestOptions, ct).ConfigureAwait(false);
+            return await this.ListEntitiesAsync(listOptions, requestOptions, string.Empty, ct).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -50,11 +50,11 @@ namespace Telnyx.net.Services.HostedNumbers
         /// </summary>
         /// <param name="options">Options to create.</param>
         /// <param name="requestOptions">Additional request options (optional).</param>
-        /// <param name="ct">CanellationToken</param>
+        /// <param name="ct">CanellationToken.</param>
         /// <returns>Hosted Number Order.</returns>
         public async Task<HostedNumberOrder> CreateHostedNumberOrdersAsync(HostedNumberOrderOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this.CreateEntityAsync(options, requestOptions, ct).ConfigureAwait(false);
+            return await this.CreateEntityAsync(options, requestOptions, cancellationToken: ct).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Telnyx.net.Services.HostedNumbers
         /// <returns>Requested hosted number order.</returns>
         public async Task<HostedNumberOrder> RetrieveHostedNumberOrdersAsync(string id, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this.GetEntityAsync(id, requestOptions, ct).ConfigureAwait(false);
+            return await this.GetEntityAsync(id, requestOptions, string.Empty, ct).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -95,13 +95,13 @@ namespace Telnyx.net.Services.HostedNumbers
         /// Upload file required for a messaging hosted number order.
         /// </summary>
         /// <param name="id">Identifies the type of resource.</param>
-        /// <param name="options">File Upload Data</param>
+        /// <param name="options">File Upload Data.</param>
         /// <param name="requestOptions">Additional request options (optional).</param>
         /// <param name="ct">Cancellation Token (optional).</param>
         /// <returns>Successful response with details about a messaging hosted number order.</returns>
         public async Task<HostedNumberOrder> UploadFileAsync(string id, FileUploadOptions options, RequestOptions requestOptions = null, CancellationToken ct = default)
         {
-            return await this.CreateEntityAsync(id, this.PostPath, options, requestOptions, ct).ConfigureAwait(false);
+            return await this.CreateEntityAsync(id, this.PostPath, options, requestOptions, string.Empty, ct).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Telnyx.net.Services.HostedNumbers
         /// <returns>Successful response with details about a messaging hosted number order.</returns>
         public HostedNumberOrder UploadFile(string id, FileUploadOptions options, RequestOptions requestOptions = null)
         {
-            return this.CreateEntity(id, this.PostPath, options, requestOptions);
+            return this.CreateEntity(id, this.PostPath, options, requestOptions, string.Empty);
         }
     }
 }

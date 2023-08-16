@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-
-namespace Telnyx.net.Services.Wireless.WDRReports
+﻿namespace Telnyx.net.Services.Wireless.WDRReports
 {
+    using Newtonsoft.Json;
+
     public class CreateWDRReportsOptions : BaseOptions
     {
         /// <summary>

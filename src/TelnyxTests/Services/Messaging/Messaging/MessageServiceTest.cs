@@ -7,8 +7,6 @@ namespace TelnyxTests.Services.Messages.Messages
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Net.Http;
-    using System.Threading;
     using System.Threading.Tasks;
     using Telnyx;
     using Telnyx.net.Entities.Enum;
@@ -32,9 +30,9 @@ namespace TelnyxTests.Services.Messages.Messages
             this.createOptions = new NewMessage()
             {
                 MessagingProfileId = Guid.NewGuid(),
-                MediaUrls = new List<string>() { "example1.com", "example2.com" },
-                WebhookUrl = "webhookurl.com",
-                WebhookFailoverUrl = "failureurl.com",
+                MediaUrls = new List<string>() { "https://www.example1.com", "https://www.example2.com" },
+                WebhookUrl = "https://www.example.com/hooks",
+                WebhookFailoverUrl = "https://backup.example.com/hooks",
                 UseProfileWebhooks = true,
                 ValidityPeriodSecs = 01,
                 IgnoreWireType = true,
@@ -55,11 +53,40 @@ namespace TelnyxTests.Services.Messages.Messages
         {
             var message = this.service.Create(this.createOptions);
             //this.AssertRequest(HttpMethod.Post, "/v2/messages");
+            AssertResponse(message);
+        }
+
+        [Fact]
+        public async Task CreateAsync()
+        {
+            var message = await this.service.CreateAsync(this.createOptions);
+            //this.AssertRequest(HttpMethod.Post, "/v2/messages");
+            AssertResponse(message);
+        }
+
+        [Fact]
+        public void Get()
+        {
+            var message = this.service.Get(MessageId);
+            //this.AssertRequest(HttpMethod.Get, "/v2/messages/3fa85f64-5717-4562-b3fc-2c963f66afa6");
+            AssertResponse(message);
+        }
+
+        [Fact]
+        public async Task GetAsync()
+        {
+            var message = await this.service.GetAsync(MessageId);
+            //this.AssertRequest(HttpMethod.Get, "/v2/messages/3fa85f64-5717-4562-b3fc-2c963f66afa6");
+            AssertResponse(message);
+        }
+
+        private static void AssertResponse(OutboundMessage message)
+        {
             Assert.NotNull(message);
             Assert.Equal("Telnyx.OutboundMessage", message.GetType().ToString());
             Assert.NotNull(message.Id);
             Assert.NotNull(message.Direction);
-            Assert.Equal(0, message.Errors.Count);
+            Assert.Empty(message.Errors);
             Assert.NotNull(message.Parts);
             Assert.NotNull(message.Direction);
             Assert.Equal(RecordType.MessageEnum, message.RecordType);
@@ -73,8 +100,8 @@ namespace TelnyxTests.Services.Messages.Messages
             Assert.NotNull(message.From.PhoneNumber);
             Assert.NotNull(message.Media);
             Assert.True(!message.Media.Where(x => x.Url == null).Any());
-            Assert.Equal(this.createOptions.WebhookFailoverUrl, message.WebhookFailoverUrl);
-            Assert.Equal(this.createOptions.WebhookUrl, message.WebhookUrl);
+            Assert.Equal("https://backup.example.com/hooks", message.WebhookFailoverUrl);
+            Assert.Equal("https://www.example.com/hooks", message.WebhookUrl);
             //Assert.Equal(this.createOptions.UseProfileWebhooks, message.UseProfileWebhooks); // fails
             Assert.Null(message.ValidUntil);
             //Assert.NotNull(message.CreatedAt); // fails
@@ -83,33 +110,6 @@ namespace TelnyxTests.Services.Messages.Messages
             Assert.NotNull(message.Type);
             Assert.Null(message.CompletedAt);
             //Assert.NotNull(message.Carrier); // fails
-        }
-
-        [Fact]
-        public async Task CreateAsync()
-        {
-            var message = await this.service.CreateAsync(this.createOptions);
-            //this.AssertRequest(HttpMethod.Post, "/v2/messages");
-            Assert.NotNull(message);
-            Assert.Equal("Telnyx.OutboundMessage", message.GetType().ToString());
-        }
-
-        [Fact]
-        public void Get()
-        {
-            var message = this.service.Get(MessageId);
-            //this.AssertRequest(HttpMethod.Get, "/v2/messages/3fa85f64-5717-4562-b3fc-2c963f66afa6");
-            Assert.NotNull(message);
-            Assert.Equal("Telnyx.OutboundMessage", message.GetType().ToString());
-        }
-
-        [Fact]
-        public async Task GetAsync()
-        {
-            var message = await this.service.GetAsync(MessageId);
-            //this.AssertRequest(HttpMethod.Get, "/v2/messages/3fa85f64-5717-4562-b3fc-2c963f66afa6");
-            Assert.NotNull(message);
-            Assert.Equal("Telnyx.OutboundMessage", message.GetType().ToString());
         }
     }
 }

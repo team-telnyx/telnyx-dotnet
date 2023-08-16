@@ -1,14 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Infrastructure.JsonConverters;
-
-namespace Telnyx.net.Entities.Enum
+﻿namespace Telnyx.net.Entities.Enum
 {
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
+    using Telnyx.net.Infrastructure.JsonConverters;
+
     [JsonConverter(typeof(SafeStringEnumConverter), Unknown)]
     public enum VerifyStatus
     {

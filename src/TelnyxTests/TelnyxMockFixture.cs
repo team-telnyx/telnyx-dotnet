@@ -4,13 +4,11 @@
 
 namespace TelnyxTests
 {
-    using Microsoft.Extensions.Configuration;
     using System;
-    using System.IO;
     using System.Linq;
     using System.Net;
     using System.Net.Http;
-    using System.Reflection;
+    using Microsoft.Extensions.Configuration;
     using Telnyx;
 
     public class TelnyxMockFixture : IDisposable
@@ -51,7 +49,7 @@ namespace TelnyxTests
                 Environment.SetEnvironmentVariable("TelnyxApiKey", this.telnyx_api_key);
             }
 
-            this.EnsureTelnyxMockMinimumVersion();
+            //this.EnsureTelnyxMockMinimumVersion();
 
             this.origApiBase = TelnyxConfiguration.GetApiBase();
             this.origApiKey = TelnyxConfiguration.GetApiKey();

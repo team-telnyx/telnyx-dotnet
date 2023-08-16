@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-using Telnyx.net.Entities.Enum;
-
-namespace Telnyx.net.Entities.HostedNumbers
+﻿namespace Telnyx.net.Entities.HostedNumbers
 {
+    using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum;
+
     public class HostedNumber : TelnyxEntity
     {
         /// <summary>
@@ -12,7 +12,7 @@ namespace Telnyx.net.Entities.HostedNumbers
         public string Id { get; set; }
 
         /// <summary>
-        /// The messaging hosted phone number (+E.164 format)
+        /// The messaging hosted phone number (+E.164 format).
         /// </summary>
         [JsonProperty("phone_number")]
         public string PhoneNumber { get; set; }
@@ -25,7 +25,7 @@ namespace Telnyx.net.Entities.HostedNumbers
         public RecordType RecordType { get; set; }
 
         /// <summary>
-        /// <see cref="Enum.NumberOrderStatus"/>.
+        /// <see cref="NumberOrderStatus"/>.
         /// </summary>
         [JsonProperty("status")]
         public NumberOrderStatus Status { get; set; }

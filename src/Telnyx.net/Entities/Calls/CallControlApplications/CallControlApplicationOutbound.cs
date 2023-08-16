@@ -12,7 +12,7 @@ namespace Telnyx.net.Entities.Calls.CallControlApplications
         public int? ChannelLimit { get; set; }
 
         /// <summary>
-        /// Gets or Sets OutboundVoiceProfileId
+        /// Gets or Sets OutboundVoiceProfileId.
         /// </summary>
         [JsonProperty("outbound_voice_profile_id")]
         public string OutboundVoiceProfileId { get; set; }

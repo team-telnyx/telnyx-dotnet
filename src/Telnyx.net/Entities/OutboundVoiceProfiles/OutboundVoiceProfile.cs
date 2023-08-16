@@ -38,7 +38,7 @@
         public string TrafficType { get; set; }
 
         /// <summary>
-        /// Gets or Sets ServicePlan
+        /// Gets or Sets ServicePlan.
         /// </summary>
         [JsonProperty("service_plan")]
         public string ServicePlan { get; set; }
@@ -62,7 +62,7 @@
         public List<string> Tags { get; set; }
 
         /// <summary>
-        /// Gets or Sets UsagePaymentMethod
+        /// Gets or Sets UsagePaymentMethod.
         /// </summary>
         [JsonProperty("usage_payment_method")]
         public string UsagePaymentMethod { get; set; }

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-namespace Telnyx.net.Entities.Calls.CallControl.Refer.Webhook
+﻿namespace Telnyx.net.Entities.Calls.CallControl.Refer.Webhook
 {
+    using System;
+    using Newtonsoft.Json;
+
     public class Refer
     {
         [JsonProperty("call_control_id")]

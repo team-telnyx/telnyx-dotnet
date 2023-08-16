@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-using Telnyx.net.Services.Calls.CallControl.GatherStop;
-using Telnyx.net.Services.Calls.CallControl.RecordActions;
-using Telnyx.net.Services.Calls.CallControl.Refer;
-using Telnyx.net.Services.Calls.CallControl.Transcriptions;
-
-namespace Telnyx.net.Services.Calls.CallCommands
+﻿namespace Telnyx.net.Services.Calls.CallCommands
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.Calls.CallControl.ClientState;
+    using Telnyx.net.Services.Calls.CallControl.ClientState;
+    using Telnyx.net.Services.Calls.CallControl.GatherStop;
+    using Telnyx.net.Services.Calls.CallControl.RecordActions;
+    using Telnyx.net.Services.Calls.CallControl.Refer;
+    using Telnyx.net.Services.Calls.CallControl.Transcriptions;
+
     public class CallControlService
     {
         private readonly CallControlAnswerService callControlAnswerService;
@@ -31,6 +30,7 @@ namespace Telnyx.net.Services.Calls.CallCommands
         private readonly RecordActionService recordActionService;
         private readonly CallTranscriptionService transcriptionService;
         private readonly CallControlReferService referService;
+        private readonly ClientStateService updateClientStateService;
 
         public CallControlService()
         {
@@ -64,6 +64,7 @@ namespace Telnyx.net.Services.Calls.CallCommands
         {
             return await this.callControlAnswerService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
         }
+
         public virtual async Task<CallDialResponse> RetrieveCallStatusAsyc(string callControlId = null, RequestOptions opts = null, CancellationToken ct = default)
         {
             string controlId = callControlId ?? this.CallControlId;
@@ -177,10 +178,12 @@ namespace Telnyx.net.Services.Calls.CallCommands
         {
             return await this.callControlPlaybackStartService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
         }
+
         public virtual CallPlaybackStopResponse PlaybackStop(CallControlPlaybackStopOptions options, string postFix = "actions/playback_stop", RequestOptions requestOptions = null)
         {
             return this.callControlPlaybackStopService.Create(this.CallControlId, options, postFix, requestOptions);
         }
+
         public virtual async Task<CallPlaybackStopResponse> PlaybackStopAsync(CallControlPlaybackStopOptions options, string postFix = "actions/playback_stop", RequestOptions requestOptions = null, CancellationToken ct = default)
         {
             return await this.callControlPlaybackStopService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
@@ -284,6 +287,16 @@ namespace Telnyx.net.Services.Calls.CallCommands
         public virtual TelnyxApiResponse ReferCall(string id, ReferOptions options, RequestOptions requestOptions = null)
         {
             return this.referService.Refer(id, options, requestOptions);
+        }
+
+        public TelnyxApiResponse UpdateClientState(string id, ClientStateOption clientState, RequestOptions requestOptions = null)
+        {
+            return this.updateClientStateService.Upgrade(id, clientState, requestOptions);
+        }
+
+        public async Task<TelnyxApiResponse> UpdateClientStateAsync(string id, ClientStateOption clientState, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        {
+            return await this.updateClientStateService.UpgradeAsync(id, clientState, requestOptions, cancellationToken);
         }
     }
 }

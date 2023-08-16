@@ -9,12 +9,12 @@ namespace Telnyx
     /// <summary>
     /// ServiceNested.
     /// </summary>
-    /// <typeparam name="EntityReturned">ITelnyxEntity.</typeparam>
-    public abstract class ServiceNested<EntityReturned> : Service<EntityReturned>
-        where EntityReturned : ITelnyxEntity
+    /// <typeparam name="TEntityReturned">ITelnyxEntity.</typeparam>
+    public abstract class ServiceNested<TEntityReturned> : Service<TEntityReturned>
+        where TEntityReturned : ITelnyxEntity
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ServiceNested{EntityReturned}"/> class.
+        /// Initializes a new instance of the <see cref="ServiceNested{TEntityReturned}"/> class.
         /// </summary>
         protected ServiceNested()
             : base(null)
@@ -22,7 +22,7 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ServiceNested{EntityReturned}"/> class.
+        /// Initializes a new instance of the <see cref="ServiceNested{TEntityReturned}"/> class.
         /// </summary>
         /// <param name="apiKey">apiKey.</param>
         protected ServiceNested(string apiKey)
@@ -36,10 +36,10 @@ namespace Telnyx
         /// <param name="parentId">parentId.</param>
         /// <param name="options">options.</param>
         /// <param name="requestOptions">requestOptions.</param>
-        /// <returns>{EntityReturned}.</returns>
-        protected EntityReturned CreateNestedEntity(string parentId, BaseOptions options, RequestOptions requestOptions)
+        /// <returns>{TEntityReturned}.</returns>
+        protected TEntityReturned CreateNestedEntity(string parentId, BaseOptions options, RequestOptions requestOptions)
         {
-            return this.PostRequest<EntityReturned>(this.ClassUrl(parentId), options, requestOptions);
+            return this.PostRequest<TEntityReturned>(this.ClassUrl(parentId), options, requestOptions);
         }
 
         /// <summary>
@@ -48,11 +48,12 @@ namespace Telnyx
         /// <param name="parentId">parentId.</param>
         /// <param name="options">options.</param>
         /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="parentToken">Parsing token.</param>
         /// <param name="cancellationToken">cancellationToken.</param>
-        /// <returns>{EntityReturned}.</returns>
-        protected async Task<EntityReturned> CreateNestedEntityAsync(string parentId, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        /// <returns>{TEntityReturned}.</returns>
+        protected async Task<TEntityReturned> CreateNestedEntityAsync(string parentId, BaseOptions options, RequestOptions requestOptions, string parentToken, CancellationToken cancellationToken)
         {
-            return await this.PostRequestAsync<EntityReturned>(this.ClassUrl(parentId), options, requestOptions, cancellationToken);
+            return await this.PostRequestAsync<TEntityReturned>(this.ClassUrl(parentId), options, requestOptions, parentToken: parentToken, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -62,10 +63,10 @@ namespace Telnyx
         /// <param name="id">id.</param>
         /// <param name="options">options.</param>
         /// <param name="requestOptions">requestOptions.</param>
-        /// <returns>{EntityReturned}.</returns>
-        protected EntityReturned DeleteNestedEntity(string parentId, string id, BaseOptions options, RequestOptions requestOptions)
+        /// <returns>{TEntityReturned}.</returns>
+        protected TEntityReturned DeleteNestedEntity(string parentId, string id, BaseOptions options, RequestOptions requestOptions)
         {
-            return this.DeleteRequest<EntityReturned>(this.InstanceUrl(parentId, id), options, requestOptions);
+            return this.DeleteRequest<TEntityReturned>(this.InstanceUrl(parentId, id), options, requestOptions, string.Empty);
         }
 
         /// <summary>
@@ -76,10 +77,10 @@ namespace Telnyx
         /// <param name="options">options.</param>
         /// <param name="requestOptions">requestOptions.</param>
         /// <param name="cancellationToken">cancellationToken.</param>
-        /// <returns>{EntityReturned}.</returns>
-        protected async Task<EntityReturned> DeleteNestedEntityAsync(string parentId, string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        /// <returns>{TEntityReturned}.</returns>
+        protected async Task<TEntityReturned> DeleteNestedEntityAsync(string parentId, string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
         {
-            return await this.DeleteRequestAsync<EntityReturned>(this.InstanceUrl(parentId, id), options, requestOptions, cancellationToken);
+            return await this.DeleteRequestAsync<TEntityReturned>(this.InstanceUrl(parentId, id), options, requestOptions, string.Empty, cancellationToken);
         }
 
         /// <summary>
@@ -89,10 +90,12 @@ namespace Telnyx
         /// <param name="id">id.</param>
         /// <param name="options">options.</param>
         /// <param name="requestOptions">requestOptions.</param>
-        /// <returns>{EntityReturned}.</returns>
-        protected EntityReturned GetNestedEntity(string parentId, string id, BaseOptions options, RequestOptions requestOptions)
+        /// <param name="parentToken">Parsing token.</param>
+        /// <returns>{TEntityReturned}.</returns>
+        protected TEntityReturned GetNestedEntity(string parentId, string id, BaseOptions options, RequestOptions requestOptions, string parentToken = "")
         {
-            return this.GetRequest<EntityReturned>(this.InstanceUrl(parentId, id), options, requestOptions, false);
+            var url = this.InstanceUrl(parentId, id).TrimEnd('/');
+            return this.GetRequest<TEntityReturned>(url, options, requestOptions, false, parentToken);
         }
 
         /// <summary>
@@ -102,11 +105,12 @@ namespace Telnyx
         /// <param name="id">id.</param>
         /// <param name="options">options.</param>
         /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="parentToken">Parsing token.</param>
         /// <param name="cancellationToken">cancellationToken.</param>
-        /// <returns>{EntityReturned}.</returns>
-        protected async Task<EntityReturned> GetNestedEntityAsync(string parentId, string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        /// <returns>{TEntityReturned}.</returns>
+        protected async Task<TEntityReturned> GetNestedEntityAsync(string parentId, string id, BaseOptions options, RequestOptions requestOptions, string parentToken, CancellationToken cancellationToken)
         {
-            return await this.GetRequestAsync<EntityReturned>(this.InstanceUrl(parentId, id), options, requestOptions, false, cancellationToken);
+            return await this.GetRequestAsync<TEntityReturned>(this.InstanceUrl(parentId, id), options, requestOptions, false, parentToken, cancellationToken);
         }
 
         /// <summary>
@@ -115,10 +119,11 @@ namespace Telnyx
         /// <param name="parentId">parentId.</param>
         /// <param name="options">options.</param>
         /// <param name="requestOptions">requestOptions.</param>
-        /// <returns>TelnyxList {EntityReturned}.</returns>
-        protected TelnyxList<EntityReturned> ListNestedEntities(string parentId, ListOptions options, RequestOptions requestOptions)
+        /// <param name="parentToken">Parsing token.</param>
+        /// <returns>TelnyxList {TEntityReturned}.</returns>
+        protected TelnyxList<TEntityReturned> ListNestedEntities(string parentId, ListOptions options, RequestOptions requestOptions, string parentToken)
         {
-            return this.ListRequestPaging<EntityReturned>(this.ClassUrl(parentId), options, requestOptions);
+            return this.ListRequestPaging<TEntityReturned>(this.ClassUrl(parentId), options, requestOptions, parentToken);
         }
 
         /// <summary>
@@ -127,11 +132,12 @@ namespace Telnyx
         /// <param name="parentId">parentId.</param>
         /// <param name="options">options.</param>
         /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="parentToken">Parsing token.</param>
         /// <param name="cancellationToken">cancellationToken.</param>
-        /// <returns>TelnyxList {EntityReturned}.</returns>
-        protected async Task<TelnyxList<EntityReturned>> ListNestedEntitiesAsync(string parentId, ListOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        /// <returns>TelnyxList {TEntityReturned}.</returns>
+        protected async Task<TelnyxList<TEntityReturned>> ListNestedEntitiesAsync(string parentId, ListOptions options, RequestOptions requestOptions, string parentToken, CancellationToken cancellationToken)
         {
-            return await this.ListRequestPagingAsync<EntityReturned>(this.ClassUrl(parentId), options, requestOptions, cancellationToken);
+            return await this.ListRequestPagingAsync<TEntityReturned>(this.ClassUrl(parentId), options, requestOptions, parentToken);
         }
 
         /// <summary>
@@ -140,21 +146,24 @@ namespace Telnyx
         /// <param name="parentId">parentId.</param>
         /// <param name="options">options.</param>
         /// <param name="requestOptions">requestOptions.</param>
-        /// <returns>Ienumerable {EntityReturned}.</returns>
-        protected IEnumerable<EntityReturned> ListNestedEntitiesAutoPaging(string parentId, ListOptions options, RequestOptions requestOptions)
+        /// <returns>Ienumerable {TEntityReturned}.</returns>
+        protected IEnumerable<TEntityReturned> ListNestedEntitiesAutoPaging(string parentId, ListOptions options, RequestOptions requestOptions)
         {
-            return this.ListRequestAutoPaging<EntityReturned>(this.ClassUrl(parentId), options, requestOptions);
+            return this.ListRequestAutoPaging<TEntityReturned>(this.ClassUrl(parentId), options, requestOptions);
         }
+
         /// <summary>
         /// ListNestedEntitiesAutoPaging.
         /// </summary>
         /// <param name="parentId">parentId.</param>
         /// <param name="options">options.</param>
         /// <param name="requestOptions">requestOptions.</param>
-        /// <returns>Ienumerable {EntityReturned}.</returns>
-        protected async Task <IEnumerable<EntityReturned>> ListNestedEntitiesAutoPagingAsync(string parentId, ListOptions options, RequestOptions requestOptions, CancellationToken ct = default)
+        /// <param name="parentToken">Parsing token.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>Ienumerable {TEntityReturned}.</returns>
+        protected async Task<IEnumerable<TEntityReturned>> ListNestedEntitiesAutoPagingAsync(string parentId, ListOptions options, RequestOptions requestOptions, string parentToken, CancellationToken cancellationToken)
         {
-            return await this.ListRequestAutoPagingAsync<EntityReturned>(this.ClassUrl(parentId), options, requestOptions, ct);
+            return await this.ListRequestAutoPagingAsync<TEntityReturned>(this.ClassUrl(parentId), options, requestOptions, parentToken, cancellationToken);
         }
 
         /// <summary>
@@ -164,10 +173,10 @@ namespace Telnyx
         /// <param name="id">id.</param>
         /// <param name="options">options.</param>
         /// <param name="requestOptions">requestOptions.</param>
-        /// <returns>{EntityReturned}.</returns>
-        protected EntityReturned UpdateNestedEntity(string parentId, string id, BaseOptions options, RequestOptions requestOptions)
+        /// <returns>{TEntityReturned}.</returns>
+        protected TEntityReturned UpdateNestedEntity(string parentId, string id, BaseOptions options, RequestOptions requestOptions)
         {
-            return this.PostRequest<EntityReturned>(this.InstanceUrl(parentId, id), options, requestOptions);
+            return this.PostRequest<TEntityReturned>(this.InstanceUrl(parentId, id), options, requestOptions);
         }
 
         /// <summary>
@@ -177,11 +186,12 @@ namespace Telnyx
         /// <param name="id">id.</param>
         /// <param name="options">options.</param>
         /// <param name="requestOptions">requestOptions.</param>
+        /// <param name="parentToken">Parsing token.</param>
         /// <param name="cancellationToken">cancellationToken.</param>
-        /// <returns>{EntityReturned}.</returns>
-        protected async Task<EntityReturned> UpdateNestedEntityAsync(string parentId, string id, BaseOptions options, RequestOptions requestOptions, CancellationToken cancellationToken)
+        /// <returns>{TEntityReturned}.</returns>
+        protected async Task<TEntityReturned> UpdateNestedEntityAsync(string parentId, string id, BaseOptions options, RequestOptions requestOptions, string parentToken, CancellationToken cancellationToken)
         {
-            return await this.PostRequestAsync<EntityReturned>(this.InstanceUrl(parentId, id), options, requestOptions, cancellationToken);
+            return await this.PostRequestAsync<TEntityReturned>(this.InstanceUrl(parentId, id), options, requestOptions, parentToken: parentToken, cancellationToken: cancellationToken);
         }
 
         /// <summary>

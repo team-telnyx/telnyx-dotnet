@@ -4,7 +4,6 @@
 
 namespace TelnyxTests.Services.Calls.CallCommands
 {
-    using System.Net.Http;
     using System.Threading.Tasks;
     using Telnyx;
     using Xunit;
@@ -36,7 +35,6 @@ namespace TelnyxTests.Services.Calls.CallCommands
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/reject");
             Assert.NotNull(message);
             Assert.Equal(typeof(CallRejectResponse), message.GetType());
-
         }
 
         [Fact]
@@ -46,7 +44,6 @@ namespace TelnyxTests.Services.Calls.CallCommands
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/reject");
             Assert.NotNull(message);
             Assert.Equal(typeof(CallRejectResponse), message.GetType());
-
         }
     }
 }

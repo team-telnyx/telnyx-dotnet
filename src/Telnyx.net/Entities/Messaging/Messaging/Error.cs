@@ -29,7 +29,7 @@ namespace Telnyx
         /// Gets or sets Source.
         /// </summary>
         [DataMember(Name = "source")]
-        public ErrorSource Source { get; set; }
+        public string Source { get; set; }
 
         /// <summary>
         /// Gets or sets Meta.

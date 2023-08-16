@@ -4,7 +4,6 @@ namespace Telnyx
     using System.Collections.Generic;
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
-    using Telnyx.Infrastructure;
     using Telnyx.net.Entities.Enum;
     using Telnyx.net.Entities.Messaging.Messaging;
 
@@ -227,6 +226,7 @@ namespace Telnyx
 
         [JsonProperty("organization_id")]
         public Guid? OrganizationId { get; set; }
+
         /// <inheritdoc/>
         string IHasId.Id
         {

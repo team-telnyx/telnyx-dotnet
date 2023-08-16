@@ -1,7 +1,6 @@
 namespace Telnyx
 {
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
     using Newtonsoft.Json;
     using Telnyx.net.Entities.Enum;
     using Telnyx.net.Entities.Messaging.Messaging_Profiles;
@@ -66,7 +65,7 @@ namespace Telnyx
         /// </summary>
         [JsonProperty("number_pool_settings")]
         public NumberPoolSettings NumberPoolSettings { get; set; }
-        
+
         /// <summary>
         /// The URL shortener feature allows automatic replacement of URLs that were generated using
         /// a public URL shortener service.Some examples include bit.do, bit.ly, goo.gl, ht.ly,

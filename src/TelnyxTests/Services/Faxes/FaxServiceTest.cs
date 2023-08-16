@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-using Telnyx.net.Entities.Faxes;
-using Telnyx.net.Services.Faxes;
-using Xunit;
-
-namespace TelnyxTests.Services.Faxes
+﻿namespace TelnyxTests.Services.Faxes
 {
+    using System;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.Faxes;
+    using Telnyx.net.Services.Faxes;
+    using Xunit;
+
     public class FaxServiceTest : BaseTelnyxTest
     {
         private readonly FaxService _faxService;
@@ -18,12 +16,12 @@ namespace TelnyxTests.Services.Faxes
         public FaxServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
-            _faxService = new FaxService();
-            faxListOptions = new FaxListOptions
+            this._faxService = new FaxService();
+            this.faxListOptions = new FaxListOptions
             {
                 CreatedAtDateGreaterThan = DateTime.UtcNow.ToString()
             };
-            faxSendOptions = new FaxSendOptions
+            this.faxSendOptions = new FaxSendOptions
             {
                 ConnectionId = "222344",
                 From = "3125555555",
@@ -95,6 +93,5 @@ namespace TelnyxTests.Services.Faxes
             Assert.NotNull(faxListResult);
             Assert.True(faxListResult.GetType().Equals(typeof(Fax)));
         }
-
     }
 }

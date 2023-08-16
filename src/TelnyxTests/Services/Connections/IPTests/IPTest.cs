@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Telnyx.net.Entities;
-using Telnyx.net.Entities.Connections.IPs;
-using Telnyx.net.Entities.Enum;
-using Telnyx.net.Services.Connections.IPs;
-using Xunit;
-
-namespace TelnyxTests.Services.Connections.IPTests
+﻿namespace TelnyxTests.Services.Connections.IPTests
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Telnyx.net.Entities;
+    using Telnyx.net.Entities.Connections.IPs;
+    using Telnyx.net.Entities.Enum;
+    using Telnyx.net.Services.Connections.IPs;
+    using Xunit;
+
     public class IPTest : BaseTelnyxTest
     {
-        private readonly string credConnId = "1234";
+        private readonly string credConnId = "6a09cdc3-8948-47f0-aa62-74ac943d6c58";
         private readonly IPService service;
         private readonly IPListOptions listOptions;
         private readonly UpsertIPOptions createOptions;
@@ -39,19 +37,21 @@ namespace TelnyxTests.Services.Connections.IPTests
         [Fact]
         public void List()
         {
-            var message = this.service.ListIPs(this.listOptions);
+            var list = this.service.ListIPs(this.listOptions);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
-            Assert.NotNull(message);
-            Assert.Equal(typeof(TelnyxList<IP>), message.GetType());
+            Assert.NotNull(list);
+            Assert.Equal(typeof(TelnyxList<IP>), list.GetType());
+            Assert.Collection(list, message => AssertResponse(message));
         }
 
         [Fact]
         public async Task ListAsync()
         {
-            var message = await this.service.ListIPsAsync(this.listOptions);
+            var list = await this.service.ListIPsAsync(this.listOptions);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
-            Assert.NotNull(message);
-            Assert.Equal(typeof(TelnyxList<IP>), message.GetType());
+            Assert.NotNull(list);
+            Assert.Equal(typeof(TelnyxList<IP>), list.GetType());
+            Assert.Collection(list, message => AssertResponse(message));
         }
 
         [Fact]
@@ -59,15 +59,7 @@ namespace TelnyxTests.Services.Connections.IPTests
         {
             var message = this.service.CreateIPs(this.createOptions);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
-            Assert.NotNull(message);
-            Assert.Equal(typeof(IP), message.GetType());
-            Assert.Equal(this.createOptions.IPAddress, message.IpAddress);
-            Assert.Equal(this.createOptions.Port, message.Port);
-            Assert.Equal(this.createOptions.ConnectionId, message.ConnectionId);
-            Assert.Equal(RecordType.IP, message.RecordType);
-            Assert.NotNull(message.Id);
-            Assert.NotNull(message.CreatedAt);
-            Assert.NotNull(message.UpdatedAt);
+            AssertResponse(message);
         }
 
         [Fact]
@@ -75,59 +67,68 @@ namespace TelnyxTests.Services.Connections.IPTests
         {
             var message = await this.service.CreateIPsAsync(this.createOptions);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
-            Assert.NotNull(message);
-            Assert.Equal(typeof(IP), message.GetType());
+            AssertResponse(message);
         }
+
         [Fact]
         public void Delete()
         {
-            var message = this.service.DeleteIPs(credConnId);
+            var message = this.service.DeleteIPs(this.credConnId);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
-            Assert.NotNull(message);
-            Assert.Equal(typeof(IP), message.GetType());
+            AssertResponse(message);
         }
 
         [Fact]
         public async Task DeleteAsync()
         {
-            var message = await this.service.DeleteIPsAsync(credConnId);
+            var message = await this.service.DeleteIPsAsync(this.credConnId);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
-            Assert.NotNull(message);
-            Assert.Equal(typeof(IP), message.GetType());
+            AssertResponse(message);
         }
+
         [Fact]
         public void Update()
         {
-            var message = this.service.UpdateIPs(credConnId, createOptions);
+            var message = this.service.UpdateIPs(this.credConnId, this.createOptions);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
-            Assert.NotNull(message);
-            Assert.Equal(typeof(IP), message.GetType());
+            AssertResponse(message);
         }
 
         [Fact]
         public async Task UpdateAsync()
         {
-            var message = await this.service.UpdateIPsAsync(credConnId, createOptions);
+            var message = await this.service.UpdateIPsAsync(this.credConnId, this.createOptions);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
-            Assert.NotNull(message);
-            Assert.Equal(typeof(IP), message.GetType());
+            AssertResponse(message);
         }
+
         [Fact]
         public void Retrieve()
         {
-            var message = this.service.RetrieveIPs(credConnId);
+            var message = this.service.RetrieveIPs(this.credConnId);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
-            Assert.NotNull(message);
-            Assert.Equal(typeof(IP), message.GetType());
+            AssertResponse(message);
         }
 
         [Fact]
         public async Task RetrieveAsync()
         {
-            var message = await this.service.RetrieveIPsAsync(credConnId);
+            var message = await this.service.RetrieveIPsAsync(this.credConnId);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
+            AssertResponse(message);
+        }
+
+        private static void AssertResponse(IP message)
+        {
             Assert.NotNull(message);
             Assert.Equal(typeof(IP), message.GetType());
+            Assert.Equal("192.168.0.0", message.IpAddress);
+            Assert.Equal(5060, message.Port);
+            Assert.Equal("3456789987654", message.ConnectionId);
+            Assert.Equal(RecordType.IP, message.RecordType);
+            Assert.Equal("6a09cdc3-8948-47f0-aa62-74ac943d6c58", message.Id);
+            Assert.NotNull(message.CreatedAt);
+            Assert.NotNull(message.UpdatedAt);
         }
     }
 }
