@@ -15,12 +15,6 @@
         [JsonProperty("minimum_digits")]
         public int MinimumDigits { get; set; } = 1;
 
-        ///// <summary>
-        ///// The call control id of the call you want to bridge with.
-        ///// </summary>
-        // [JsonProperty("custom_headers")]
-        // public IEnumerable<> { get; private set; }
-
         /// <summary>
         /// Gets or sets the maximum number of digits to fetch. This parameter has a maximum value of 128.
         /// Default: 128.
