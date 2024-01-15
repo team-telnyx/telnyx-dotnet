@@ -60,6 +60,8 @@
         /// Gets or sets the number of milliseconds to wait for the first DTMF.
         /// Default: 5000.
         /// </summary>
+        /// 
+        [JsonProperty("initial_timeout_millis")]
         public int InitialTimeoutMillis { get; set; } = 5000;
 
         /// <summary>
