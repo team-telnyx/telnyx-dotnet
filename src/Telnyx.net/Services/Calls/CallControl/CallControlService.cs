@@ -18,6 +18,7 @@
         private readonly CallControlBridgeService callControlBridgeService;
         private readonly CallControlForkStartService callControlForkStartService;
         private readonly CallControlForkStopService callControlForkStopService;
+        private readonly CallControlGatherService callControlGatherService;
         private readonly CallControlGatherUsingAudioService callControlGatherUsingAudioService;
         private readonly CallControlGatherUsingSpeakService callControlGatherUsingSpeakService;
         private readonly CallControlHangupService callControlHangupService;
@@ -40,6 +41,7 @@
             this.callControlBridgeService = new CallControlBridgeService();
             this.callControlForkStartService = new CallControlForkStartService();
             this.callControlForkStopService = new CallControlForkStopService();
+            this.callControlGatherService = new CallControlGatherService();
             this.callControlGatherUsingAudioService = new CallControlGatherUsingAudioService();
             this.callControlGatherUsingSpeakService = new CallControlGatherUsingSpeakService();
             this.callControlHangupService = new CallControlHangupService();
@@ -127,6 +129,16 @@
         public virtual async Task<CallForkStopResponse> ForkStopAsync(CallControlForkStopOptions options, string postFix = "actions/fork_stop", RequestOptions requestOptions = null, CancellationToken ct = default)
         {
             return await this.callControlForkStopService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
+        }
+
+        public virtual CallGatherResponse Gather(CallControlGatherOptions options, string postFix = "actions/gather", RequestOptions requestOptions = null)
+        {
+          return this.callControlGatherService.Create(this.CallControlId, options, postFix, requestOptions);
+        }
+
+        public virtual async Task<CallGatherResponse> GatherAsync(CallControlGatherOptions options, string postFix = "actions/gather", RequestOptions requestOptions = null, CancellationToken ct = default)
+        {
+          return await this.callControlGatherService.CreateAsync(this.CallControlId, options, postFix, requestOptions, ct);
         }
 
         public virtual CallGatherUsingAudioResponse GatherUsingAudio(CallControlGatherUsingAudioOptions options, string postFix = "actions/gather_using_audio", RequestOptions requestOptions = null)
