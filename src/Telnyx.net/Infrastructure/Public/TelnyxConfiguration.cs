@@ -40,7 +40,7 @@ namespace Telnyx
         public static HttpMessageHandler HttpMessageHandler { get; set; }
 
         /// <summary>
-        /// Gets or sets TelnyxNetVersion.
+        /// Gets or sets HttpTimeSpan.
         /// </summary>
         public static TimeSpan? HttpTimeSpan { get; set; }
 
