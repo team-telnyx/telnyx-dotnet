@@ -51,5 +51,11 @@
         /// </summary>
         [JsonProperty("regulatory_requirements")]
         public List<RegulatoryRequirement> RegulatoryRequirements { get; set; }
+
+        /// <summary>
+        /// Gets or sets Features.
+        /// </summary>
+        [JsonProperty("features")]
+        public List<Feature> Features { get; set; }
     }
 }
