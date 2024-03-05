@@ -2,8 +2,8 @@
 {
     using System.Threading.Tasks;
     using Telnyx;
-    using Telnyx.net.Entities.PhoneNumbers.InboundChannels;
-    using Telnyx.net.Services.PhoneNumbers.InboundChannels;
+    using Telnyx.net.Entities.InboundChannels;
+    using Telnyx.net.Services.InboundChannels;
     using Xunit;
 
     public class InboundChannelServiceTest : BaseTelnyxTest

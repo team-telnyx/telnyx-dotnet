@@ -1,19 +1,31 @@
-﻿namespace Telnyx.net.Services.Wireless.MobileOperatorNetworks
+﻿using Newtonsoft.Json;
+
+namespace Telnyx.net.Services.Wireless.MobileOperatorNetworks
 {
     public class ListMobileOperatorNetworksOptions : ListOptions
     {
-        public string FilterNameStartsWith { get; set; }
+        [JsonProperty("filter[name][starts_with]")]
+        public string NameStartsWith { get; set; }
 
-        public string FilterNameContains { get; set; }
+        [JsonProperty("filter[name][contains]")]
+        public string NameContains { get; set; }
 
-        public string FilterNameEndsWith { get; set; }
+        [JsonProperty("filter[name][ends_with]")]
+        public string NameEndsWith { get; set; }
 
-        public string FilterCountryCode { get; set; }
+        [JsonProperty("filter[country_code]")]
+        public string CountryCode { get; set; }
 
-        public string FilterMcc { get; set; }
+        [JsonProperty("filter[mcc]")]
+        public string Mcc { get; set; }
 
-        public string FilterMnc { get; set; }
+        [JsonProperty("filter[mnc]")]
+        public string Mnc { get; set; }
 
-        public string FilterTadig { get; set; }
+        [JsonProperty("filter[tadig]")]
+        public string Tadig { get; set; }
+
+        [JsonProperty("filter[network_preferences_enabled]")]
+        public bool? NetworkPreferencesEnabled { get; set; }
     }
 }

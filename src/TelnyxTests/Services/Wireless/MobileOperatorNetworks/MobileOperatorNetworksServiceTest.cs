@@ -25,13 +25,13 @@
             {
                 PageNumber = 1,
                 PageSize = 20,
-                FilterNameStartsWith = null,
-                FilterNameContains = null,
-                FilterNameEndsWith = null,
-                FilterCountryCode = null,
-                FilterMcc = null,
-                FilterMnc = null,
-                FilterTadig = null
+                NameStartsWith = null,
+                NameContains = null,
+                NameEndsWith = null,
+                CountryCode = null,
+                Mcc = null,
+                Mnc = null,
+                Tadig = null
             };
 
             this.requestOptions = new RequestOptions();

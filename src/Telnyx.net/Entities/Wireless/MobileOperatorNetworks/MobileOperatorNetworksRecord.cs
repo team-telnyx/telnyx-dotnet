@@ -45,6 +45,12 @@
         /// MNC stands for Mobile Network Code. It&#x27;s a two to three decimal digits that identify a network.&lt;br/&gt;&lt;br/&gt;  This code is commonly seen joined with a Mobile Country Code (MCC) in a tuple that allows identifying a carrier known as PLMN (Public Land Mobile Network) code.
         /// </summary>
         [JsonProperty("mnc")]
-        public string Mnc { get; set; }
+        public string Mnc { get; set; }        
+        
+        /// <summary>
+        /// MNC stands for Mobile Network Code. It&#x27;s a two to three decimal digits that identify a network.&lt;br/&gt;&lt;br/&gt;  This code is commonly seen joined with a Mobile Country Code (MCC) in a tuple that allows identifying a carrier known as PLMN (Public Land Mobile Network) code.
+        /// </summary>
+        [JsonProperty("network_preferences_enabled")]
+        public string NetworkPreferencesEnabled { get; set; }
     }
 }

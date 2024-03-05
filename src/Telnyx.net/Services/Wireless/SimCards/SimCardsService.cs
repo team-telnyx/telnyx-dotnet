@@ -1,10 +1,12 @@
 ﻿namespace Telnyx.net.Services.Wireless.SimCards
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading;
     using System.Threading.Tasks;
     using Telnyx.net.Entities;
     using Telnyx.net.Entities.Wireless.SimCards;
+    using Telnyx.net.Services.Wireless.SimCards.SIMCardNetworkPreference;
 
     public class SimCardsService : Service<SimCardRecord>,
         IListable<SimCardRecord, ListOptions>,
@@ -19,7 +21,7 @@
 
         private readonly SimCardBulkNetworkPreferenceService simCardBulkNetworkPreferenceService;
 
-        private readonly SimCardNetworkPreferenceService simCardNetworkPreferenceService;
+        private readonly SIMCardNetworkPreferenceService simCardNetworkPreferenceService;
 
         public override string BasePath => "/sim_cards";
 
@@ -29,7 +31,7 @@
             this.simCardDisableService = new SimCardDisableService();
             this.simCardRegisterService = new SimCardRegisterService();
             this.simCardBulkNetworkPreferenceService = new SimCardBulkNetworkPreferenceService();
-            this.simCardNetworkPreferenceService = new SimCardNetworkPreferenceService();
+            this.simCardNetworkPreferenceService = new SIMCardNetworkPreferenceService();
         }
 
         [ExcludeFromCodeCoverage] // API Mock not working for this endpoint
@@ -118,36 +120,66 @@
             return await this.simCardBulkNetworkPreferenceService.UpdateAsync(updateOptions, requestOptions, cancellationToken);
         }
 
-        [ExcludeFromCodeCoverage] // API Mock not working for this endpoint
-        public MobileOperatorNetworksPreferencesRecord GetNetworkPreference(string id, BaseOptions baseOptions, RequestOptions requestOptions = null)
+        public MobileOperatorNetworksPreferencesRecord GetNetworkPreference(string id, BaseOptions baseOptions)
         {
-            return this.simCardNetworkPreferenceService.Get(id, baseOptions, requestOptions);
+            throw new NotImplementedException();
         }
 
-        [ExcludeFromCodeCoverage] // API Mock not working for this endpoint
-        public async Task<MobileOperatorNetworksPreferencesRecord> GetNetworkPreferenceAsync(string id, BaseOptions baseOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public MobileOperatorNetworksPreferencesRecord SetNetworkPreference(string id, SimCardNetworkPreferenceUpdateOptions baseOptions)
         {
-            return await this.simCardNetworkPreferenceService.GetAsync(id, baseOptions, requestOptions, cancellationToken);
+            throw new NotImplementedException();
         }
 
-        public MobileOperatorNetworksPreferencesRecord SetNetworkPreference(string id, BaseOptions baseOptions, RequestOptions requestOptions = null)
+        public Task<MobileOperatorNetworksPreferencesRecord> SetNetworkPreferenceAsync(string id, SimCardNetworkPreferenceUpdateOptions baseOptions)
         {
-            return this.simCardNetworkPreferenceService.Update(id, baseOptions, requestOptions);
+            throw new NotImplementedException();
         }
 
-        public async Task<MobileOperatorNetworksPreferencesRecord> SetNetworkPreferenceAsync(string id, BaseOptions baseOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public MobileOperatorNetworksPreferencesRecord DeleteNetworkPreference(string id)
         {
-            return await this.simCardNetworkPreferenceService.UpdateAsync(id, baseOptions, requestOptions, cancellationToken);
+            throw new NotImplementedException();
         }
 
-        public MobileOperatorNetworksPreferencesRecord DeleteNetworkPreference(string id, RequestOptions requestOptions = null)
+        public Task<MobileOperatorNetworksPreferencesRecord> DeleteNetworkPreferenceAsync(string id)
         {
-            return this.simCardNetworkPreferenceService.Delete(id, requestOptions);
+            throw new NotImplementedException();
         }
 
-        public async Task<MobileOperatorNetworksPreferencesRecord> DeleteNetworkPreferenceAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        public Task<MobileOperatorNetworksPreferencesRecord> GetNetworkPreferenceAsync(string id, BaseOptions baseOptions)
         {
-            return await this.simCardNetworkPreferenceService.DeleteAsync(id, requestOptions, cancellationToken);
+            throw new NotImplementedException();
         }
+
+        //[ExcludeFromCodeCoverage] // API Mock not working for this endpoint
+        //public MobileOperatorNetworksPreferencesRecord GetNetworkPreference(string id, BaseOptions baseOptions, RequestOptions requestOptions = null)
+        //{
+        //    return this.simCardNetworkPreferenceService.Get(id, baseOptions, requestOptions);
+        //}
+
+        //[ExcludeFromCodeCoverage] // API Mock not working for this endpoint
+        //public async Task<MobileOperatorNetworksPreferencesRecord> GetNetworkPreferenceAsync(string id, BaseOptions baseOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        //{
+        //    return await this.simCardNetworkPreferenceService.GetAsync(id, baseOptions, requestOptions, cancellationToken);
+        //}
+
+        //public MobileOperatorNetworksPreferencesRecord SetNetworkPreference(string id, BaseOptions baseOptions, RequestOptions requestOptions = null)
+        //{
+        //    return this.simCardNetworkPreferenceService.Update(id, baseOptions, requestOptions);
+        //}
+
+        //public async Task<MobileOperatorNetworksPreferencesRecord> SetNetworkPreferenceAsync(string id, BaseOptions baseOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        //{
+        //    return await this.simCardNetworkPreferenceService.UpdateAsync(id, baseOptions, requestOptions, cancellationToken);
+        //}
+
+        //public MobileOperatorNetworksPreferencesRecord DeleteNetworkPreference(string id, RequestOptions requestOptions = null)
+        //{
+        //    return this.simCardNetworkPreferenceService.Delete(id, requestOptions);
+        //}
+
+        //public async Task<MobileOperatorNetworksPreferencesRecord> DeleteNetworkPreferenceAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
+        //{
+        //    return await this.simCardNetworkPreferenceService.DeleteAsync(id, requestOptions, cancellationToken);
+        //}
     }
 }

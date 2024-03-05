@@ -6,7 +6,8 @@ namespace TelnyxTests.Services.Numbers.Reservation
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Telnyx;
+    using Telnyx.net.Entities.Reservations;
+    using Telnyx.net.Services.Reservations;
     using Xunit;
 
     public class NumberReservationsServiceTest : BaseTelnyxTest

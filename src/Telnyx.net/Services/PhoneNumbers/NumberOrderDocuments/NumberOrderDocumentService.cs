@@ -29,6 +29,16 @@
             return this.ListEntities(options, reqOpts);
         }
 
+        public async Task<NumberOrderDocument> GetNumberOrderDocumentAsync(string id, BaseOptions options = null, RequestOptions reqOpts = null, CancellationToken cancellationToken = default)
+        {
+            return await this.GetEntityAsync(id, options, reqOpts, parentToken: "data", cancellationToken);
+        }
+
+        public NumberOrderDocument GetNumberOrderDocument(string id, BaseOptions options = null, RequestOptions reqOpts = null)
+        {
+            return this.GetEntity(id, options, reqOpts, parentToken: "data");
+        }
+
         public NumberOrderDocument CreateumberOrderDocument(NumberOrderDocumentCreateOptions sendOptions, RequestOptions requestOptions = null)
         {
             return this.CreateEntity(sendOptions, requestOptions);

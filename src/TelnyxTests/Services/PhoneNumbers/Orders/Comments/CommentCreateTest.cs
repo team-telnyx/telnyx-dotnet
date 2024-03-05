@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
     using Telnyx;
     using Telnyx.net.Entities;
-    using Telnyx.net.Entities.PhoneNumbers.Orders.Comments;
     using Telnyx.net.Services.PhoneNumbers.Orders.Comments;
     using Xunit;
 

@@ -30,12 +30,12 @@
             return await this.ListEntitiesAsync(listOptions, reqOpts, string.Empty, ct);
         }
 
-        public AccessIPAddress CreateAllAccessIPAddresses(AccessIPAddressCreateOptions createOptions, RequestOptions reqOpts = null)
+        public AccessIPAddress CreateAllAccessIPAddresses(UpsertAccessIPAddress createOptions, RequestOptions reqOpts = null)
         {
             return this.CreateEntity(createOptions, reqOpts);
         }
 
-        public async Task<AccessIPAddress> CreateAllAccessIPAddressesAsync(AccessIPAddressCreateOptions createOptions, RequestOptions reqOpts = null, CancellationToken ct = default)
+        public async Task<AccessIPAddress> CreateAllAccessIPAddressesAsync(UpsertAccessIPAddress createOptions, RequestOptions reqOpts = null, CancellationToken ct = default)
         {
             return await this.CreateEntityAsync(createOptions, reqOpts, parentToken: null, cancellationToken: ct);
         }

@@ -18,7 +18,7 @@
         private readonly CallControlBridgeService callControlBridgeService;
         private readonly CallControlForkStartService callControlForkStartService;
         private readonly CallControlForkStopService callControlForkStopService;
-        private readonly CallControlGatherService callControlGatherService;
+private readonly CallControlGatherService callControlGatherService;
         private readonly CallControlGatherUsingAudioService callControlGatherUsingAudioService;
         private readonly CallControlGatherUsingSpeakService callControlGatherUsingSpeakService;
         private readonly CallControlHangupService callControlHangupService;
@@ -41,7 +41,7 @@
             this.callControlBridgeService = new CallControlBridgeService();
             this.callControlForkStartService = new CallControlForkStartService();
             this.callControlForkStopService = new CallControlForkStopService();
-            this.callControlGatherService = new CallControlGatherService();
+this.callControlGatherService = new CallControlGatherService();
             this.callControlGatherUsingAudioService = new CallControlGatherUsingAudioService();
             this.callControlGatherUsingSpeakService = new CallControlGatherUsingSpeakService();
             this.callControlHangupService = new CallControlHangupService();

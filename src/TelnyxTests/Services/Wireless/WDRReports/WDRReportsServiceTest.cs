@@ -10,7 +10,7 @@
 
     public class WDRReportsServiceTest : BaseTelnyxTest
     {
-        private readonly WDRReportsService service;
+        private readonly WDRDetailReportsService service;
         private readonly ListOptions listOptions;
         private readonly CreateWDRReportsOptions createOptions;
         private readonly RequestOptions requestOptions;
@@ -20,7 +20,7 @@
         public WDRReportsServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {
-            this.service = new WDRReportsService();
+            this.service = new WDRDetailReportsService();
 
             this.listOptions = new ListOptions();
 

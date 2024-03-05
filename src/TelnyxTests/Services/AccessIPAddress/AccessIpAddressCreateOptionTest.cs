@@ -15,7 +15,7 @@
     public class AccessIPAddressCreateTest : BaseTelnyxTest
     {
         private readonly AccessIPAddressService service;
-        private readonly AccessIPAddressCreateOptions AccessIPAddressCreateOptions;
+        private readonly UpsertAccessIPAddress AccessIPAddressCreateOptions;
         private readonly RequestOptions requestOptions;
         private readonly BaseOptions baseOptions;
         private readonly string json;
@@ -27,7 +27,7 @@
             this.service = new AccessIPAddressService();
             this.baseOptions = new BaseOptions();
             this.requestOptions = new RequestOptions();
-            this.AccessIPAddressCreateOptions = new AccessIPAddressCreateOptions()
+            this.AccessIPAddressCreateOptions = new UpsertAccessIPAddress()
             {
                 Description = "description",
                 IpAddress = "string",

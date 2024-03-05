@@ -17,7 +17,7 @@
     {
         private readonly AccessIPAddressService service;
         private readonly AccessIPAddressListOptions AccessIPAddressListOptions;
-        private readonly AccessIPAddressCreateOptions AccessIPAddressCreateOptions;
+        private readonly UpsertAccessIPAddress AccessIPAddressCreateOptions;
         private readonly RequestOptions requestOptions;
         private readonly BaseOptions baseOptions;
         private const string Id = "6a09cdc3-8948-47f0-aa62-74ac943d6c58";
@@ -36,7 +36,7 @@
                 CreatedAtGreaterThan = "string",
                 CreatedAtLessThan = "string",
             };
-            this.AccessIPAddressCreateOptions = new AccessIPAddressCreateOptions();
+            this.AccessIPAddressCreateOptions = new UpsertAccessIPAddress();
         }
 
         [Fact]

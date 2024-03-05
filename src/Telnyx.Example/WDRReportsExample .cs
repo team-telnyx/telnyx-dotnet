@@ -10,7 +10,7 @@ namespace Telnyx.Example
 {
     public class WDRReportsExample
     {
-        private readonly WDRReportsService service = new WDRReportsService();
+        private readonly WDRDetailReportsService service = new WDRDetailReportsService();
 
         private const string id = "6a09cdc3-8948-47f0-aa62-74ac943d6c58";
 

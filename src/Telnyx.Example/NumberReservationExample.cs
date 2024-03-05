@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Telnyx.net.Entities.Reservations;
+using Telnyx.net.Services.Reservations;
 
 namespace Telnyx.Example
 {
