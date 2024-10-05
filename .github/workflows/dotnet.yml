@@ -15,18 +15,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup dotnet 2.1.x
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '2.1.x'
-    - name: Setup .NET 3.1.x
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '3.1.x'
     - name: Setup .NET 5.0.x
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '5.0.x'
+        dotnet-version: '7.0.x'
     - name: setup-telnyx-mock
       run: source ./.github/scripts/before_install.sh
     - name: Restore dependencies
