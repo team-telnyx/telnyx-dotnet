@@ -21,7 +21,7 @@
         [EnumMember(Value = "greeting_end")]
         GreetingEnd = 4,
 
-        [EnumMember(Value = "premium_detect")]
-        PremiumDetect = 5,
+        [EnumMember(Value = "premium")]
+        Premium = 5,
     }
 }
