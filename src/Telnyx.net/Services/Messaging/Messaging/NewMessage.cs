@@ -3,6 +3,7 @@ namespace Telnyx
     using System;
     using System.Collections.Generic;
     using Newtonsoft.Json;
+    using Telnyx.net.Entities.Enum.DetailRecords;
 
     /// <summary>
     /// NewMessage.
@@ -68,5 +69,17 @@ namespace Telnyx
         /// </summary>
         [JsonProperty("ignore_wire_type")]
         public bool? IgnoreWireType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the protocol for sending the message, either SMS or MMS.
+        /// </summary>
+        [JsonProperty("type")]
+        public MessageType? Type { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether to automatically detect if an SMS message is unusually long and exceeds a recommended limit of message parts.
+        /// </summary>
+        [JsonProperty("auto_detect")]
+        public bool? AutoDetect { get; set; }
     }
 }
