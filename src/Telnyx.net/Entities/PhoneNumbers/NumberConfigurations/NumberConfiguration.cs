@@ -34,6 +34,8 @@
         PortedOut = 7,
         [EnumMember(Value = "port-out-pending")]
         PortOutPending = 8,
+        [EnumMember(Value = "requirement-info-under-review")]
+        RequirementInfoUnderReview = 9,
     }
 
     [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
