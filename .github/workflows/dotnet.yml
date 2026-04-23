@@ -18,7 +18,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '7.0.x'
+        dotnet-version: '8.0.x'
     - name: setup-telnyx-mock
       run: source ./.github/scripts/before_install.sh
     - name: Restore dependencies
@@ -27,3 +27,5 @@ jobs:
       run: dotnet build ./src/Telnyx.net.sln /clp:ErrorsOnly
     - name: Test
       run: dotnet test ./src/TelnyxTests/TelnyxTests.csproj --configuration Release /clp:ErrorsOnly
+      env:
+        VSTEST_CONNECTION_TIMEOUT: 300
