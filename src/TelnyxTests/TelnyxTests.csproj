@@ -5,7 +5,7 @@
     <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
     <AssemblyName>TelnyxTests</AssemblyName>
     <PackageId>TelnyxTests</PackageId>
-    <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
+    <!-- RuntimeIdentifiers removed: win10-x64 not recognized on Linux runners for net7.0+ -->
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
 
