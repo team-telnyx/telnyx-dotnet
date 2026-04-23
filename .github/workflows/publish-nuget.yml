@@ -36,22 +36,3 @@ jobs:
 
       - name: Push to NuGet
         run: dotnet nuget push ./artifacts/*.nupkg --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}" --source https://www.nuget.org/api/v2/package
-
-      - name: Tweet about release
-        uses: ethomson/send-tweet-action@v1
-        with:
-          status: >
-            We have a new ${{ github.event.release.tag_name }} release of our
-            ${{ fromJson('{
-              "team-telnyx/telnyx-python": "Python",
-              "team-telnyx/telnyx-ruby": "Ruby",
-              "team-telnyx/telnyx-node": "Node",
-              "team-telnyx/telnyx-java": "Java",
-              "team-telnyx/telnyx-dotnet": "Dotnet",
-              "team-telnyx/telnyx-php": "PHP"
-            }')[github.event.repository.full_name] }} SDK!
-            Check out the details here: ${{ github.event.release.html_url }}
-          consumer-key: ${{ secrets.TWITTER_HANDLE_TELNYX_DEV_CONSUMER_API_KEY }}
-          consumer-secret: ${{ secrets.TWITTER_HANDLE_TELNYX_DEV_CONSUMER_API_SECRET }}
-          access-token: ${{ secrets.TWITTER_HANDLE_TELNYX_DEV_ACCESS_TOKEN }}
-          access-token-secret: ${{ secrets.TWITTER_HANDLE_TELNYX_DEV_ACCESS_TOKEN_SECRET }}
