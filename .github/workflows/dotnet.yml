@@ -29,3 +29,5 @@ jobs:
       run: dotnet build ./src/Telnyx.net.sln /clp:ErrorsOnly
     - name: Test
       run: dotnet test ./src/TelnyxTests/TelnyxTests.csproj --configuration Release /clp:ErrorsOnly
+      env:
+        VSTEST_CONNECTION_TIMEOUT: 300
