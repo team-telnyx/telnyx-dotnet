@@ -2,7 +2,7 @@
   <Import Project="..\..\netfx.props" />
 
   <PropertyGroup>
-    <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <AssemblyName>TelnyxTests</AssemblyName>
     <PackageId>TelnyxTests</PackageId>
     <!-- RuntimeIdentifiers removed: win10-x64 not recognized on Linux runners for net7.0+ -->
