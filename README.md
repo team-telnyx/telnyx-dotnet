@@ -16,11 +16,11 @@ See the [.NET API docs](https://developers.telnyx.com/docs/api/v2/overview?lang=
 
 From the command line:
 
-	nuget install Telnyx.net
+        nuget install Telnyx.net
 
 From Package Manager:
 
-	PM> Install-Package Telnyx.net
+        PM> Install-Package Telnyx.net
 
 From within Visual Studio:
 
@@ -47,7 +47,38 @@ var numberReservationsService = new NumberReservationsService();
 numberReservationsService.Get("PHONE_NUMBER_ID", new RequestOptions { ApiKey = "YOUR_API_KEY" });
 ```
 
-You can obtain your secret API key from the [Auth](https://portal.telnyx.com/#/app/auth/v2) section oin the Mission Control Portal.
+You can obtain your secret API key from the [Auth](https://portal.telnyx.com/#/app/auth/v2) section in the Mission Control Portal.
+
+### Messaging API - Type and Auto-Detect Parameters
+
+The Messaging API now supports two new parameters:
+
+1. `Type` - Explicitly specify the protocol for sending the message, either SMS or MMS.
+2. `AutoDetect` - Automatically detect if an SMS message is unusually long and exceeds a recommended limit of message parts.
+
+Example usage:
+
+```csharp
+// Send an SMS with auto-detection for long messages
+var sendMessageOptions = new NewMessage
+{
+    From = "+13115552368",
+    To = "+13115552367",
+    Text = "Hello, World! This is a test message demonstrating the use of the Type and AutoDetect parameters.",
+    Type = MessageType.SMS,
+    AutoDetect = true
+};
+
+// Send an MMS with explicit type
+var mmsMessageOptions = new NewMessage
+{
+    From = "+13115552368",
+    To = "+13115552367",
+    Text = "Hello, World! This is an MMS message.",
+    MediaUrls = new List<string> { "https://example.com/image.jpg" },
+    Type = MessageType.MMS
+};
+```
 
 ### Xamarin/Mono Developers (Optional)
 
@@ -107,25 +138,25 @@ The information that can be derived from the `TelnyxResponse` is available from 
 ```csharp
 public class TelnyxResponse
 {
-	// ResponseJson will always tell you the complete json Telnyx returned to Telnyx.net.
-	// this will be the same as the ObjectJson when you execute a create/get/delete call.
-	// however, if you execute a List() method, the ResponseJson will have the full api result
-	// from Telnyx (a phone number list with 10 phone numbers, for example).
-	public string ResponseJson { get; set; }
+        // ResponseJson will always tell you the complete json Telnyx returned to Telnyx.net.
+        // this will be the same as the ObjectJson when you execute a create/get/delete call.
+        // however, if you execute a List() method, the ResponseJson will have the full api result
+        // from Telnyx (a phone number list with 10 phone numbers, for example).
+        public string ResponseJson { get; set; }
 
-	// when you call a List() method, the object json is the object in the response array that represents
-	// the entity. The ResponseJson will be the full array returned from Telnyx on every entity, however,
-	// since that was the full response from Telnyx. ObjectJson is always the same as ResponseJson when
-	// you are doing a regular create/get/delete, because you are dealing with a single object.
-	public string ObjectJson { get; set; }
+        // when you call a List() method, the object json is the object in the response array that represents
+        // the entity. The ResponseJson will be the full array returned from Telnyx on every entity, however,
+        // since that was the full response from Telnyx. ObjectJson is always the same as ResponseJson when
+        // you are doing a regular create/get/delete, because you are dealing with a single object.
+        public string ObjectJson { get; set; }
 
-	// this is the request id of the call. I would recommend logging
-	// this and/or saving it to your database. this is very useful when troubleshooting with Telnyx support
-	public string RequestId { get; set; }
+        // this is the request id of the call. I would recommend logging
+        // this and/or saving it to your database. this is very useful when troubleshooting with Telnyx support
+        public string RequestId { get; set; }
 
-	// this is the request date and time of the call. I would also recommend logging this and/or
-	// saving it to your database, as it tells you when Telnyx processed the request.
-	public DateTime RequestDate { get; set; }
+        // this is the request date and time of the call. I would also recommend logging this and/or
+        // saving it to your database, as it tells you when Telnyx processed the request.
+        public DateTime RequestDate { get; set; }
 }
 ```
 
@@ -230,7 +261,7 @@ to page through and all the results will be returned in the `TelynxList.Data` pr
 
                       };
         res = await numConfigService.ListPhoneNumbersAsync(listOptions);
-	}
+        }
 ```
 
 
