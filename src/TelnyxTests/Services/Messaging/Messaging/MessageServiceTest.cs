@@ -10,6 +10,7 @@ namespace TelnyxTests.Services.Messages.Messages
     using System.Threading.Tasks;
     using Telnyx;
     using Telnyx.net.Entities.Enum;
+    using Telnyx.net.Entities.Enum.DetailRecords;
     using Xunit;
 
     public class MessageServiceTest : BaseTelnyxTest
@@ -80,6 +81,42 @@ namespace TelnyxTests.Services.Messages.Messages
             AssertResponse(message);
         }
 
+        [Fact]
+        public async Task CreateWithTypeAndAutoDetect()
+        {
+            var options = new NewMessage()
+            {
+                MessagingProfileId = Guid.NewGuid(),
+                From = "+18665552368",
+                To = "+18665552367",
+                Text = "Hello, World!",
+                Type = MessageType.SMS,
+                AutoDetect = true
+            };
+
+            var message = await this.service.CreateAsync(options);
+            AssertResponse(message);
+            // Additional assertions could be added here if the mock response included type and auto_detect fields
+        }
+
+        [Fact]
+        public async Task CreateWithMMSType()
+        {
+            var options = new NewMessage()
+            {
+                MessagingProfileId = Guid.NewGuid(),
+                From = "+18665552368",
+                To = "+18665552367",
+                Text = "Hello, World!",
+                MediaUrls = new List<string>() { "https://www.example1.com" },
+                Type = MessageType.MMS
+            };
+
+            var message = await this.service.CreateAsync(options);
+            AssertResponse(message);
+            // Additional assertions could be added here if the mock response included type field
+        }
+
         private static void AssertResponse(OutboundMessage message)
         {
             Assert.NotNull(message);
@@ -89,7 +126,7 @@ namespace TelnyxTests.Services.Messages.Messages
             Assert.Empty(message.Errors);
             Assert.NotNull(message.Parts);
             Assert.NotNull(message.Direction);
-            Assert.Equal(RecordType.MessageEnum, message.RecordType);
+            Assert.Equal(Telnyx.net.Entities.Enum.RecordType.MessageEnum, message.RecordType);
             Assert.NotNull(message.Text);
             Assert.True(message.To.Count > 0);
             Assert.False(message.To.Where(x => x.Status == null).Any());

@@ -5,6 +5,7 @@ namespace Telnyx
     using System.Runtime.Serialization;
     using Newtonsoft.Json;
     using Telnyx.net.Entities.Enum;
+    using Telnyx.net.Entities.Enum.DetailRecords;
     using Telnyx.net.Entities.Messaging.Messaging;
 
     /// <summary>
@@ -27,25 +28,7 @@ namespace Telnyx
             OutboundEnum = 0
         }
 
-        /// <summary>
-        /// The type of message. This value can be either 'sms' or 'mms'.
-        /// </summary>
-        /// <value>This value can be either 'sms' or 'mms'.</value>
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public enum TypeEnum
-        {
-            /// <summary>
-            /// Enum SmsEnum for sms
-            /// </summary>
-            [EnumMember(Value = "sms")]
-            SmsEnum = 0,
-
-            /// <summary>
-            /// Enum MmsEnum for mms
-            /// </summary>
-            [EnumMember(Value = "mms")]
-            MmsEnum = 1
-        }
+        // TypeEnum has been replaced with Telnyx.net.Entities.Enum.DetailRecords.MessageType
 
         /// <summary>
         /// The line-type of the receiver.
@@ -90,7 +73,7 @@ namespace Telnyx
         /// </summary>
         /// <value>Identifies the type of the resource.</value>
         [JsonProperty("record_type")]
-        public RecordType? RecordType { get; set; }
+        public Telnyx.net.Entities.Enum.RecordType? RecordType { get; set; }
 
         /// <summary>
         /// Gets or sets the direction of the message. Inbound messages are sent to you whereas outbound messages are sent from you.
@@ -107,11 +90,11 @@ namespace Telnyx
         public Guid? Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the type of message. This value can be either &#x27;sms&#x27; or &#x27;mms&#x27;.
+        /// Gets or sets the type of message. This value can be either &#x27;SMS&#x27; or &#x27;MMS&#x27;.
         /// </summary>
-        /// <value>The type of message. This value can be either &#x27;sms&#x27; or &#x27;mms&#x27;.</value>
+        /// <value>The type of message. This value can be either &#x27;SMS&#x27; or &#x27;MMS&#x27;.</value>
         [JsonProperty("type")]
-        public TypeEnum? Type { get; set; }
+        public Telnyx.net.Entities.Enum.DetailRecords.MessageType? Type { get; set; }
 
         /// <summary>
         /// Gets or sets sending address (+E.164 formatted phone number, alphanumeric sender, or short code).
