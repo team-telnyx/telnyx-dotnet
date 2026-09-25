@@ -354,3 +354,32 @@ MigrationBackup/
 .ionide/
 
 .vscode/
+
+# Local integration evidence is never public implementation source.
+/compat/snapshots/
+/compat/reports/
+/compat/results/
+/compat/diagnostic-artifacts/
+/compat/testhost-results/
+/compat/dependency-probe/
+/compat/dependency-conflict/
+/compat/probe_net8_dependencies.py
+/compat/dependency-net8-probe.targets
+/*-PROGRESS.md
+/*-FINDINGS.md
+/*-PLAN.md
+/READY-FOR-PR.md
+/PR-BODY.md
+/PRIVATE-*/
+*.dll
+*.exe
+*.zip
+*.pem
+*.key
+.env*
+
+# API model directories are source, not build artifacts.
+!modern/src/Telnyx.Sdk/Models/MeetingSessions/Artifacts/
+!modern/src/Telnyx.Sdk/Models/MeetingSessions/Artifacts/*.cs
+!modern/src/Telnyx.Sdk/Models/ExternalConnections/Releases/
+!modern/src/Telnyx.Sdk/Models/ExternalConnections/Releases/*.cs

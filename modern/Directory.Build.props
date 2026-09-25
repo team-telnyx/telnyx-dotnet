@@ -1,0 +1,35 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Telnyx</Authors>
+    <Company>Telnyx</Company>
+    <PackageTags>sdk;api;http;library</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>Copyright 2026 Telnyx</Copyright>
+    <PackageProjectUrl>https://www.github.com/stainless-sdks/telnyx-csharp</PackageProjectUrl>
+    <RepositoryUrl>https://www.github.com/stainless-sdks/telnyx-csharp</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+
+    <!-- Documentation-->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- Disable missing XML documentation warnings. -->
+    <NoWarn>$(NoWarn),1573,1591</NoWarn>
+
+    <!-- Source link -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <DebugType>embedded</DebugType>
+
+    <TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
+    <LangVersion>12</LangVersion>
+    <Configurations>Debug;Release</Configurations>
+    <BuildPackage>false</BuildPackage>
+    <IsPackable>false</IsPackable>
+    <Deterministic>true</Deterministic>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <!-- Disable deprecation warnings since we may reference our own deprecated symbols. -->
+    <NoWarn>$(NoWarn),0618</NoWarn>
+  </PropertyGroup>
+</Project>

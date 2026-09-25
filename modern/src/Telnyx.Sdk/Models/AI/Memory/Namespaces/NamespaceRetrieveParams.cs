@@ -1,0 +1,131 @@
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Text.Json;
+using Telnyx.Sdk.Core;
+
+namespace Telnyx.Sdk.Models.AI.Memory.Namespaces;
+
+/// <summary>
+/// Whether a write has finished. Both `ingest` and `remember` return an `operation_id`,
+/// and a memory is not recallable until its operation completes — extraction, embedding
+/// and consolidation all run first.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
+/// </summary>
+public record class NamespaceRetrieveParams : ParamsBase
+{
+    public required string Namespace { get; init; }
+
+    public string? OperationID { get; init; }
+
+    public NamespaceRetrieveParams ()
+    {  }
+
+    #pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public NamespaceRetrieveParams (
+        NamespaceRetrieveParams namespaceRetrieveParams
+    ) : base(namespaceRetrieveParams)
+    {
+        this.Namespace = namespaceRetrieveParams.Namespace;
+        this.OperationID = namespaceRetrieveParams.OperationID;
+    }
+    #pragma warning restore CS8618
+
+    public NamespaceRetrieveParams (
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+    }
+
+    #pragma warning disable CS8618
+    [SetsRequiredMembers]
+    NamespaceRetrieveParams (
+        FrozenDictionary<string, JsonElement> rawHeaderData,
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        string namespace_,
+        string operationID
+    )
+    {
+        this._rawHeaderData = new(rawHeaderData);
+        this._rawQueryData = new(rawQueryData);
+        this.Namespace = namespace_;
+        this.OperationID = operationID;
+    }
+    #pragma warning restore CS8618
+
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
+    public static NamespaceRetrieveParams FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawHeaderData,
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        string namespace_,
+        string operationID
+    )
+    {
+        return new(
+            FrozenDictionary.ToFrozenDictionary(rawHeaderData),
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            namespace_,
+            operationID
+        ) ;
+    }
+
+    public override string ToString()
+    =>JsonSerializer.Serialize(FriendlyJsonPrinter.PrintValue(new Dictionary<string, JsonElement>(
+
+    )
+    {
+        ["Namespace"] = JsonSerializer.SerializeToElement(this.Namespace),
+        ["OperationID"] = JsonSerializer.SerializeToElement(this.OperationID),
+        ["HeaderData"] = FriendlyJsonPrinter.PrintValue(JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())),
+        ["QueryData"] = FriendlyJsonPrinter.PrintValue(JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())),
+    }), ModelBase.ToStringSerializerOptions);
+
+    public virtual bool Equals(NamespaceRetrieveParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this.Namespace.Equals(other.Namespace)&&(this.OperationID?.Equals(other.OperationID) ?? other.OperationID == null)&&this._rawHeaderData.Equals(other._rawHeaderData)&&this._rawQueryData.Equals(other._rawQueryData) ;
+    }
+
+    public override Uri Url(ClientOptions options)
+    {
+        return this.ResolvePaginationUrl(new UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/memory/namespaces/{0}/operations/{1}",
+            this.Namespace,
+            this.OperationID)
+        )
+        {
+            Query = this.QueryString(options, new() { BearerAuth = true })
+        }.Uri) ;
+    }
+
+    internal override void AddHeadersToRequest(
+        HttpRequestMessage request, ClientOptions options
+    )
+    {
+        ParamsBase.AddDefaultHeaders(
+            request, options, new() { BearerAuth = true }
+        );
+        foreach (var item in this.RawHeaderData)
+        {
+            // Explicit per-request headers replace defaults (case-insensitive).
+            // Callers own these overrides, including on unauthenticated routes.
+            request.Headers.Remove(item.Key);
+            ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
+        }
+    }
+
+    public override int GetHashCode()
+    { return 0; }
+}

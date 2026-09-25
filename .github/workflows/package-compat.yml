@@ -1,0 +1,104 @@
+name: Package compatibility (diagnostic, not release)
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  generation-provenance:
+    runs-on: ubuntu-latest
+    steps:
+      # No PR code, manifest, fixture or mock success can authorize release.
+      - name: Fail closed until protected producer and verifier are provisioned
+        run: |
+          printf '%s\n' 'BLOCKED: trusted exact-head generation provenance is not provisioned.' >&2
+          exit 1
+  diagnostic-artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.423'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compose real candidate for diagnostics ONLY
+        run: python compat/build_diagnostic_candidate.py
+      - name: Policy and real-artifact negative controls
+        run: python -m unittest discover -s compat/tests -v
+      - name: Record exact artifact hash
+        run: sha256sum compat/diagnostic-artifacts/Telnyx.net.4.0.0-preview.1.nupkg > compat/diagnostic-artifacts/candidate.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nonpublish-candidate-${{ github.sha }}
+          if-no-files-found: error
+          path: |
+            compat/diagnostic-artifacts/Telnyx.net.4.0.0-preview.1.nupkg
+            compat/diagnostic-artifacts/candidate.sha256
+            compat/diagnostic-artifacts/manifest.json
+  linux-legacy:
+    needs: diagnostic-artifact
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.423'
+      - uses: actions/download-artifact@v4
+        with:
+          name: nonpublish-candidate-${{ github.sha }}
+          path: compat/diagnostic-artifacts
+      - run: sha256sum --check compat/diagnostic-artifacts/candidate.sha256
+      - name: Real package legacy matrix and injected mock wire
+        env:
+          COMPAT_RUNTIME_PREFIX: sudo --preserve-env=DOTNET_ROOT unshare --net -- sh -c 'ip link set lo up && exec "$@"' --
+        run: python3 compat/run.py --dotnet "$(command -v dotnet)" --candidate compat/diagnostic-artifacts/Telnyx.net.4.0.0-preview.1.nupkg
+      - name: Mixed consumers, exact-8 pins and safe URI tests
+        env:
+          COMPAT_RUNTIME_PREFIX: sudo --preserve-env=DOTNET_ROOT unshare --net -- sh -c 'ip link set lo up && exec "$@"' --
+        run: python3 compat/verify_stj8_refresh.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: linux-diagnostic-results
+          path: |
+            compat/results/**/results.json
+            compat/results/**/commands.json
+  windows-legacy:
+    needs: diagnostic-artifact
+    runs-on: windows-2022
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [net45, net452, net461, net462, net472, net48]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: microsoft/setup-msbuild@v2
+      - uses: NuGet/setup-nuget@v2
+        with:
+          nuget-version: '6.11.2'
+      - uses: actions/download-artifact@v4
+        with:
+          name: nonpublish-candidate-${{ github.sha }}
+          path: compat/diagnostic-artifacts
+      - name: Verify exact Linux-built candidate
+        shell: pwsh
+        run: |
+          $expected = (Get-Content compat/diagnostic-artifacts/candidate.sha256).Split(' ')[0]
+          $actual = (Get-FileHash compat/diagnostic-artifacts/Telnyx.net.4.0.0-preview.1.nupkg -Algorithm SHA256).Hash
+          if ($expected -ne $actual) { throw 'Candidate artifact hash mismatch' }
+      - name: Non-SDK packages.config restore and unrecompiled runtime
+        shell: pwsh
+        run: ./compat/windows.ps1 -Candidate compat/diagnostic-artifacts/Telnyx.net.4.0.0-preview.1.nupkg -Target '${{ matrix.target }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-${{ matrix.target }}-diagnostic-results
+          path: compat/reports/windows
