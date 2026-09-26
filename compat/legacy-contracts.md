@@ -18,7 +18,8 @@ limitation; their success is not a claim that the SDK operation works today.
 Prism server on loopback port 4013. There is no automatic fallback after a current
 request fails. The bootstrap checks both digests before installing dependencies,
 refuses occupied ports, verifies all server processes and health checks, and
-cleans up all child servers on exit.
+cleans up all child servers on bootstrap failure. Successful bootstrap deliberately
+leaves them running for later CI steps; ephemeral hosted-runner teardown ends them.
 
 Historical source:
 - Repository: `team-telnyx/openapi`
