@@ -26,7 +26,7 @@ namespace TelnyxTests.Services.RoomSessions
 
             this.createOptions = new UpsertRoomSession()
             {
-                RoomSessionId = Guid.Parse("")
+                RoomSessionId = Guid.Parse("0ccc7b54-4df3-4bca-a65a-3da1ecc777f0")
             };
 
 
