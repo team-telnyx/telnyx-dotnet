@@ -40,7 +40,7 @@ namespace TelnyxTests.Infrastructure.Middleware
             };
             var requestLine = await CaptureFaxRequest(options, asynchronous, culture);
 
-            Assert.Equal("GET /v2/faxes?filter[count]=42&filter[enabled]=True&filter[direction][eq]=inbound& HTTP/1.1", requestLine);
+            Assert.Equal("GET /v2/faxes?filter[count]=42&filter[enabled]=true&filter[direction][eq]=inbound& HTTP/1.1", requestLine);
         }
 
         [Theory]
@@ -99,6 +99,30 @@ namespace TelnyxTests.Infrastructure.Middleware
                 listener.Stop();
                 TelnyxConfiguration.SetApiBase(oldBase);
                 TelnyxConfiguration.SetApiKey(oldKey);
+                CultureInfo.CurrentCulture = oldCulture;
+            }
+        }
+
+        [Theory]
+        [InlineData("en-US")]
+        [InlineData("fr-FR")]
+        public void BracketedScalarValuesUseInvariantWireTypes(string culture)
+        {
+            var oldCulture = CultureInfo.CurrentCulture;
+            try
+            {
+                CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo(culture);
+                var query = Telnyx.Infrastructure.Middleware.RequestStringBuilder.BuildRequestStringFromJObject(
+                    new Newtonsoft.Json.Linq.JObject
+                    {
+                        ["filter[enabled]"] = true,
+                        ["filter[disabled]"] = false,
+                        ["filter[amount]"] = 1.25m,
+                    });
+                Assert.Equal("filter[enabled]=true&filter[disabled]=false&filter[amount]=1.25&", query);
+            }
+            finally
+            {
                 CultureInfo.CurrentCulture = oldCulture;
             }
         }

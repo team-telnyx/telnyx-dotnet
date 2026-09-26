@@ -6,10 +6,10 @@
     [JsonConverter(typeof(StringEnumConverter))]
     public enum AssociatedRecordType
     {
-        [JsonProperty("account")]
+        [System.Runtime.Serialization.EnumMember(Value = "account")]
         Account,
 
-        [JsonProperty("phone_number")]
+        [System.Runtime.Serialization.EnumMember(Value = "phone_number")]
         PhoneNumber
     }
 }

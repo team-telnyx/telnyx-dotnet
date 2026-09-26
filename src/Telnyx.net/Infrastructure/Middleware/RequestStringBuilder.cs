@@ -78,7 +78,12 @@ namespace Telnyx.Infrastructure.Middleware
                     continue; //dont need to add to query string below move to the next property
                 }
 
-                stringBuilder.Append($"{property.Key}={WebUtility.UrlEncode(value.ToString())}");
+                // JSON scalar formatting is invariant and emits lowercase booleans.
+                // Keep strings (including ISO timestamps) verbatim before URL encoding.
+                var text = value.Type == JTokenType.Boolean || value.Type == JTokenType.Float
+                    ? value.ToString(Formatting.None)
+                    : value.ToString();
+                stringBuilder.Append($"{property.Key}={WebUtility.UrlEncode(text)}");
                 stringBuilder.Append("&");
             }
 
