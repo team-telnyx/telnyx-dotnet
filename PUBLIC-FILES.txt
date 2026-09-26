@@ -4183,6 +4183,7 @@ modern/src/Telnyx.Sdk/Shims.cs
 modern/src/Telnyx.Sdk/Telnyx.Sdk.csproj
 modern/src/Telnyx.Sdk/TelnyxClient.cs
 packaging/Telnyx.net.Package.csproj
+src/Telnyx.net/Entities/Enum/Notification/NotificationsEventsConditions/AssociatedRecordType.cs
 src/Telnyx.net/Entities/Messaging/Messaging/Error.cs
 src/Telnyx.net/Entities/Messaging/Messaging_Profiles/NewMessagingProfile.cs
 src/Telnyx.net/Entities/Networking/Networks/UpsertNetwork.cs
@@ -4204,6 +4205,7 @@ src/Telnyx.net/Services/ChannelZones/ChannelZoneService.cs
 src/Telnyx.net/Services/Comment/CommentAsReadService.cs
 src/Telnyx.net/Services/Faxes/Applications/FaxActionCancelService.cs
 src/Telnyx.net/Services/InboundChannels/InboundChannelService.cs
+src/Telnyx.net/Services/Messaging/Messaging_Profiles/MessagingProfileAutoResponseConfigService.cs
 src/Telnyx.net/Services/PhoneNumbers/PhoneNumberAssignmentByProfiles/PhoneNumberAssignmentByProfileService.cs
 src/Telnyx.net/Services/PortingOrders/PortingOrderActivateService.cs
 src/Telnyx.net/Services/PortingOrders/PortingOrderComments/PortingOrderCommentService.cs
@@ -4229,8 +4231,10 @@ src/TelnyxTests/Services/Comments/CommentAndSimDeviceWireTest.cs
 src/TelnyxTests/Services/CustomerServiceRecords/CustomerServiceRecordServiceTest.cs
 src/TelnyxTests/Services/DynamicEmergencyAddresses/DynamicEmergencyAddressListTest.cs
 src/TelnyxTests/Services/Faxes/FaxServiceTest.cs
+src/TelnyxTests/Services/Messaging/Messaging_Profiles/MessagingProfileAutoResponseConfigWireTest.cs
 src/TelnyxTests/Services/Messaging/Messaging_Profiles/MessagingProfileServiceTest.cs
 src/TelnyxTests/Services/Networking/NetworkServiceTest.cs
+src/TelnyxTests/Services/Notifications/NotificationsEventsConditions/NotificationsEventsConditionsTest.cs
 src/TelnyxTests/Services/PhoneNumbers/Orders/Comments/CommentCreateTest.cs
 src/TelnyxTests/Services/PortingOrders/PortingOrderComments/PortingOrderCommentServiceTest.cs
 src/TelnyxTests/Services/PortingOrders/PortingOrderWireTest.cs
