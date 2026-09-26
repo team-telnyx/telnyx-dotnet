@@ -320,6 +320,24 @@ namespace Telnyx.Infrastructure
         {
             if (method != HttpMethod.Post && method != new HttpMethod("PATCH") && method != HttpMethod.Put)
             {
+                // ParameterBuilder carries body options as JSON after '?'. Only
+                // non-body methods translate that internal representation into a query.
+                var queryStart = url.IndexOf('?');
+                if (queryStart >= 0 && queryStart + 1 < url.Length && url[queryStart + 1] == '{')
+                {
+                    using (var reader = new Newtonsoft.Json.JsonTextReader(new StringReader(url.Substring(queryStart + 1))))
+                    {
+                        reader.DateParseHandling = Newtonsoft.Json.DateParseHandling.None;
+                        var options = Newtonsoft.Json.Linq.JObject.Load(reader);
+                        // ParameterBuilder emits compact, single-line JSON. Stop at
+                        // its closing token so '&' inside values is not a delimiter.
+                        var suffix = url.Substring(queryStart + 1 + reader.LinePosition);
+                        url = url.Substring(0, queryStart + 1)
+                            + BuildPlainQuery(options)
+                            + suffix.TrimStart('&');
+                    }
+                }
+
                 return new HttpRequestMessage(method, new Uri(url));
             }
 
@@ -338,6 +356,29 @@ namespace Telnyx.Infrastructure
             };
 
             return request;
+        }
+
+        private static string BuildPlainQuery(Newtonsoft.Json.Linq.JObject options)
+        {
+            var query = new StringBuilder();
+            foreach (var property in options.Properties())
+            {
+                var values = property.Value is Newtonsoft.Json.Linq.JArray array
+                    ? array.AsEnumerable()
+                    : new[] { property.Value };
+                foreach (var token in values)
+                {
+                    var value = token.Type == Newtonsoft.Json.Linq.JTokenType.String
+                        ? (string)token
+                        : token.ToString(Newtonsoft.Json.Formatting.None);
+                    query.Append(WebUtility.UrlEncode(property.Name))
+                        .Append('=')
+                        .Append(WebUtility.UrlEncode(value))
+                        .Append('&');
+                }
+            }
+
+            return query.ToString();
         }
 
         private static string GetAuthorizationHeaderValue(string apiKey)

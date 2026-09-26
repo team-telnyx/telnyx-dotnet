@@ -34,6 +34,14 @@ trap cleanup_failed_mock EXIT
 mkdir -p "$mock_root/prism"
 cp .github/mock/package.json .github/mock/package-lock.json "$mock_root/prism/"
 (cd "$mock_root/prism" && npm ci --ignore-scripts)
+# Preserve absence of optional deepObject values instead of inventing []/{}.
+# Exact decoder bytes are checked; schema validation remains enabled.
+decoder="$mock_root/prism/node_modules/@stoplight/prism-http/dist/validator/deserializers/style/deepObject.js"
+node .github/mock/patch-deep-object.cjs "$decoder"
+node .github/mock/test-deep-object.cjs "$decoder"
+sampler="$mock_root/prism/node_modules/@stoplight/json-schema-sampler"
+node .github/mock/patch-int64-sample.cjs "$sampler/dist/json-schema-sampler.js"
+node .github/mock/test-int64-sample.cjs "$sampler"
 node "$mock_root/prism/node_modules/@stoplight/prism-cli/dist/index.js" mock "$mock_root/spec.json" --host 127.0.0.1 --port 4010 > "$log_dir/prism.log" 2>&1 &
 prism_pid=$!
 git clone --no-checkout https://github.com/team-telnyx/telnyx-prism-mock.git "$mock_root/proxy"

@@ -19,6 +19,29 @@ class LegacyMockInputTests(unittest.TestCase):
         self.assertIn('TELNYX_MOCK_SPEC_SHA256', bootstrap)
         self.assertNotIn('> /dev/null &', bootstrap)
 
+    def test_decoder_patch_rejects_unknown_bytes_without_mutation(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            decoder = Path(tmp) / 'deepObject.js'
+            # Include the real insertion anchor: only the digest guard can
+            # reject this plausible-but-unaudited decoder before mutation.
+            original = b'function decode() {\n    function construct(currentPath, def) {\n    }\n}\n'
+            decoder.write_bytes(original)
+            result = subprocess.run(
+                ['node', str(ROOT / '.github/mock/patch-deep-object.cjs'), str(decoder)],
+                text=True, capture_output=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn('Unexpected Prism decoder bytes', result.stderr)
+            self.assertEqual(decoder.read_bytes(), original)
+
+    def test_decoder_controls_run_before_mock_start(self):
+        bootstrap = (ROOT / '.github/scripts/before_install.sh').read_text()
+        patch = bootstrap.index('node .github/mock/patch-deep-object.cjs "$decoder"')
+        controls = bootstrap.index('node .github/mock/test-deep-object.cjs "$decoder"')
+        launch = bootstrap.index('node "$mock_root/prism/node_modules/@stoplight/prism-cli/dist/index.js" mock')
+        self.assertLess(patch, controls)
+        self.assertLess(controls, launch)
+        self.assertIn('set -euo pipefail', bootstrap)
+
     def test_bad_digest_stops_before_dependency_install(self):
         with tempfile.TemporaryDirectory() as tmp:
             fake_curl = Path(tmp) / 'curl'
