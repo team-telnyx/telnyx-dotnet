@@ -12,7 +12,8 @@ if (crypto.createHash('sha256').update(source).digest('hex') !== '3352ed94611ff8
 const anchor = 'function sampleNumber(schema) {\n';
 const replacement = anchor + `  if (schema.type === 'integer' && schema.format === 'int64'
       && schema.minimum === -(2 ** 63) && schema.maximum === 2 ** 63 - 1
-      && !('exclusiveMinimum' in schema) && !('exclusiveMaximum' in schema)) {
+      && !['exclusiveMinimum', 'exclusiveMaximum', 'not', 'if', 'then', 'else',
+           'allOf', 'anyOf', 'oneOf', '$ref'].some(key => key in schema)) {
     return 0;
   }
 `;

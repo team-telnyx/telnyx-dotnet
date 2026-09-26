@@ -27,9 +27,9 @@ namespace Telnyx
 
         private static HttpRequestMessage Create(string url, RequestOptions options)
         {
-            var request = Requestor.GetRequestMessage(url, HttpMethod.Post, options);
-            request.Content?.Dispose();
-            request.Content = null;
+            // Build headers without the ordinary POST query-to-body conversion.
+            var request = Requestor.GetRequestMessage(url, HttpMethod.Get, options);
+            request.Method = HttpMethod.Post;
             return request;
         }
     }

@@ -32,7 +32,9 @@ namespace TelnyxTests.Services.Wireless
         [InlineData("remove", true)]
         [InlineData("gateway", false)]
         [InlineData("gateway", true)]
-        public async Task ActionUsesCanonicalWireContract(string action, bool asynchronous)
+        [InlineData("set", false, "us-east-1")]
+        [InlineData("set", true, "us-east-1")]
+        public async Task ActionUsesCanonicalWireContract(string action, bool asynchronous, string regionCode = null)
         {
             var listener = new TcpListener(IPAddress.Loopback, 0);
             listener.Start();
@@ -40,7 +42,7 @@ namespace TelnyxTests.Services.Wireless
             try
             {
                 TelnyxConfiguration.SetApiBase($"http://127.0.0.1:{((IPEndPoint)listener.LocalEndpoint).Port}/v2");
-                var call = Task.Run(() => Invoke(action, asynchronous, Id));
+                var call = Task.Run(() => Invoke(action, asynchronous, Id, regionCode));
                 using (var client = await listener.AcceptTcpClientAsync().WaitAsync(TimeSpan.FromSeconds(10)))
                 using (var stream = client.GetStream())
                 using (var reader = new StreamReader(stream, Encoding.UTF8, false, 1024, true))
@@ -71,9 +73,12 @@ namespace TelnyxTests.Services.Wireless
                     await stream.FlushAsync();
                     await call.WaitAsync(TimeSpan.FromSeconds(10));
                     var path = action == "fax" ? $"faxes/{Id}/actions/cancel" : action == "gateway" ? $"sim_card_groups/{Id}/actions/set_private_wireless_gateway" : $"sim_cards/{Id}/actions/{(action == "set" ? "set" : "remove")}_public_ip";
-                    Assert.Equal($"POST /v2/{path} HTTP/1.1", line);
+                    var query = regionCode == null ? string.Empty : $"?region_code={regionCode}";
+                    Assert.Equal($"POST /v2/{path}{query} HTTP/1.1", line);
                     Assert.Equal("Bearer wire-test-key", headers["Authorization"]);
                     Assert.Equal("action-key", headers["Idempotency-Key"]);
+                    Assert.Equal("2019-08-16", headers["Telnyx-Version"]);
+                    Assert.False(string.IsNullOrEmpty(headers["User-Agent"]));
                     if (action == "gateway")
                     {
                         Assert.StartsWith("application/json", headers["Content-Type"]);
@@ -83,6 +88,7 @@ namespace TelnyxTests.Services.Wireless
                     {
                         Assert.Empty(body);
                         Assert.False(headers.ContainsKey("Content-Type"));
+                        Assert.False(headers.ContainsKey("Transfer-Encoding"));
                     }
                 }
             }
@@ -119,9 +125,9 @@ namespace TelnyxTests.Services.Wireless
             }
         }
 
-        private static async Task Invoke(string action, bool asynchronous, string id)
+        private static async Task Invoke(string action, bool asynchronous, string id, string regionCode = null)
         {
-            var request = new RequestOptions { ApiKey = "wire-test-key", IdempotencyKey = "action-key" };
+            var request = new RequestOptions { ApiKey = "wire-test-key", IdempotencyKey = "action-key", TelnyxVersion = "2019-08-16" };
             if (action == "fax")
             {
                 var service = new FaxActionCancelService();
@@ -137,7 +143,13 @@ namespace TelnyxTests.Services.Wireless
             else if (action == "set")
             {
                 var service = new SettingSIMCardPublicIPService();
-                Assert.NotNull(asynchronous ? await service.CreateAsync(id, new BaseOptions(), request, "", CancellationToken.None) : service.Create(id, new BaseOptions(), request));
+                var options = new BaseOptions();
+                if (regionCode != null)
+                {
+                    options.AddExtraParam("region_code", regionCode);
+                }
+
+                Assert.NotNull(asynchronous ? await service.CreateAsync(id, options, request, "", CancellationToken.None) : service.Create(id, options, request));
             }
             else
             {

@@ -26,12 +26,24 @@ namespace Telnyx.net.Services.Wireless.SettingSIMCardPublicIPs
         /// <inheritdoc/>
         public SettingSIMCardPublicIP Create(string parentId, BaseOptions options, RequestOptions requestOptions)
         {
-            return BodylessActionRequest.Send<SettingSIMCardPublicIP>(this.ClassUrl(parentId), this.SetupRequestOptions(requestOptions));
+            return BodylessActionRequest.Send<SettingSIMCardPublicIP>(this.ActionUrl(parentId, options), this.SetupRequestOptions(requestOptions));
         }
 
         public async Task<SettingSIMCardPublicIP> CreateAsync(string parentId, BaseOptions options, RequestOptions requestOptions, string parentToken, CancellationToken cancellationToken)
         {
-            return await BodylessActionRequest.SendAsync<SettingSIMCardPublicIP>(this.ClassUrl(parentId), this.SetupRequestOptions(requestOptions), parentToken, cancellationToken);
+            return await BodylessActionRequest.SendAsync<SettingSIMCardPublicIP>(this.ActionUrl(parentId, options), this.SetupRequestOptions(requestOptions), parentToken, cancellationToken);
+        }
+
+        private string ActionUrl(string parentId, BaseOptions options)
+        {
+            var url = this.ClassUrl(parentId);
+            // The action has no request body; region_code is an optional query parameter.
+            if (options?.ExtraParams != null && options.ExtraParams.TryGetValue("region_code", out var regionCode))
+            {
+                url = Telnyx.Infrastructure.ParameterBuilder.ApplyParameterToUrl(url, "region_code", regionCode);
+            }
+
+            return url;
         }
     }
 }

@@ -7,4 +7,5 @@ assert.ok(emitted >= -(2n ** 63n) && emitted <= 2n ** 63n - 1n, 'sample must rou
 assert.equal(sampler.sample({...schema, example:42}), 42);
 assert.equal(sampler.sample({type:'integer',minimum:12,maximum:20}), 12);
 assert.equal(sampler.sample({type:'integer',minimum:-10,maximum:-1}), -10);
-console.log('4 integer sample regression controls passed');
+assert.notEqual(sampler.sample({...schema, not: {enum: [0]}}), 0);
+console.log('5 integer sample regression controls passed');
