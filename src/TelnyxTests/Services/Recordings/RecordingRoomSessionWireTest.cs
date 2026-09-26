@@ -54,6 +54,47 @@ namespace TelnyxTests.Services.Recordings
             }, "POST", $"/v2/room_sessions/{Id}/actions/end", "{\"data\":{\"result\":\"ok\"}}");
         }
 
+        [Theory]
+        [InlineData(false, null)]
+        [InlineData(true, null)]
+        [InlineData(false, " 6a09cdc3-8948-47f0-aa62-74ac943d6c58")]
+        [InlineData(true, " 6a09cdc3-8948-47f0-aa62-74ac943d6c58")]
+        [InlineData(false, "../calls/call-id/actions/hangup?ignored=")]
+        [InlineData(true, "../calls/call-id/actions/hangup?ignored=")]
+        [InlineData(false, "%2e%2e%2fcalls")]
+        [InlineData(true, "%2e%2e%2fcalls")]
+        [InlineData(false, "..")]
+        [InlineData(true, "..")]
+        [InlineData(false, "id#fragment")]
+        [InlineData(true, "id#fragment")]
+        public async Task InvalidSessionIdentifierIsRejectedBeforeSend(bool asynchronous, string id)
+        {
+            var oldBase = TelnyxConfiguration.GetApiBase();
+            var oldKey = TelnyxConfiguration.GetApiKey();
+            try
+            {
+                // Closed loopback port prevents accidental external traffic in RED.
+                TelnyxConfiguration.SetApiBase("http://127.0.0.1:1/v2");
+                TelnyxConfiguration.SetApiKey("wire-test-key");
+                var service = new RoomSessionService();
+                if (asynchronous)
+                {
+                    var error = await Assert.ThrowsAsync<ArgumentException>(() => service.CreateAsync(id, null, new RequestOptions(), string.Empty, CancellationToken.None));
+                    Assert.Equal("parentId", error.ParamName);
+                }
+                else
+                {
+                    var error = Assert.Throws<ArgumentException>(() => service.Create(id, null, new RequestOptions()));
+                    Assert.Equal("parentId", error.ParamName);
+                }
+            }
+            finally
+            {
+                TelnyxConfiguration.SetApiBase(oldBase);
+                TelnyxConfiguration.SetApiKey(oldKey);
+            }
+        }
+
         private static async Task AssertWireRequest(Func<Task> invoke, string method, string path, string response)
         {
             var listener = new TcpListener(IPAddress.Loopback, 0);
