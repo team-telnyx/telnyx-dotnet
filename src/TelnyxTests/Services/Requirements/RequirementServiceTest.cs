@@ -8,7 +8,7 @@ namespace TelnyxTests.Services.Connections.FQDNSTests
 
     public class RequirementServiceTest : BaseTelnyxTest
     {
-        private readonly string credConnId = "1234";
+        private readonly string credConnId = "a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa";
         private readonly RequirementService service;
         private readonly RequirementOption listOptions;
 
@@ -19,9 +19,9 @@ namespace TelnyxTests.Services.Connections.FQDNSTests
 
             this.listOptions = new RequirementOption()
             {
-                CountryCodeFilter = "Connection001",
-                PhoneNumberTypeFilter = "Fqdn",
-                ActionFilter = "1302",
+                CountryCodeFilter = "US",
+                PhoneNumberTypeFilter = "local",
+                ActionFilter = "porting",
                 Sort = null
             };
         }

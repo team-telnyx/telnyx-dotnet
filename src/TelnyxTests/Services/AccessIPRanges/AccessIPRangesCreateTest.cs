@@ -39,15 +39,15 @@
             var result = this.service.CreateAllAccessIPRanges(this.AccessIPRangesCreateOption, this.requestOptions);
             Assert.NotNull(result);
             Assert.Equal(typeof(AccessIPRanges), result.GetType());
-            var expectedDateTime = new DateTime(2019, 8, 24, 14, 15, 22);
+            var expectedDateTime = new DateTime(2024, 1, 23, 18, 10, 2, 574, DateTimeKind.Utc);
             var items = result;
-            Assert.Equal("string", items.CidrBlock);
+            Assert.Equal("Cidr Block", items.CidrBlock);
             Assert.Equal(expectedDateTime.ToString("s") + "Z", items.CreatedAt.ToString("s") + "Z");
-            Assert.Equal("string", items.Description);
-            Assert.Equal("string", items.Id);
+            Assert.Equal("Description", items.Description);
+            Assert.Equal("Id", items.Id);
             Assert.Equal(new CloudflareSyncStatus(), items.Status);
             Assert.Equal(expectedDateTime.ToString("s") + "Z", items.UpdatedAt.ToString("s") + "Z");
-            Assert.Equal("string", items.UserId);
+            Assert.Equal("User Id", items.UserId);
         }
 
         [Fact]
@@ -57,15 +57,15 @@
             var result = await this.service.CreateAllAccessIPRangesAsync(this.AccessIPRangesCreateOption, this.requestOptions, cts.Token);
             Assert.NotNull(result);
             Assert.Equal(typeof(AccessIPRanges), result.GetType());
-            var expectedDateTime = new DateTime(2019, 8, 24, 14, 15, 22);
+            var expectedDateTime = new DateTime(2024, 1, 23, 18, 10, 2, 574, DateTimeKind.Utc);
             var items = result;
-            Assert.Equal("string", items.CidrBlock);
+            Assert.Equal("Cidr Block", items.CidrBlock);
             Assert.Equal(expectedDateTime.ToString("s") + "Z", items.CreatedAt.ToString("s") + "Z");
-            Assert.Equal("string", items.Description);
-            Assert.Equal("string", items.Id);
+            Assert.Equal("Description", items.Description);
+            Assert.Equal("Id", items.Id);
             Assert.Equal(new CloudflareSyncStatus(), items.Status);
             Assert.Equal(expectedDateTime.ToString("s") + "Z", items.UpdatedAt.ToString("s") + "Z");
-            Assert.Equal("string", items.UserId);
+            Assert.Equal("User Id", items.UserId);
         }
 
         [Fact]
@@ -74,15 +74,15 @@
             var result = this.service.DeleteAllAccessIPRanges(Id, this.requestOptions);
             Assert.NotNull(result);
             Assert.Equal(typeof(AccessIPRanges), result.GetType());
-            var expectedDateTime = new DateTime(2019, 8, 24, 14, 15, 22);
+            var expectedDateTime = new DateTime(2024, 1, 23, 18, 10, 2, 574, DateTimeKind.Utc);
             var items = result;
-            Assert.Equal("string", items.CidrBlock);
+            Assert.Equal("Cidr Block", items.CidrBlock);
             Assert.Equal(expectedDateTime.ToString("s") + "Z", items.CreatedAt.ToString("s") + "Z");
-            Assert.Equal("string", items.Description);
-            Assert.Equal("string", items.Id);
+            Assert.Equal("Description", items.Description);
+            Assert.Equal("Id", items.Id);
             Assert.Equal(new CloudflareSyncStatus(), items.Status);
             Assert.Equal(expectedDateTime.ToString("s") + "Z", items.UpdatedAt.ToString("s") + "Z");
-            Assert.Equal("string", items.UserId);
+            Assert.Equal("User Id", items.UserId);
         }
 
         [Fact]
@@ -92,15 +92,15 @@
             var result = await this.service.DeleteAllAccessIPRangesAsync(Id, this.requestOptions, cts.Token);
             Assert.NotNull(result);
             Assert.Equal(typeof(AccessIPRanges), result.GetType());
-            var expectedDateTime = new DateTime(2019, 8, 24, 14, 15, 22);
+            var expectedDateTime = new DateTime(2024, 1, 23, 18, 10, 2, 574, DateTimeKind.Utc);
             var items = result;
-            Assert.Equal("string", items.CidrBlock);
+            Assert.Equal("Cidr Block", items.CidrBlock);
             Assert.Equal(expectedDateTime.ToString("s") + "Z", items.CreatedAt.ToString("s") + "Z");
-            Assert.Equal("string", items.Description);
-            Assert.Equal("string", items.Id);
+            Assert.Equal("Description", items.Description);
+            Assert.Equal("Id", items.Id);
             Assert.Equal(new CloudflareSyncStatus(), items.Status);
             Assert.Equal(expectedDateTime.ToString("s") + "Z", items.UpdatedAt.ToString("s") + "Z");
-            Assert.Equal("string", items.UserId);
+            Assert.Equal("User Id", items.UserId);
         }
     }
 }

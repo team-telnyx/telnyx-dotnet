@@ -29,7 +29,7 @@ namespace TelnyxTests.Services.Wireless.SimCards
                 Threshold = new DataUsageThreshold()
                 {
                     Amount = 5000,
-                    Unit = "150"
+                    Unit = "MB"
                 }
         };
     }

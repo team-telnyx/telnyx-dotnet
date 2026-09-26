@@ -29,6 +29,7 @@ namespace Telnyx
         /// Gets or sets Source.
         /// </summary>
         [DataMember(Name = "source")]
+        [Newtonsoft.Json.JsonConverter(typeof(ErrorSourceConverter))]
         public string Source { get; set; }
 
         /// <summary>

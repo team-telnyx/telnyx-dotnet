@@ -21,7 +21,7 @@ namespace TelnyxTests.Services.Reports.VirtualCrossConnects
         private readonly RequestOptions requestOptions;
 
         private const string Id = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
-        private readonly string credConnId = "1234";
+        private readonly string credConnId = "6a09cdc3-8948-47f0-aa62-74ac943d6c58";
         public VirtualCrossConnectServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)
         {

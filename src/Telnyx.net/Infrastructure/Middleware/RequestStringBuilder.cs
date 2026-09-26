@@ -5,6 +5,7 @@
 namespace Telnyx.Infrastructure.Middleware
 {
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Net;
     using System.Text;
@@ -40,7 +41,14 @@ namespace Telnyx.Infrastructure.Middleware
                 NullValueHandling = NullValueHandling.Ignore
             };
             string jsonString = JsonConvert.SerializeObject(options, settings);
-            var jobj = JObject.Parse(jsonString);
+            JObject jobj;
+            // Query strings must retain the caller's ISO text, including offset and precision.
+            // JObject.Parse otherwise promotes date-like strings to culture-formatted DateTime values.
+            using (var reader = new JsonTextReader(new StringReader(jsonString)))
+            {
+                reader.DateParseHandling = DateParseHandling.None;
+                jobj = JObject.Load(reader);
+            }
             if (jobj.Properties().Any(x => x.Name.Contains("[") && x.Name.Contains("]"))) //filter[] specific parsing for the querystring
             {
                 jsonString = BuildRequestStringFromJObject(jobj);
@@ -70,7 +78,7 @@ namespace Telnyx.Infrastructure.Middleware
                     continue; //dont need to add to query string below move to the next property
                 }
 
-                stringBuilder.Append($"{property.Key}={value}");
+                stringBuilder.Append($"{property.Key}={WebUtility.UrlEncode(value.ToString())}");
                 stringBuilder.Append("&");
             }
 

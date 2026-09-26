@@ -6,6 +6,7 @@
     using Telnyx;
     using Telnyx.net.Entities;
     using Telnyx.net.Services.PhoneNumbers.Orders.Comments;
+    using Comment = Telnyx.net.Entities.PhoneNumbers.Orders.Comments.Comment;
     using Xunit;
 
     /// <summary>
@@ -29,7 +30,7 @@
             {
                 Body = string.Empty,
                 CommentRecordId = "6a09cdc3-8948-47f0-aa62-74ac943d6c99",
-                CommentRecordType = Telnyx.net.Entities.Enum.PhoneNumbers.Orders.Comments.CommentRecordType.NumberOrderPhoneNumber,
+                CommentRecordType = Telnyx.net.Entities.Enum.PhoneNumbers.Orders.Comments.CommentRecordType.SubNumberOrder,
             };
         }
 

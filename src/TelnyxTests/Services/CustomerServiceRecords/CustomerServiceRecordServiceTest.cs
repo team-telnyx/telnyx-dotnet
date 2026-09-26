@@ -31,7 +31,7 @@ namespace TelnyxTests.Services.CustomerServiceRecords
             };
             this.createOptions = new UpsertCustomerServiceRecord()
             {
-                PhoneNumber = "+1234567890",
+                PhoneNumber = "+13035553000",
                 WebhookUrl = "https://example.com/webhook",
                 AdditionalData = new AdditionalData
                 {

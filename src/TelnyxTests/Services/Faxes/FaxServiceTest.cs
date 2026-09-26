@@ -19,7 +19,7 @@
             this._faxService = new FaxService();
             this.faxListOptions = new FaxListOptions
             {
-                CreatedAtDateGreaterThan = DateTime.UtcNow.ToString()
+                CreatedAtDateGreaterThan = "2020-02-02T22:25:27.521992Z"
             };
             this.faxSendOptions = new FaxSendOptions
             {

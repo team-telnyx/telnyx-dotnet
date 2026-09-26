@@ -17,7 +17,7 @@ namespace TelnyxTests.Services.VerifyProfiles
         private readonly VerifyProfileOption listOptions;
         private readonly UpsertVerifyProfile createOptions;
         private readonly RequestOptions requestOptions;
-        private readonly string credConnId = "1234";
+        private readonly string credConnId = "12ade33a-21c0-473b-b055-b3c836e1c292";
         private const string Id = "12ade33a-21c0-473b-b055-b3c836e1c292";
 
         public VerifyProfileServiceTest(MockHttpClientFixture mockHttpClientFixture)

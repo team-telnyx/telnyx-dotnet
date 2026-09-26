@@ -10,16 +10,16 @@ namespace Telnyx.net.Services.PhoneNumbers.PhoneNumberAssignmentByProfiles
 {
    public class PhoneNumberAssignmentByProfileService : Service<PhoneNumberAssignmentByProfile>
     {
-        public override string BasePath => "/phoneNumberAssignmentByProfile/:taskId";
+        public override string BasePath => "/10dlc/phoneNumberAssignmentByProfile";
 
         public async Task<PhoneNumberAssignmentByProfile> GetPhoneNumberAssignmentByProfileAsync(string id, BaseOptions options = null, RequestOptions reqOpts = null, CancellationToken cancellationToken = default)
         {
-            return await this.GetEntityAsync(id, options, reqOpts, parentToken: "data", cancellationToken);
+            return await this.GetEntityAsync(id, options, reqOpts, parentToken: string.Empty, cancellationToken);
         }
 
         public PhoneNumberAssignmentByProfile GetPhoneNumberAssignmentByProfile(string id, BaseOptions options = null, RequestOptions reqOpts = null)
         {
-            return this.GetEntity(id, options, reqOpts, parentToken: "data");
+            return this.GetEntity(id, options, reqOpts, parentToken: string.Empty);
         }
     }
 }

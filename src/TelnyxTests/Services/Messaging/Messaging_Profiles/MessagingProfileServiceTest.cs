@@ -302,7 +302,7 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
         /// <summary>
         /// toll-free
         /// </summary>
-        [EnumMember(Value = "toll-free")]
+        [EnumMember(Value = "tollfree")]
         TollFreeEnum = 1,
 
         /// <summary>
