@@ -42,6 +42,21 @@ class LegacyMockInputTests(unittest.TestCase):
         self.assertLess(controls, launch)
         self.assertIn('set -euo pipefail', bootstrap)
 
+    def test_historical_contract_is_separate_and_pinned(self):
+        bootstrap = (ROOT / '.github/scripts/before_install.sh').read_text()
+        self.assertIn('1d97a787b3c88edce00428076ec0c236392a3f18/openapi/spec3.json', bootstrap)
+        self.assertIn('02d40213df0e3401e4720b8924fe4f2d56314b630ec9d57a5f13fb3132e05482', bootstrap)
+        self.assertIn('--port 4013', bootstrap)
+        self.assertIn('historical-prism.log', bootstrap)
+        self.assertIn('"$historical_pid"', bootstrap)
+        self.assertLess(bootstrap.index('Historical spec digest mismatch'), bootstrap.index('npm ci'))
+        scope = (ROOT / 'src/TelnyxTests/HistoricalContractTest.cs').read_text()
+        self.assertIn('historical-1d97a787', scope)
+        self.assertIn('SetApiBase(this.originalBase)', scope)
+        # The default suite must continue using the current-contract server.
+        current = (ROOT / 'src/TelnyxTests/TelnyxMockFixture.cs').read_text()
+        self.assertNotIn('4013', current)
+
     def test_bad_digest_stops_before_dependency_install(self):
         with tempfile.TemporaryDirectory() as tmp:
             fake_curl = Path(tmp) / 'curl'

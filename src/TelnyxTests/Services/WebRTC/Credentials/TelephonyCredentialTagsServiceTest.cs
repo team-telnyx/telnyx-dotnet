@@ -11,7 +11,7 @@ using Xunit;
 
 namespace TelnyxTests.Services.WebRTC.Credentials
 {
-    public class TelephonyCredentialTagsServiceTest : BaseTelnyxTest
+    public class TelephonyCredentialTagsServiceTest : HistoricalContractTest
     {
         private readonly TelephonyCredentialTagsService service;
         private readonly TelephonyCredentialTagOption listOptions;

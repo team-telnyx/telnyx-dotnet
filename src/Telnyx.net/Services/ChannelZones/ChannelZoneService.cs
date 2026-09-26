@@ -55,18 +55,18 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// Legacy single-zone retrieval. No GET-by-ID operation is defined in the canonical API; this remains unsupported.
+        /// Legacy single-zone retrieval using the archived root-object response. This operation is absent from the current API.
         /// </summary>
         /// <param name="id">The unique identifier of the channel zone entity.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>A channel zone entity.</returns>
         public virtual ChannelZones Get(string id, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(id, null, requestOptions, parentToken: "data");
+            return this.GetEntity(id, null, requestOptions, parentToken: string.Empty);
         }
 
         /// <summary>
-        /// Legacy asynchronous single-zone retrieval. No GET-by-ID operation is defined in the canonical API; this remains unsupported.
+        /// Legacy asynchronous retrieval using the archived root-object response. This operation is absent from the current API.
         /// </summary>
         /// <param name="id">The unique identifier of the channel zone entity.</param>
         /// <param name="requestOptions">Additional request options.</param>
@@ -74,7 +74,7 @@ namespace Telnyx
         /// <returns>A task representing the asynchronous operation, which upon completion returns a channel zone entity.</returns>
         public virtual async Task<ChannelZones> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.GetEntityAsync(id, null, requestOptions, parentToken: "data", cancellationToken);
+            return await this.GetEntityAsync(id, null, requestOptions, parentToken: string.Empty, cancellationToken);
         }
 
         /// <summary>

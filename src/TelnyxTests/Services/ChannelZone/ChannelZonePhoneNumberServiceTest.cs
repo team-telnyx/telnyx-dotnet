@@ -10,7 +10,7 @@ using Xunit;
 
 namespace TelnyxTests.Services.ChannelZone
 {
-    public class ChannelZonePhoneNumberServiceTest : BaseTelnyxTest
+    public class ChannelZonePhoneNumberServiceTest : HistoricalContractTest
     {
         private readonly ChannelZonePhoneNumberService service;
         private readonly ChannelZonePhoneNumberOption listOptions;

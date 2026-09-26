@@ -31,12 +31,12 @@ namespace Telnyx.net.Services.PhoneNumbers.PhoneNumberBlockJobs
 
         public async Task<PhoneNumberblockJob> CreatePhoneNumberblockJobAsync(UpsertPhoneNumberBlocksJob options, RequestOptions reqOpts = null, CancellationToken ct = default)
         {
-            return await this.CreateEntityAsync(options, reqOpts, parentToken: "data", cancellationToken: ct);
+            return await this.CreateEntityAsync(null, "delete_phone_number_block", options, reqOpts, parentToken: "data", cancellationToken: ct);
         }
 
         public PhoneNumberblockJob CreatePhoneNumberblockJob(UpsertPhoneNumberBlocksJob options, RequestOptions reqOpts = null)
         {
-            return this.CreateEntity(options, reqOpts, parentToken: "data");
+            return this.CreateEntity(null, "delete_phone_number_block", options, reqOpts, parentToken: "data");
         }
     }
 }

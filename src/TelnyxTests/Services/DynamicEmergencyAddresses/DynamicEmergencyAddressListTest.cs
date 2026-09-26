@@ -37,7 +37,9 @@
         [Fact]
         public void ListDynamicEmergencyAddresss()
         {
-            var result = this.service.ListDynamicEmergencyAddresss(this.DynamicEmergencyAddressListOptions, this.requestOptions);
+            var result = DynamicEmergencyAddressResponseFixture.Send(
+                () => Task.FromResult(this.service.ListDynamicEmergencyAddresss(this.DynamicEmergencyAddressListOptions, this.requestOptions)),
+                "list", "/v2/dynamic_emergency_addresses?filter[status]=pending&").GetAwaiter().GetResult();
             AssertListResponse(result);
         }
 
@@ -45,7 +47,9 @@
         public async Task ListDynamicEmergencyAddresssAsync()
         {
             var cts = new CancellationTokenSource();
-            var result = await this.service.ListDynamicEmergencyAddresssAsync(this.DynamicEmergencyAddressListOptions, this.requestOptions, cts.Token);
+            var result = await DynamicEmergencyAddressResponseFixture.Send(
+                () => this.service.ListDynamicEmergencyAddresssAsync(this.DynamicEmergencyAddressListOptions, this.requestOptions, cts.Token),
+                "list", "/v2/dynamic_emergency_addresses?filter[status]=pending&");
             AssertListResponse(result);
         }
 
@@ -75,7 +79,9 @@
         [Fact]
         public void Retrieve()
         {
-            var response = this.service.RetrieveDynamicEmergencyAddress(Id, this.baseOptions, this.requestOptions);
+            var response = DynamicEmergencyAddressResponseFixture.Send(
+                () => Task.FromResult(this.service.RetrieveDynamicEmergencyAddress(Id, this.baseOptions, this.requestOptions)),
+                "retrieve", "/v2/dynamic_emergency_addresses/" + Id).GetAwaiter().GetResult();
             AssertRetrieve(response);
         }
 
@@ -83,8 +89,45 @@
         public async Task RetrieveAsync()
         {
             var cts = new CancellationTokenSource();
-            var response = await this.service.RetrieveDynamicEmergencyAddressAsync(Id, this.baseOptions, this.requestOptions, cts.Token);
+            var response = await DynamicEmergencyAddressResponseFixture.Send(
+                () => this.service.RetrieveDynamicEmergencyAddressAsync(Id, this.baseOptions, this.requestOptions, cts.Token),
+                "retrieve", "/v2/dynamic_emergency_addresses/" + Id);
             AssertRetrieve(response);
+        }
+
+        // Additional controls against the current-spec shared mock. Full-field assertions
+        // remain in the four original tests backed by explicitly synthetic fixtures.
+        [Theory]
+        [InlineData(false, false)]
+        [InlineData(false, true)]
+        [InlineData(true, false)]
+        [InlineData(true, true)]
+        public async Task CurrentSpecIntegrationControl(bool retrieve, bool asynchronous)
+        {
+            DynamicEmergencyAddress address;
+            if (retrieve)
+            {
+                address = asynchronous
+                    ? await this.service.RetrieveDynamicEmergencyAddressAsync(Id, this.baseOptions, this.requestOptions)
+                    : this.service.RetrieveDynamicEmergencyAddress(Id, this.baseOptions, this.requestOptions);
+            }
+            else
+            {
+                var result = asynchronous
+                    ? await this.service.ListDynamicEmergencyAddresssAsync(this.DynamicEmergencyAddressListOptions, this.requestOptions)
+                    : this.service.ListDynamicEmergencyAddresss(this.DynamicEmergencyAddressListOptions, this.requestOptions);
+                Assert.NotNull(result);
+                address = Assert.Single(result.Data);
+            }
+
+            Assert.NotNull(address);
+            Assert.Equal("0ccc7b54-4df3-4bca-a65a-3da1ecc777f1", address.Id);
+            Assert.Equal("dynamic_emergency_address", address.RecordType);
+            Assert.Equal("pending", address.Status);
+            Assert.Equal("Austin", address.Locality);
+            Assert.Equal("string", address.StreetPreDirectional);
+            Assert.Equal(retrieve ? "2018-02-02T22:25:27.521Z" : "02/02/2018 22:25:27", address.CreatedAt);
+            Assert.Equal(retrieve ? "2018-02-02T22:25:27.521Z" : "02/02/2018 22:25:27", address.UpdatedAt);
         }
 
         private static void AssertRetrieve(DynamicEmergencyAddress response)

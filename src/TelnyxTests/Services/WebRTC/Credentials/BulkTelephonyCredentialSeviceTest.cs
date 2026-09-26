@@ -8,7 +8,7 @@ using Xunit;
 
 namespace TelnyxTests.Services.WebRTC.Credentials
 {
-    public class BulkTelephonyCredentialSeviceTest : BaseTelnyxTest
+    public class BulkTelephonyCredentialSeviceTest : HistoricalContractTest
     {
         private readonly BulkTelephonyCredentialSevice service;
         private readonly UpsertBulkTelephonyCredential createOptions; 

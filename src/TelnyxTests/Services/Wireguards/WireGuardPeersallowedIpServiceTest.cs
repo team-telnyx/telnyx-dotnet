@@ -11,7 +11,7 @@ using Xunit;
 
 namespace TelnyxTests.Services.Wireguards
 {
-    public class WireGuardPeersallowedIpServiceTest : BaseTelnyxTest
+    public class WireGuardPeersallowedIpServiceTest : HistoricalContractTest
     {
         private readonly WireGuardPeersallowedIpService service;
         private readonly WireGuardPeersAllowedIpOption listOptions;

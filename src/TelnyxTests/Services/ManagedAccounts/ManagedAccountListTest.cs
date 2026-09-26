@@ -37,6 +37,8 @@
         [Fact]
         public void List()
         {
+            // Historical response compatibility; current-contract checks are separate.
+            using var historicalContract = new HistoricalContractScope();
             var result = this.service.ListManagedAccounts(this.managedAccountListOptions, this.requestOptions);
             AssertResponse(result);
         }
@@ -44,6 +46,8 @@
         [Fact]
         public async Task ListAsync()
         {
+            // Historical response compatibility; current-contract checks are separate.
+            using var historicalContract = new HistoricalContractScope();
             var cts = new CancellationTokenSource();
             var result = await this.service.ListManagedAccountsAsync(this.managedAccountListOptions, this.requestOptions, cts.Token);
             AssertResponse(result);

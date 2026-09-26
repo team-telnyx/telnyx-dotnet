@@ -12,7 +12,18 @@ namespace Telnyx.net.Services.ChannelZones
     public class ChannelZonePhoneNumberService : ServiceNested<ChannelZonePhoneNumber>
     {
 
-        public override string BasePath => "/phone_numbers/channel_zones/:channel_zone_id/channel_zone_phone_numbers";
+        public override string BasePath => "/channel_zones/{PARENT_ID}/channel_zone_phone_numbers";
+
+        protected override string ClassUrl(string parentId, string baseUrl = null)
+        {
+            // Archived GcbChannelZoneId is a string, not a UUID. Keep it within one path segment.
+            if (string.IsNullOrWhiteSpace(parentId) || parentId == "." || parentId == "..")
+            {
+                throw new ArgumentException("The channel zone ID must be a nonempty path segment.", nameof(parentId));
+            }
+
+            return base.ClassUrl(Uri.EscapeDataString(parentId), baseUrl);
+        }
 
         public TelnyxList<ChannelZonePhoneNumber> List(string id, ChannelZonePhoneNumberOption listOptions = null, RequestOptions requestOptions = null)
         {

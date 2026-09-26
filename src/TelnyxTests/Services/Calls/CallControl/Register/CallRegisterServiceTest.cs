@@ -8,7 +8,7 @@ using Xunit;
 
 namespace TelnyxTests.Services.Calls.CallControl.Register
 {
-    public class CallRegisterServiceTest : BaseTelnyxTest
+    public class CallRegisterServiceTest : HistoricalContractTest
     {
         private readonly CallRegisterService service;
         private readonly UpsertCallRegister createOptions;

@@ -9,7 +9,7 @@
     using Telnyx.net.Services.Wireless.SimCards.SIMCardNetworkPreference;
     using Xunit;
 
-    public class SimCardNetworkPreferenceServiceTest : BaseTelnyxTest
+    public class SimCardNetworkPreferenceServiceTest : HistoricalContractTest
     {
         private readonly BaseOptions baseOptions;
         private readonly RequestOptions requestOptions;

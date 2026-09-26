@@ -25,6 +25,8 @@
         [Fact]
         public void Get()
         {
+            // Historical response compatibility; current-contract checks are separate.
+            using var historicalContract = new HistoricalContractScope();
             var messagingProfileMetrics = this.service.GetById(MessagingProfileMetricsDetailId, this.metricsOptions, this.requestOptions);
             Assert.NotNull(messagingProfileMetrics);
             Assert.Equal(typeof(MessagingProfileMetricsDetail), messagingProfileMetrics.GetType());
@@ -56,6 +58,8 @@
         [Fact]
         public async Task GetAsync()
         {
+            // Historical response compatibility; current-contract checks are separate.
+            using var historicalContract = new HistoricalContractScope();
             var messagingProfileMetrics = await this.service.GetByIdAsync(MessagingProfileMetricsDetailId, this.metricsOptions, this.requestOptions);
             Assert.NotNull(messagingProfileMetrics);
             Assert.Equal(typeof(MessagingProfileMetricsDetail), messagingProfileMetrics.GetType());

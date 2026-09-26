@@ -8,7 +8,18 @@ namespace Telnyx.net.Services.Networking
     public class NetworkInterfaceService : ServiceNested<NetworkInterface>
     {
         
-        public override string BasePath => "/networks/:id/network_interfaces";
+        public override string BasePath => "/networks/{PARENT_ID}/network_interfaces";
+
+        protected override string ClassUrl(string parentId, string baseUrl = null)
+        {
+            // The canonical ResourceId path parameter is a UUID, not an arbitrary path.
+            if (parentId == null || parentId.Length != 36 || !System.Guid.TryParseExact(parentId, "D", out _))
+            {
+                throw new System.ArgumentException("The network ID must be a hyphenated UUID.", nameof(parentId));
+            }
+
+            return base.ClassUrl(parentId, baseUrl);
+        }
 
         public TelnyxList<NetworkInterface> List(string id, NetworkInterfaceOption listOptions = null, RequestOptions requestOptions = null)
         {

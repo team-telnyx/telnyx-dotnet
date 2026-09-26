@@ -14,19 +14,28 @@ actual = hashlib.sha256(pathlib.Path(sys.argv[1]).read_bytes()).hexdigest()
 if actual != sys.argv[2]:
     raise SystemExit('Mock spec digest mismatch: ' + actual)
 PY
+# Separate, explicitly opted-in historical compatibility server; never a fallback.
+# Source is the archived contract contemporary with the legacy SDK tests.
+curl --fail --silent --show-error --location https://raw.githubusercontent.com/team-telnyx/openapi/1d97a787b3c88edce00428076ec0c236392a3f18/openapi/spec3.json -o "$mock_root/historical.json"
+python3 - "$mock_root/historical.json" <<'PY'
+import hashlib, pathlib, sys
+if hashlib.sha256(pathlib.Path(sys.argv[1]).read_bytes()).hexdigest() != '02d40213df0e3401e4720b8924fe4f2d56314b630ec9d57a5f13fb3132e05482':
+    raise SystemExit('Historical spec digest mismatch')
+PY
 # Never mistake another process's health response for our newly started mock.
 python3 - <<'PY'
 import socket
-for port in (4010, 12111):
+for port in (4010, 12111, 4013):
     with socket.socket() as sock:
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         sock.bind(('127.0.0.1', port))
 PY
 prism_pid=''
 proxy_pid=''
+historical_pid=''
 cleanup_failed_mock() {
     local pid
-    for pid in "$prism_pid" "$proxy_pid"; do
+    for pid in "$prism_pid" "$proxy_pid" "$historical_pid"; do
         if [ -n "$pid" ]; then kill "$pid" 2>/dev/null || true; fi
     done
 }
@@ -44,6 +53,8 @@ node .github/mock/patch-int64-sample.cjs "$sampler/dist/json-schema-sampler.js"
 node .github/mock/test-int64-sample.cjs "$sampler"
 node "$mock_root/prism/node_modules/@stoplight/prism-cli/dist/index.js" mock "$mock_root/spec.json" --host 127.0.0.1 --port 4010 > "$log_dir/prism.log" 2>&1 &
 prism_pid=$!
+node "$mock_root/prism/node_modules/@stoplight/prism-cli/dist/index.js" mock "$mock_root/historical.json" --host 127.0.0.1 --port 4013 > "$log_dir/historical-prism.log" 2>&1 &
+historical_pid=$!
 git clone --no-checkout https://github.com/team-telnyx/telnyx-prism-mock.git "$mock_root/proxy"
 git -C "$mock_root/proxy" checkout --detach "$TELNYX_MOCK_PROXY_REVISION"
 # This audited source patch confines the pinned proxy and its upstream to loopback.
@@ -63,8 +74,9 @@ node "$mock_root/proxy/proxy/index.js" > "$log_dir/proxy.log" 2>&1 &
 proxy_pid=$!
 ready=false
 for _ in {1..30}; do
-    kill -0 "$prism_pid" "$proxy_pid" || { printf 'Mock exited; inspect %s\n' "$log_dir" >&2; exit 1; }
-    if curl --fail --silent --show-error --max-time 2 -H 'Authorization: Bearer TEST_ONLY' http://127.0.0.1:12111/v2/balance -o "$log_dir/readiness.json"; then
+    kill -0 "$prism_pid" "$proxy_pid" "$historical_pid" || { printf 'Mock exited; inspect %s\n' "$log_dir" >&2; exit 1; }
+    if curl --fail --silent --show-error --max-time 2 -H 'Authorization: Bearer TEST_ONLY' http://127.0.0.1:12111/v2/balance -o "$log_dir/readiness.json" &&
+       curl --fail --silent --show-error --max-time 2 -H 'Authorization: Bearer TEST_ONLY' http://127.0.0.1:4013/balance -o "$log_dir/historical-readiness.json"; then
         ready=true
         break
     fi
@@ -74,5 +86,5 @@ if [ "$ready" != true ]; then
     printf 'Mock readiness failed; inspect %s\n' "$log_dir" >&2
     exit 1
 fi
-kill -0 "$prism_pid" "$proxy_pid"
+kill -0 "$prism_pid" "$proxy_pid" "$historical_pid"
 trap - EXIT
