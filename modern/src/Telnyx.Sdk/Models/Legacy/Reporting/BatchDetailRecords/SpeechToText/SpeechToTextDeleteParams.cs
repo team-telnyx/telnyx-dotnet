@@ -90,7 +90,7 @@ public record class SpeechToTextDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/legacy/reporting/batch_detail_records/speech_to_text/{0}",
-            this.ID)
+            EncodePathSegment(this.ID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

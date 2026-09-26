@@ -91,7 +91,7 @@ public record class BrandRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/10dlc/brand/{0}",
-            this.BrandID)
+            EncodePathSegment(this.BrandID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

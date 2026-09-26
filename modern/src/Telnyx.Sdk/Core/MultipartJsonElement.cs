@@ -246,7 +246,7 @@ public static class MultipartJsonSerializer
                     if (element.TryGetGuid(out var guid)
                         && multipartElement.BinaryContents.TryGetValue(guid, out var binaryContent))
                     {
-                        content = new StreamContent(binaryContent.Stream);
+                        content = new ReplayableStreamContent(binaryContent.Stream);
                         content.Headers.ContentType = binaryContent.ContentType;
                         fileName = binaryContent.FileName;
                     }
@@ -290,7 +290,7 @@ public static class MultipartJsonSerializer
                                     multipartElement.BinaryContents.TryGetValue(itemGuid,
                                         out var itemBinaryContent))
                                 {
-                                    var itemContent = new StreamContent(itemBinaryContent.Stream);
+                                    var itemContent = new ReplayableStreamContent(itemBinaryContent.Stream);
                                     itemContent.Headers.ContentType = itemBinaryContent.ContentType;
                                     var itemFileName = itemBinaryContent.FileName;
                                     if(name == "")
@@ -406,4 +406,38 @@ sealed class BinaryContentConverter : JsonConverter<BinaryContent>
         MultipartJsonSerializer.BinaryContents[guid] = value;
         JsonSerializer.Serialize(writer, guid, options);
     }
+}internal sealed class ReplayableStreamContent : System.Net.Http.HttpContent
+{
+    private readonly System.IO.Stream stream;
+    private readonly long initialPosition;
+    private bool sent;
+    internal ReplayableStreamContent(System.IO.Stream stream)
+    {
+        this.stream = stream;
+        initialPosition = stream.CanSeek ? stream.Position : 0;
+    }
+    internal static bool CanReplay(System.Net.Http.HttpContent? content)
+    {
+        if (content is ReplayableStreamContent binary) return binary.stream.CanSeek;
+        if (content is System.Net.Http.MultipartContent multipart)
+            foreach (var part in multipart) if (!CanReplay(part)) return false;
+        return true;
+    }
+    protected override bool TryComputeLength(out long length) { length = 0; return false; }
+    protected override System.Threading.Tasks.Task SerializeToStreamAsync(System.IO.Stream target, System.Net.TransportContext? context)
+        => Copy(target, default);
+
+    #if NET
+    protected override System.Threading.Tasks.Task SerializeToStreamAsync(System.IO.Stream target, System.Net.TransportContext? context, System.Threading.CancellationToken cancellationToken)
+        => Copy(target, cancellationToken);
+    #endif
+
+    private System.Threading.Tasks.Task Copy(System.IO.Stream target, System.Threading.CancellationToken cancellationToken)
+    {
+        if (stream.CanSeek) stream.Position = initialPosition;
+        else if (sent) throw new System.InvalidOperationException("Nonseekable content cannot be replayed");
+        sent = true;
+        return stream.CopyToAsync(target, 81920, cancellationToken);
+    }
+    // HttpContent does not own this caller-provided stream.
 }

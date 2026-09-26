@@ -132,7 +132,7 @@ public record class ProfileListParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/memory/namespaces/{0}/profiles",
-            this.Namespace)
+            EncodePathSegment(this.Namespace))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

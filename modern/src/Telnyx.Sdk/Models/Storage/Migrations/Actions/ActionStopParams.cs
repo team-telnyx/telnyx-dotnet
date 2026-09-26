@@ -90,7 +90,7 @@ public record class ActionStopParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/storage/migrations/{0}/actions/stop",
-            this.ID)
+            EncodePathSegment(this.ID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

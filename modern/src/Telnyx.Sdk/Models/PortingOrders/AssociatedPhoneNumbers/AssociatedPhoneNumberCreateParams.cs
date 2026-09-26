@@ -134,7 +134,7 @@ public record class AssociatedPhoneNumberCreateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/porting_orders/{0}/associated_phone_numbers",
-            this.PortingOrderID)
+            EncodePathSegment(this.PortingOrderID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

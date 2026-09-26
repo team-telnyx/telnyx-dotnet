@@ -148,7 +148,7 @@ public record class CommentListParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/dir/{0}/comments",
-            this.DirID)
+            EncodePathSegment(this.DirID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

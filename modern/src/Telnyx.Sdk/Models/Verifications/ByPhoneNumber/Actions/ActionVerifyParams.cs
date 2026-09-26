@@ -135,7 +135,7 @@ public record class ActionVerifyParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/verifications/by_phone_number/{0}/actions/verify",
-            this.PhoneNumber)
+            EncodePathSegment(this.PhoneNumber))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

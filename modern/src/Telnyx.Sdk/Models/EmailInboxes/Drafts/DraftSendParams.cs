@@ -108,8 +108,8 @@ public record class DraftSendParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/email_inboxes/{0}/drafts/{1}/send",
-            this.InboxID,
-            this.DraftID)
+            EncodePathSegment(this.InboxID),
+            EncodePathSegment(this.DraftID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -90,7 +90,7 @@ public record class IPRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ips/{0}",
-            this.ID)
+            EncodePathSegment(this.ID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

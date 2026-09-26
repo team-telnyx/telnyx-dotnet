@@ -113,7 +113,7 @@ public record class SqldbDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/storage/sqldbs/{0}",
-            this.ID)
+            EncodePathSegment(this.ID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

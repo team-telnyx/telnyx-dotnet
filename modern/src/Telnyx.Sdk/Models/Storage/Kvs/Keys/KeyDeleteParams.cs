@@ -101,8 +101,8 @@ public record class KeyDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/storage/kvs/{0}/keys/{1}",
-            this.ID,
-            this.Key)
+            EncodePathSegment(this.ID),
+            EncodePathSegment(this.Key))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

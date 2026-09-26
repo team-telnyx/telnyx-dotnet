@@ -168,7 +168,7 @@ public record class ActionRecordResumeParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/conferences/{0}/actions/record_resume",
-            this.ID)
+            EncodePathSegment(this.ID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

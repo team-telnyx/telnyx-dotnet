@@ -38,6 +38,8 @@ public class HttpResponse : IDisposable
     )
     =>RawMessage.Headers.TryGetValues(name, out values);
 
+    internal ResponseLifetime? Lifetime { get; init; }
+
     public sealed override string ToString()
     =>this.RawMessage.ToString();
 
@@ -110,7 +112,8 @@ public class HttpResponse : IDisposable
 
     public void Dispose()
     {
-        this.RawMessage.Dispose();
+        if (Lifetime != null) Lifetime.Dispose();
+        else this.RawMessage.Dispose();
         GC.SuppressFinalize(this);
     }
 }
@@ -132,9 +135,10 @@ public sealed class HttpResponse<T> : HttpResponse
     {
         this.RawMessage = response.RawMessage;
         this.CancellationToken = response.CancellationToken;
+        this.Lifetime = response.Lifetime;
     }
 
-    public Task<T> Deserialize(
+    public async Task<T> Deserialize(
         Threading::CancellationToken cancellationToken = default
     )
     {
@@ -142,7 +146,7 @@ public sealed class HttpResponse<T> : HttpResponse
             this.CancellationToken,
             cancellationToken
         );
-        return this._deserialize(cts.Token);
+        return await this._deserialize(cts.Token).ConfigureAwait(false);
     }
 }
 
@@ -163,6 +167,7 @@ public sealed class StreamingHttpResponse<T> : HttpResponse
     {
         this.RawMessage = response.RawMessage;
         this.CancellationToken = response.CancellationToken;
+        this.Lifetime = response.Lifetime;
     }
 
     public async IAsyncEnumerable<T> Enumerate(
@@ -176,6 +181,31 @@ public sealed class StreamingHttpResponse<T> : HttpResponse
         await foreach(var item in this._enumerate(cts.Token))
         {
             yield return item;
+        }
+    }
+}
+
+internal sealed class ResponseLifetime : System.IDisposable
+{
+    private System.Threading.CancellationTokenSource? timeout;
+    private System.Threading.CancellationTokenSource? linked;
+    private System.Net.Http.HttpResponseMessage? response;
+    internal System.Threading.CancellationToken Token { get; }
+    internal ResponseLifetime(System.TimeSpan duration, System.Threading.CancellationToken caller)
+    {
+        timeout = new(duration);
+        try { linked = System.Threading.CancellationTokenSource.CreateLinkedTokenSource(timeout.Token, caller); }
+        catch { timeout.Dispose(); throw; }
+        Token = linked.Token;
+    }
+    internal void Attach(System.Net.Http.HttpResponseMessage message) { response = message; }
+    public void Dispose()
+    {
+        try { System.Threading.Interlocked.Exchange(ref response, null)?.Dispose(); }
+        finally
+        {
+            System.Threading.Interlocked.Exchange(ref linked, null)?.Dispose();
+            System.Threading.Interlocked.Exchange(ref timeout, null)?.Dispose();
         }
     }
 }

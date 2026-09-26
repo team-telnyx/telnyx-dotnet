@@ -134,7 +134,7 @@ public record class NumberRefreshParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/enterprises/{0}/reputation/numbers/refresh",
-            this.EnterpriseID)
+            EncodePathSegment(this.EnterpriseID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

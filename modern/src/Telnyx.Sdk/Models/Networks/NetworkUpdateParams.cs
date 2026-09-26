@@ -113,7 +113,7 @@ public record class NetworkUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/networks/{0}",
-            this.NetworkID)
+            EncodePathSegment(this.NetworkID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

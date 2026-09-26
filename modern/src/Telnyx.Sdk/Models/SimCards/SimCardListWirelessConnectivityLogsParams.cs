@@ -129,7 +129,7 @@ public record class SimCardListWirelessConnectivityLogsParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/sim_cards/{0}/wireless_connectivity_logs",
-            this.ID)
+            EncodePathSegment(this.ID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

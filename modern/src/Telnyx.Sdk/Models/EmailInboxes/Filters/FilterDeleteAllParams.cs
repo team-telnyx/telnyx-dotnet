@@ -140,7 +140,7 @@ public record class FilterDeleteAllParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/email_inboxes/{0}/filters",
-            this.InboxID)
+            EncodePathSegment(this.InboxID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

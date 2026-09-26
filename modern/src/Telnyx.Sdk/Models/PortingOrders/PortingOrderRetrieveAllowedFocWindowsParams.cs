@@ -92,7 +92,7 @@ public record class PortingOrderRetrieveAllowedFocWindowsParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/porting_orders/{0}/allowed_foc_windows",
-            this.ID)
+            EncodePathSegment(this.ID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

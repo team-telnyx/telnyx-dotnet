@@ -100,8 +100,8 @@ public record class TestDeviceDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/rcs/agents/{0}/test_devices/{1}",
-            this.ID,
-            this.TestDeviceID)
+            EncodePathSegment(this.ID),
+            EncodePathSegment(this.TestDeviceID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

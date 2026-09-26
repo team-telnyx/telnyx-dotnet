@@ -128,7 +128,7 @@ public record class ActionAcceptSuggestionsParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/addresses/{0}/actions/accept_suggestions",
-            this.AddressUuid)
+            EncodePathSegment(this.AddressUuid))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

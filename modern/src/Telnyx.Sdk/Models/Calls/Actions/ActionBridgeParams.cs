@@ -517,7 +517,7 @@ public record class ActionBridgeParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/calls/{0}/actions/bridge",
-            this.CallControlIDToBridge)
+            EncodePathSegment(this.CallControlIDToBridge))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -111,9 +111,9 @@ public record class MemoryRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/memory/namespaces/{0}/profiles/{1}/memories/{2}",
-            this.Namespace,
-            this.ProfileID,
-            this.MemoryID)
+            EncodePathSegment(this.Namespace),
+            EncodePathSegment(this.ProfileID),
+            EncodePathSegment(this.MemoryID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

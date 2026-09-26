@@ -90,7 +90,7 @@ public record class MessagingNumbersBulkUpdateRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/messaging_numbers_bulk_updates/{0}",
-            this.OrderID)
+            EncodePathSegment(this.OrderID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

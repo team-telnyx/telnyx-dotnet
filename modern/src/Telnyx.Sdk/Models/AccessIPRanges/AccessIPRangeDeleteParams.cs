@@ -90,7 +90,7 @@ public record class AccessIPRangeDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/access_ip_ranges/{0}",
-            this.AccessIPRangeID)
+            EncodePathSegment(this.AccessIPRangeID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

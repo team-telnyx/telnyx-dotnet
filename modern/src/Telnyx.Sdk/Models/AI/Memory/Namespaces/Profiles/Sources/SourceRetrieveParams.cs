@@ -110,9 +110,9 @@ public record class SourceRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/memory/namespaces/{0}/profiles/{1}/sources/{2}",
-            this.Namespace,
-            this.ProfileID,
-            this.SourceID)
+            EncodePathSegment(this.Namespace),
+            EncodePathSegment(this.ProfileID),
+            EncodePathSegment(this.SourceID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

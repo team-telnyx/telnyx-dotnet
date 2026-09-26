@@ -118,7 +118,7 @@ public record class PhoneNumberVerifyParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/v2/whatsapp/phone_numbers/{0}/verify",
-            this.PhoneNumber)
+            EncodePathSegment(this.PhoneNumber))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

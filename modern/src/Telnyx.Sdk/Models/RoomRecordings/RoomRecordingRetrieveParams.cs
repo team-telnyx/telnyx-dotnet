@@ -91,7 +91,7 @@ public record class RoomRecordingRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/room_recordings/{0}",
-            this.RoomRecordingID)
+            EncodePathSegment(this.RoomRecordingID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

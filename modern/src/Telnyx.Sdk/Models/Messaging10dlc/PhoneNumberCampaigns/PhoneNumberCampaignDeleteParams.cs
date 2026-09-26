@@ -90,7 +90,7 @@ public record class PhoneNumberCampaignDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/10dlc/phone_number_campaigns/{0}",
-            this.PhoneNumber)
+            EncodePathSegment(this.PhoneNumber))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

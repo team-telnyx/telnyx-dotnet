@@ -91,7 +91,7 @@ public record class VoiceSdkCallReportRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/voice_sdk_call_reports/{0}",
-            this.CallID)
+            EncodePathSegment(this.CallID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

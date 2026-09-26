@@ -142,7 +142,7 @@ public record class WebhookCreateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/email_domains/{0}/webhooks",
-            this.DomainID)
+            EncodePathSegment(this.DomainID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

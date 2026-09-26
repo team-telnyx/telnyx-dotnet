@@ -145,9 +145,9 @@ public record class SiprecSiprecSidJsonParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/texml/Accounts/{0}/Calls/{1}/Siprec/{2}.json",
-            this.AccountSid,
-            this.CallSid,
-            this.SiprecSid)
+            EncodePathSegment(this.AccountSid),
+            EncodePathSegment(this.CallSid),
+            EncodePathSegment(this.SiprecSid))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

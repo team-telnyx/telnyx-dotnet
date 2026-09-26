@@ -154,7 +154,7 @@ public record class PhoneNumberExtensionCreateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/porting_orders/{0}/phone_number_extensions",
-            this.PortingOrderID)
+            EncodePathSegment(this.PortingOrderID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

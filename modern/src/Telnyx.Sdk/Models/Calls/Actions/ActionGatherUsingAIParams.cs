@@ -455,7 +455,7 @@ public record class ActionGatherUsingAIParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/calls/{0}/actions/gather_using_ai",
-            this.CallControlID)
+            EncodePathSegment(this.CallControlID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

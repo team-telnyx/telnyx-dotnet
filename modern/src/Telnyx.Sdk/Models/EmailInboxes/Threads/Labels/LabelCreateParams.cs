@@ -142,8 +142,8 @@ public record class LabelCreateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/email_inboxes/{0}/threads/{1}/labels",
-            this.InboxID,
-            this.ThreadID)
+            EncodePathSegment(this.InboxID),
+            EncodePathSegment(this.ThreadID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

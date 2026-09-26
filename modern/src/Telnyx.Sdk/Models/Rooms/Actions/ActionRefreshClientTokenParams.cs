@@ -139,7 +139,7 @@ public record class ActionRefreshClientTokenParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/rooms/{0}/actions/refresh_client_token",
-            this.RoomID)
+            EncodePathSegment(this.RoomID))
         )
         {
             Query = this.QueryString(options, new())

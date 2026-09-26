@@ -90,7 +90,7 @@ public record class BucketRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/embeddings/buckets/{0}",
-            this.BucketName)
+            EncodePathSegment(this.BucketName))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

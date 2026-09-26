@@ -91,7 +91,7 @@ public record class InfringementClaimRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/infringement_claims/{0}",
-            this.ClaimID)
+            EncodePathSegment(this.ClaimID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

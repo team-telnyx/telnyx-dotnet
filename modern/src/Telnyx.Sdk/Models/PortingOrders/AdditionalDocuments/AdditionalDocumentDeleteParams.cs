@@ -100,8 +100,8 @@ public record class AdditionalDocumentDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/porting_orders/{0}/additional_documents/{1}",
-            this.ID,
-            this.AdditionalDocumentID)
+            EncodePathSegment(this.ID),
+            EncodePathSegment(this.AdditionalDocumentID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -112,7 +112,7 @@ public record class PortoutListRejectionCodesParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/portouts/rejections/{0}",
-            this.PortoutID)
+            EncodePathSegment(this.PortoutID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -127,7 +127,7 @@ public record class ActionSetPrivateWirelessGatewayParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/sim_card_groups/{0}/actions/set_private_wireless_gateway",
-            this.ID)
+            EncodePathSegment(this.ID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

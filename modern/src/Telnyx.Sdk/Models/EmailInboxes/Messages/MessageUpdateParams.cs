@@ -131,8 +131,8 @@ public record class MessageUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/email_inboxes/{0}/messages/{1}",
-            this.InboxID,
-            this.MessageID)
+            EncodePathSegment(this.InboxID),
+            EncodePathSegment(this.MessageID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

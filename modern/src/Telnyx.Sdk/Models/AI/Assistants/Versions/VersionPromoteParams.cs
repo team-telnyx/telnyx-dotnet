@@ -102,8 +102,8 @@ public record class VersionPromoteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/assistants/{0}/versions/{1}/promote",
-            this.AssistantID,
-            this.VersionID)
+            EncodePathSegment(this.AssistantID),
+            EncodePathSegment(this.VersionID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

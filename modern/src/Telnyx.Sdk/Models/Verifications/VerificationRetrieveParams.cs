@@ -91,7 +91,7 @@ public record class VerificationRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/verifications/{0}",
-            this.VerificationID)
+            EncodePathSegment(this.VerificationID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

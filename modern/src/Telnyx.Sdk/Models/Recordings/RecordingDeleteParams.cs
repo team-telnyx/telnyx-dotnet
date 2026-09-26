@@ -91,7 +91,7 @@ public record class RecordingDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/recordings/{0}",
-            this.RecordingID)
+            EncodePathSegment(this.RecordingID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

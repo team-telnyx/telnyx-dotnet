@@ -128,7 +128,7 @@ public record class RcGenerateDeeplinkParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/messages/rcs/deeplinks/{0}",
-            this.AgentID)
+            EncodePathSegment(this.AgentID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

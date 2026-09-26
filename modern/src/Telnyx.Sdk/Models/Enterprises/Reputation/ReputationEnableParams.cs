@@ -156,7 +156,7 @@ public record class ReputationEnableParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/enterprises/{0}/reputation",
-            this.EnterpriseID)
+            EncodePathSegment(this.EnterpriseID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

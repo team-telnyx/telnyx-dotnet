@@ -5,7 +5,10 @@ namespace Telnyx.Sdk.Core;
 
 /// <summary>
 /// A class representing a binary stream of data with its associated (optional) file
-/// name and content type.
+/// name and content type. Caller-provided streams remain caller-owned and are not
+/// disposed by the SDK. Seekable uploads are retried from their position at the start
+/// of the request. Requests containing nonseekable uploads are streamed once without
+/// retries or implicit buffering.
 /// </summary>
 public sealed record class BinaryContent
 {

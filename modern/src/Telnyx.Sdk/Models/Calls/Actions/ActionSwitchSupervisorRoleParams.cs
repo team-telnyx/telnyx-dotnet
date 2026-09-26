@@ -125,7 +125,7 @@ public record class ActionSwitchSupervisorRoleParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/calls/{0}/actions/switch_supervisor_role",
-            this.CallControlID)
+            EncodePathSegment(this.CallControlID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

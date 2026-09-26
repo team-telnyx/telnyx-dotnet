@@ -100,8 +100,8 @@ public record class RunRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/assistants/tests/{0}/runs/{1}",
-            this.TestID,
-            this.RunID)
+            EncodePathSegment(this.TestID),
+            EncodePathSegment(this.RunID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

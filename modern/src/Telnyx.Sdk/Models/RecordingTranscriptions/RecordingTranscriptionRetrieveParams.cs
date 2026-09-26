@@ -92,7 +92,7 @@ public record class RecordingTranscriptionRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/recording_transcriptions/{0}",
-            this.RecordingTranscriptionID)
+            EncodePathSegment(this.RecordingTranscriptionID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

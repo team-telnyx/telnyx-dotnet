@@ -124,7 +124,7 @@ public record class NumberOrderPhoneNumberUpdateRequirementGroupParams : ParamsB
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/number_order_phone_numbers/{0}/requirement_group",
-            this.ID)
+            EncodePathSegment(this.ID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

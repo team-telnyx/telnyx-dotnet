@@ -132,7 +132,7 @@ public record class DirListInfringementClaimsParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/dir/{0}/infringement_claims",
-            this.DirID)
+            EncodePathSegment(this.DirID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

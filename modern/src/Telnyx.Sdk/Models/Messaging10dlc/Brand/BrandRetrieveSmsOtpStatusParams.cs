@@ -101,7 +101,7 @@ public record class BrandRetrieveSmsOtpStatusParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/10dlc/brand/{0}/smsOtp",
-            this.BrandID)
+            EncodePathSegment(this.BrandID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

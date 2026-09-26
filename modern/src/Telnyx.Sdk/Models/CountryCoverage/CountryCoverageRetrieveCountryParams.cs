@@ -91,7 +91,7 @@ public record class CountryCoverageRetrieveCountryParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/country_coverage/countries/{0}",
-            this.CountryCode)
+            EncodePathSegment(this.CountryCode))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

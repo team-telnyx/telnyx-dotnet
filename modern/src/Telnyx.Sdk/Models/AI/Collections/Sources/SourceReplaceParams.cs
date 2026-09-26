@@ -125,7 +125,7 @@ public record class SourceReplaceParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/collections/{0}/sources",
-            this.Uuid)
+            EncodePathSegment(this.Uuid))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

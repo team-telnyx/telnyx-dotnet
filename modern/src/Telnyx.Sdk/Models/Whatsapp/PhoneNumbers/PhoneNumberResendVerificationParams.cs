@@ -126,7 +126,7 @@ public record class PhoneNumberResendVerificationParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/v2/whatsapp/phone_numbers/{0}/resend_verification",
-            this.PhoneNumber)
+            EncodePathSegment(this.PhoneNumber))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

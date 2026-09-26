@@ -135,8 +135,8 @@ public record class QueueUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/texml/Accounts/{0}/Queues/{1}",
-            this.AccountSid,
-            this.QueueSid)
+            EncodePathSegment(this.AccountSid),
+            EncodePathSegment(this.QueueSid))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

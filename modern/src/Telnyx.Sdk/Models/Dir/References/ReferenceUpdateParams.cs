@@ -248,9 +248,9 @@ public record class ReferenceUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/dir/{0}/references/{1}/{2}",
-            this.DirID,
-            this.RefType.Raw(),
-            this.Slot)
+            EncodePathSegment(this.DirID),
+            EncodePathSegment(this.RefType.Raw()),
+            EncodePathSegment(this.Slot))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

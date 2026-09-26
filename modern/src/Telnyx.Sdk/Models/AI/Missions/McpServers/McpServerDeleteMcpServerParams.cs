@@ -101,8 +101,8 @@ public record class McpServerDeleteMcpServerParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/missions/{0}/mcp-servers/{1}",
-            this.MissionID,
-            this.McpServerID)
+            EncodePathSegment(this.MissionID),
+            EncodePathSegment(this.McpServerID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

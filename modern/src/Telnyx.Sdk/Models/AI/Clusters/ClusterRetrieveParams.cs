@@ -129,7 +129,7 @@ public record class ClusterRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/clusters/{0}",
-            this.TaskID)
+            EncodePathSegment(this.TaskID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

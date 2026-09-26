@@ -101,8 +101,8 @@ public record class VoiceDesignDeleteVersionParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/voice_designs/{0}/versions/{1}",
-            this.ID,
-            this.Version)
+            EncodePathSegment(this.ID),
+            EncodePathSegment(this.Version))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

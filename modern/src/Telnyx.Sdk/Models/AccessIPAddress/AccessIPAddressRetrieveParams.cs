@@ -92,7 +92,7 @@ public record class AccessIPAddressRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/access_ip_address/{0}",
-            this.AccessIPAddressID)
+            EncodePathSegment(this.AccessIPAddressID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

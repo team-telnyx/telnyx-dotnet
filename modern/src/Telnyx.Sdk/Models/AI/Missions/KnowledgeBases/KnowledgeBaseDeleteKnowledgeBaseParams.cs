@@ -101,8 +101,8 @@ public record class KnowledgeBaseDeleteKnowledgeBaseParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/missions/{0}/knowledge-bases/{1}",
-            this.MissionID,
-            this.KnowledgeBaseID)
+            EncodePathSegment(this.MissionID),
+            EncodePathSegment(this.KnowledgeBaseID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

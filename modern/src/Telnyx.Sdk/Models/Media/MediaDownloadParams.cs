@@ -90,7 +90,7 @@ public record class MediaDownloadParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/media/{0}/download",
-            this.MediaName)
+            EncodePathSegment(this.MediaName))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

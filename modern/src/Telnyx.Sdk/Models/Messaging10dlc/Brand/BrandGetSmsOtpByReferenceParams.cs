@@ -120,7 +120,7 @@ public record class BrandGetSmsOtpByReferenceParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/10dlc/brand/smsOtp/{0}",
-            this.ReferenceID)
+            EncodePathSegment(this.ReferenceID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

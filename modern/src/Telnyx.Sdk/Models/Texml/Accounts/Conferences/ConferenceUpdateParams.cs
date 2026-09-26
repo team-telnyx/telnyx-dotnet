@@ -179,8 +179,8 @@ public record class ConferenceUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/texml/Accounts/{0}/Conferences/{1}",
-            this.AccountSid,
-            this.ConferenceSid)
+            EncodePathSegment(this.AccountSid),
+            EncodePathSegment(this.ConferenceSid))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

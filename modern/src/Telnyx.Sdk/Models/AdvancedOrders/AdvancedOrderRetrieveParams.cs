@@ -91,7 +91,7 @@ public record class AdvancedOrderRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/advanced_orders/{0}",
-            this.OrderID)
+            EncodePathSegment(this.OrderID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -90,7 +90,7 @@ public record class ActionEndParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/room_sessions/{0}/actions/end",
-            this.RoomSessionID)
+            EncodePathSegment(this.RoomSessionID))
         )
         {
             Query = this.QueryString(options, new())

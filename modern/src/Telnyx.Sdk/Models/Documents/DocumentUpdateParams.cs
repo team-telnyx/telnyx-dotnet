@@ -146,7 +146,7 @@ public record class DocumentUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/documents/{0}",
-            this.DocumentID)
+            EncodePathSegment(this.DocumentID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

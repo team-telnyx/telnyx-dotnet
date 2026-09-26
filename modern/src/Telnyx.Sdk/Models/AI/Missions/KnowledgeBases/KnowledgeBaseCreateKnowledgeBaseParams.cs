@@ -90,7 +90,7 @@ public record class KnowledgeBaseCreateKnowledgeBaseParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/missions/{0}/knowledge-bases",
-            this.MissionID)
+            EncodePathSegment(this.MissionID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -148,7 +148,7 @@ public record class SimCardDataUsageNotificationUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/sim_card_data_usage_notifications/{0}",
-            this.SimCardDataUsageNotificationID)
+            EncodePathSegment(this.SimCardDataUsageNotificationID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -197,8 +197,8 @@ public record class EventListParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/missions/{0}/runs/{1}/events",
-            this.MissionID,
-            this.RunID)
+            EncodePathSegment(this.MissionID),
+            EncodePathSegment(this.RunID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -101,8 +101,8 @@ public record class CivicAddressRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/external_connections/{0}/civic_addresses/{1}",
-            this.ID,
-            this.AddressID)
+            EncodePathSegment(this.ID),
+            EncodePathSegment(this.AddressID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

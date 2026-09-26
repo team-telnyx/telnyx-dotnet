@@ -108,8 +108,8 @@ public record class SuppressionDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/email_unsubscribe_groups/{0}/suppressions/{1}",
-            this.ID,
-            this.Email)
+            EncodePathSegment(this.ID),
+            EncodePathSegment(this.Email))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

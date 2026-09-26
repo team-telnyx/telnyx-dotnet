@@ -94,7 +94,7 @@ public record class ConversationRetrieveConversationsInsightsParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/conversations/{0}/conversations-insights",
-            this.ConversationID)
+            EncodePathSegment(this.ConversationID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

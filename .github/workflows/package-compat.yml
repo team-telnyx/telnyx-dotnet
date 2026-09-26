@@ -21,7 +21,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.423'
+          dotnet-version: '8.0.425'
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -48,7 +48,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.423'
+          dotnet-version: '8.0.425'
       - uses: actions/download-artifact@v4
         with:
           name: nonpublish-candidate-${{ github.sha }}
@@ -62,6 +62,10 @@ jobs:
         env:
           COMPAT_RUNTIME_PREFIX: sudo --preserve-env=DOTNET_ROOT unshare --net -- sh -c 'ip link set lo up && exec "$@"' --
         run: python3 compat/verify_stj8_refresh.py
+      - name: Packaged runtime and URL regressions
+        env:
+          COMPAT_RUNTIME_PREFIX: sudo --preserve-env=DOTNET_ROOT unshare --net -- sh -c 'ip link set lo up && exec "$@"' --
+        run: python3 compat/verify_runtime_regressions.py --candidate compat/diagnostic-artifacts/Telnyx.net.4.0.0-preview.1.nupkg
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -69,6 +73,37 @@ jobs:
           path: |
             compat/results/**/results.json
             compat/results/**/commands.json
+            compat/results/**/evidence.json
+            compat/results/**/runtime.log
+  newer-runtime-fallback:
+    needs: diagnostic-artifact
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.401'
+      - uses: actions/download-artifact@v4
+        with:
+          name: nonpublish-candidate-${{ github.sha }}
+          path: compat/diagnostic-artifacts
+      - run: sha256sum --check compat/diagnostic-artifacts/candidate.sha256
+      - name: net10 consumers select net8 assets and execute both mixed orders
+        env:
+          COMPAT_RUNTIME_PREFIX: sudo --preserve-env=DOTNET_ROOT unshare --net -- sh -c 'ip link set lo up && exec "$@"' --
+        run: python3 compat/verify_runtime_fallback.py --dotnet "$(command -v dotnet)" --candidate compat/diagnostic-artifacts/Telnyx.net.4.0.0-preview.1.nupkg
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: net10-fallback-diagnostic-results
+          if-no-files-found: error
+          path: |
+            compat/results/runtime-fallback-*/results.json
+            compat/results/runtime-fallback-*/commands.json
+            compat/results/runtime-fallback-*/*.log
+            compat/results/runtime-fallback-*/**/selected-assets.json
   windows-legacy:
     needs: diagnostic-artifact
     runs-on: windows-2022
@@ -94,6 +129,9 @@ jobs:
           $expected = (Get-Content compat/diagnostic-artifacts/candidate.sha256).Split(' ')[0]
           $actual = (Get-FileHash compat/diagnostic-artifacts/Telnyx.net.4.0.0-preview.1.nupkg -Algorithm SHA256).Hash
           if ($expected -ne $actual) { throw 'Candidate artifact hash mismatch' }
+      - name: Behavioral archive metadata regression
+        shell: pwsh
+        run: python -m unittest discover -s compat/tests -p test_windows_metadata.py -v
       - name: Non-SDK packages.config restore and unrecompiled runtime
         shell: pwsh
         run: ./compat/windows.ps1 -Candidate compat/diagnostic-artifacts/Telnyx.net.4.0.0-preview.1.nupkg -Target '${{ matrix.target }}'

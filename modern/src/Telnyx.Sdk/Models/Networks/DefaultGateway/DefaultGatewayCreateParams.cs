@@ -128,7 +128,7 @@ public record class DefaultGatewayCreateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/networks/{0}/default_gateway",
-            this.NetworkIdentifier)
+            EncodePathSegment(this.NetworkIdentifier))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

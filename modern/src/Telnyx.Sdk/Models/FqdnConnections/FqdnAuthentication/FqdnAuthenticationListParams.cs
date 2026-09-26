@@ -91,7 +91,7 @@ public record class FqdnAuthenticationListParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/fqdn_connections/{0}/fqdn_authentication",
-            this.FqdnConnectionID)
+            EncodePathSegment(this.FqdnConnectionID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

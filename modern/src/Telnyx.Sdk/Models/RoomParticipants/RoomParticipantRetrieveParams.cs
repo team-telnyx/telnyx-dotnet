@@ -93,7 +93,7 @@ public record class RoomParticipantRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/room_participants/{0}",
-            this.RoomParticipantID)
+            EncodePathSegment(this.RoomParticipantID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

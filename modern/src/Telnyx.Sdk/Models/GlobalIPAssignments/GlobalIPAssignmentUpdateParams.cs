@@ -115,7 +115,7 @@ public record class GlobalIPAssignmentUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/global_ip_assignments/{0}",
-            this.GlobalIPAssignmentID)
+            EncodePathSegment(this.GlobalIPAssignmentID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

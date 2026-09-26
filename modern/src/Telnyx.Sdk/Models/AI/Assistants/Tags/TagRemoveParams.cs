@@ -101,8 +101,8 @@ public record class TagRemoveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/assistants/{0}/tags/{1}",
-            this.AssistantID,
-            this.Tag)
+            EncodePathSegment(this.AssistantID),
+            EncodePathSegment(this.Tag))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

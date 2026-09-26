@@ -104,8 +104,8 @@ public record class ProfileRetrieveSummaryParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/memory/namespaces/{0}/profiles/{1}/summary",
-            this.Namespace,
-            this.ProfileID)
+            EncodePathSegment(this.Namespace),
+            EncodePathSegment(this.ProfileID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

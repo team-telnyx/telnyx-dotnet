@@ -101,8 +101,8 @@ public record class RemediationRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/enterprises/{0}/reputation/remediation/{1}",
-            this.EnterpriseID,
-            this.RemediationID)
+            EncodePathSegment(this.EnterpriseID),
+            EncodePathSegment(this.RemediationID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -91,7 +91,7 @@ public record class MetadataRetrieveRecordTypeParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/session_analysis/metadata/{0}",
-            this.RecordType)
+            EncodePathSegment(this.RecordType))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

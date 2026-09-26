@@ -90,7 +90,7 @@ public record class RoomCompositionDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/room_compositions/{0}",
-            this.RoomCompositionID)
+            EncodePathSegment(this.RoomCompositionID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

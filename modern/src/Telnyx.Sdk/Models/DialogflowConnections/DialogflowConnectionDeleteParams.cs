@@ -90,7 +90,7 @@ public record class DialogflowConnectionDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/dialogflow_connections/{0}",
-            this.ConnectionID)
+            EncodePathSegment(this.ConnectionID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

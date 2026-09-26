@@ -96,7 +96,7 @@ public record class EnterpriseDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/enterprises/{0}",
-            this.EnterpriseID)
+            EncodePathSegment(this.EnterpriseID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

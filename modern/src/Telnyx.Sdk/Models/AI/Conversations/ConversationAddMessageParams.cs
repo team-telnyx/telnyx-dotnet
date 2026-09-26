@@ -257,7 +257,7 @@ public record class ConversationAddMessageParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/conversations/{0}/message",
-            this.ConversationID)
+            EncodePathSegment(this.ConversationID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

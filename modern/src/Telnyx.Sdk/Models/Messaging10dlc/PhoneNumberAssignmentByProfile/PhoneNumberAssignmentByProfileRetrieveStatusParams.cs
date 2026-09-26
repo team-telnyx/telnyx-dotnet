@@ -93,7 +93,7 @@ public record class PhoneNumberAssignmentByProfileRetrieveStatusParams : ParamsB
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/10dlc/phoneNumberAssignmentByProfile/{0}",
-            this.TaskID)
+            EncodePathSegment(this.TaskID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

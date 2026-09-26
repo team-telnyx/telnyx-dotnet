@@ -92,7 +92,7 @@ public record class MobilePushCredentialDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/mobile_push_credentials/{0}",
-            this.PushCredentialID)
+            EncodePathSegment(this.PushCredentialID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

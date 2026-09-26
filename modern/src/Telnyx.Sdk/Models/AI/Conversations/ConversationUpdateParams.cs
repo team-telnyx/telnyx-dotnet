@@ -132,7 +132,7 @@ public record class ConversationUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/conversations/{0}",
-            this.ConversationID)
+            EncodePathSegment(this.ConversationID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

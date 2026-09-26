@@ -124,7 +124,7 @@ public record class MessagingProfileListPhoneNumbersParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/messaging_profiles/{0}/phone_numbers",
-            this.MessagingProfileID)
+            EncodePathSegment(this.MessagingProfileID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

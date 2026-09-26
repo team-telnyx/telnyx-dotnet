@@ -164,7 +164,7 @@ public record class ConferenceListParticipantsParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/conferences/{0}/participants",
-            this.ConferenceID)
+            EncodePathSegment(this.ConferenceID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

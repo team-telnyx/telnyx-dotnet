@@ -100,8 +100,8 @@ public record class ReleaseRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/external_connections/{0}/releases/{1}",
-            this.ID,
-            this.ReleaseID)
+            EncodePathSegment(this.ID),
+            EncodePathSegment(this.ReleaseID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

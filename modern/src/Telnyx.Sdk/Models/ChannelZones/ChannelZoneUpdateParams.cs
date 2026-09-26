@@ -123,7 +123,7 @@ public record class ChannelZoneUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/channel_zones/{0}",
-            this.ChannelZoneID)
+            EncodePathSegment(this.ChannelZoneID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

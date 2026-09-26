@@ -101,8 +101,8 @@ public record class PhoneNumberBatchRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/dir/{0}/phone_number_batches/{1}",
-            this.DirID,
-            this.BatchID)
+            EncodePathSegment(this.DirID),
+            EncodePathSegment(this.BatchID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -100,8 +100,8 @@ public record class ConferenceRetrieveParticipantParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/conferences/{0}/participants/{1}",
-            this.ID,
-            this.ParticipantID)
+            EncodePathSegment(this.ID),
+            EncodePathSegment(this.ParticipantID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

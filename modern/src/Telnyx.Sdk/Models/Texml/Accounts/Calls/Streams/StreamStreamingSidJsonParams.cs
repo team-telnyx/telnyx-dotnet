@@ -145,9 +145,9 @@ public record class StreamStreamingSidJsonParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/texml/Accounts/{0}/Calls/{1}/Streams/{2}.json",
-            this.AccountSid,
-            this.CallSid,
-            this.StreamingSid)
+            EncodePathSegment(this.AccountSid),
+            EncodePathSegment(this.CallSid),
+            EncodePathSegment(this.StreamingSid))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

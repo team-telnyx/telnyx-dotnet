@@ -90,7 +90,7 @@ public record class VoicemailRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/phone_numbers/{0}/voicemail",
-            this.PhoneNumberID)
+            EncodePathSegment(this.PhoneNumberID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

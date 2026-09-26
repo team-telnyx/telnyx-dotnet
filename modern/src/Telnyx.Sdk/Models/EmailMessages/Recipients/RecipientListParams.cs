@@ -172,7 +172,7 @@ public record class RecipientListParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/email_messages/{0}/recipients",
-            this.EmailID)
+            EncodePathSegment(this.EmailID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

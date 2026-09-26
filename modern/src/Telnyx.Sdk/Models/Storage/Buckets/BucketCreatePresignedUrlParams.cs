@@ -127,8 +127,8 @@ public record class BucketCreatePresignedUrlParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/storage/buckets/{0}/{1}/presigned_url",
-            this.BucketName,
-            this.ObjectName)
+            EncodePathSegment(this.BucketName),
+            EncodePathSegment(this.ObjectName))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

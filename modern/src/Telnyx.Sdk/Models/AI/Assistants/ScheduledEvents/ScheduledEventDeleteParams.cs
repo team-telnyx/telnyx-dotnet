@@ -101,8 +101,8 @@ public record class ScheduledEventDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/assistants/{0}/scheduled_events/{1}",
-            this.AssistantID,
-            this.EventID)
+            EncodePathSegment(this.AssistantID),
+            EncodePathSegment(this.EventID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

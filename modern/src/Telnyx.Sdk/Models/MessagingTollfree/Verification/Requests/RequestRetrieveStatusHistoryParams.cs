@@ -119,7 +119,7 @@ public record class RequestRetrieveStatusHistoryParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/messaging_tollfree/verification/requests/{0}/status_history",
-            this.ID)
+            EncodePathSegment(this.ID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

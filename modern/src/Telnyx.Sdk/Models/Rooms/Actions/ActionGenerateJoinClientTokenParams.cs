@@ -150,7 +150,7 @@ public record class ActionGenerateJoinClientTokenParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/rooms/{0}/actions/generate_join_client_token",
-            this.RoomID)
+            EncodePathSegment(this.RoomID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

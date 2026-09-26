@@ -102,8 +102,8 @@ public record class JsonRetrieveRecordingTranscriptionSidJsonParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/texml/Accounts/{0}/Transcriptions/{1}.json",
-            this.AccountSid,
-            this.RecordingTranscriptionSid)
+            EncodePathSegment(this.AccountSid),
+            EncodePathSegment(this.RecordingTranscriptionSid))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -90,7 +90,7 @@ public record class ExternalVettingListParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/10dlc/brand/{0}/externalVetting",
-            this.BrandID)
+            EncodePathSegment(this.BrandID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

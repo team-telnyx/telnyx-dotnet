@@ -238,7 +238,7 @@ public record class DirUpdateInfringementParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/dir/{0}/infringement_update",
-            this.DirID)
+            EncodePathSegment(this.DirID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

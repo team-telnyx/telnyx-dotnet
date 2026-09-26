@@ -163,7 +163,7 @@ public record class AutorespConfigCreateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/messaging_profiles/{0}/autoresp_configs",
-            this.ProfileID)
+            EncodePathSegment(this.ProfileID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -90,7 +90,7 @@ public record class ConnectionRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/integrations/connections/{0}",
-            this.UserConnectionID)
+            EncodePathSegment(this.UserConnectionID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -229,7 +229,7 @@ public record class ConferenceRetrieveConferencesParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/texml/Accounts/{0}/Conferences",
-            this.AccountSid)
+            EncodePathSegment(this.AccountSid))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

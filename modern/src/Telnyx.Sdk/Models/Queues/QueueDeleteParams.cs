@@ -90,7 +90,7 @@ public record class QueueDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/queues/{0}",
-            this.QueueName)
+            EncodePathSegment(this.QueueName))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

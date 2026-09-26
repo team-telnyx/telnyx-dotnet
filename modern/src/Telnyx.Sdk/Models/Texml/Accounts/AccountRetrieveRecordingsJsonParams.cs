@@ -150,7 +150,7 @@ public record class AccountRetrieveRecordingsJsonParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/texml/Accounts/{0}/Recordings.json",
-            this.AccountSid)
+            EncodePathSegment(this.AccountSid))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

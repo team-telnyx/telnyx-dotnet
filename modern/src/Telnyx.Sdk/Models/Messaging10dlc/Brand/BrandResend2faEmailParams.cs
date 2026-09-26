@@ -92,7 +92,7 @@ public record class BrandResend2faEmailParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/10dlc/brand/{0}/2faEmail",
-            this.BrandID)
+            EncodePathSegment(this.BrandID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

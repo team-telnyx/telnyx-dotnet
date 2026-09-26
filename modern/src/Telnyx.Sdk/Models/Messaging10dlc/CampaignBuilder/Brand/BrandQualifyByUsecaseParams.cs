@@ -101,8 +101,8 @@ public record class BrandQualifyByUsecaseParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/10dlc/campaignBuilder/brand/{0}/usecase/{1}",
-            this.BrandID,
-            this.Usecase)
+            EncodePathSegment(this.BrandID),
+            EncodePathSegment(this.Usecase))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

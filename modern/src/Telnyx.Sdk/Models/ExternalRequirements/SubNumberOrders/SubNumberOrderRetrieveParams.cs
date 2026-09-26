@@ -104,8 +104,8 @@ public record class SubNumberOrderRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/external_requirements/{0}/sub_number_orders/{1}",
-            this.RegulatoryRequirementID,
-            this.SubNumberOrderID)
+            EncodePathSegment(this.RegulatoryRequirementID),
+            EncodePathSegment(this.SubNumberOrderID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

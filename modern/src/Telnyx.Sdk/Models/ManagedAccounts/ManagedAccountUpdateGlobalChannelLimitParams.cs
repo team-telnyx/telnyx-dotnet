@@ -133,7 +133,7 @@ public record class ManagedAccountUpdateGlobalChannelLimitParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/managed_accounts/{0}/update_global_channel_limit",
-            this.ID)
+            EncodePathSegment(this.ID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

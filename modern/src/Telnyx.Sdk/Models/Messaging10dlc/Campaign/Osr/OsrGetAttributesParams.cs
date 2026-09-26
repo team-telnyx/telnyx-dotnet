@@ -91,7 +91,7 @@ public record class OsrGetAttributesParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/10dlc/campaign/{0}/osr/attributes",
-            this.CampaignID)
+            EncodePathSegment(this.CampaignID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

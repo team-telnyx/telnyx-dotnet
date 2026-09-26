@@ -156,7 +156,7 @@ public record class InsightGroupUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/conversations/insight-groups/{0}",
-            this.GroupID)
+            EncodePathSegment(this.GroupID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

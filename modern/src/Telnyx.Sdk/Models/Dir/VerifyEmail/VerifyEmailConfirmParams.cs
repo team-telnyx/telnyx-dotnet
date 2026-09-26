@@ -125,7 +125,7 @@ public record class VerifyEmailConfirmParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/dir/{0}/verify_email/confirm",
-            this.DirID)
+            EncodePathSegment(this.DirID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -194,7 +194,7 @@ public record class ActionAddAIAssistantMessagesParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/calls/{0}/actions/ai_assistant_add_messages",
-            this.CallControlID)
+            EncodePathSegment(this.CallControlID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

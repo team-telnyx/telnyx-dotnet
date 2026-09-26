@@ -103,8 +103,8 @@ public record class UploadRetryParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/external_connections/{0}/uploads/{1}/retry",
-            this.ID,
-            this.TicketID)
+            EncodePathSegment(this.ID),
+            EncodePathSegment(this.TicketID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

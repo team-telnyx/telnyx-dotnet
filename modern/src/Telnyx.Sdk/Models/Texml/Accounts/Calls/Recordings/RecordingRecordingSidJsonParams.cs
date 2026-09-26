@@ -142,9 +142,9 @@ public record class RecordingRecordingSidJsonParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/texml/Accounts/{0}/Calls/{1}/Recordings/{2}.json",
-            this.AccountSid,
-            this.CallSid,
-            this.RecordingSid)
+            EncodePathSegment(this.AccountSid),
+            EncodePathSegment(this.CallSid),
+            EncodePathSegment(this.RecordingSid))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

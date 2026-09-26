@@ -100,8 +100,8 @@ public record class JsonDeleteRecordingSidJsonParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/texml/Accounts/{0}/Recordings/{1}.json",
-            this.AccountSid,
-            this.RecordingSid)
+            EncodePathSegment(this.AccountSid),
+            EncodePathSegment(this.RecordingSid))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

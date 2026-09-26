@@ -102,8 +102,8 @@ public record class NamespaceRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/memory/namespaces/{0}/operations/{1}",
-            this.Namespace,
-            this.OperationID)
+            EncodePathSegment(this.Namespace),
+            EncodePathSegment(this.OperationID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -94,7 +94,7 @@ public record class VerifyEmailCreateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/dir/{0}/verify_email",
-            this.DirID)
+            EncodePathSegment(this.DirID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

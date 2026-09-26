@@ -174,7 +174,7 @@ public record class InsightUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/conversations/insights/{0}",
-            this.InsightID)
+            EncodePathSegment(this.InsightID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

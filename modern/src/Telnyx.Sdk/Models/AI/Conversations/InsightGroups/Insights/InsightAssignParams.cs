@@ -100,8 +100,8 @@ public record class InsightAssignParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/conversations/insight-groups/{0}/insights/{1}/assign",
-            this.GroupID,
-            this.InsightID)
+            EncodePathSegment(this.GroupID),
+            EncodePathSegment(this.InsightID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

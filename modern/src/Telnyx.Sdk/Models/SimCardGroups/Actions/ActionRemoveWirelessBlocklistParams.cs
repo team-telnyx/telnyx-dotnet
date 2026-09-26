@@ -92,7 +92,7 @@ public record class ActionRemoveWirelessBlocklistParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/sim_card_groups/{0}/actions/remove_wireless_blocklist",
-            this.ID)
+            EncodePathSegment(this.ID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

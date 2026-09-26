@@ -91,7 +91,7 @@ public record class AgreementRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/terms_of_service/agreements/{0}",
-            this.AgreementID)
+            EncodePathSegment(this.AgreementID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

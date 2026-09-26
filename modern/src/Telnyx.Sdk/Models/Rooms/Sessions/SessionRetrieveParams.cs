@@ -111,7 +111,7 @@ public record class SessionRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/room_sessions/{0}",
-            this.RoomSessionID)
+            EncodePathSegment(this.RoomSessionID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

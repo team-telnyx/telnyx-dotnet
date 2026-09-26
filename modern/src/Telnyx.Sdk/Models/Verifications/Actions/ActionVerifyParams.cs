@@ -151,7 +151,7 @@ public record class ActionVerifyParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/verifications/{0}/actions/verify",
-            this.VerificationID)
+            EncodePathSegment(this.VerificationID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

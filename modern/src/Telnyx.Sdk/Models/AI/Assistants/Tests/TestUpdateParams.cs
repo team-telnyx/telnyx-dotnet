@@ -265,7 +265,7 @@ public record class TestUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/assistants/tests/{0}",
-            this.TestID)
+            EncodePathSegment(this.TestID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

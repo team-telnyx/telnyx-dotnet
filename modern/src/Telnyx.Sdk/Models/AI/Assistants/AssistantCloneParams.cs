@@ -106,7 +106,7 @@ public record class AssistantCloneParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/assistants/{0}/clone",
-            this.AssistantID)
+            EncodePathSegment(this.AssistantID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

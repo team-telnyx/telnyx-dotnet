@@ -252,7 +252,7 @@ public record class ActionStartSiprecParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/calls/{0}/actions/siprec_start",
-            this.CallControlID)
+            EncodePathSegment(this.CallControlID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

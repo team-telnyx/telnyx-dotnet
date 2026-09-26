@@ -344,9 +344,9 @@ public record class ParticipantUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/texml/Accounts/{0}/Conferences/{1}/Participants/{2}",
-            this.AccountSid,
-            this.ConferenceSid,
-            this.CallSidOrParticipantLabel)
+            EncodePathSegment(this.AccountSid),
+            EncodePathSegment(this.ConferenceSid),
+            EncodePathSegment(this.CallSidOrParticipantLabel))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

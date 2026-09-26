@@ -124,7 +124,7 @@ public record class MessagingProfileListShortCodesParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/messaging_profiles/{0}/short_codes",
-            this.MessagingProfileID)
+            EncodePathSegment(this.MessagingProfileID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

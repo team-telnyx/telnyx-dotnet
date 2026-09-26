@@ -90,7 +90,7 @@ public record class JobRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/fine_tuning/jobs/{0}",
-            this.JobID)
+            EncodePathSegment(this.JobID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

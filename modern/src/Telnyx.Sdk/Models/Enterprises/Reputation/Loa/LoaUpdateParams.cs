@@ -125,7 +125,7 @@ public record class LoaUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/enterprises/{0}/reputation/loa",
-            this.EnterpriseID)
+            EncodePathSegment(this.EnterpriseID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -90,7 +90,7 @@ public record class CollectionRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/collections/slug/{0}",
-            this.Slug)
+            EncodePathSegment(this.Slug))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

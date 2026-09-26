@@ -129,8 +129,8 @@ public record class ExternalConnectionUpdateLocationParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/external_connections/{0}/locations/{1}",
-            this.ID,
-            this.LocationID)
+            EncodePathSegment(this.ID),
+            EncodePathSegment(this.LocationID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

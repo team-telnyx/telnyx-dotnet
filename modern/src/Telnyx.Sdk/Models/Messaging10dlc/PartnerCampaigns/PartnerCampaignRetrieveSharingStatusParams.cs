@@ -92,7 +92,7 @@ public record class PartnerCampaignRetrieveSharingStatusParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/10dlc/partnerCampaign/{0}/sharing",
-            this.CampaignID)
+            EncodePathSegment(this.CampaignID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

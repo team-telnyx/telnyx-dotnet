@@ -109,7 +109,7 @@ public record class UserBundleListResourcesParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/bundle_pricing/user_bundles/{0}/resources",
-            this.UserBundleID)
+            EncodePathSegment(this.UserBundleID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

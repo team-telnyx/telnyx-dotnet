@@ -12,15 +12,46 @@ function Invoke-Checked([string]$Command, [string[]]$Arguments) {
   & $Command @Arguments 2>&1 | Tee-Object -FilePath (Join-Path $Work 'commands.log') -Append
   if ($LASTEXITCODE -ne 0) { throw "$Command failed: $LASTEXITCODE" }
 }
+function Get-InstalledPackageEntry([string]$Directory, [string]$Framework) {
+  # NuGet install keeps metadata in the archive, not necessarily a loose nuspec.
+  $Archives = @(Get-ChildItem -LiteralPath $Directory -File -Filter '*.nupkg')
+  if ($Archives.Count -ne 1) { throw "Expected exactly one installed nupkg in $Directory" }
+  Add-Type -AssemblyName System.IO.Compression.FileSystem
+  $Archive = [System.IO.Compression.ZipFile]::OpenRead($Archives[0].FullName)
+  try {
+    $Specs = @($Archive.Entries | Where-Object { $_.FullName -match '^[^/\\]+\.nuspec$' })
+    if ($Specs.Count -ne 1) { throw 'Expected exactly one root package nuspec' }
+    $Stream = $Specs[0].Open()
+    try {
+      $Settings = [System.Xml.XmlReaderSettings]::new()
+      $Settings.DtdProcessing = [System.Xml.DtdProcessing]::Prohibit
+      $Settings.XmlResolver = $null
+      $Reader = [System.Xml.XmlReader]::Create($Stream, $Settings)
+      try {
+        $Xml = [System.Xml.XmlDocument]::new()
+        $Xml.XmlResolver = $null
+        $Xml.Load($Reader)
+      } finally { $Reader.Dispose() }
+    } finally { $Stream.Dispose() }
+    $Ns = [System.Xml.XmlNamespaceManager]::new($Xml.NameTable)
+    $Ns.AddNamespace('n', $Xml.DocumentElement.NamespaceURI)
+    $Prefix = if ($Xml.DocumentElement.NamespaceURI) { 'n:' } else { '' }
+    $Metadata = $Xml.SelectNodes("/${Prefix}package/${Prefix}metadata", $Ns)
+    if ($Metadata.Count -ne 1) { throw 'Expected exactly one package metadata element' }
+    $Ids = $Metadata[0].SelectNodes("${Prefix}id", $Ns)
+    $Versions = $Metadata[0].SelectNodes("${Prefix}version", $Ns)
+    if ($Ids.Count -ne 1 -or $Versions.Count -ne 1 -or
+        [string]::IsNullOrWhiteSpace($Ids[0].InnerText) -or
+        [string]::IsNullOrWhiteSpace($Versions[0].InnerText)) { throw 'Missing or ambiguous package identity' }
+    '<package id="' + [System.Security.SecurityElement]::Escape($Ids[0].InnerText) + '" version="' + [System.Security.SecurityElement]::Escape($Versions[0].InnerText) + '" targetFramework="' + [System.Security.SecurityElement]::Escape($Framework) + '" />'
+  } finally { $Archive.Dispose() }
+}
 # Restore/build have network access only for package acquisition. Runtime has no sockets.
 foreach ($Version in @('3.1.0','4.0.0-preview.1')) {
   $Packages = Join-Path $Work "packages-$Version"
   Invoke-Checked nuget @('install','Telnyx.net','-Version',$Version,'-Framework',$Target,'-OutputDirectory',$Packages,'-Source',"$Feed;https://api.nuget.org/v3/index.json",'-NonInteractive','-DirectDownload','-NoCache')
   $Entries = Get-ChildItem $Packages -Directory | ForEach-Object {
-    $Spec = Get-ChildItem $_.FullName -Filter '*.nuspec' | Select-Object -First 1
-    if (-not $Spec) { throw 'Missing installed nuspec' }
-    [xml]$Xml = Get-Content $Spec.FullName
-    '<package id="' + $Xml.package.metadata.id + '" version="' + $Xml.package.metadata.version + '" targetFramework="' + $Target + '" />'
+    Get-InstalledPackageEntry $_.FullName $Target
   }
   $Config = Join-Path $Work "packages.$Version.config"
   ('<packages>' + ($Entries -join '') + '</packages>') | Set-Content $Config

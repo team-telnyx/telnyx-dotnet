@@ -145,7 +145,7 @@ public record class RunTriggerParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/assistants/tests/test-suites/{0}/runs",
-            this.SuiteName)
+            EncodePathSegment(this.SuiteName))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

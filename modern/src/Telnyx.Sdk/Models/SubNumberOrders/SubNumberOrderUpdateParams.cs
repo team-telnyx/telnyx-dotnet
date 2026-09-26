@@ -129,7 +129,7 @@ public record class SubNumberOrderUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/sub_number_orders/{0}",
-            this.SubNumberOrderID)
+            EncodePathSegment(this.SubNumberOrderID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

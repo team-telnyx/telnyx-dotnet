@@ -167,7 +167,7 @@ public record class NotificationChannelUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/notification_channels/{0}",
-            this.NotificationChannelID)
+            EncodePathSegment(this.NotificationChannelID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

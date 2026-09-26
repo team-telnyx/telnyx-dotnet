@@ -90,7 +90,7 @@ public record class ActionExtendParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/number_reservations/{0}/actions/extend",
-            this.NumberReservationID)
+            EncodePathSegment(this.NumberReservationID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

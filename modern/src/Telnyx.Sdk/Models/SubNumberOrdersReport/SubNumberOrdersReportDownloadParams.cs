@@ -91,7 +91,7 @@ public record class SubNumberOrdersReportDownloadParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/sub_number_orders_report/{0}/download",
-            this.ReportID)
+            EncodePathSegment(this.ReportID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

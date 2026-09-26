@@ -110,7 +110,7 @@ public record class BillingBundleRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/bundle_pricing/billing_bundles/{0}",
-            this.BundleID)
+            EncodePathSegment(this.BundleID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

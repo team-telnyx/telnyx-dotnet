@@ -312,7 +312,7 @@ public record class ActionGatherParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/calls/{0}/actions/gather",
-            this.CallControlID)
+            EncodePathSegment(this.CallControlID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

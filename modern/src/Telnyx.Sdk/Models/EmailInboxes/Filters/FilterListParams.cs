@@ -92,7 +92,7 @@ public record class FilterListParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/email_inboxes/{0}/filters",
-            this.InboxID)
+            EncodePathSegment(this.InboxID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

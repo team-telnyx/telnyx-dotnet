@@ -154,8 +154,8 @@ public record class PortoutUpdateStatusParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/portouts/{0}/{1}",
-            this.ID,
-            this.Status?.Raw())
+            EncodePathSegment(this.ID),
+            EncodePathSegment(this.Status?.Raw()))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

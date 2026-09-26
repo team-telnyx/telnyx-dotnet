@@ -50,6 +50,15 @@ public abstract record class ParamsBase
 
     private protected JsonDictionary _rawHeaderData = new();
 
+    // Path arguments are literal segments, never pre-escaped URI syntax.
+    internal static string EncodePathSegment(object? value)
+    {
+        var segment = global::System.Convert.ToString(value, global::System.Globalization.CultureInfo.InvariantCulture) ?? "";
+        if (segment == "." || segment == "..")
+            throw new global::System.ArgumentException("Path parameters cannot be bare dot segments", nameof(value));
+        return Uri.EscapeDataString(segment);
+    }
+
     internal string[] PaginationUrls { get; init; } = [];
     protected Uri ResolvePaginationUrl(Uri original)
     {
@@ -114,6 +123,7 @@ public abstract record class ParamsBase
                     JsonValueKind.Null=>"",
                     JsonValueKind.True=>"true",
                     JsonValueKind.False=>"false",
+                    JsonValueKind.Number=>x.GetRawText(),
                     _ =>x.GetString()
                 })));
                 break;
@@ -155,6 +165,7 @@ public abstract record class ParamsBase
                         JsonValueKind.Null=>"",
                         JsonValueKind.True=>"true",
                         JsonValueKind.False=>"false",
+                        JsonValueKind.Number=>item.GetRawText(),
                         _ =>item.GetString()
                     });
                 }

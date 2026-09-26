@@ -127,7 +127,7 @@ public record class NotificationProfileUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/notification_profiles/{0}",
-            this.NotificationProfileID)
+            EncodePathSegment(this.NotificationProfileID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

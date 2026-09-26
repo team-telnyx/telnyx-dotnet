@@ -100,8 +100,8 @@ public record class RcInviteTestNumberParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/messaging/rcs/test_number_invite/{0}/{1}",
-            this.ID,
-            this.PhoneNumber)
+            EncodePathSegment(this.ID),
+            EncodePathSegment(this.PhoneNumber))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

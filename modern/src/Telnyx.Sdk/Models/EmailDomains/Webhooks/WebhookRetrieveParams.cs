@@ -100,8 +100,8 @@ public record class WebhookRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/email_domains/{0}/webhooks/{1}",
-            this.DomainID,
-            this.ID)
+            EncodePathSegment(this.DomainID),
+            EncodePathSegment(this.ID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

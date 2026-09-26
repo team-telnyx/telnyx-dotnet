@@ -1077,7 +1077,7 @@ public record class TexmlInitiateAICallParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/texml/ai_calls/{0}",
-            this.ConnectionID)
+            EncodePathSegment(this.ConnectionID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

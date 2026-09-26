@@ -104,7 +104,7 @@ public record class EnterpriseBrandedCallingParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/enterprises/{0}/branded_calling",
-            this.EnterpriseID)
+            EncodePathSegment(this.EnterpriseID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

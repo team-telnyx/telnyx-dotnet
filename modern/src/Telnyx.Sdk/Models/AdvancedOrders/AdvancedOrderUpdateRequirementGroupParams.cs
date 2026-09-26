@@ -246,7 +246,7 @@ public record class AdvancedOrderUpdateRequirementGroupParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/advanced_orders/{0}/requirement_group",
-            this.AdvancedOrderID)
+            EncodePathSegment(this.AdvancedOrderID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

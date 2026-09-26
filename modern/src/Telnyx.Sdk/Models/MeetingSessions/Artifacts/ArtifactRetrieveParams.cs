@@ -100,8 +100,8 @@ public record class ArtifactRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/meeting_sessions/{0}/artifacts/{1}",
-            this.ID,
-            this.ArtifactID)
+            EncodePathSegment(this.ID),
+            EncodePathSegment(this.ArtifactID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

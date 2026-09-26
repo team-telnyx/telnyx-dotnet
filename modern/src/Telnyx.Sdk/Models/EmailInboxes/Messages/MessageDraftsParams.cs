@@ -413,8 +413,8 @@ public record class MessageDraftsParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/email_inboxes/{0}/messages/{1}/drafts",
-            this.InboxID,
-            this.MessageID)
+            EncodePathSegment(this.InboxID),
+            EncodePathSegment(this.MessageID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -105,7 +105,7 @@ public record class UsageGetApiUsageParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/storage/buckets/{0}/usage/api",
-            this.BucketName)
+            EncodePathSegment(this.BucketName))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

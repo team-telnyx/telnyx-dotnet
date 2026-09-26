@@ -2198,6 +2198,8 @@ public sealed class TelnyxClientWithRawResponse : ITelnyxClientWithRawResponse
     {
         var maxRetries = this.MaxRetries ?? ClientOptions.DefaultMaxRetries;
         var retries = 0;
+        using var bodyContent = request.Params.BodyContent();
+        bool canReplay = ReplayableStreamContent.CanReplay(bodyContent);
         while (true)
         {
             HttpResponse? response = null;
@@ -2205,17 +2207,18 @@ public sealed class TelnyxClientWithRawResponse : ITelnyxClientWithRawResponse
             {
                 response = await ExecuteOnce(request,
                 retries,
+                bodyContent,
                 cancellationToken).ConfigureAwait(false);
             }
             catch (Exception e)
             {
-                if (++retries > maxRetries || !ShouldRetry(e))
+                if (++retries > maxRetries || !canReplay || !ShouldRetry(e))
                 {
                     throw;
                 }
             }
 
-            if (response != null && (++retries > maxRetries || !ShouldRetry(response)))
+            if (response != null && (++retries > maxRetries || !canReplay || !ShouldRetry(response)))
             {
                 if (response.IsSuccessStatusCode) {
                     return response;
@@ -2253,6 +2256,7 @@ public sealed class TelnyxClientWithRawResponse : ITelnyxClientWithRawResponse
     (
         HttpRequest<T> request,
         int retryCount,
+        System.Net.Http.HttpContent? bodyContent,
         CancellationToken cancellationToken = default
     ) where T: ParamsBase
     {
@@ -2260,22 +2264,28 @@ public sealed class TelnyxClientWithRawResponse : ITelnyxClientWithRawResponse
             request.Method, request.Params.Url(this._options)
         )
         {
-            Content = request.Params.BodyContent()
+            Content = bodyContent
         };request.Params.AddHeadersToRequest(requestMessage, this._options);if (!requestMessage.Headers.Contains("x-stainless-retry-count"))
         {
             requestMessage.Headers.Add("x-stainless-retry-count", retryCount.ToString());
-        }using CancellationTokenSource timeoutCts = new(
-            this.Timeout ?? ClientOptions.DefaultTimeout
-        );using var cts = CancellationTokenSource.CreateLinkedTokenSource(timeoutCts.Token, cancellationToken);HttpResponseMessage responseMessage;try
+        }var timeoutCts = new ResponseLifetime(this.Timeout ?? ClientOptions.DefaultTimeout, cancellationToken);var cts = timeoutCts;HttpResponseMessage responseMessage;try
         {
             responseMessage =await this.HttpClient.SendAsync(requestMessage, HttpCompletionOption.ResponseHeadersRead, cts.Token).ConfigureAwait(false) ;
         }
         catch (HttpRequestException e)
         {
-            throw new TelnyxIOException("I/O exception", e);
-        }return new()
+            timeoutCts.Dispose(); throw new TelnyxIOException("I/O exception", e);
+        }
+        catch (Exception e)
+        {
+            _ = e; timeoutCts.Dispose(); throw;
+        }finally
+        {
+            requestMessage.Content = null;
+        }timeoutCts.Attach(responseMessage); return new()
         {
             RawMessage = responseMessage,
+            Lifetime = timeoutCts,
             CancellationToken = cts.Token,
         };
     }

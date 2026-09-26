@@ -100,8 +100,8 @@ public record class RcRetrieveCapabilitiesParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/messaging/rcs/capabilities/{0}/{1}",
-            this.AgentID,
-            this.PhoneNumber)
+            EncodePathSegment(this.AgentID),
+            EncodePathSegment(this.PhoneNumber))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -130,7 +130,7 @@ public record class MessagingProfileListAlphanumericSenderIdsParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/messaging_profiles/{0}/alphanumeric_sender_ids",
-            this.ID)
+            EncodePathSegment(this.ID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

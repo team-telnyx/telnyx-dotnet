@@ -92,7 +92,7 @@ public record class ResearchRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/web_search/research/{0}",
-            this.TaskID)
+            EncodePathSegment(this.TaskID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

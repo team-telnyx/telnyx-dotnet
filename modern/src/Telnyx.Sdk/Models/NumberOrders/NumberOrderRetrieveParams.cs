@@ -91,7 +91,7 @@ public record class NumberOrderRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/number_orders/{0}",
-            this.NumberOrderID)
+            EncodePathSegment(this.NumberOrderID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -109,9 +109,9 @@ public record class TelnyxAgentUnlinkParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/missions/{0}/runs/{1}/telnyx-agents/{2}",
-            this.MissionID,
-            this.RunID,
-            this.TelnyxAgentID)
+            EncodePathSegment(this.MissionID),
+            EncodePathSegment(this.RunID),
+            EncodePathSegment(this.TelnyxAgentID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

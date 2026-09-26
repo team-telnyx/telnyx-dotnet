@@ -274,8 +274,8 @@ public record class CallUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/texml/Accounts/{0}/Calls/{1}",
-            this.AccountSid,
-            this.CallSid)
+            EncodePathSegment(this.AccountSid),
+            EncodePathSegment(this.CallSid))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

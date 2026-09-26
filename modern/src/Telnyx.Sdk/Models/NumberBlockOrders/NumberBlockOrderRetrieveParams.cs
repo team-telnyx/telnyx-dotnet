@@ -92,7 +92,7 @@ public record class NumberBlockOrderRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/number_block_orders/{0}",
-            this.NumberBlockOrderID)
+            EncodePathSegment(this.NumberBlockOrderID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

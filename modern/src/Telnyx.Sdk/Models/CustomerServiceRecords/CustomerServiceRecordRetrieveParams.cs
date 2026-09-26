@@ -93,7 +93,7 @@ public record class CustomerServiceRecordRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/customer_service_records/{0}",
-            this.CustomerServiceRecordID)
+            EncodePathSegment(this.CustomerServiceRecordID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

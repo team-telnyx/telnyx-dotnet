@@ -130,8 +130,8 @@ public record class ActionRequirementInitiateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/porting_orders/{0}/action_requirements/{1}/initiate",
-            this.PortingOrderID,
-            this.ID)
+            EncodePathSegment(this.PortingOrderID),
+            EncodePathSegment(this.ID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

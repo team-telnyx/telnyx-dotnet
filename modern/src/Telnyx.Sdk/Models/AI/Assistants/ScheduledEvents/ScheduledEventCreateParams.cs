@@ -297,7 +297,7 @@ public record class ScheduledEventCreateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/assistants/{0}/scheduled_events",
-            this.AssistantID)
+            EncodePathSegment(this.AssistantID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

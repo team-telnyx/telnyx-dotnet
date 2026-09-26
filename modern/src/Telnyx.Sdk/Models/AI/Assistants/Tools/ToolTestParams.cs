@@ -160,8 +160,8 @@ public record class ToolTestParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/assistants/{0}/tools/{1}/test",
-            this.AssistantID,
-            this.ToolID)
+            EncodePathSegment(this.AssistantID),
+            EncodePathSegment(this.ToolID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -90,7 +90,7 @@ public record class SettingListParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/collections/{0}/settings",
-            this.Uuid)
+            EncodePathSegment(this.Uuid))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

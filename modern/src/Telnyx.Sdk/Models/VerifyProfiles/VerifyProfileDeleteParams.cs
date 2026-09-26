@@ -90,7 +90,7 @@ public record class VerifyProfileDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/verify_profiles/{0}",
-            this.VerifyProfileID)
+            EncodePathSegment(this.VerifyProfileID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

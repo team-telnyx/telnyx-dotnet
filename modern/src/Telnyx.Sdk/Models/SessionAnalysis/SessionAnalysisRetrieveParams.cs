@@ -180,8 +180,8 @@ public record class SessionAnalysisRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/session_analysis/{0}/{1}",
-            this.RecordType,
-            this.EventID)
+            EncodePathSegment(this.RecordType),
+            EncodePathSegment(this.EventID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

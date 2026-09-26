@@ -90,7 +90,7 @@ public record class SiprecConnectorDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/siprec_connectors/{0}",
-            this.ConnectorName)
+            EncodePathSegment(this.ConnectorName))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

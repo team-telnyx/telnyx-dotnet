@@ -92,7 +92,7 @@ public record class MessagingProfileDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/messaging_profiles/{0}",
-            this.MessagingProfileID)
+            EncodePathSegment(this.MessagingProfileID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

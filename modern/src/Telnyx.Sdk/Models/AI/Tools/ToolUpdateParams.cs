@@ -305,7 +305,7 @@ public record class ToolUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/tools/{0}",
-            this.ToolID)
+            EncodePathSegment(this.ToolID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

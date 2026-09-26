@@ -100,8 +100,8 @@ public record class ConferenceRetrieveRecordingsParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/texml/Accounts/{0}/Conferences/{1}/Recordings",
-            this.AccountSid,
-            this.ConferenceSid)
+            EncodePathSegment(this.AccountSid),
+            EncodePathSegment(this.ConferenceSid))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

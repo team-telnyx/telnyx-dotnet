@@ -165,7 +165,7 @@ public record class PhoneNumberBlockListParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/porting_orders/{0}/phone_number_blocks",
-            this.PortingOrderID)
+            EncodePathSegment(this.PortingOrderID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

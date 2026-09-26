@@ -206,7 +206,7 @@ public record class SimCardUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/sim_cards/{0}",
-            this.SimCardID)
+            EncodePathSegment(this.SimCardID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

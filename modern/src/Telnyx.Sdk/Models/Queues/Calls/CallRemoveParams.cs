@@ -101,8 +101,8 @@ public record class CallRemoveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/queues/{0}/calls/{1}",
-            this.QueueName,
-            this.CallControlID)
+            EncodePathSegment(this.QueueName),
+            EncodePathSegment(this.CallControlID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

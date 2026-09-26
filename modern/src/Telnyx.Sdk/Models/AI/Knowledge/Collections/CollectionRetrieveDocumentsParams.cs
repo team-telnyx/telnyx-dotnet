@@ -266,7 +266,7 @@ public record class CollectionRetrieveDocumentsParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/knowledge/collections/{0}/documents",
-            this.Slug)
+            EncodePathSegment(this.Slug))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

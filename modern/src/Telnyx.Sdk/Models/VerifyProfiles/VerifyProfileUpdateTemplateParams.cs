@@ -121,7 +121,7 @@ public record class VerifyProfileUpdateTemplateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/verify_profiles/templates/{0}",
-            this.TemplateID)
+            EncodePathSegment(this.TemplateID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -140,7 +140,7 @@ public record class PhoneNumberBlockCreateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/porting_orders/{0}/phone_number_blocks",
-            this.PortingOrderID)
+            EncodePathSegment(this.PortingOrderID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

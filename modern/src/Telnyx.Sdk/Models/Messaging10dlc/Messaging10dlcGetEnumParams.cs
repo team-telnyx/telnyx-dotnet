@@ -93,7 +93,7 @@ public record class Messaging10dlcGetEnumParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/10dlc/enum/{0}",
-            this.Endpoint?.Raw())
+            EncodePathSegment(this.Endpoint?.Raw()))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

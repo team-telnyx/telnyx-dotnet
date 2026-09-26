@@ -100,8 +100,8 @@ public record class PhoneNumberExtensionDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/porting_orders/{0}/phone_number_extensions/{1}",
-            this.PortingOrderID,
-            this.ID)
+            EncodePathSegment(this.PortingOrderID),
+            EncodePathSegment(this.ID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

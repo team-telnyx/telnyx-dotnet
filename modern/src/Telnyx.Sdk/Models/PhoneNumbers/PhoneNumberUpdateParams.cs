@@ -249,7 +249,7 @@ public record class PhoneNumberUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/phone_numbers/{0}",
-            this.PhoneNumberID)
+            EncodePathSegment(this.PhoneNumberID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

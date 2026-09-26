@@ -109,7 +109,7 @@ public record class ClusterFetchGraphParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/clusters/{0}/graph",
-            this.TaskID)
+            EncodePathSegment(this.TaskID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

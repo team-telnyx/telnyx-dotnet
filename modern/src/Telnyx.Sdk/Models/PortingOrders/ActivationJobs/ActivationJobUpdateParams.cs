@@ -136,8 +136,8 @@ public record class ActivationJobUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/porting_orders/{0}/activation_jobs/{1}",
-            this.ID,
-            this.ActivationJobID)
+            EncodePathSegment(this.ID),
+            EncodePathSegment(this.ActivationJobID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

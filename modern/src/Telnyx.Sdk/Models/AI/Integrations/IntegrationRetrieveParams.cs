@@ -90,7 +90,7 @@ public record class IntegrationRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/integrations/{0}",
-            this.IntegrationID)
+            EncodePathSegment(this.IntegrationID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

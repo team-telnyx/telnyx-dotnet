@@ -102,8 +102,8 @@ public record class RecipientRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/email_messages/{0}/recipients/{1}",
-            this.EmailID,
-            this.RecipientID)
+            EncodePathSegment(this.EmailID),
+            EncodePathSegment(this.RecipientID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

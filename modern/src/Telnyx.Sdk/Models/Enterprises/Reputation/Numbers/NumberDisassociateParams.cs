@@ -101,8 +101,8 @@ public record class NumberDisassociateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/enterprises/{0}/reputation/numbers/{1}",
-            this.EnterpriseID,
-            this.PhoneNumber)
+            EncodePathSegment(this.EnterpriseID),
+            EncodePathSegment(this.PhoneNumber))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -90,7 +90,7 @@ public record class OAuthRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/oauth/consent/{0}",
-            this.ConsentToken)
+            EncodePathSegment(this.ConsentToken))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

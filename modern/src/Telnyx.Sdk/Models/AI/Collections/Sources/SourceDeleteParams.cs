@@ -100,8 +100,8 @@ public record class SourceDeleteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/collections/{0}/sources/{1}",
-            this.Uuid,
-            this.SourceID)
+            EncodePathSegment(this.Uuid),
+            EncodePathSegment(this.SourceID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

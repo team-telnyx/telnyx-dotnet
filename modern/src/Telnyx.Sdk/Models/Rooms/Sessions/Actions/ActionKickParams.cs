@@ -155,7 +155,7 @@ public record class ActionKickParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/room_sessions/{0}/actions/kick",
-            this.RoomSessionID)
+            EncodePathSegment(this.RoomSessionID))
         )
         {
             Query = this.QueryString(options, new())

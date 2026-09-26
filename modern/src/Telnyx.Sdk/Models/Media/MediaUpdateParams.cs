@@ -147,7 +147,7 @@ public record class MediaUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/media/{0}",
-            this.MediaName)
+            EncodePathSegment(this.MediaName))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

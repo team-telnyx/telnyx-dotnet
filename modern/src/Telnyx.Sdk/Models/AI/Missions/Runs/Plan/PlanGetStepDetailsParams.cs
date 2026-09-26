@@ -108,9 +108,9 @@ public record class PlanGetStepDetailsParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/missions/{0}/runs/{1}/plan/steps/{2}",
-            this.MissionID,
-            this.RunID,
-            this.StepID)
+            EncodePathSegment(this.MissionID),
+            EncodePathSegment(this.RunID),
+            EncodePathSegment(this.StepID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

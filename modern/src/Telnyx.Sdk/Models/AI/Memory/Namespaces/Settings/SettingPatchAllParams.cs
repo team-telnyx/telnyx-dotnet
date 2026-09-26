@@ -131,7 +131,7 @@ public record class SettingPatchAllParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/memory/namespaces/{0}/settings",
-            this.Namespace)
+            EncodePathSegment(this.Namespace))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

@@ -138,7 +138,7 @@ public record class EmailMessageRetrieveEventsParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/email_messages/{0}/events",
-            this.EmailID)
+            EncodePathSegment(this.EmailID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

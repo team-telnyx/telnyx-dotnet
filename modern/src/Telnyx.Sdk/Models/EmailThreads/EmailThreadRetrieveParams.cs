@@ -145,7 +145,7 @@ public record class EmailThreadRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/email_threads/{0}",
-            this.ThreadID)
+            EncodePathSegment(this.ThreadID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

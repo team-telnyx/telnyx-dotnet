@@ -101,8 +101,8 @@ public record class ToolDeleteToolParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/missions/{0}/tools/{1}",
-            this.MissionID,
-            this.ToolID)
+            EncodePathSegment(this.MissionID),
+            EncodePathSegment(this.ToolID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

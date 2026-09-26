@@ -91,7 +91,7 @@ public record class McpServerListMcpServersParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/missions/{0}/mcp-servers",
-            this.MissionID)
+            EncodePathSegment(this.MissionID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

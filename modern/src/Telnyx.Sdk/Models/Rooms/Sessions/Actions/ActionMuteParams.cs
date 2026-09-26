@@ -155,7 +155,7 @@ public record class ActionMuteParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/room_sessions/{0}/actions/mute",
-            this.RoomSessionID)
+            EncodePathSegment(this.RoomSessionID))
         )
         {
             Query = this.QueryString(options, new())

@@ -119,8 +119,8 @@ public record class VersionRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/ai/assistants/{0}/versions/{1}",
-            this.AssistantID,
-            this.VersionID)
+            EncodePathSegment(this.AssistantID),
+            EncodePathSegment(this.VersionID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

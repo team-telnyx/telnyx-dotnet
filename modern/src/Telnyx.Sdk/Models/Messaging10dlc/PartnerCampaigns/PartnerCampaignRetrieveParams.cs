@@ -90,7 +90,7 @@ public record class PartnerCampaignRetrieveParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/10dlc/partner_campaigns/{0}",
-            this.CampaignID)
+            EncodePathSegment(this.CampaignID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

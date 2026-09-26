@@ -91,7 +91,7 @@ public record class EmailDomainVerifyParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/email_domains/{0}/verify",
-            this.DomainID)
+            EncodePathSegment(this.DomainID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })

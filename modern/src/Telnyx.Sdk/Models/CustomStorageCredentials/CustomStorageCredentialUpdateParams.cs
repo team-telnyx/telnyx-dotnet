@@ -130,7 +130,7 @@ public record class CustomStorageCredentialUpdateParams : ParamsBase
     {
         return this.ResolvePaginationUrl(new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + string.Format("/custom_storage_credentials/{0}",
-            this.ConnectionID)
+            EncodePathSegment(this.ConnectionID))
         )
         {
             Query = this.QueryString(options, new() { BearerAuth = true })
