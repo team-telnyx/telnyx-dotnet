@@ -1,0 +1,4 @@
+results/
+diagnostic-artifacts/
+testhost-results/
+*.log

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <IsPackable>true</IsPackable>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <NoBuild>true</NoBuild>
+    <!-- Diagnostic-only composition. Not a release/publish entrypoint. -->
+    <NuspecFile>../compat/diagnostic-artifacts/Telnyx.net.nuspec</NuspecFile>
+    <NuspecBasePath>../compat/diagnostic-artifacts/stage</NuspecBasePath>
+  </PropertyGroup>
+</Project>

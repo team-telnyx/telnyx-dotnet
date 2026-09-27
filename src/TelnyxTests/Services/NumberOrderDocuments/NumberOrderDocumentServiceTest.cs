@@ -11,7 +11,7 @@ using Xunit;
 
 namespace TelnyxTests.Services.NumberOrderDocuments
 {
-    public class NumberOrderDocumentServiceTest : BaseTelnyxTest
+    public class NumberOrderDocumentServiceTest : HistoricalContractTest
     {
         private readonly NumberOrderDocumentService service;
         private readonly NumberOrderDocumentListOptions listOptions;

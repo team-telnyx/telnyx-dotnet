@@ -12,7 +12,7 @@ namespace TelnyxTests.Services.Reports.ReportBatchMdrReports
 	/// <summary>
 	/// Test class for DetailRecord.
 	/// </summary>
-	public class ReportBatchMdrReportServiceTest : BaseTelnyxTest
+	public class ReportBatchMdrReportServiceTest : HistoricalContractTest
 	{
 		private readonly ReportBatchMdrReportService service;
 		private readonly ReportBatchMdrReportOption listOptions;

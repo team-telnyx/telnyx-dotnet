@@ -32,6 +32,18 @@
             };
         }
 
+        [Theory]
+        [InlineData(Telnyx.net.Entities.Enum.Notification.NotificationsEventsConditions.AssociatedRecordType.Account, "account")]
+        [InlineData(Telnyx.net.Entities.Enum.Notification.NotificationsEventsConditions.AssociatedRecordType.PhoneNumber, "phone_number")]
+        public void AssociatedRecordTypeUsesDocumentedWireValue(
+            Telnyx.net.Entities.Enum.Notification.NotificationsEventsConditions.AssociatedRecordType value, string expected)
+        {
+            var url = "/notification_event_conditions";
+            Telnyx.Infrastructure.Middleware.RequestStringBuilder.CreateQuery(ref url,
+                new NotificationsEventsConditionListOptions { AssociatedRecordType = value, ExtraParams = null, Expand = null });
+            Assert.Equal("/notification_event_conditions?filter[associated_record_type][eq]=" + expected + "&", url);
+        }
+
         [Fact]
         public void List()
         {

@@ -1,0 +1,23 @@
+{
+  "data": [
+    {
+      "administrative_area": "TX",
+      "country_code": "US",
+      "created_at": "2018-02-02T22:25:27.521Z",
+      "extended_address": "string",
+      "house_number": "600",
+      "house_suffix": "string",
+      "id": "0ccc7b54-4df3-4bca-a65a-3da1ecc777f1",
+      "locality": "Austin",
+      "postal_code": "78701",
+      "record_type": "dynamic_emergency_address",
+      "sip_geolocation_id": "XYZ123",
+      "status": "pending",
+      "street_name": "Congress",
+      "street_post_directional": "string",
+      "street_pre_directional": "W",
+      "street_suffix": "St",
+      "updated_at": "2018-02-02T22:25:27.521Z"
+    }
+  ]
+}

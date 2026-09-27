@@ -47,14 +47,14 @@
             Assert.Equal(typeof(TelnyxList<AccessIPRanges>), result.GetType());
             foreach (var items in result.Data)
             {
-                var expectedDateTime = new DateTime(2019, 8, 24, 14, 15, 22);
-                Assert.Equal("string", items.CidrBlock);
+                var expectedDateTime = new DateTime(2024, 1, 23, 18, 10, 2, 574, DateTimeKind.Utc);
+                Assert.Equal("Cidr Block", items.CidrBlock);
                 Assert.Equal(expectedDateTime.ToString("s") + "Z", items.CreatedAt.ToString("s") + "Z");
-                Assert.Equal("string", items.Description);
-                Assert.Equal("string", items.Id);
+                Assert.Equal("Description", items.Description);
+                Assert.Equal("Id", items.Id);
                 Assert.Equal(new CloudflareSyncStatus(), items.Status);
                 Assert.Equal(expectedDateTime.ToString("s") + "Z", items.UpdatedAt.ToString("s") + "Z");
-                Assert.Equal("string", items.UserId);
+                Assert.Equal("User Id", items.UserId);
             }
         }
 
@@ -67,14 +67,14 @@
             Assert.Equal(typeof(TelnyxList<AccessIPRanges>), result.GetType());
             foreach (var items in result.Data)
             {
-                var expectedDateTime = new DateTime(2019, 8, 24, 14, 15, 22);
-                Assert.Equal("string", items.CidrBlock);
+                var expectedDateTime = new DateTime(2024, 1, 23, 18, 10, 2, 574, DateTimeKind.Utc);
+                Assert.Equal("Cidr Block", items.CidrBlock);
                 Assert.Equal(expectedDateTime.ToString("s") + "Z", items.CreatedAt.ToString("s") + "Z");
-                Assert.Equal("string", items.Description);
-                Assert.Equal("string", items.Id);
+                Assert.Equal("Description", items.Description);
+                Assert.Equal("Id", items.Id);
                 Assert.Equal(new CloudflareSyncStatus(), items.Status);
                 Assert.Equal(expectedDateTime.ToString("s") + "Z", items.UpdatedAt.ToString("s") + "Z");
-                Assert.Equal("string", items.UserId);
+                Assert.Equal("User Id", items.UserId);
             }
         }
     }

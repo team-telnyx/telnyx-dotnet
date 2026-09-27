@@ -1,0 +1,11 @@
+const assert = require('node:assert/strict');
+const sampler = require(process.argv[2]);
+const schema = {type:'integer',format:'int64',minimum:-(2 ** 63),maximum:2 ** 63 - 1};
+const sample = sampler.sample(schema);
+const emitted = BigInt(JSON.stringify(sample));
+assert.ok(emitted >= -(2n ** 63n) && emitted <= 2n ** 63n - 1n, 'sample must round-trip as an actual signed int64');
+assert.equal(sampler.sample({...schema, example:42}), 42);
+assert.equal(sampler.sample({type:'integer',minimum:12,maximum:20}), 12);
+assert.equal(sampler.sample({type:'integer',minimum:-10,maximum:-1}), -10);
+assert.notEqual(sampler.sample({...schema, not: {enum: [0]}}), 0);
+console.log('5 integer sample regression controls passed');

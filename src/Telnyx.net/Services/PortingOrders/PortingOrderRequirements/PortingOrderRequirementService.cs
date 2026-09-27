@@ -11,7 +11,13 @@ namespace Telnyx.net.Services.PortingOrders.PortingOrderRequirements
 {
     public class PortingOrderRequirementService : ServiceNested<PortingOrderRequirement>
     {
-        public override string BasePath => "/porting_orders/:id/requirements";
+        public override string BasePath => "/porting_orders/{PARENT_ID}/requirements";
+
+        protected override string ClassUrl(string parentId, string baseUrl = null)
+        {
+            PortingOrderPath.ValidateId(parentId);
+            return base.ClassUrl(parentId, baseUrl);
+        }
 
         public TelnyxList<PortingOrderRequirement> List(string id, ListOptions listOptions = null, RequestOptions requestOptions = null)
         {

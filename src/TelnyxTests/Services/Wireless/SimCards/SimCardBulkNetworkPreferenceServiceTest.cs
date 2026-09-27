@@ -6,7 +6,7 @@
     using Telnyx.net.Services.Wireless.SimCards;
     using Xunit;
 
-    public class SimCardBulkNetworkPreferenceServiceTest : BaseTelnyxTest
+    public class SimCardBulkNetworkPreferenceServiceTest : HistoricalContractTest
     {
         private readonly SimCardBulkNetworkPreferenceService service;
         private readonly SimCardBulkNetworkPreferenceUpdateOptions options;

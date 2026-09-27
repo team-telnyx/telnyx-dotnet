@@ -17,8 +17,15 @@ namespace Telnyx.net.Entities.VirtualCrossConnects
         [JsonProperty("cloud_provider")]
         public string CloudProvider { get; set; }
 
-        [JsonProperty("cloud_region")]
+        [JsonProperty("cloud_provider_region")]
         public string CloudRegion { get; set; }
+
+        // Accept previously serialized options/responses without emitting the obsolete key.
+        [JsonProperty("cloud_region")]
+        private string LegacyCloudRegion
+        {
+            set { if (this.CloudRegion == null) this.CloudRegion = value; }
+        }
 
         [JsonProperty("bgp_asn")]
         public int BgpAsn { get; set; }

@@ -9,6 +9,7 @@ namespace Telnyx.net.Entities.Networking.Networks
 {
     public class UpsertNetwork : BaseOptions
     {
-
+        [JsonProperty("name")]
+        public string Name { get; set; }
     }
 }

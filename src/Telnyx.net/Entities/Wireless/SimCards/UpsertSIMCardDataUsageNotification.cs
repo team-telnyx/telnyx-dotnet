@@ -18,6 +18,7 @@ namespace Telnyx.net.Entities.Wireless.SimCards
     public class DataUsageThreshold
     {
         [JsonProperty("amount")]
+        [JsonConverter(typeof(DataUsageAmountConverter))]
         public decimal Amount { get; set; }
 
         [JsonProperty("unit")]

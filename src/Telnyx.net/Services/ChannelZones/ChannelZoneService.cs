@@ -29,7 +29,7 @@ namespace Telnyx
         }
 
         /// <inheritdoc/>
-        public override string BasePath => "/phone_numbers/channel_zones"; // Adjust the BasePath to the correct endpoint for channel zones.
+        public override string BasePath => "/channel_zones";
 
         /// <summary>
         /// Lists channel zone entities.
@@ -55,18 +55,18 @@ namespace Telnyx
         }
 
         /// <summary>
-        /// Retrieves a single channel zone entity by its ID.
+        /// Legacy single-zone retrieval using the archived root-object response. This operation is absent from the current API.
         /// </summary>
         /// <param name="id">The unique identifier of the channel zone entity.</param>
         /// <param name="requestOptions">Additional request options.</param>
         /// <returns>A channel zone entity.</returns>
         public virtual ChannelZones Get(string id, RequestOptions requestOptions = null)
         {
-            return this.GetEntity(id, null, requestOptions, parentToken: "data");
+            return this.GetEntity(id, null, requestOptions, parentToken: string.Empty);
         }
 
         /// <summary>
-        /// Asynchronously retrieves a single channel zone entity by its ID.
+        /// Legacy asynchronous retrieval using the archived root-object response. This operation is absent from the current API.
         /// </summary>
         /// <param name="id">The unique identifier of the channel zone entity.</param>
         /// <param name="requestOptions">Additional request options.</param>
@@ -74,7 +74,7 @@ namespace Telnyx
         /// <returns>A task representing the asynchronous operation, which upon completion returns a channel zone entity.</returns>
         public virtual async Task<ChannelZones> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.GetEntityAsync(id, null, requestOptions, parentToken: "data", cancellationToken);
+            return await this.GetEntityAsync(id, null, requestOptions, parentToken: string.Empty, cancellationToken);
         }
 
         /// <summary>
@@ -86,8 +86,8 @@ namespace Telnyx
         /// <returns>The updated ChannelZone entity.</returns>
         public ChannelZones Update(string id, ChannelZoneUpdate updateOptions, RequestOptions requestOptions = null)
         {
-            // The "data" parent token is used to navigate the JSON response properly if the response object is nested.
-            return this.UpdateEntity(id, updateOptions, requestOptions, parentToken: "data");
+            // PUT returns the channel zone directly, without a data envelope.
+            return this.PutRequest<ChannelZones>(this.InstanceUrl(id), updateOptions, requestOptions, string.Empty);
         }
 
         /// <summary>
@@ -100,8 +100,8 @@ namespace Telnyx
         /// <returns>A task representing the asynchronous operation, which upon completion returns the updated ChannelZone entity.</returns>
         public async Task<ChannelZones> UpdateAsync(string id, ChannelZoneUpdate updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // The "data" parent token is used to navigate the JSON response properly if the response object is nested.
-            return await this.UpdateEntityAsync(id, updateOptions, requestOptions, parentToken: "data", cancellationToken);
+            // PUT returns the channel zone directly, without a data envelope.
+            return await this.PutRequestAsync<ChannelZones>(this.InstanceUrl(id), updateOptions, requestOptions, string.Empty, cancellationToken);
         }
 
     }

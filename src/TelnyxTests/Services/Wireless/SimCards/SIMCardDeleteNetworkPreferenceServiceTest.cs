@@ -10,7 +10,7 @@ using Xunit;
 
 namespace TelnyxTests.Services.Wireless.SimCards
 {
-    public class SIMCardDeleteNetworkPreferenceServiceTest : BaseTelnyxTest
+    public class SIMCardDeleteNetworkPreferenceServiceTest : HistoricalContractTest
     {
         private readonly SIMCardDeleteNetworkPreferenceService service;
         private readonly RequestOptions requestOptions;

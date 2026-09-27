@@ -24,7 +24,7 @@ namespace TelnyxTests.Services.Recordings
         public void Retrieve()
         {
             var message = this.service.GetRecording(Id);
-            //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
+            Assert.Equal($"/v2/recordings/{Id}", new Uri(message.TelnyxResponse.Url).AbsolutePath);
             Assert.NotNull(message);
             Assert.Equal(typeof(Recording), message.GetType());
         }
@@ -33,7 +33,7 @@ namespace TelnyxTests.Services.Recordings
         public async Task RetrieveAsync()
         {
             var message = await this.service.GetRecordingAsync(Id);
-            //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
+            Assert.Equal($"/v2/recordings/{Id}", new Uri(message.TelnyxResponse.Url).AbsolutePath);
             Assert.NotNull(message);
             Assert.Equal(typeof(Recording), message.GetType());
         }
@@ -42,6 +42,7 @@ namespace TelnyxTests.Services.Recordings
         public void Delete()
         {
             var message = this.service.DeleteRecording(Id);
+            Assert.Equal($"/v2/recordings/{Id}", new Uri(message.TelnyxResponse.Url).AbsolutePath);
             Assert.NotNull(message);
             Assert.Equal(typeof(Recording), message.GetType());
         }
@@ -50,6 +51,7 @@ namespace TelnyxTests.Services.Recordings
         public async Task DeleteAsync()
         {
             var message = await this.service.DeleteRecordingAsync(Id);
+            Assert.Equal($"/v2/recordings/{Id}", new Uri(message.TelnyxResponse.Url).AbsolutePath);
             Assert.NotNull(message);
             Assert.Equal(typeof(Recording), message.GetType());
         }

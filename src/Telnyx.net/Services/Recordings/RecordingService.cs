@@ -10,7 +10,7 @@ namespace Telnyx.net.Services.Recordings
 {
     public class RecordingService : Service<Recording>
     {
-        public override string BasePath => "/recordings/:id";
+        public override string BasePath => "/recordings";
 
         public async Task<Recording> GetRecordingAsync(string id, RequestOptions reqOpts = null, CancellationToken ct = default)
         {

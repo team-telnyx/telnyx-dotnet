@@ -13,6 +13,7 @@ namespace Telnyx.net.Entities.PhoneNumbers.PhoneNumberAssignmentByProfiles
         public string TaskId { get; set; }
 
         [JsonProperty("status")]
+        [JsonConverter(typeof(AssignmentStatusConverter))]
         public StatusObject Status { get; set; }
 
         [JsonProperty("createdAt")]
@@ -23,8 +24,9 @@ namespace Telnyx.net.Entities.PhoneNumbers.PhoneNumberAssignmentByProfiles
     }
     public class StatusObject
     {
-        // You can replace 'object' with the actual enumeration type if you have it.
-        // If it's a string or some other type, you can adjust the type accordingly.
+        // Keep the original scalar/object wire shape without changing the public Status property.
+        [JsonIgnore]
+        internal bool IsScalar { get; set; }
         [JsonProperty("status")]
         public string Status { get; set; }
     }

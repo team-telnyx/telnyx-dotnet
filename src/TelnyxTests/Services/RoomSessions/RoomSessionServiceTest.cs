@@ -26,7 +26,7 @@ namespace TelnyxTests.Services.RoomSessions
 
             this.createOptions = new UpsertRoomSession()
             {
-                RoomSessionId = Guid.Parse("")
+                RoomSessionId = Guid.Parse("0ccc7b54-4df3-4bca-a65a-3da1ecc777f0")
             };
 
 
@@ -37,6 +37,7 @@ namespace TelnyxTests.Services.RoomSessions
         public void Create()
         {
             var result = this.service.Create(this.Id, this.createOptions, this.requestOptions);
+            Assert.Equal($"/v2/room_sessions/{this.Id}/actions/end", new Uri(result.TelnyxResponse.Url).AbsolutePath);
             Assert.NotNull(result);
             Assert.Equal(typeof(TelnyxApiResponse), result.GetType());
         }
@@ -46,6 +47,7 @@ namespace TelnyxTests.Services.RoomSessions
         {
             var cts = new CancellationTokenSource();
             var result = await this.service.CreateAsync(this.Id, this.createOptions, this.requestOptions, parentId, cts.Token);
+            Assert.Equal($"/v2/room_sessions/{this.Id}/actions/end", new Uri(result.TelnyxResponse.Url).AbsolutePath);
             Assert.NotNull(result);
             Assert.Equal(typeof(TelnyxApiResponse), result.GetType());
         }

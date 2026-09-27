@@ -9,8 +9,10 @@ on:
 jobs:
   build:
     env:
-      TELNYX_MOCK_VERSION: 0.8.13
-      TELNYX_MOCK_OPEN_API_URI: https://raw.githubusercontent.com/team-telnyx/openapi/master/openapi/spec3.json
+      # Freeze the contract that reproduced the legacy failures, not a passing older spec.
+      TELNYX_MOCK_OPEN_API_URI: https://raw.githubusercontent.com/team-telnyx/openapi/d9d9dc2ceebe6a6a5302430d76706cfc2b741f70/openapi/spec3.json
+      TELNYX_MOCK_SPEC_SHA256: 4e19686e312db8ffbb28f7b36912bbaef95aae50c816ad09bb9f4e5238110c1c
+      TELNYX_MOCK_PROXY_REVISION: b6aedc5feec717a636b69c4055046185ce11d486
     runs-on: ubuntu-latest
 
     steps:
@@ -26,6 +28,14 @@ jobs:
     - name: Build
       run: dotnet build ./src/Telnyx.net.sln /clp:ErrorsOnly
     - name: Test
-      run: dotnet test ./src/TelnyxTests/TelnyxTests.csproj --configuration Release /clp:ErrorsOnly
+      run: dotnet test ./src/TelnyxTests/TelnyxTests.csproj --configuration Release /clp:ErrorsOnly --logger trx
       env:
         VSTEST_CONNECTION_TIMEOUT: 300
+    - name: Upload legacy test and mock evidence
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: legacy-test-evidence-${{ github.sha }}
+        path: |
+          ${{ runner.temp }}/telnyx-dotnet-mock-logs
+          src/TelnyxTests/TestResults

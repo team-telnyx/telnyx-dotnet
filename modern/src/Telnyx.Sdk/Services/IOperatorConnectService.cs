@@ -1,0 +1,50 @@
+using System;
+using Telnyx.Sdk.Core;
+using OperatorConnect = Telnyx.Sdk.Services.OperatorConnect;
+
+namespace Telnyx.Sdk.Services;
+
+/// <summary>
+/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
+/// changes in non-major versions. We may add new methods in the future that cause
+/// existing derived classes to break.
+/// </summary>
+public interface IOperatorConnectService
+{
+    /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IOperatorConnectServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IOperatorConnectService WithOptions(
+        Func<ClientOptions, ClientOptions> modifier
+    )
+    ;
+
+    OperatorConnect::IActionService Actions { get; }
+}
+
+/// <summary>
+/// A view of <see cref="IOperatorConnectService"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IOperatorConnectServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IOperatorConnectServiceWithRawResponse WithOptions(
+        Func<ClientOptions, ClientOptions> modifier
+    )
+    ;
+
+    OperatorConnect::IActionServiceWithRawResponse Actions { get; }
+}

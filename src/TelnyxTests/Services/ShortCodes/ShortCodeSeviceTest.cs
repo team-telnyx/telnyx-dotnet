@@ -8,7 +8,7 @@ namespace TelnyxTests.Services.ShortCodes
 
     public class ShortCodeSeviceTest : BaseTelnyxTest
     {
-        private readonly string credConnId = "1234";
+        private readonly string credConnId = "6a09cdc3-8948-47f0-aa62-74ac943d6c58";
         private readonly ShortCodeService service;
         private readonly ShortCodeOption listOptions;
         private readonly UpsertShortCode createOptions;
@@ -20,11 +20,11 @@ namespace TelnyxTests.Services.ShortCodes
 
             this.listOptions = new ShortCodeOption()
             {
-                MessagingProfileId = "MessagingProfileId001"
+                MessagingProfileId = "4001767e-82b1-450f-9c9e-9512e5d3a7de"
             };
             this.createOptions = new UpsertShortCode()
             {
-                MessagingProfileId = "MessagingProfileId001"
+                MessagingProfileId = "4001767e-82b1-450f-9c9e-9512e5d3a7de"
             };
         }
 

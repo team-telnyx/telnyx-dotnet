@@ -28,6 +28,7 @@ namespace Telnyx.net.Entities.Wireless.PublicInternetGateways
         public string Name { get; set; }
 
         [JsonProperty("status")]
+        [JsonConverter(typeof(GatewayInterfaceStatusConverter))]
         public InterfaceStatus Status { get; set; }
 
         [JsonProperty("public_ip")]

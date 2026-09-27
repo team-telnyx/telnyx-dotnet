@@ -59,6 +59,7 @@ namespace TelnyxTests.Services.ChannelZone
         [Fact]
         public void Retrieve()
         {
+            using var historicalContract = new HistoricalContractScope();
             var message = this.service.Get(Id);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
             Assert.NotNull(message);
@@ -68,6 +69,7 @@ namespace TelnyxTests.Services.ChannelZone
         [Fact]
         public async Task RetrieveAsync()
         {
+            using var historicalContract = new HistoricalContractScope();
             var message = await this.service.GetAsync(Id);
             //this.AssertRequest(HttpMethod.Post, $"/v2/calls/{CallControllId}/actions/answer");
             Assert.NotNull(message);

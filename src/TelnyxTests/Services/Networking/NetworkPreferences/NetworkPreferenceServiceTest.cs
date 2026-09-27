@@ -8,7 +8,7 @@ using Xunit;
 
 namespace TelnyxTests.Services.Networking.NetworkPreferences
 {
-    public class NetworkPreferenceServiceTest : BaseTelnyxTest
+    public class NetworkPreferenceServiceTest : HistoricalContractTest
     {
         private readonly string credConnId = "1234";
         private readonly NetworkPreferenceService service;

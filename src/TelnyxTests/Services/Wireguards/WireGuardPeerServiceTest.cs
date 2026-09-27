@@ -108,7 +108,7 @@ namespace TelnyxTests.Services.Wireguards
         [Fact]
         public void Update()
         {
-            var message = this.service.UpdateWireGuardPeer(this.credConnId, this.createOptions);
+            var message = this.service.UpdateWireGuardPeer(Id, this.createOptions);
             Assert.NotNull(message);
             Assert.Equal(typeof(WireGuardPeer), message.GetType());
         }
@@ -116,7 +116,7 @@ namespace TelnyxTests.Services.Wireguards
         [Fact]
         public async Task UpdateAsync()
         {
-            var message = await this.service.UpdateWireGuardPeerAsync(this.credConnId, this.createOptions);
+            var message = await this.service.UpdateWireGuardPeerAsync(Id, this.createOptions);
             Assert.NotNull(message);
             Assert.Equal(typeof(WireGuardPeer), message.GetType());
         }

@@ -11,7 +11,7 @@ namespace TelnyxTests.Services.Networking
 {
     public class NetworkServiceTest : BaseTelnyxTest
     {
-        private readonly string credConnId = "1234";
+        private readonly string credConnId = "6a09cdc3-8948-47f0-aa62-74ac943d6c58";
         private readonly NetworkService service;
         private readonly NetworkOptions listOptions;
         private readonly UpsertNetwork createOptions;
@@ -27,7 +27,16 @@ namespace TelnyxTests.Services.Networking
             };
             this.createOptions = new UpsertNetwork()
             {
+                Name = "test network"
             };
+        }
+
+        [Fact]
+        public void NetworkNameSurvivesWireRoundTrip()
+        {
+            var options = Newtonsoft.Json.JsonConvert.DeserializeObject<UpsertNetwork>("{\"name\":\"test network\"}");
+            var wire = Newtonsoft.Json.Linq.JObject.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(options));
+            Assert.Equal("test network", (string)wire["name"]);
         }
 
         [Fact]

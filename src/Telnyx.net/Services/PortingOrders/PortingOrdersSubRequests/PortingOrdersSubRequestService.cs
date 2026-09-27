@@ -10,18 +10,24 @@ namespace Telnyx.net.Services.PortingOrders.PortingOrdersSubRequests
 {
     public class PortingOrdersSubRequestService : ServiceNested<PortingOrdersSubRequest>
     {
-        public override string BasePath => "/porting_orders/:id/sub_request";
+        public override string BasePath => "/porting_orders/{PARENT_ID}/sub_request";
+
+        protected override string ClassUrl(string parentId, string baseUrl = null)
+        {
+            PortingOrderPath.ValidateId(parentId);
+            return base.ClassUrl(parentId, baseUrl);
+        }
 
         /// <inheritdoc/>
         public PortingOrdersSubRequest Get(string id, RequestOptions requestOptions = null)
         {
-            return this.GetNestedEntity(id, null, null, requestOptions, "data");
+            return this.GetRequest<PortingOrdersSubRequest>(this.ClassUrl(id), null, requestOptions, false, "data");
         }
 
         /// <inheritdoc/>
         public async Task<PortingOrdersSubRequest> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.GetNestedEntityAsync(id, null, null, requestOptions, string.Empty, cancellationToken);
+            return await this.GetRequestAsync<PortingOrdersSubRequest>(this.ClassUrl(id), null, requestOptions, false, "data", cancellationToken);
         }
     }
 }

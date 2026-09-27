@@ -8,7 +8,7 @@ using Xunit;
 
 namespace TelnyxTests.Services.VirtualCrossConnectCloudRegions
 {
-    public class VirtualCrossConnectCloudRegionServiceTest : BaseTelnyxTest
+    public class VirtualCrossConnectCloudRegionServiceTest : HistoricalContractTest
     {
         private readonly VirtualCrossConnectCloudRegionService service;
         private readonly VirtualCrossConnectCloudRegionOption listOptions;

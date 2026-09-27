@@ -22,26 +22,26 @@
         {
         }
 
-        public override string BasePath => "/phone_numbers";
+        public override string BasePath => "/inbound_channels";
 
         public InboundChannel Get(string id, RequestOptions requestOptions = null)
         {
-            return this.GetEntity("inbound_channels", null, requestOptions, parentToken: "data");
+            return this.GetRequest<InboundChannel>(this.ClassUrl(), null, requestOptions, false, "data");
         }
 
         public async Task<InboundChannel> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.GetEntityAsync("inbound_channels", null, requestOptions, parentToken: "data", cancellationToken);
+            return await this.GetRequestAsync<InboundChannel>(this.ClassUrl(), null, requestOptions, false, "data", cancellationToken);
         }
 
         public InboundChannel Update(string id, InboundChannelUpdateOptions updateOptions, RequestOptions requestOptions = null)
         {
-            return this.UpdateEntity("inbound_channels", updateOptions, requestOptions, parentToken: "data");
+            return this.PatchRequest<InboundChannel>(this.ClassUrl(), updateOptions, requestOptions, "data");
         }
 
         public async Task<InboundChannel> UpdateAsync(string id, InboundChannelUpdateOptions updateOptions, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.UpdateEntityAsync("inbound_channels", updateOptions, requestOptions, parentToken: "data", cancellationToken);
+            return await this.PatchRequestAsync<InboundChannel>(this.ClassUrl(), updateOptions, requestOptions, "data", cancellationToken);
         }
     }
 }

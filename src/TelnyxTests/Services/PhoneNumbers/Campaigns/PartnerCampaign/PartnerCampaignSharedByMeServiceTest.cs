@@ -11,7 +11,7 @@ using Xunit;
 
 namespace TelnyxTests.Services.PhoneNumbers.PartnerCampaign
 {
-    public class PartnerCampaignSharedByMeServiceTest : BaseTelnyxTest
+    public class PartnerCampaignSharedByMeServiceTest : HistoricalContractTest
     {
         private readonly PartnerCampaignSharedByMeService service;
         private readonly PartnerCampaignSharedByMeOption listOptions;

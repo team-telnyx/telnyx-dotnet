@@ -10,7 +10,18 @@ namespace Telnyx.net.Services.Wireless.PrivateWirelessGatewaySIMCardGroups
 {
     public class PrivateWirelessGatewaySIMCardGroupService : ServiceNested<PrivateWirelessGatewaySIMCardGroup>
     {
-        public override string BasePath => "/sim_card_groups/:id/actions/set_private_wireless_gateway";
+        public override string BasePath => "/sim_card_groups/{PARENT_ID}/actions/set_private_wireless_gateway";
+
+        protected override string ClassUrl(string parentId, string baseUrl = null)
+        {
+            // Ref: canonical action path parameter schema requires a UUID.
+            if (!Guid.TryParse(parentId, out _))
+            {
+                throw new ArgumentException("The action parent ID must be a UUID.", nameof(parentId));
+            }
+
+            return base.ClassUrl(parentId, baseUrl);
+        }
 
         public PrivateWirelessGatewaySIMCardGroup Create( string id, UpsertPrivateWirelessGatewaySIMCardGroup options, RequestOptions requestOptions)
         {

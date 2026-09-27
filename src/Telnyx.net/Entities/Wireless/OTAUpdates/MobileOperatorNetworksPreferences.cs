@@ -8,13 +8,13 @@
         /// <summary>
         /// The mobile operator network resource identification UUID.
         /// </summary>
-        [JsonProperty("mobile_operator_network_id")]
+        [JsonProperty("mobile_network_operator_id")]
         public Guid? MobileOperatorNetworkId { get; set; }
 
         /// <summary>
         /// The mobile operator network resource name.
         /// </summary>
-        [JsonProperty("mobile_operator_network_name")]
+        [JsonProperty("mobile_network_operator_name")]
         public string MobileOperatorNetworkName { get; set; }
 
         /// <summary>

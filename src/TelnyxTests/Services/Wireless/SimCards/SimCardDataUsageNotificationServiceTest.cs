@@ -9,7 +9,7 @@ namespace TelnyxTests.Services.Wireless.SimCards
 
     public class SimCardDataUsageNotificationServiceTest : BaseTelnyxTest
     {
-        private readonly string credConnId = "1234";
+        private readonly string credConnId = "79228acc-3f08-4e70-ac68-cb5aae8b537a";
         private readonly SimCardDataUsageNotificationService service;
         private readonly SimCardDataUsageNotificationOption listOptions;
         private readonly UpsertSIMCardDataUsageNotification createOptions;
@@ -21,15 +21,15 @@ namespace TelnyxTests.Services.Wireless.SimCards
 
             this.listOptions = new SimCardDataUsageNotificationOption()
             {
-                SimCardId = Guid.Parse("SimCardId001")
+                SimCardId = Guid.Parse("6a09cdc3-8948-47f0-aa62-74ac943d6c58")
             };
             this.createOptions = new UpsertSIMCardDataUsageNotification()
             {
-                SimCardId = Guid.Parse("SimCardId001"),
+                SimCardId = Guid.Parse("6a09cdc3-8948-47f0-aa62-74ac943d6c58"),
                 Threshold = new DataUsageThreshold()
                 {
                     Amount = 5000,
-                    Unit = "150"
+                    Unit = "MB"
                 }
         };
     }

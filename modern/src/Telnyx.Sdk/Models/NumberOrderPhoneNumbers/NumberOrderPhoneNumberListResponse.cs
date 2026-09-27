@@ -1,0 +1,98 @@
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Telnyx.Sdk.Core;
+using Telnyx.Sdk.Models.AuthenticationProviders;
+
+namespace Telnyx.Sdk.Models.NumberOrderPhoneNumbers;
+
+[JsonConverter(typeof(JsonModelConverter<NumberOrderPhoneNumberListResponse, NumberOrderPhoneNumberListResponseFromRaw>))]
+public sealed record class NumberOrderPhoneNumberListResponse : JsonModel
+{
+    public IReadOnlyList<NumberOrderPhoneNumber>? Data {
+        get {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<NumberOrderPhoneNumber>>(
+                "data"
+            );
+        }
+        init {
+            if (value == null) {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<NumberOrderPhoneNumber>?>(
+                "data",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    public PaginationMeta? Meta {
+        get {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<PaginationMeta>(
+                "meta"
+            );
+        }
+        init {
+            if (value == null) {
+                return;
+            }
+
+            this._rawData.Set("meta", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        foreach (var item in this.Data ?? [])
+        {
+            item.Validate();
+        }
+        this.Meta?.Validate();
+    }
+
+    public NumberOrderPhoneNumberListResponse ()
+    {  }
+
+    #pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public NumberOrderPhoneNumberListResponse (
+        NumberOrderPhoneNumberListResponse numberOrderPhoneNumberListResponse
+    ) : base(numberOrderPhoneNumberListResponse)
+    {  }
+    #pragma warning restore CS8618
+
+    public NumberOrderPhoneNumberListResponse (
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    { this._rawData = new(rawData); }
+
+    #pragma warning disable CS8618
+    [SetsRequiredMembers]
+    NumberOrderPhoneNumberListResponse (
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    { this._rawData = new(rawData); }
+    #pragma warning restore CS8618
+
+    /// <inheritdoc cref="NumberOrderPhoneNumberListResponseFromRaw.FromRawUnchecked"/>
+    public static NumberOrderPhoneNumberListResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    { return new(FrozenDictionary.ToFrozenDictionary(rawData)); }
+}
+
+class NumberOrderPhoneNumberListResponseFromRaw : IFromRawJson<NumberOrderPhoneNumberListResponse>
+{
+    /// <inheritdoc/>
+    public NumberOrderPhoneNumberListResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    =>NumberOrderPhoneNumberListResponse.FromRawUnchecked(rawData);
+}

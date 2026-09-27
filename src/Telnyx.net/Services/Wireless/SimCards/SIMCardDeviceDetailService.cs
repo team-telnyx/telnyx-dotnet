@@ -6,18 +6,18 @@ namespace Telnyx.net.Services.Wireless.SimCards.SIMCardDeviceDetails
 {
     public class SIMCardDeviceDetailService : ServiceNested<SIMCardDeviceDetail>
     {
-        public override string BasePath => "/sim_cards/:sim_card_id/device_details";
+        public override string BasePath => "/sim_cards/{PARENT_ID}/device_details";
 
         /// <inheritdoc/>
         public SIMCardDeviceDetail Get(string id, RequestOptions requestOptions = null)
         {
-            return this.GetNestedEntity(id, null, null, requestOptions, "data");
+            return this.GetRequest<SIMCardDeviceDetail>(this.ClassUrl(System.Uri.EscapeDataString(id)), null, requestOptions, false, "data");
         }
 
         /// <inheritdoc/>
         public async Task<SIMCardDeviceDetail> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default)
         {
-            return await this.GetNestedEntityAsync(id, null, null, requestOptions, string.Empty, cancellationToken);
+            return await this.GetRequestAsync<SIMCardDeviceDetail>(this.ClassUrl(System.Uri.EscapeDataString(id)), null, requestOptions, false, "data", cancellationToken);
         }
     }
 }

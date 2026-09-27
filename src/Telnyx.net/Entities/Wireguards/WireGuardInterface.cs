@@ -28,6 +28,7 @@ namespace Telnyx.net.Entities.PhoneNumbers.WireGuardInterfaces
         public string Name { get; set; }
 
         [JsonProperty("status")]
+        [JsonConverter(typeof(GatewayInterfaceStatusConverter))]
         public InterfaceStatus Status { get; set; }
 
         [JsonProperty("endpoint")]

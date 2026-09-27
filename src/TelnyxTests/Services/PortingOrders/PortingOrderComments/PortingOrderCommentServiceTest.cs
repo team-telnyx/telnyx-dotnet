@@ -26,6 +26,7 @@ namespace TelnyxTests.Services.PortingOrders.PortingOrderComments
 
             this.createOptions = new UpsertPortingOrderComment()
             {
+                Body = "Please, let me know when the port completes",
             };
 
 

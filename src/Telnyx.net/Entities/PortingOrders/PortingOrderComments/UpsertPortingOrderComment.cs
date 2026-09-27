@@ -8,5 +8,7 @@ namespace Telnyx.net.Entities.PortingOrders.PortingOrderComments
 {
     public class UpsertPortingOrderComment : BaseOptions
     {
+        [Newtonsoft.Json.JsonProperty("body")]
+        public string Body { get; set; }
     }
 }

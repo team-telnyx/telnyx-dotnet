@@ -12,7 +12,7 @@ namespace TelnyxTests.Services.PhoneNumbers.VerifiedNumbers
     public class VerifiedNumberServiceTest : BaseTelnyxTest
     {
         private readonly VerifiedNumberService service;
-        private string Id;
+        private string Id = "+15551234567";
 
         public VerifiedNumberServiceTest(MockHttpClientFixture mockHttpClientFixture)
             : base(mockHttpClientFixture)

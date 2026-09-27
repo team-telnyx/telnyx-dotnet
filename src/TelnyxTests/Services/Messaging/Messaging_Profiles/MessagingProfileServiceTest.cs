@@ -37,6 +37,7 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             this.createOptions = new NewMessagingProfile
             {
                 Name = "Profile for Messages",
+                WhitelistedDestinations = new List<string> { "US" },
                 Enabled = true,
                 NumberPoolSettings = new NumberPoolSettings()
                 {
@@ -84,6 +85,17 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
             };
             this.cancellationToken = default(CancellationToken);
             this._mockServiceForListMethod = new MockMessagingProfilePhoneNumbersService();
+        }
+
+        [Fact]
+        public void CreateOptionsRetainWhitelistedDestinations()
+        {
+            // Ref: messaging_CreateMessagingProfileRequest required field and canonical example.
+            const string json = "{\"whitelisted_destinations\":[\"US\"]}";
+            var options = JsonConvert.DeserializeObject<NewMessagingProfile>(json);
+            var serialized = Newtonsoft.Json.Linq.JObject.Parse(JsonConvert.SerializeObject(options));
+
+            Assert.Equal("[\"US\"]", serialized["whitelisted_destinations"]?.ToString(Formatting.None));
         }
 
         [Fact]
@@ -302,7 +314,7 @@ namespace TelnyxTests.Services.Messages.MessagingProfiles
         /// <summary>
         /// toll-free
         /// </summary>
-        [EnumMember(Value = "toll-free")]
+        [EnumMember(Value = "tollfree")]
         TollFreeEnum = 1,
 
         /// <summary>

@@ -10,7 +10,7 @@ using Xunit;
 
 namespace TelnyxTests.Services.VirtualCrossConnects
 {
-    public class ProvisionVirtualCrossConnectServiceTest : BaseTelnyxTest
+    public class ProvisionVirtualCrossConnectServiceTest : HistoricalContractTest
     {
         private readonly ProvisionVirtualCrossConnectService service;
         private readonly UpsertProvisionVirtualCrossConnect createOptions;

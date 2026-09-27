@@ -20,6 +20,12 @@ namespace Telnyx
         public string Name { get; set; }
 
         /// <summary>
+        /// Gets or sets the allowed destinations as ISO 3166-1 alpha-2 country codes.
+        /// </summary>
+        [JsonProperty("whitelisted_destinations")]
+        public System.Collections.Generic.List<string> WhitelistedDestinations { get; set; }
+
+        /// <summary>
         /// Gets or sets unique identifier of the resource group.
         /// </summary>
         /// <value>Unique identifier of the resource group.</value>
