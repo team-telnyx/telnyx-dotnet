@@ -9,7 +9,7 @@
         /// <summary>
         /// Gets or Sets MobileOperatorNetworksPreferences.
         /// </summary>
-        [JsonProperty("mobile_operator_networks_preferences")]
+        [JsonProperty("mobile_network_operators_preferences")]
         public List<MobileOperatorNetworksPreferences> MobileOperatorNetworksPreferences { get; set; }
 
         /// <summary>

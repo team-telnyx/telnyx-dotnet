@@ -206,6 +206,7 @@
         [Fact]
         public void BulkUpdateNetworkPreference()
         {
+            using var historical = new HistoricalContractScope();
             var result = this.service.BulkUpdateNetworkPreference(this.simCardBulkNetworkPreferenceUpdateOptions);
             Assert.NotNull(result);
             Assert.Equal(typeof(TelnyxCollection<MobileOperatorNetworksPreferencesRecord>), result.GetType());
@@ -214,6 +215,7 @@
         [Fact]
         public async Task BulkUpdateNetworkPreferenceAsync()
         {
+            using var historical = new HistoricalContractScope();
             var result = await this.service.BulkUpdateNetworkPreferenceAsync(this.simCardBulkNetworkPreferenceUpdateOptions);
             Assert.NotNull(result);
             Assert.Equal(typeof(TelnyxCollection<MobileOperatorNetworksPreferencesRecord>), result.GetType());

@@ -155,7 +155,7 @@ namespace TelnyxTests.Services
         [Theory]
         [InlineData(false)]
         [InlineData(true)]
-        public async Task CdrUsage_CurrentObjectCannotPopulateLegacyList(bool asynchronous)
+        public async Task CdrUsage_CurrentObjectPreservedAsSingletonList(bool asynchronous)
         {
             using var wire = new CurrentWire();
             var service = new Telnyx.net.Services.Reports.ReportCdrUsageReportSyncs.ReportCdrUsageReportSyncService();
@@ -167,21 +167,19 @@ namespace TelnyxTests.Services
                 AggregationType = "NO_AGGREGATION",
                 Connections = new long[] { 1234567890, 9876543210 },
             };
-            var error = await Record.ExceptionAsync(async () =>
-            {
-                if (asynchronous)
-                {
-                    await service.ListReportCdrUsageReportSyncAsync(options);
-                }
-                else
-                {
-                    service.ListReportCdrUsageReportSync(options);
-                }
-            });
+            var result = asynchronous
+                ? await service.ListReportCdrUsageReportSyncAsync(options)
+                : service.ListReportCdrUsageReportSync(options);
             wire.AssertResponse("GET", "/reports/cdr_usage_reports/sync", 200);
-            Assert.Equal(JTokenType.Object, wire.Json["data"].Type);
-            Assert.IsType<Newtonsoft.Json.JsonSerializationException>(error);
-            Assert.Contains("Cannot deserialize the current JSON object", error.Message);
+            var raw = Assert.IsType<JObject>(wire.Json["data"]);
+            var report = Assert.Single(result.Data);
+            Assert.Equal((string)raw["id"], report.Id.ToString());
+            Assert.Equal((string)raw["record_type"], report.RecordType);
+            Assert.True(JToken.DeepEquals(raw["result"], JToken.FromObject(report.Result)));
+            Assert.True(JToken.DeepEquals(wire.Json, JObject.Parse(result.TelnyxResponse.ResponseJson)));
+            Assert.Equal(result.TelnyxResponse.ResponseJson, report.TelnyxResponse.ResponseJson);
+            Assert.Null(result.PageInfo);
+            Assert.False(result.HasMore);
         }
 
         [Theory]

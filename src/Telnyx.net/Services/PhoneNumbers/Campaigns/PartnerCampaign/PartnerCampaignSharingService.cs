@@ -10,18 +10,28 @@ namespace Telnyx.net.Services.PhoneNumbers.Campaigns.PartnerCampaign
 {
     public class PartnerCampaignSharingService : ServiceNested<PartnerCampaignSharing>
     {
-        public override string BasePath => "/campaign/:campaignId/sharing";
+        public override string BasePath => "/10dlc/campaign/{PARENT_ID}/sharing";
+
+        protected override string ClassUrl(string parentId, string baseUrl = null)
+        {
+            if (string.IsNullOrEmpty(parentId) || parentId == "." || parentId == "..")
+            {
+                throw new ArgumentException("A non-empty campaign ID path segment is required.", nameof(parentId));
+            }
+
+            return base.ClassUrl(Uri.EscapeDataString(parentId), baseUrl);
+        }
 
         /// <inheritdoc/>
         public PartnerCampaignSharing Get(string id, RequestOptions requestOptions = null)
         {
-            return this.GetNestedEntity(id, null, null, requestOptions, "data");
+            return this.GetRequest<PartnerCampaignSharing>(this.ClassUrl(id), null, requestOptions, false, string.Empty);
         }
 
         /// <inheritdoc/>
         public async Task<PartnerCampaignSharing> GetAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await this.GetNestedEntityAsync(id, null, null, requestOptions, string.Empty, cancellationToken);
+            return await this.GetRequestAsync<PartnerCampaignSharing>(this.ClassUrl(id), null, requestOptions, false, string.Empty, cancellationToken);
         }
 
     }
