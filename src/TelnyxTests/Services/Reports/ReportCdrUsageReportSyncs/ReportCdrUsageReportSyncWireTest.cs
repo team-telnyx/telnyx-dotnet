@@ -128,6 +128,65 @@ namespace TelnyxTests.Services.Reports.ReportCdrUsageReportSyncs
             }
         }
 
+        [Theory]
+        [InlineData(false, false)]
+        [InlineData(true, false)]
+        [InlineData(false, true)]
+        [InlineData(true, true)]
+        public async Task ExplicitPagingPreservesLegacyArraysButNeverPaginatesObjects(bool asynchronous, bool objectShape)
+        {
+            var listener = new TcpListener(IPAddress.Loopback, 0);
+            listener.Start();
+            var original = TelnyxConfiguration.GetApiBase();
+            try
+            {
+                TelnyxConfiguration.SetApiBase($"http://127.0.0.1:{((IPEndPoint)listener.LocalEndpoint).Port}/v2");
+                var service = new ReportCdrUsageReportSyncService();
+                var options = new ReportCdrUsageReportSyncOption { NumberOfPagesToFetch = 2, PageNumber = 1 };
+                var request = new RequestOptions { ApiKey = "cdr-paging-only" };
+                var call = Task.Run(async () => asynchronous
+                    ? await service.ListReportCdrUsageReportSyncAsync(options, request)
+                    : service.ListReportCdrUsageReportSync(options, request));
+                for (var page = 1; page <= (objectShape ? 1 : 2); page++)
+                {
+                    var accept = listener.AcceptTcpClientAsync();
+                    if (page > 1) Assert.Same(accept, await Task.WhenAny(accept, call).WaitAsync(TimeSpan.FromSeconds(10)));
+                    using var client = await accept.WaitAsync(TimeSpan.FromSeconds(10));
+                    using var stream = client.GetStream();
+                    using var reader = new StreamReader(stream, Encoding.UTF8, false, 1024, true);
+                    var first = await reader.ReadLineAsync().WaitAsync(TimeSpan.FromSeconds(10));
+                    Assert.Contains("page[number]=" + page, Uri.UnescapeDataString(first));
+                    var headers = new StringBuilder();
+                    string header;
+                    while (!string.IsNullOrEmpty(header = await reader.ReadLineAsync().WaitAsync(TimeSpan.FromSeconds(10)))) headers.AppendLine(header);
+                    Assert.Contains("Authorization: Bearer cdr-paging-only", headers.ToString());
+                    var item = page == 1 ? Report : Report.Replace("COMPLETE", "PENDING");
+                    var json = "{\"meta\":{\"page_number\":" + page + ",\"page_size\":1,\"total_pages\":2,\"total_results\":2},\"data\":" + (objectShape ? item : "[" + item + "]") + "}";
+                    var response = Encoding.UTF8.GetBytes(json);
+                    await stream.WriteAsync(Encoding.ASCII.GetBytes($"HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: {response.Length}\r\nConnection: close\r\n\r\n"));
+                    await stream.WriteAsync(response);
+                    await stream.FlushAsync();
+                }
+
+                var result = await call.WaitAsync(TimeSpan.FromSeconds(10));
+                Assert.Equal(objectShape ? 1 : 2, result.Data.Count);
+                Assert.Equal("COMPLETE", result.Data[0].Status);
+                if (!objectShape)
+                {
+                    Assert.Equal("PENDING", result.Data[1].Status);
+                    Assert.Contains("COMPLETE", result.Data[0].TelnyxResponse.ResponseJson);
+                    Assert.Contains("PENDING", result.Data[1].TelnyxResponse.ResponseJson);
+                    Assert.Equal(2, result.PageInfo.PageNumber);
+                }
+                Assert.False(listener.Pending());
+            }
+            finally
+            {
+                listener.Stop();
+                TelnyxConfiguration.SetApiBase(original);
+            }
+        }
+
         private static JToken Parse(string json)
         {
             using var reader = new JsonTextReader(new StringReader(json)) { DateParseHandling = DateParseHandling.None };

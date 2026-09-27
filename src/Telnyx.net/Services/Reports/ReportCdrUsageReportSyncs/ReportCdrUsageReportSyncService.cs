@@ -19,17 +19,32 @@ namespace Telnyx.net.Services.Reports.ReportCdrUsageReportSyncs
             var response = await Requestor.GetStringAsync(
                 this.ApplyAllParameters(options, this.ClassUrl(), true),
                 this.SetupRequestOptions(reqOpts), cancellationToken).ConfigureAwait(false);
-            return MapReport(response);
+            var page = MapReport(response, out var arrayShape);
+            var reports = page.Data;
+            var count = 1;
+            // Preserve explicit legacy array paging without inventing pages for the
+            // current singleton-object contract. Each item retains its own page response.
+            while (arrayShape && page.HasMore && options != null && count < options.NumberOfPagesToFetch)
+            {
+                options.PageNumber = page.PageInfo.NextPage;
+                response = await Requestor.GetStringAsync(
+                    this.ApplyAllParameters(options, this.ClassUrl(), true),
+                    this.SetupRequestOptions(reqOpts), cancellationToken).ConfigureAwait(false);
+                page = MapReport(response, out arrayShape);
+                if (page.Data != null) reports.AddRange(page.Data);
+                count++;
+            }
+
+            page.Data = reports;
+            return page;
         }
 
         public TelnyxList<ReportCdrUsageReportSync> ListReportCdrUsageReportSync(ReportCdrUsageReportSyncOption options, RequestOptions reqOpts = null)
         {
-            return MapReport(Requestor.GetString(
-                this.ApplyAllParameters(options, this.ClassUrl(), true),
-                this.SetupRequestOptions(reqOpts)));
+            return this.ListReportCdrUsageReportSyncAsync(options, reqOpts).GetAwaiter().GetResult();
         }
 
-        private static TelnyxList<ReportCdrUsageReportSync> MapReport(TelnyxResponse response)
+        private static TelnyxList<ReportCdrUsageReportSync> MapReport(TelnyxResponse response, out bool arrayShape)
         {
             // Ref: pinned openapi/spec3.json, CdrGetSyncUsageReportResponse.data is
             // one CdrUsageReportResponse, not a page. Arrays remain legacy compatibility.
@@ -38,6 +53,7 @@ namespace Telnyx.net.Services.Reports.ReportCdrUsageReportSyncs
             {
                 var envelope = JObject.Load(reader);
                 var data = envelope["data"];
+                arrayShape = data is JArray;
                 envelope.Remove("data");
                 var serializer = JsonSerializer.CreateDefault(new JsonSerializerSettings { DateParseHandling = DateParseHandling.None });
                 var list = envelope.ToObject<TelnyxList<ReportCdrUsageReportSync>>(serializer);
