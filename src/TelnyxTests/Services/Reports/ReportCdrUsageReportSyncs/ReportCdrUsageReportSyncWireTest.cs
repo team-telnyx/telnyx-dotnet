@@ -129,11 +129,13 @@ namespace TelnyxTests.Services.Reports.ReportCdrUsageReportSyncs
         }
 
         [Theory]
-        [InlineData(false, false)]
-        [InlineData(true, false)]
-        [InlineData(false, true)]
-        [InlineData(true, true)]
-        public async Task ExplicitPagingPreservesLegacyArraysButNeverPaginatesObjects(bool asynchronous, bool objectShape)
+        [InlineData(false, false, 0)]
+        [InlineData(true, false, 0)]
+        [InlineData(false, true, 0)]
+        [InlineData(true, true, 0)]
+        [InlineData(true, false, 1)]
+        [InlineData(true, false, 2)]
+        public async Task ExplicitPagingPreservesLegacyArraysButNeverPaginatesObjects(bool asynchronous, bool objectShape, int cancelPage)
         {
             var listener = new TcpListener(IPAddress.Loopback, 0);
             listener.Start();
@@ -144,8 +146,9 @@ namespace TelnyxTests.Services.Reports.ReportCdrUsageReportSyncs
                 var service = new ReportCdrUsageReportSyncService();
                 var options = new ReportCdrUsageReportSyncOption { NumberOfPagesToFetch = 2, PageNumber = 1 };
                 var request = new RequestOptions { ApiKey = "cdr-paging-only" };
+                using var cancellation = new System.Threading.CancellationTokenSource();
                 var call = Task.Run(async () => asynchronous
-                    ? await service.ListReportCdrUsageReportSyncAsync(options, request)
+                    ? await service.ListReportCdrUsageReportSyncAsync(options, request, cancellation.Token)
                     : service.ListReportCdrUsageReportSync(options, request));
                 for (var page = 1; page <= (objectShape ? 1 : 2); page++)
                 {
@@ -160,6 +163,16 @@ namespace TelnyxTests.Services.Reports.ReportCdrUsageReportSyncs
                     string header;
                     while (!string.IsNullOrEmpty(header = await reader.ReadLineAsync().WaitAsync(TimeSpan.FromSeconds(10)))) headers.AppendLine(header);
                     Assert.Contains("Authorization: Bearer cdr-paging-only", headers.ToString());
+                    if (page == cancelPage)
+                    {
+                        await stream.WriteAsync(Encoding.ASCII.GetBytes("HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: 100000\r\nConnection: close\r\n\r\n{\"data\":"));
+                        await stream.FlushAsync();
+                        cancellation.Cancel();
+                        var error = await Record.ExceptionAsync(async () => await call.WaitAsync(TimeSpan.FromSeconds(10)));
+                        Assert.IsAssignableFrom<OperationCanceledException>(error);
+                        Assert.True(cancellation.IsCancellationRequested);
+                        return;
+                    }
                     var item = page == 1 ? Report : Report.Replace("COMPLETE", "PENDING");
                     var json = "{\"meta\":{\"page_number\":" + page + ",\"page_size\":1,\"total_pages\":2,\"total_results\":2},\"data\":" + (objectShape ? item : "[" + item + "]") + "}";
                     var response = Encoding.UTF8.GetBytes(json);
